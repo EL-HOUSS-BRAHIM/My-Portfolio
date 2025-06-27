@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /private/
-Sitemap: https://brahim-crafts.tech/sitemap.xml
