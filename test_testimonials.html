@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Testimonials Error Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .testimonial-slider { 
+            width: 100%; 
+            height: 200px; 
+            border: 1px solid #ccc; 
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .error-state { 
+            background: #f8f9fa; 
+            border-radius: 8px; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Testimonials Error Handling Test</h1>
+    
+    <div class="testimonial-slider" id="testimonial-slider"></div>
+    
+    <button id="prevTestimonial">Previous</button>
+    <button id="nextTestimonial">Next</button>
+    
+    <script src="assets/js/testimonials.js"></script>
+    
+    <script>
+        // Test with invalid API URL to trigger error
+        new TestimonialSlider('/invalid/api/path');
+    </script>
+</body>
+</html>
