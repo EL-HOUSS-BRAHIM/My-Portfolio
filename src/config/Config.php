@@ -27,8 +27,16 @@ class Config {
     }
     
     private function loadEnvironment() {
-        $dotenv = Dotenv::createImmutable(dirname(__DIR__, 2));
-        $dotenv->load();
+        $envPath = dirname(__DIR__, 2);
+        if (!file_exists($envPath . '/.env')) {
+            error_log("[Config] .env file not found at $envPath/.env");
+        }
+        try {
+            $dotenv = Dotenv::createImmutable($envPath);
+            $dotenv->load();
+        } catch (Exception $e) {
+            error_log('[Config] Failed to load .env: ' . $e->getMessage());
+        }
     }
     
     private function setDefaults() {
@@ -41,10 +49,10 @@ class Config {
                 'pass' => $_ENV['DB_PASS'] ?? '',
                 'charset' => 'utf8mb4'
             ],
-            
+
             // Email
             'email' => [
-                'smtp_host' => $_ENV['SMTP_HOST'] ?? 'smtp.gmail.com',
+                'smtp_host' => $_ENV['SMTP_HOST'] ?? '',
                 'smtp_port' => $_ENV['SMTP_PORT'] ?? 587,
                 'smtp_username' => $_ENV['SMTP_USERNAME'] ?? '',
                 'smtp_password' => $_ENV['SMTP_PASSWORD'] ?? '',
@@ -54,41 +62,53 @@ class Config {
                 'to_email' => $_ENV['TO_EMAIL'] ?? '',
                 'to_name' => $_ENV['TO_NAME'] ?? ''
             ],
-            
+
             // Security
             'security' => [
                 'secret_key' => $_ENV['SECRET_KEY'] ?? '',
                 'upload_max_size' => $_ENV['UPLOAD_MAX_SIZE'] ?? 5242880, // 5MB
                 'allowed_image_types' => explode(',', $_ENV['ALLOWED_IMAGE_TYPES'] ?? 'image/jpeg,image/png,image/gif,image/webp')
             ],
-            
+
             // Application
             'app' => [
                 'name' => $_ENV['APP_NAME'] ?? 'Portfolio',
-                'url' => $_ENV['APP_URL'] ?? 'http://localhost',
+                'url' => (isset($_ENV['DOMAIN']) ? 'https://' . $_ENV['DOMAIN'] : ($_ENV['APP_URL'] ?? 'http://localhost')),
                 'env' => $_ENV['APP_ENV'] ?? 'production',
-                'debug' => filter_var($_ENV['DEBUG'] ?? false, FILTER_VALIDATE_BOOLEAN)
+                'debug' => filter_var($_ENV['APP_DEBUG'] ?? false, FILTER_VALIDATE_BOOLEAN)
             ],
-            
+
             // Rate Limiting
             'rate_limit' => [
                 'requests' => $_ENV['RATE_LIMIT_REQUESTS'] ?? 100,
                 'window' => $_ENV['RATE_LIMIT_WINDOW'] ?? 3600
             ]
         ];
+
+        // Warn if required config values are missing in debug mode
+        if ($this->config['app']['debug']) {
+            $required = [
+                'DB_HOST', 'DB_NAME', 'DB_USER', 'DB_PASS',
+                'SMTP_HOST', 'SMTP_USERNAME', 'SMTP_PASSWORD', 'FROM_EMAIL', 'TO_EMAIL'
+            ];
+            foreach ($required as $key) {
+                if (empty($_ENV[$key])) {
+                    error_log("[Config] Missing required environment variable: $key");
+                }
+            }
+        }
     }
     
     public function get($key, $default = null) {
+        if (!$key) return $default;
         $keys = explode('.', $key);
         $value = $this->config;
-        
         foreach ($keys as $k) {
-            if (!isset($value[$k])) {
+            if (!is_array($value) || !array_key_exists($k, $value)) {
                 return $default;
             }
             $value = $value[$k];
         }
-        
         return $value;
     }
     
