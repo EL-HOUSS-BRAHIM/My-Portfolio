@@ -1,0 +1,228 @@
+/* ========================================
+   VIEWPORT FIXES - ENSURE HEADER AND HERO FIT IN VIEWPORT
+   ======================================== */
+
+/* Adjust the hero section to fit in the viewport */
+.hero {
+  min-height: calc(100vh - 70px); /* Subtract the header height */
+  height: calc(100vh - 70px); /* Set explicit height */
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin-top: 70px; /* Add space for the fixed header */
+  overflow: hidden; /* Prevent any overflow that might cause scrolling */
+}
+
+/* Make sure the container takes full height */
+.hero__container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* Ensure content is properly sized to fit viewport */
+.hero__content {
+  max-height: calc(100vh - 140px); /* Subtract header height and some spacing */
+  overflow: visible; /* Allow content to be visible */
+}
+
+/* Adjust image size on different screen sizes */
+.hero__image-container {
+  width: 280px;
+  height: 280px;
+}
+
+/* Make scroll indicator more prominent */
+.scroll-indicator {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: var(--accent-color);
+  font-weight: 500;
+  animation: bounce 2s infinite;
+  z-index: 10;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 10px 15px;
+  border-radius: 20px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  transition: all var(--transition-fast);
+}
+
+.scroll-indicator:hover {
+  background-color: var(--accent-color);
+  color: white;
+  transform: translateX(-50%) translateY(-5px);
+}
+
+.scroll-indicator i {
+  font-size: 1.5rem;
+  margin-top: 5px;
+  display: block;
+}
+
+/* Fix for the header to ensure it's fixed at the top */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* Ensure about section starts right after the viewport */
+#about {
+  padding-top: var(--spacing-3xl);
+  margin-top: 0;
+}
+
+/* Scroll progress indicator */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: var(--primary-gradient);
+  width: 0%;
+  transition: width 0.2s ease-out;
+  z-index: 2000;
+}
+
+/* Media queries for responsive adjustments */
+@media (max-height: 800px) {
+  /* For smaller height screens */
+  .hero__stats {
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .hero__image-container {
+    width: 240px;
+    height: 240px;
+  }
+  
+  .hero__description {
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .tech-stack-preview {
+    gap: 10px;
+  }
+  
+  .tech-item {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-height: 700px) {
+  /* For very small height screens */
+  .hero__greeting {
+    font-size: 1rem;
+  }
+  
+  .hero__name {
+    font-size: 2.5rem;
+  }
+  
+  .hero__role {
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .hero__description {
+    font-size: 1rem;
+  }
+  
+  .hero__stats {
+    padding: var(--spacing-sm) 0;
+  }
+  
+  .stat__number {
+    font-size: 1.5rem;
+  }
+  
+  .hero__image-container {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+/* Mobile responsive fixes */
+@media (max-width: 768px) {
+  .hero__content {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+  }
+  
+  .hero {
+    height: auto;
+    min-height: calc(100vh - 70px);
+  }
+  
+  .hero__visual {
+    order: -1;
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  .hero__image-container {
+    width: 220px;
+    height: 220px;
+  }
+  
+  .hero__text {
+    text-align: center;
+    margin: 0 auto;
+  }
+  
+  .hero__actions {
+    justify-content: center;
+  }
+  
+  .hero__stats {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    min-height: calc(100vh - 70px);
+    height: auto;
+    padding-top: var(--spacing-xl);
+    padding-bottom: var(--spacing-xl);
+  }
+  
+  .hero__image-container {
+    width: 180px;
+    height: 180px;
+  }
+  
+  .hero__name {
+    font-size: 2rem;
+  }
+  
+  .hero__role {
+    font-size: 1.2rem;
+  }
+  
+  .hero__description {
+    font-size: 0.9rem;
+  }
+  
+  .hero__actions {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    width: 100%;
+  }
+  
+  .hero__actions .btn {
+    width: 100%;
+  }
+}
