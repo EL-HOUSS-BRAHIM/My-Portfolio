@@ -1,3 +1,4 @@
+
 <?php
 /**
  * Get Testimonials API Endpoint
@@ -8,10 +9,21 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 0);
 
+// Always return JSON on fatal error
+register_shutdown_function(function() {
+    $error = error_get_last();
+    if ($error && in_array($error['type'], [E_ERROR, E_PARSE, E_CORE_ERROR, E_COMPILE_ERROR])) {
+        header('Content-Type: application/json');
+        http_response_code(500);
+        echo json_encode(['success' => false, 'message' => 'A fatal server error occurred.', 'error' => $error]);
+    }
+});
+
 require_once __DIR__ . '/../config/Config.php';
 require_once __DIR__ . '/../config/Database.php';
 require_once __DIR__ . '/../utils/Response.php';
 
+$config = null;
 try {
     // Initialize configuration
     $config = Config::getInstance();
@@ -33,7 +45,8 @@ try {
     
     // Add image URL for each testimonial
     foreach ($testimonials as &$testimonial) {
-        $testimonial['image_url'] = $config->get('app.url') . '/src/api/get_image.php?id=' . $testimonial['id'];
+        $baseUrl = rtrim($config->get('app.url'), '/');
+        $testimonial['image_url'] = $baseUrl . '/src/api/get_image.php?id=' . $testimonial['id'];
         $testimonial['rating'] = intval($testimonial['rating']);
         
         // Format date
@@ -65,11 +78,10 @@ try {
     
     Response::success('Testimonials retrieved successfully', $response);
     
-} catch (Exception $e) {
+} catch (Throwable $e) {
     error_log("Get testimonials API error: " . $e->getMessage());
-    
-    if ($config->get('app.debug')) {
-        Response::serverError('Error: ' . $e->getMessage());
+    if ($config && $config->get('app.debug')) {
+        Response::serverError('Error: ' . $e->getMessage() . "\nTrace: " . $e->getTraceAsString());
     } else {
         Response::serverError('Failed to retrieve testimonials. Please try again later.');
     }
