@@ -1,0 +1,14 @@
+{
+    "scope": "/",
+    "allow_origin": [
+        "https://brahim-elhouss.me",
+        "https://www.brahim-elhouss.me"
+    ],
+    "modify_header_map": {
+        "response": {
+            "set": {
+                "Cache-Control": "no-cache"
+            }
+        }
+    }
+}
