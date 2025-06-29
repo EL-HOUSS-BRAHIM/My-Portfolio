@@ -91,7 +91,7 @@
     <meta name="msapplication-TileColor" content="#667eea">
     <meta name="msapplication-TileImage" content="/mstile-150x150.png">
     <meta name="msapplication-config" content="/browserconfig.xml">
-    <meta name="theme-color" content="#667eea">
+    <meta name="theme-color" content="#1a202c">
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#667eea">
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1a202c">
     
@@ -251,6 +251,10 @@
     
     <!-- Styles and icons -->
     <link rel="stylesheet" href="assets/css/portfolio.css">
+    <link rel="stylesheet" href="assets/css/contact-testimonials.css">
+    <link rel="stylesheet" href="assets/css/projects-fix.css">
+    <link rel="stylesheet" href="assets/css/viewport-fix.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
     <link rel="icon" href="/favicon.ico">
 </head>
 
@@ -324,7 +328,7 @@
                 </ul>
                 
                 <div class="nav__actions">
-                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light theme" aria-pressed="false">
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme" aria-pressed="false">
                         <i class="fas fa-moon" aria-hidden="true"></i>
                     </button>
                     <a href="https://github.com/BrahimElHouss" class="cta-button" target="_blank" rel="noopener noreferrer" aria-label="Visit my GitHub profile">
@@ -959,7 +963,7 @@
                     <p>Want to see more of my work?</p>
                     <a href="https://github.com/EL-HOUSS-BRAHIM" class="btn btn--primary" target="_blank">
                         <i class="fab fa-github"></i>
-                        View All Projects on GitHub
+                        <span></span>View All Projects on GitHub</span>
                     </a>
                 </div>
             </div>
@@ -1311,8 +1315,20 @@
     <!-- Main portfolio scripts -->
     <script src="assets/js/portfolio.js"></script>
     
+    <!-- Projects functionality -->
+    <script src="assets/js/projects.js"></script>
+    
+    <!-- Contact form handler -->
+    <script src="assets/js/contact-form.js"></script>
+    
     <!-- Testimonials module -->
     <script src="assets/js/testimonials.js"></script>
+    
+    <!-- Viewport handler -->
+    <script src="assets/js/viewport-handler.js"></script>
+    
+    <!-- Mobile navigation handler -->
+    <script src="assets/js/mobile-nav.js"></script>
     
     <!-- Enhanced portfolio functionality -->
     <script>
@@ -1338,7 +1354,6 @@
             
             // Initialize enhanced features
             initializeThemeToggle();
-            initializeMobileNavigation();
             initializeProjectsFilter();
             initializeScrollEffects();
             initializeBackToTop();
@@ -1350,20 +1365,25 @@
             const body = document.body;
             const icon = themeToggle.querySelector('i');
             
-            // Check for saved theme preference
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme) {
-                body.classList.add(savedTheme);
-                updateThemeIcon(savedTheme, icon);
+            // Check for saved theme preference or use dark theme as default
+            const savedTheme = localStorage.getItem('theme') || 'dark-theme';
+            
+            // Apply theme
+            if (savedTheme === 'light-theme') {
+                body.setAttribute('data-theme', 'light');
+                updateThemeIcon('light-theme', icon);
+            } else {
+                // Dark theme is the default, no attribute needed
+                updateThemeIcon('dark-theme', icon);
             }
             
             themeToggle.addEventListener('click', () => {
-                if (body.classList.contains('light-theme')) {
-                    body.classList.remove('light-theme');
+                if (body.getAttribute('data-theme') === 'light') {
+                    body.removeAttribute('data-theme');
                     localStorage.setItem('theme', 'dark-theme');
                     updateThemeIcon('dark-theme', icon);
                 } else {
-                    body.classList.add('light-theme');
+                    body.setAttribute('data-theme', 'light');
                     localStorage.setItem('theme', 'light-theme');
                     updateThemeIcon('light-theme', icon);
                 }
@@ -1376,25 +1396,6 @@
             } else {
                 icon.className = 'fas fa-moon';
             }
-        }
-        
-        // Mobile navigation
-        function initializeMobileNavigation() {
-            const navToggle = document.getElementById('nav-toggle');
-            const navMenu = document.getElementById('nav-menu');
-            
-            navToggle.addEventListener('click', () => {
-                navMenu.classList.toggle('show');
-                navToggle.classList.toggle('active');
-            });
-            
-            // Close menu when clicking on a link
-            document.querySelectorAll('.nav__link').forEach(link => {
-                link.addEventListener('click', () => {
-                    navMenu.classList.remove('show');
-                    navToggle.classList.remove('active');
-                });
-            });
         }
         
         // Projects filter
