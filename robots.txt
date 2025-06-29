@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /private/
-Sitemap: https://brahim-crafts.tech/sitemap.xml
+Disallow: /.well-known/appspecific/
+Allow: /.well-known/security.txt
+Sitemap: https://brahim-elhouss.me/sitemap.xml
