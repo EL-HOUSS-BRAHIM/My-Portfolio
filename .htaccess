@@ -15,3 +15,23 @@ ErrorDocument 403 https://errors.infinityfree.net/errors/403/
 ErrorDocument 404 https://errors.infinityfree.net/errors/404/
 ErrorDocument 500 https://errors.infinityfree.net/errors/500/
 php_value display_errors On
+
+# Add MIME types for .well-known directory
+<IfModule mod_mime.c>
+  AddType application/json .json
+  AddType text/plain .txt
+</IfModule>
+
+# Allow access to .well-known directory
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^\.well-known/ - [L]
+</IfModule>
+
+# Handle 404 for .well-known files locally instead of using the generic error page
+<IfModule mod_rewrite.c>
+  RewriteCond %{REQUEST_URI} ^/\.well-known/
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule .* - [R=404,L]
+</IfModule>
