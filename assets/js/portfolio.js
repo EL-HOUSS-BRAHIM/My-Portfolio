@@ -220,6 +220,15 @@ class PortfolioApp {
     }
 
     async handleFormSubmission(form) {
+        // Check if we're in development mode
+        const isDevelopment = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+        
+        if (isDevelopment) {
+            console.log('[PortfolioApp] Development mode - simulating form submission');
+            this.showNotification('⚠️ Development Mode: Contact form submission is disabled. This feature will work in production with proper email configuration.', 'warning');
+            return;
+        }
+        
         const submitButton = form.querySelector('.form-submit, button[type="submit"]');
         if (!submitButton) {
             console.warn('[PortfolioApp] Submit button not found in form.');
@@ -277,6 +286,21 @@ class PortfolioApp {
         const notification = document.createElement('div');
         notification.className = `notification notification--${type}`;
         notification.textContent = message;
+        
+        let backgroundColor;
+        switch(type) {
+            case 'success':
+                backgroundColor = '#10b981';
+                break;
+            case 'warning':
+                backgroundColor = '#f59e0b';
+                break;
+            case 'error':
+            default:
+                backgroundColor = '#ef4444';
+                break;
+        }
+        
         Object.assign(notification.style, {
             position: 'fixed',
             top: '20px',
@@ -287,13 +311,13 @@ class PortfolioApp {
             fontWeight: '600',
             zIndex: '9999',
             animation: 'slideInRight 0.3s ease-out',
-            backgroundColor: type === 'success' ? '#10b981' : '#ef4444'
+            backgroundColor: backgroundColor
         });
         document.body.appendChild(notification);
         setTimeout(() => {
             notification.style.animation = 'slideOutRight 0.3s ease-out';
             setTimeout(() => notification.remove(), 300);
-        }, 3500);
+        }, 5000); // Longer timeout for warning messages
         console.debug(`[PortfolioApp] Notification shown: ${message} (${type})`);
     }
 
