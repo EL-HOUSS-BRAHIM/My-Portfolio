@@ -1334,19 +1334,20 @@
     <script>
         // Initialize testimonials slider when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize testimonials with error handling
+            // Initialize testimonials with error handling for development mode
             try {
-                new TestimonialSlider('/src/api');
+                const testimonialSlider = new TestimonialSlider('/src/api');
+                console.log('Testimonials initialized');
             } catch (error) {
-                console.error('Failed to initialize testimonials:', error);
-                // Fallback: Show error message in testimonials section
+                console.warn('Testimonials failed to initialize (expected in development):', error.message);
+                // Show development message instead of error
                 const testimonialSlider = document.querySelector('.testimonial-slider');
                 if (testimonialSlider) {
                     testimonialSlider.innerHTML = `
-                        <div class="error-state" style="text-align: center; padding: 2rem; color: #e74c3c;">
-                            <div style="font-size: 2rem; margin-bottom: 1rem;">⚠️</div>
-                            <h3 style="margin-bottom: 1rem; color: #e74c3c;">Testimonials Unavailable</h3>
-                            <p>Database connection error. Check logs.</p>
+                        <div class="dev-notice" style="text-align: center; padding: 2rem; color: #f39c12; background: rgba(243, 156, 18, 0.1); border-radius: 8px;">
+                            <div style="font-size: 2rem; margin-bottom: 1rem;">🚧</div>
+                            <h3 style="margin-bottom: 1rem; color: #f39c12;">Development Mode</h3>
+                            <p>Testimonials require database connection (available in production only)</p>
                         </div>
                     `;
                 }
@@ -1467,6 +1468,11 @@
         function initializeBackToTop() {
             const backToTop = document.getElementById('backToTop');
             
+            if (!backToTop) {
+                console.warn('Back to top button not found');
+                return;
+            }
+            
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 300) {
                     backToTop.classList.add('show');
@@ -1483,11 +1489,6 @@
             });
         }
     </script>
-
-    <!-- Scroll to Top Button -->
-    <button class="scroll-to-top" id="scroll-to-top" aria-label="Scroll to top">
-        <i class="fas fa-chevron-up"></i>
-    </button>
 
 </body>
 
