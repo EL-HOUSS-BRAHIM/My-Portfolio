@@ -88,6 +88,15 @@ class TestimonialSlider {
     }
     
     async fetchTestimonials() {
+        // Check if we're in development mode
+        const isDevelopment = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+        
+        if (isDevelopment) {
+            console.log('Development mode detected - using sample testimonials');
+            this.loadSampleTestimonials();
+            return;
+        }
+        
         try {
             const response = await fetch(`${this.apiBaseUrl}/get_testimonials.php`);
             
@@ -121,6 +130,49 @@ class TestimonialSlider {
                 this.showDatabaseError('Failed to load testimonials. Please try again later.');
             }
         }
+    }
+    
+    loadSampleTestimonials() {
+        // Sample testimonials for development mode
+        this.testimonials = [
+            {
+                id: 1,
+                name: "John Smith",
+                rating: 5,
+                testimonial: "Working with Brahim was an amazing experience. His technical skills and attention to detail are impressive. The project was delivered on time and exceeded my expectations!",
+                image_url: "assets/images/profile-img.jpg",
+                created_at: "2023-10-15 14:30:00"
+            },
+            {
+                id: 2,
+                name: "Sarah Johnson",
+                rating: 4,
+                testimonial: "Brahim is a skilled developer who brought my website vision to life. His communication was excellent throughout the project.",
+                image_url: "assets/images/profile-img.jpg",
+                created_at: "2023-09-22 09:45:00"
+            },
+            {
+                id: 3,
+                name: "Michael Davis",
+                rating: 5,
+                testimonial: "I've worked with many developers, but Brahim stands out for his problem-solving abilities and dedication to quality. Highly recommended!",
+                image_url: "assets/images/profile-img.jpg",
+                created_at: "2023-08-05 16:20:00"
+            },
+            {
+                id: 4,
+                name: "Emily Wilson",
+                rating: 5,
+                testimonial: "Brahim turned our outdated website into a modern, responsive platform that has significantly increased our conversions. We couldn't be happier with the results!",
+                image_url: "assets/images/profile-img.jpg",
+                created_at: "2023-07-18 11:10:00"
+            }
+        ];
+        
+        console.log('Sample testimonials loaded:', this.testimonials.length);
+        this.displayTestimonials();
+        this.updateNavigationButtons();
+        this.startAutoSlide();
     }
     
     displayTestimonials() {
@@ -159,14 +211,28 @@ class TestimonialSlider {
     
     showDatabaseError(message = 'Database error. Check logs.') {
         if (this.elements.slider) {
-            this.elements.slider.innerHTML = `
-                <div class="error-state" style="text-align: center; padding: 2rem; color: #e74c3c;">
-                    <div style="font-size: 2rem; margin-bottom: 1rem;">⚠️</div>
-                    <h3 style="margin-bottom: 1rem; color: #e74c3c;">Database Connection Error</h3>
-                    <p style="margin-bottom: 0.5rem;">${this.escapeHtml(message)}</p>
-                    <p style="font-size: 0.9rem; opacity: 0.8;">Please check the server logs for more details.</p>
-                </div>
-            `;
+            // Check if we're in development mode
+            const isDevelopment = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+            
+            if (isDevelopment) {
+                this.elements.slider.innerHTML = `
+                    <div class="dev-notice" style="text-align: center; padding: 2rem; color: #f39c12; background: rgba(243, 156, 18, 0.1); border-radius: 8px;">
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">🚧</div>
+                        <h3 style="margin-bottom: 1rem; color: #f39c12;">Development Mode</h3>
+                        <p style="margin-bottom: 0.5rem;">Testimonials require database connection</p>
+                        <p style="font-size: 0.9rem; opacity: 0.8;">This feature will work in production mode</p>
+                    </div>
+                `;
+            } else {
+                this.elements.slider.innerHTML = `
+                    <div class="error-state" style="text-align: center; padding: 2rem; color: #e74c3c;">
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">⚠️</div>
+                        <h3 style="margin-bottom: 1rem; color: #e74c3c;">Testimonials Unavailable</h3>
+                        <p style="margin-bottom: 0.5rem;">${this.escapeHtml(message)}</p>
+                        <p style="font-size: 0.9rem; opacity: 0.8;">Please try again later.</p>
+                    </div>
+                `;
+            }
         }
         
         // Hide navigation buttons when there's an error
@@ -289,6 +355,14 @@ class TestimonialSlider {
     
     async handleFormSubmit(event) {
         event.preventDefault();
+        
+        // Check if we're in development mode
+        const isDevelopment = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+        
+        if (isDevelopment) {
+            alert('⚠️ Development Mode\n\nTestimonial form submission is disabled in development mode.\nThis feature will work in production with database connection.');
+            return;
+        }
         
         const formData = new FormData(this.elements.form);
         const submitButton = this.elements.form.querySelector('button[type="submit"]');
