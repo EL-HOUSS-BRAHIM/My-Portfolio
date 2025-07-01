@@ -383,4 +383,298 @@ class ContactManager {
         // Reset form
         this.form.reset();
         
-        // Reset textareas to original height\n        this.form.querySelectorAll('textarea').forEach(textarea => {\n            textarea.style.height = 'auto';\n        });\n        \n        // Update character counters\n        this.form.querySelectorAll('.character-counter').forEach(counter => {\n            const textarea = counter.parentNode.querySelector('textarea[maxlength]');\n            if (textarea) {\n                const maxLength = parseInt(textarea.getAttribute('maxlength'));\n                counter.textContent = `${maxLength} characters remaining`;\n                counter.classList.remove('warning');\n            }\n        });\n        \n        // Analytics tracking (if available)\n        if (typeof gtag !== 'undefined') {\n            gtag('event', 'form_submit', {\n                'event_category': 'engagement',\n                'event_label': 'contact_form'\n            });\n        }\n        \n        console.debug('[ContactManager] Form submitted successfully');\n    }\n    \n    handleSubmitError(error) {\n        console.error('[ContactManager] Form submission error:', error);\n        \n        let message = 'Sorry, there was a problem sending your message. Please try again.';\n        \n        // Handle specific error types\n        if (error.message.includes('timeout')) {\n            message = 'The request timed out. Please check your connection and try again.';\n        } else if (error.message.includes('Failed to fetch')) {\n            message = 'Unable to connect to the server. Please check your internet connection.';\n        } else if (error.message.includes('rate limit') || error.message.includes('too many')) {\n            message = 'You\\'ve sent too many messages. Please wait a moment before trying again.';\n        } else if (error.message) {\n            message = error.message;\n        }\n        \n        this.showMessage(message, 'error');\n        \n        // Retry logic for transient errors\n        if (this.shouldRetry(error) && this.retryCount < this.maxRetries) {\n            this.scheduleRetry();\n        }\n    }\n    \n    shouldRetry(error) {\n        const retryableErrors = [\n            'timeout',\n            'Failed to fetch',\n            'Network error',\n            '500',\n            '502',\n            '503',\n            '504'\n        ];\n        \n        return retryableErrors.some(errorType => \n            error.message.toLowerCase().includes(errorType.toLowerCase())\n        );\n    }\n    \n    scheduleRetry() {\n        this.retryCount++;\n        const delay = Math.pow(2, this.retryCount) * 1000; // Exponential backoff\n        \n        this.showMessage(\n            `Retrying in ${delay / 1000} seconds... (Attempt ${this.retryCount}/${this.maxRetries})`,\n            'info'\n        );\n        \n        setTimeout(() => {\n            this.submitForm();\n        }, delay);\n    }\n    \n    updateSubmitButton(text, disabled) {\n        if (!this.submitButton) return;\n        \n        if (this.submitButton.tagName === 'BUTTON') {\n            this.submitButton.textContent = text;\n        } else {\n            this.submitButton.value = text;\n        }\n        \n        this.submitButton.disabled = disabled;\n        this.submitButton.classList.toggle('loading', disabled);\n        this.submitButton.setAttribute('aria-busy', disabled.toString());\n    }\n    \n    showMessage(message, type) {\n        this.clearMessages();\n        \n        const messageElement = document.createElement('div');\n        messageElement.className = `contact-message contact-message--${type}`;\n        messageElement.setAttribute('role', type === 'error' ? 'alert' : 'status');\n        messageElement.setAttribute('aria-live', 'polite');\n        \n        const icon = this.getMessageIcon(type);\n        messageElement.innerHTML = `\n            <span class=\"contact-message__icon\">${icon}</span>\n            <span class=\"contact-message__text\">${message}</span>\n        `;\n        \n        this.responseContainer.appendChild(messageElement);\n        \n        // Scroll message into view\n        messageElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });\n        \n        // Auto-hide success messages\n        if (type === 'success') {\n            setTimeout(() => {\n                if (messageElement.parentNode) {\n                    messageElement.remove();\n                }\n            }, 5000);\n        }\n    }\n    \n    getMessageIcon(type) {\n        const icons = {\n            success: '✅',\n            error: '❌',\n            warning: '⚠️',\n            info: 'ℹ️'\n        };\n        return icons[type] || icons.info;\n    }\n    \n    clearMessages() {\n        this.responseContainer.innerHTML = '';\n        \n        // Clear field errors\n        this.form.querySelectorAll('.field-error').forEach(error => error.remove());\n        this.form.querySelectorAll('.error').forEach(field => {\n            field.classList.remove('error');\n            field.setAttribute('aria-invalid', 'false');\n            field.removeAttribute('aria-describedby');\n        });\n    }\n    \n    // Public API methods\n    reset() {\n        this.form.reset();\n        this.clearMessages();\n        this.retryCount = 0;\n    }\n    \n    disable() {\n        this.form.querySelectorAll('input, textarea, select, button').forEach(field => {\n            field.disabled = true;\n        });\n    }\n    \n    enable() {\n        this.form.querySelectorAll('input, textarea, select, button').forEach(field => {\n            field.disabled = false;\n        });\n    }\n    \n    setFieldValue(fieldName, value) {\n        const field = this.form.querySelector(`[name=\"${fieldName}\"]`);\n        if (field) {\n            field.value = value;\n            this.validateField(field);\n        }\n    }\n    \n    getFieldValue(fieldName) {\n        const field = this.form.querySelector(`[name=\"${fieldName}\"]`);\n        return field ? field.value : null;\n    }\n}\n\n// CSS for enhanced contact form styling\nconst contactFormStyles = `\n    .contact-response {\n        margin-bottom: 1rem;\n    }\n    \n    .contact-message {\n        display: flex;\n        align-items: center;\n        gap: 0.5rem;\n        padding: 0.75rem 1rem;\n        border-radius: 0.375rem;\n        margin-bottom: 0.5rem;\n        font-weight: 500;\n    }\n    \n    .contact-message--success {\n        background-color: #dcfce7;\n        color: #166534;\n        border: 1px solid #bbf7d0;\n    }\n    \n    .contact-message--error {\n        background-color: #fef2f2;\n        color: #dc2626;\n        border: 1px solid #fecaca;\n    }\n    \n    .contact-message--warning {\n        background-color: #fefce8;\n        color: #a16207;\n        border: 1px solid #fde68a;\n    }\n    \n    .contact-message--info {\n        background-color: #eff6ff;\n        color: #1d4ed8;\n        border: 1px solid #dbeafe;\n    }\n    \n    .field-error {\n        color: #dc2626;\n        font-size: 0.875rem;\n        margin-top: 0.25rem;\n    }\n    \n    .error {\n        border-color: #dc2626 !important;\n        box-shadow: 0 0 0 1px #dc2626 !important;\n    }\n    \n    .character-counter {\n        font-size: 0.75rem;\n        color: #6b7280;\n        text-align: right;\n        margin-top: 0.25rem;\n    }\n    \n    .character-counter.warning {\n        color: #dc2626;\n        font-weight: 600;\n    }\n    \n    .validation-errors {\n        background-color: #fef2f2;\n        border: 1px solid #fecaca;\n        border-radius: 0.375rem;\n        padding: 1rem;\n        margin-bottom: 1rem;\n        list-style-type: disc;\n        list-style-position: inside;\n    }\n    \n    .validation-errors li {\n        color: #dc2626;\n        margin-bottom: 0.25rem;\n    }\n    \n    button.loading {\n        opacity: 0.7;\n        cursor: not-allowed;\n        position: relative;\n    }\n    \n    button.loading::after {\n        content: '';\n        position: absolute;\n        right: 10px;\n        top: 50%;\n        transform: translateY(-50%);\n        width: 16px;\n        height: 16px;\n        border: 2px solid transparent;\n        border-top: 2px solid currentColor;\n        border-radius: 50%;\n        animation: spin 1s linear infinite;\n    }\n    \n    @keyframes spin {\n        0% { transform: translateY(-50%) rotate(0deg); }\n        100% { transform: translateY(-50%) rotate(360deg); }\n    }\n    \n    textarea {\n        resize: vertical;\n        min-height: 100px;\n        transition: height 0.2s ease;\n    }\n`;\n\n// Inject contact form styles\nif (!document.getElementById('contact-form-styles')) {\n    const styleSheet = document.createElement('style');\n    styleSheet.id = 'contact-form-styles';\n    styleSheet.textContent = contactFormStyles;\n    document.head.appendChild(styleSheet);\n}
+                // Reset textareas to original height
+                this.form.querySelectorAll('textarea').forEach(textarea => {
+                    textarea.style.height = 'auto';
+                });
+        
+                // Update character counters
+                this.form.querySelectorAll('.character-counter').forEach(counter => {
+                    const textarea = counter.parentNode.querySelector('textarea[maxlength]');
+                    if (textarea) {
+                        const maxLength = parseInt(textarea.getAttribute('maxlength'));
+                        counter.textContent = `${maxLength} characters remaining`;
+                        counter.classList.remove('warning');
+                    }
+                });
+        
+                // Analytics tracking (if available)
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'form_submit', {
+                        'event_category': 'engagement',
+                        'event_label': 'contact_form'
+                    });
+                }
+        
+                console.debug('[ContactManager] Form submitted successfully');
+            }
+        
+            handleSubmitError(error) {
+                console.error('[ContactManager] Form submission error:', error);
+        
+                let message = 'Sorry, there was a problem sending your message. Please try again.';
+        
+                // Handle specific error types
+                if (error.message.includes('timeout')) {
+                    message = 'The request timed out. Please check your connection and try again.';
+                } else if (error.message.includes('Failed to fetch')) {
+                    message = 'Unable to connect to the server. Please check your internet connection.';
+                } else if (error.message.includes('rate limit') || error.message.includes('too many')) {
+                    message = 'You\'ve sent too many messages. Please wait a moment before trying again.';
+                } else if (error.message) {
+                    message = error.message;
+                }
+        
+                this.showMessage(message, 'error');
+        
+                // Retry logic for transient errors
+                if (this.shouldRetry(error) && this.retryCount < this.maxRetries) {
+                    this.scheduleRetry();
+                }
+            }
+        
+            shouldRetry(error) {
+                const retryableErrors = [
+                    'timeout',
+                    'Failed to fetch',
+                    'Network error',
+                    '500',
+                    '502',
+                    '503',
+                    '504'
+                ];
+        
+                return retryableErrors.some(errorType =>
+                    error.message.toLowerCase().includes(errorType.toLowerCase())
+                );
+            }
+        
+            scheduleRetry() {
+                this.retryCount++;
+                const delay = Math.pow(2, this.retryCount) * 1000; // Exponential backoff
+        
+                this.showMessage(
+                    `Retrying in ${delay / 1000} seconds... (Attempt ${this.retryCount}/${this.maxRetries})`,
+                    'info'
+                );
+        
+                setTimeout(() => {
+                    this.submitForm();
+                }, delay);
+            }
+        
+            updateSubmitButton(text, disabled) {
+                if (!this.submitButton) return;
+        
+                if (this.submitButton.tagName === 'BUTTON') {
+                    this.submitButton.textContent = text;
+                } else {
+                    this.submitButton.value = text;
+                }
+        
+                this.submitButton.disabled = disabled;
+                this.submitButton.classList.toggle('loading', disabled);
+                this.submitButton.setAttribute('aria-busy', disabled.toString());
+            }
+        
+            showMessage(message, type) {
+                this.clearMessages();
+        
+                const messageElement = document.createElement('div');
+                messageElement.className = `contact-message contact-message--${type}`;
+                messageElement.setAttribute('role', type === 'error' ? 'alert' : 'status');
+                messageElement.setAttribute('aria-live', 'polite');
+        
+                const icon = this.getMessageIcon(type);
+                messageElement.innerHTML = `
+                    <span class="contact-message__icon">${icon}</span>
+                    <span class="contact-message__text">${message}</span>
+                `;
+        
+                this.responseContainer.appendChild(messageElement);
+        
+                // Scroll message into view
+                messageElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        
+                // Auto-hide success messages
+                if (type === 'success') {
+                    setTimeout(() => {
+                        if (messageElement.parentNode) {
+                            messageElement.remove();
+                        }
+                    }, 5000);
+                }
+            }
+        
+            getMessageIcon(type) {
+                const icons = {
+                    success: '✅',
+                    error: '❌',
+                    warning: '⚠️',
+                    info: 'ℹ️'
+                };
+                return icons[type] || icons.info;
+            }
+        
+            clearMessages() {
+                this.responseContainer.innerHTML = '';
+        
+                // Clear field errors
+                this.form.querySelectorAll('.field-error').forEach(error => error.remove());
+                this.form.querySelectorAll('.error').forEach(field => {
+                    field.classList.remove('error');
+                    field.setAttribute('aria-invalid', 'false');
+                    field.removeAttribute('aria-describedby');
+                });
+            }
+        
+            // Public API methods
+            reset() {
+                this.form.reset();
+                this.clearMessages();
+                this.retryCount = 0;
+            }
+        
+            disable() {
+                this.form.querySelectorAll('input, textarea, select, button').forEach(field => {
+                    field.disabled = true;
+                });
+            }
+        
+            enable() {
+                this.form.querySelectorAll('input, textarea, select, button').forEach(field => {
+                    field.disabled = false;
+                });
+            }
+        
+            setFieldValue(fieldName, value) {
+                const field = this.form.querySelector(`[name="${fieldName}"]`);
+                if (field) {
+                    field.value = value;
+                    this.validateField(field);
+                }
+            }
+        
+            getFieldValue(fieldName) {
+                const field = this.form.querySelector(`[name="${fieldName}"]`);
+                return field ? field.value : null;
+            }
+        }
+        
+        // CSS for enhanced contact form styling
+        const contactFormStyles = `
+            .contact-response {
+                margin-bottom: 1rem;
+            }
+            
+            .contact-message {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 0.75rem 1rem;
+                border-radius: 0.375rem;
+                margin-bottom: 0.5rem;
+                font-weight: 500;
+            }
+            
+            .contact-message--success {
+                background-color: #dcfce7;
+                color: #166534;
+                border: 1px solid #bbf7d0;
+            }
+            
+            .contact-message--error {
+                background-color: #fef2f2;
+                color: #dc2626;
+                border: 1px solid #fecaca;
+            }
+            
+            .contact-message--warning {
+                background-color: #fefce8;
+                color: #a16207;
+                border: 1px solid #fde68a;
+            }
+            
+            .contact-message--info {
+                background-color: #eff6ff;
+                color: #1d4ed8;
+                border: 1px solid #dbeafe;
+            }
+            
+            .field-error {
+                color: #dc2626;
+                font-size: 0.875rem;
+                margin-top: 0.25rem;
+            }
+            
+            .error {
+                border-color: #dc2626 !important;
+                box-shadow: 0 0 0 1px #dc2626 !important;
+            }
+            
+            .character-counter {
+                font-size: 0.75rem;
+                color: #6b7280;
+                text-align: right;
+                margin-top: 0.25rem;
+            }
+            
+            .character-counter.warning {
+                color: #dc2626;
+                font-weight: 600;
+            }
+            
+            .validation-errors {
+                background-color: #fef2f2;
+                border: 1px solid #fecaca;
+                border-radius: 0.375rem;
+                padding: 1rem;
+                margin-bottom: 1rem;
+                list-style-type: disc;
+                list-style-position: inside;
+            }
+            
+            .validation-errors li {
+                color: #dc2626;
+                margin-bottom: 0.25rem;
+            }
+            
+            button.loading {
+                opacity: 0.7;
+                cursor: not-allowed;
+                position: relative;
+            }
+            
+            button.loading::after {
+                content: '';
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 16px;
+                height: 16px;
+                border: 2px solid transparent;
+                border-top: 2px solid currentColor;
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+            }
+            
+            @keyframes spin {
+                0% { transform: translateY(-50%) rotate(0deg); }
+                100% { transform: translateY(-50%) rotate(360deg); }
+            }
+            
+            textarea {
+                resize: vertical;
+                min-height: 100px;
+                transition: height 0.2s ease;
+            }
+        `;
+        
+        // Inject contact form styles
+        if (!document.getElementById('contact-form-styles')) {
+            const styleSheet = document.createElement('style');
+            styleSheet.id = 'contact-form-styles';
+            styleSheet.textContent = contactFormStyles;
+            document.head.appendChild(styleSheet);
+        }
