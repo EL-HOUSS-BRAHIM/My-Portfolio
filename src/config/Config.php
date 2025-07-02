@@ -6,10 +6,6 @@
  * loaded from environment variables.
  */
 
-require_once __DIR__ . '/../../vendor/autoload.php';
-
-use Dotenv\Dotenv;
-
 class Config {
     private static $instance = null;
     private $config = [];
@@ -27,15 +23,35 @@ class Config {
     }
     
     private function loadEnvironment() {
-        $envPath = dirname(__DIR__, 2);
-        if (!file_exists($envPath . '/.env')) {
-            error_log("[Config] .env file not found at $envPath/.env");
-        }
-        try {
-            $dotenv = Dotenv::createImmutable($envPath);
-            $dotenv->load();
-        } catch (Exception $e) {
-            error_log('[Config] Failed to load .env: ' . $e->getMessage());
+        $envPath = dirname(__DIR__, 2) . '/.env';
+        
+        // Simple .env file parser (without external dependencies)
+        if (file_exists($envPath)) {
+            $lines = file($envPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+            foreach ($lines as $line) {
+                // Skip comments and empty lines
+                if (strpos(trim($line), '#') === 0 || empty(trim($line))) {
+                    continue;
+                }
+                
+                // Parse key=value pairs
+                if (strpos($line, '=') !== false) {
+                    list($key, $value) = explode('=', $line, 2);
+                    $key = trim($key);
+                    $value = trim($value);
+                    
+                    // Remove quotes if present
+                    if (preg_match('/^["\'](.*)["\']\s*$/', $value, $matches)) {
+                        $value = $matches[1];
+                    }
+                    
+                    // Set environment variable if not already set
+                    if (!isset($_ENV[$key])) {
+                        $_ENV[$key] = $value;
+                        putenv("$key=$value");
+                    }
+                }
+            }
         }
     }
     
