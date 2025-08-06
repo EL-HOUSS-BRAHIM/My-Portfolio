@@ -57,6 +57,7 @@ class PortfolioApp {
         const modulePromises = [
             this.initModule('navigation', () => new NavigationController()),
             this.initModule('theme', () => new ThemeController()),
+            this.initModule('hero', () => new HeroController()),
             this.initModule('animations', () => new AnimationController()),
             this.initModule('projects', () => new ProjectController()),
             this.initModule('contact', () => new ContactController(this.config.apiBaseUrl)),
