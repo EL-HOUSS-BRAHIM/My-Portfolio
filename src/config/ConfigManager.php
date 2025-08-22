@@ -1,12 +1,15 @@
 <?php
 /**
- * Enhanced Configuration Manager
+ * Enhanced Configuration Manager with Application Cache Integration
  * 
  * Provides improved configuration management with environment separation,
- * validation, and caching.
+ * validation, and advanced caching using ApplicationCache.
  */
 
 require_once __DIR__ . '/Environment.php';
+require_once __DIR__ . '/../cache/ApplicationCache.php';
+
+use Portfolio\Cache\ApplicationCache;
 
 class ConfigManager {
     private static $instance = null;
@@ -14,10 +17,12 @@ class ConfigManager {
     private $environment;
     private $isLoaded = false;
     private $configPath;
+    private ApplicationCache $cache;
     
     private function __construct() {
         $this->environment = Environment::getInstance();
         $this->configPath = dirname(__DIR__, 2) . '/config';
+        $this->cache = new ApplicationCache();
         $this->loadConfiguration();
     }
     
@@ -29,10 +34,18 @@ class ConfigManager {
     }
     
     /**
-     * Load configuration from multiple sources
+     * Load configuration from multiple sources with caching
      */
     private function loadConfiguration() {
         if ($this->isLoaded) return;
+        
+        // Try to get from cache first
+        $cachedConfig = $this->cache->getConfig();
+        if ($cachedConfig !== null) {
+            $this->config = $cachedConfig;
+            $this->isLoaded = true;
+            return;
+        }
         
         // Define required environment variables
         $this->environment->setRequired([
@@ -58,6 +71,9 @@ class ConfigManager {
         
         // Load feature flags
         $this->loadFeatureFlags();
+        
+        // Cache the configuration
+        $this->cache->cacheConfig($this->config);
         
         $this->isLoaded = true;
     }
@@ -294,46 +310,32 @@ class ConfigManager {
     }
     
     /**
-     * Cache configuration for better performance
+     * Cache configuration for better performance (using ApplicationCache)
      */
     public function cache() {
-        $cacheFile = $this->get('cache.path') . '/config.cache';
-        $cacheDir = dirname($cacheFile);
-        
-        if (!is_dir($cacheDir)) {
-            mkdir($cacheDir, 0755, true);
-        }
-        
-        return file_put_contents($cacheFile, serialize($this->config));
+        return $this->cache->cacheConfig($this->config);
     }
     
     /**
-     * Load cached configuration
+     * Load cached configuration (using ApplicationCache)
      */
     public function loadFromCache() {
-        $cacheFile = $this->get('cache.path') . '/config.cache';
+        $cached = $this->cache->getConfig();
         
-        if (file_exists($cacheFile) && is_readable($cacheFile)) {
-            $cached = unserialize(file_get_contents($cacheFile));
-            if ($cached && is_array($cached)) {
-                $this->config = $cached;
-                return true;
-            }
+        if ($cached !== null) {
+            $this->config = $cached;
+            $this->isLoaded = true;
+            return true;
         }
         
         return false;
     }
     
     /**
-     * Clear configuration cache
+     * Clear configuration cache (using ApplicationCache)
      */
     public function clearCache() {
-        $cacheFile = $this->get('cache.path') . '/config.cache';
-        
-        if (file_exists($cacheFile)) {
-            return unlink($cacheFile);
-        }
-        
-        return true;
+        $this->isLoaded = false;
+        return $this->cache->delete('app_config', 'config');
     }
 }
