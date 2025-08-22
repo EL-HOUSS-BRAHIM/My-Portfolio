@@ -2,14 +2,46 @@
  * Portfolio Application - Main Entry Point
  * 
  * Modern, clean, and efficient portfolio application with modular architecture.
- * This is the main application controller that initializes all modules.
+ * This is the main application controller that initializes all modules and manages
+ * the global application state.
  * 
+ * @class PortfolioApp
  * @author Brahim El Houss
  * @version 2.0.0
+ * @since 1.0.0
+ * 
+ * @example
+ * ```javascript
+ * // Application is auto-initialized
+ * const app = window.portfolioApp;
+ * 
+ * // Get specific module
+ * const themeController = app.getModule('theme');
+ * 
+ * // Check if app is ready
+ * if (app.isReady()) {
+ *     console.log('App is fully initialized');
+ * }
+ * ```
  */
-
 class PortfolioApp {
+    /**
+     * Creates an instance of PortfolioApp
+     * Automatically initializes the application configuration and starts the initialization process
+     * 
+     * @constructor
+     * @since 1.0.0
+     */
     constructor() {
+        /**
+         * Application configuration object
+         * @type {Object}
+         * @property {string} apiBaseUrl - Base URL for API endpoints
+         * @property {number} animationDelay - Delay between animations in milliseconds
+         * @property {number} testimonialAutoSlideInterval - Auto-slide interval for testimonials
+         * @property {number} debounceDelay - Debounce delay for events
+         * @property {number} throttleDelay - Throttle delay for performance-critical events
+         */
         this.config = {
             apiBaseUrl: './src/api',
             animationDelay: 100,
@@ -18,7 +50,18 @@ class PortfolioApp {
             throttleDelay: 16 // ~60fps
         };
         
+        /**
+         * Map of initialized modules
+         * @type {Map<string, Object>}
+         * @private
+         */
         this.modules = new Map();
+        
+        /**
+         * Initialization state flag
+         * @type {boolean}
+         * @private
+         */
         this.isInitialized = false;
         
         this.init();
@@ -26,6 +69,12 @@ class PortfolioApp {
 
     /**
      * Initialize the application
+     * Sets up DOM content loaded listener and error handling
+     * 
+     * @async
+     * @since 1.0.0
+     * @throws {Error} When initialization fails
+     * @returns {Promise<void>}
      */
     async init() {
         try {
@@ -38,12 +87,34 @@ class PortfolioApp {
 
     /**
      * Handle DOM content loaded event
+     * Initializes all modules and sets up global event listeners
+     * 
+     * @async
+     * @since 1.0.0
+     * @fires PortfolioApp#appready
+     * @returns {Promise<void>}
      */
     async onDOMContentLoaded() {
         try {
             await this.initModules();
             this.setupGlobalEventListeners();
             this.isInitialized = true;
+            
+            /**
+             * App ready event
+             * @event PortfolioApp#appready
+             * @type {CustomEvent}
+             * @property {Object} detail - Event details
+             * @property {boolean} detail.initialized - Initialization state
+             * @property {number} detail.moduleCount - Number of loaded modules
+             */
+            document.dispatchEvent(new CustomEvent('appready', {
+                detail: { 
+                    initialized: true, 
+                    moduleCount: this.modules.size 
+                }
+            }));
+            
             console.debug('[PortfolioApp] DOM loaded - All modules initialized');
         } catch (error) {
             console.error('[PortfolioApp] DOM initialization failed:', error);
@@ -52,6 +123,17 @@ class PortfolioApp {
 
     /**
      * Initialize all application modules
+     * Uses Promise.allSettled to handle module failures gracefully
+     * 
+     * @async
+     * @since 1.0.0
+     * @returns {Promise<void>}
+     * 
+     * @example
+     * ```javascript
+     * await app.initModules();
+     * console.log('All modules initialized');
+     * ```
      */
     async initModules() {
         const modulePromises = [
@@ -70,6 +152,18 @@ class PortfolioApp {
 
     /**
      * Initialize a single module with error handling
+     * 
+     * @async
+     * @since 1.0.0
+     * @param {string} name - Module name identifier
+     * @param {Function} factory - Factory function that returns module instance
+     * @returns {Promise<void>}
+     * @throws {Error} When module factory fails
+     * 
+     * @example
+     * ```javascript
+     * await app.initModule('customModule', () => new CustomModule());
+     * ```
      */
     async initModule(name, factory) {
         try {
@@ -82,26 +176,40 @@ class PortfolioApp {
     }
 
     /**
-     * Setup global event listeners
+     * Setup global event listeners for window and document events
+     * Includes error handling, resize, scroll, visibility change, and load events
+     * 
+     * @since 1.0.0
+     * @returns {void}
      */
     setupGlobalEventListeners() {
         // Global error handling
         window.addEventListener('error', this.handleGlobalError.bind(this));
         window.addEventListener('unhandledrejection', this.handleUnhandledRejection.bind(this));
         
-        // Window events
+        // Window events with performance optimizations
         window.addEventListener('resize', this.debounce(this.handleResize.bind(this), this.config.debounceDelay));
         window.addEventListener('scroll', this.throttle(this.handleScroll.bind(this), this.config.throttleDelay));
         
-        // Page visibility
+        // Page visibility API
         document.addEventListener('visibilitychange', this.handleVisibilityChange.bind(this));
         
-        // Load event
+        // Window load event
         window.addEventListener('load', this.handleWindowLoad.bind(this));
     }
 
     /**
-     * Handle global errors
+     * Handle global JavaScript errors
+     * 
+     * @since 1.0.0
+     * @param {ErrorEvent} event - Error event object
+     * @returns {void}
+     * 
+     * @example
+     * ```javascript
+     * // This is automatically called for unhandled errors
+     * window.addEventListener('error', app.handleGlobalError.bind(app));
+     * ```
      */
     handleGlobalError(event) {
         console.error('[PortfolioApp] Global error:', event.error);
@@ -110,6 +218,10 @@ class PortfolioApp {
 
     /**
      * Handle unhandled promise rejections
+     * 
+     * @since 1.0.0
+     * @param {PromiseRejectionEvent} event - Promise rejection event object
+     * @returns {void}
      */
     handleUnhandledRejection(event) {
         console.error('[PortfolioApp] Unhandled promise rejection:', event.reason);
@@ -117,7 +229,11 @@ class PortfolioApp {
     }
 
     /**
-     * Handle window resize
+     * Handle window resize events
+     * Delegates resize handling to modules that support it
+     * 
+     * @since 1.0.0
+     * @returns {void}
      */
     handleResize() {
         this.modules.forEach((module, name) => {
@@ -132,7 +248,11 @@ class PortfolioApp {
     }
 
     /**
-     * Handle window scroll
+     * Handle window scroll events
+     * Delegates scroll handling to modules that support it
+     * 
+     * @since 1.0.0
+     * @returns {void}
      */
     handleScroll() {
         this.modules.forEach((module, name) => {
@@ -147,7 +267,11 @@ class PortfolioApp {
     }
 
     /**
-     * Handle page visibility change
+     * Handle page visibility change events
+     * Useful for pausing/resuming animations and other performance optimizations
+     * 
+     * @since 1.0.0
+     * @returns {void}
      */
     handleVisibilityChange() {
         const isVisible = !document.hidden;
@@ -163,10 +287,15 @@ class PortfolioApp {
     }
 
     /**
-     * Handle window load
+     * Handle window load event
+     * Removes loading screen and adds loaded class to body
+     * 
+     * @since 1.0.0
+     * @fires PortfolioApp#windowloaded
+     * @returns {void}
      */
     handleWindowLoad() {
-        // Remove loading screen
+        // Remove loading screen with fade animation
         const loader = document.querySelector('.loading-screen');
         if (loader) {
             loader.style.opacity = '0';
@@ -174,11 +303,29 @@ class PortfolioApp {
         }
         
         document.body.classList.add('loaded');
+        
+        /**
+         * Window loaded event
+         * @event PortfolioApp#windowloaded
+         * @type {CustomEvent}
+         */
+        document.dispatchEvent(new CustomEvent('windowloaded'));
+        
         console.debug('[PortfolioApp] Window loaded - Loading screen removed');
     }
 
     /**
-     * Utility: Debounce function
+     * Utility: Debounce function to limit function calls
+     * 
+     * @since 1.0.0
+     * @param {Function} func - Function to debounce
+     * @param {number} wait - Wait time in milliseconds
+     * @returns {Function} Debounced function
+     * 
+     * @example
+     * ```javascript
+     * const debouncedFn = app.debounce(() => console.log('Called'), 300);
+     * ```
      */
     debounce(func, wait) {
         let timeout;
@@ -193,7 +340,17 @@ class PortfolioApp {
     }
 
     /**
-     * Utility: Throttle function
+     * Utility: Throttle function to limit function execution frequency
+     * 
+     * @since 1.0.0
+     * @param {Function} func - Function to throttle
+     * @param {number} limit - Time limit in milliseconds
+     * @returns {Function} Throttled function
+     * 
+     * @example
+     * ```javascript
+     * const throttledFn = app.throttle(() => console.log('Called'), 16);
+     * ```
      */
     throttle(func, limit) {
         let inThrottle;
@@ -207,17 +364,99 @@ class PortfolioApp {
     }
 
     /**
-     * Get module by name
+     * Get module instance by name
+     * 
+     * @since 1.0.0
+     * @param {string} name - Module name
+     * @returns {Object|null} Module instance or null if not found
+     * 
+     * @example
+     * ```javascript
+     * const themeController = app.getModule('theme');
+     * if (themeController) {
+     *     themeController.toggleTheme();
+     * }
+     * ```
      */
     getModule(name) {
         return this.modules.get(name);
     }
 
     /**
-     * Check if application is initialized
+     * Check if application is fully initialized
+     * 
+     * @since 1.0.0
+     * @returns {boolean} True if application is ready
+     * 
+     * @example
+     * ```javascript
+     * if (app.isReady()) {
+     *     // Safe to use app functionality
+     * }
+     * ```
      */
     isReady() {
         return this.isInitialized;
+    }
+
+    /**
+     * Get application configuration
+     * 
+     * @since 2.0.0
+     * @returns {Object} Application configuration object
+     */
+    getConfig() {
+        return { ...this.config }; // Return copy to prevent mutations
+    }
+
+    /**
+     * Update application configuration
+     * 
+     * @since 2.0.0
+     * @param {Object} newConfig - New configuration values
+     * @returns {void}
+     * 
+     * @example
+     * ```javascript
+     * app.updateConfig({ animationDelay: 200 });
+     * ```
+     */
+    updateConfig(newConfig) {
+        this.config = { ...this.config, ...newConfig };
+    }
+
+    /**
+     * Get all loaded modules
+     * 
+     * @since 2.0.0
+     * @returns {Array<string>} Array of module names
+     */
+    getLoadedModules() {
+        return Array.from(this.modules.keys());
+    }
+
+    /**
+     * Destroy application and clean up resources
+     * 
+     * @since 2.0.0
+     * @returns {void}
+     */
+    destroy() {
+        // Cleanup modules
+        this.modules.forEach((module, name) => {
+            if (typeof module.destroy === 'function') {
+                try {
+                    module.destroy();
+                } catch (error) {
+                    console.error(`[PortfolioApp] Failed to destroy module ${name}:`, error);
+                }
+            }
+        });
+        
+        this.modules.clear();
+        this.isInitialized = false;
+        
+        console.debug('[PortfolioApp] Application destroyed');
     }
 }
 
