@@ -70,7 +70,7 @@ class DatabaseManager {
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
                 PDO::ATTR_EMULATE_PREPARES => false,
                 PDO::ATTR_PERSISTENT => $config['persistent'] ?? false,
-                PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES {$config['charset']} COLLATE {$config['charset']}_unicode_ci"
+                1002 => "SET NAMES {$config['charset']} COLLATE {$config['charset']}_unicode_ci" // PDO::MYSQL_ATTR_INIT_COMMAND
             ], $config['options'] ?? []);
             
             $connection = new PDO($dsn, $config['user'], $config['pass'], $options);
