@@ -72,10 +72,14 @@ A professional portfolio website featuring:
 │   ├── /cache/                # Cached data
 │   └── /sessions/             # PHP sessions
 ├── /vendor/                   # Composer dependencies
+├── /scripts/                  # Deployment and optimization scripts
+│   ├── deploy.sh              # Enhanced deployment script
+│   ├── optimize.sh            # Performance optimization script
+│   ├── validate.sh            # Validation script
+│   └── security-audit.sh      # Security checks
 ├── index.html                 # Main portfolio page
 ├── .env.example               # Environment template
-├── composer.json              # PHP dependencies
-└── deploy.sh                  # Deployment script
+└── composer.json              # PHP dependencies
 ```
 
 ## 🚀 Quick Start
@@ -112,9 +116,26 @@ A professional portfolio website featuring:
    ```
 
 5. **Web server configuration**
-   - Copy `config/brahim-elhouss.me.conf` to your Nginx sites
-   - Adjust paths and domain name
-   - Restart Nginx
+   ```bash
+   # Use the enhanced deployment script
+   chmod +x scripts/deploy.sh
+   sudo ./scripts/deploy.sh
+   ```
+
+### Performance Optimization
+
+To optimize your portfolio for production:
+```bash
+chmod +x scripts/optimize.sh
+./scripts/optimize.sh
+```
+
+This will:
+- Minify CSS and JavaScript files
+- Optimize and convert images to WebP
+- Generate cache warmup scripts
+- Create optimized .htaccess configuration
+- Run security audits
 
 ### Development Server
 
