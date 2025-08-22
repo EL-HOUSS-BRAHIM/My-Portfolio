@@ -1,0 +1,183 @@
+{
+  "generated_at": "2025-08-16T22:23:53Z",
+  "assets": {
+"projects.css": {
+  "original": "css/projects.css",
+  "minified": "css/minified/projects.min.css",
+  "versioned": "css/minified/projects.003f5e7c.min.css",
+  "hash": "003f5e7c",
+  "size_original": 4255,
+  "size_minified": 3691
+},
+"base.css": {
+  "original": "css/base.css",
+  "minified": "css/minified/base.min.css",
+  "versioned": "css/minified/base.b350ac74.min.css",
+  "hash": "b350ac74",
+  "size_original": 18441,
+  "size_minified": 13071
+},
+"Header.css": {
+  "original": "css/Header.css",
+  "minified": "css/minified/Header.min.css",
+  "versioned": "css/minified/Header.b2aaeb6b.min.css",
+  "hash": "b2aaeb6b",
+  "size_original": 509,
+  "size_minified": 431
+},
+"nav.css": {
+  "original": "css/nav.css",
+  "minified": "css/minified/nav.min.css",
+  "versioned": "css/minified/nav.c104ff1d.min.css",
+  "hash": "c104ff1d",
+  "size_original": 5628,
+  "size_minified": 4659
+},
+"contact.css": {
+  "original": "css/contact.css",
+  "minified": "css/minified/contact.min.css",
+  "versioned": "css/minified/contact.ef694aa5.min.css",
+  "hash": "ef694aa5",
+  "size_original": 8243,
+  "size_minified": 5859
+},
+"Hero.css": {
+  "original": "css/Hero.css",
+  "minified": "css/minified/Hero.min.css",
+  "versioned": "css/minified/Hero.00030421.min.css",
+  "hash": "00030421",
+  "size_original": 22479,
+  "size_minified": 16941
+},
+"experience.min.css": {
+  "original": "css/experience.min.css",
+  "minified": "css/minified/experience.min.min.css",
+  "versioned": "css/minified/experience.min.0efeae1d.min.css",
+  "hash": "0efeae1d",
+  "size_original": 3372,
+  "size_minified": 3261
+},
+"projects.min.css": {
+  "original": "css/projects.min.css",
+  "minified": "css/minified/projects.min.min.css",
+  "versioned": "css/minified/projects.min.003f5e7c.min.css",
+  "hash": "003f5e7c",
+  "size_original": 3687,
+  "size_minified": 3691
+},
+"Hero.min.css": {
+  "original": "css/Hero.min.css",
+  "minified": "css/minified/Hero.min.min.css",
+  "versioned": "css/minified/Hero.min.00030421.min.css",
+  "hash": "00030421",
+  "size_original": 18104,
+  "size_minified": 16941
+},
+"nav.min.css": {
+  "original": "css/nav.min.css",
+  "minified": "css/minified/nav.min.min.css",
+  "versioned": "css/minified/nav.min.c104ff1d.min.css",
+  "hash": "c104ff1d",
+  "size_original": 4809,
+  "size_minified": 4659
+},
+"testimonial.min.css": {
+  "original": "css/testimonial.min.css",
+  "minified": "css/minified/testimonial.min.min.css",
+  "versioned": "css/minified/testimonial.min.2c3be108.min.css",
+  "hash": "2c3be108",
+  "size_original": 3252,
+  "size_minified": 3217
+},
+"skills.min.css": {
+  "original": "css/skills.min.css",
+  "minified": "css/minified/skills.min.min.css",
+  "versioned": "css/minified/skills.min.3cf5d5f4.min.css",
+  "hash": "3cf5d5f4",
+  "size_original": 1522,
+  "size_minified": 1471
+},
+"Header.min.css": {
+  "original": "css/Header.min.css",
+  "minified": "css/minified/Header.min.min.css",
+  "versioned": "css/minified/Header.min.b2aaeb6b.min.css",
+  "hash": "b2aaeb6b",
+  "size_original": 456,
+  "size_minified": 431
+},
+"about.min.css": {
+  "original": "css/about.min.css",
+  "minified": "css/minified/about.min.min.css",
+  "versioned": "css/minified/about.min.a27d8c1c.min.css",
+  "hash": "a27d8c1c",
+  "size_original": 2819,
+  "size_minified": 2709
+},
+"base.min.css": {
+  "original": "css/base.min.css",
+  "minified": "css/minified/base.min.min.css",
+  "versioned": "css/minified/base.min.9a930549.min.css",
+  "hash": "9a930549",
+  "size_original": 6659,
+  "size_minified": 5700
+},
+"footer.min.css": {
+  "original": "css/footer.min.css",
+  "minified": "css/minified/footer.min.min.css",
+  "versioned": "css/minified/footer.min.f333fc92.min.css",
+  "hash": "f333fc92",
+  "size_original": 2671,
+  "size_minified": 2629
+},
+"contact.min.css": {
+  "original": "css/contact.min.css",
+  "minified": "css/minified/contact.min.min.css",
+  "versioned": "css/minified/contact.min.d05745bd.min.css",
+  "hash": "d05745bd",
+  "size_original": 2973,
+  "size_minified": 2915
+},
+"about.css": {
+  "original": "css/about.css",
+  "minified": "css/minified/about.min.css",
+  "versioned": "css/minified/about.a27d8c1c.min.css",
+  "hash": "a27d8c1c",
+  "size_original": 3358,
+  "size_minified": 2709
+},
+"testimonial.css": {
+  "original": "css/testimonial.css",
+  "minified": "css/minified/testimonial.min.css",
+  "versioned": "css/minified/testimonial.2c3be108.min.css",
+  "hash": "2c3be108",
+  "size_original": 3791,
+  "size_minified": 3217
+},
+"footer.css": {
+  "original": "css/footer.css",
+  "minified": "css/minified/footer.min.css",
+  "versioned": "css/minified/footer.f333fc92.min.css",
+  "hash": "f333fc92",
+  "size_original": 3077,
+  "size_minified": 2629
+},
+"experience.css": {
+  "original": "css/experience.css",
+  "minified": "css/minified/experience.min.css",
+  "versioned": "css/minified/experience.0efeae1d.min.css",
+  "hash": "0efeae1d",
+  "size_original": 3947,
+  "size_minified": 3261
+},
+"skills.css": {
+  "original": "css/skills.css",
+  "minified": "css/minified/skills.min.css",
+  "versioned": "css/minified/skills.3cf5d5f4.min.css",
+  "hash": "3cf5d5f4",
+  "size_original": 1746,
+  "size_minified": 1471
+},
+  },
+  "critical_css": "critical.css",
+  "asset_loader": "asset-loader.js"
+}
