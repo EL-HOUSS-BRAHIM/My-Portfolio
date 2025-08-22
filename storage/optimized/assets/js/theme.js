@@ -1,0 +1,344 @@
+/**
+ * Theme Controller
+ * 
+ * Handles light/dark theme switching with system preference detection,
+ * local storage persistence, and modern ES6+ patterns.
+ * 
+ * @author Brahim El Houss
+ * @version 2.0.0
+ */
+
+class ThemeController {
+    // Private fields
+    #themeToggle = null;
+    #prefersDarkScheme = null;
+    #currentTheme = null;
+    
+    // Constants using ES6 static fields
+    static THEMES = Object.freeze({
+        LIGHT: 'light',
+        DARK: 'dark'
+    });
+    
+    static STORAGE_KEY = 'portfolio-theme';
+    static ATTRIBUTE_NAME = 'data-theme';
+    
+    constructor() {
+        this.#themeToggle = document.getElementById('theme-toggle');
+        this.#prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        this.init();
+    }
+
+    /**
+     * Initialize theme functionality
+     */
+    async init() {
+        if (!this.#themeToggle) {
+            console.warn('[ThemeController] Theme toggle button not found');
+            return;
+        }
+
+        await this.#setupInitialTheme();
+        this.#setupEventListeners();
+        
+        console.debug('[ThemeController] Initialized');
+    }
+
+    /**
+     * Setup initial theme based on saved preference or system preference
+     * @private
+     */
+    async #setupInitialTheme() {
+        const savedTheme = await this.#getSavedTheme();
+        const systemTheme = this.#getSystemTheme();
+        const initialTheme = savedTheme || systemTheme;
+        
+        await this.#applyTheme(initialTheme);
+    }
+
+    /**
+     * Setup event listeners with modern patterns
+     * @private
+     */
+    #setupEventListeners() {
+        // Theme toggle click with error boundary
+        this.#themeToggle.addEventListener('click', async () => {
+            try {
+                const currentTheme = this.#getCurrentTheme();
+                const newTheme = currentTheme === ThemeController.THEMES.LIGHT 
+                    ? ThemeController.THEMES.DARK 
+                    : ThemeController.THEMES.LIGHT;
+                
+                await this.#applyTheme(newTheme);
+                await this.#saveTheme(newTheme);
+                
+                console.debug(`[ThemeController] Theme toggled to ${newTheme}`);
+            } catch (error) {
+                console.error('[ThemeController] Error toggling theme:', error);
+            }
+        });
+
+        // System theme change detection with modern event handling
+        this.#prefersDarkScheme.addEventListener('change', async (e) => {
+            try {
+                const savedTheme = await this.#getSavedTheme();
+                if (!savedTheme) {
+                    const systemTheme = e.matches ? ThemeController.THEMES.DARK : ThemeController.THEMES.LIGHT;
+                    await this.#applyTheme(systemTheme);
+                    console.debug(`[ThemeController] System theme changed to ${systemTheme}`);
+                }
+            } catch (error) {
+                console.error('[ThemeController] Error handling system theme change:', error);
+            }
+        });
+
+        // Add support for keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            // Ctrl/Cmd + Shift + D for theme toggle
+            if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === 'd') {
+                e.preventDefault();
+                this.toggleTheme();
+            }
+        });
+    }
+
+    /**
+     * Apply theme to the document with animation
+     * @private
+     */
+    async #applyTheme(theme) {
+        // Validate theme
+        if (!Object.values(ThemeController.THEMES).includes(theme)) {
+            throw new Error(`Invalid theme: ${theme}`);
+        }
+
+        // Store current theme
+        this.#currentTheme = theme;
+
+        // Apply CSS transition for smooth theme switching
+        document.documentElement.style.transition = 'background-color 0.3s ease, color 0.3s ease';
+
+        // Apply theme attribute
+        if (theme === ThemeController.THEMES.LIGHT) {
+            document.documentElement.setAttribute(ThemeController.ATTRIBUTE_NAME, 'light');
+        } else {
+            document.documentElement.removeAttribute(ThemeController.ATTRIBUTE_NAME);
+        }
+        
+        await Promise.all([
+            this.#updateThemeIcon(theme),
+            this.#updateAriaLabel(theme),
+            this.#notifyThemeChange(theme)
+        ]);
+
+        // Remove transition after theme change
+        setTimeout(() => {
+            document.documentElement.style.transition = '';
+        }, 300);
+    }
+
+    /**
+     * Update theme toggle icon with animation
+     * @private
+     */
+    async #updateThemeIcon(theme) {
+        const icon = this.#themeToggle.querySelector('i');
+        if (!icon) return;
+
+        // Add rotation animation
+        icon.style.transform = 'rotate(180deg)';
+        
+        await Utils.wait(150); // Wait for half animation
+        
+        // Change icon
+        if (theme === ThemeController.THEMES.LIGHT) {
+            icon.className = 'fas fa-moon';
+        } else {
+            icon.className = 'fas fa-sun';
+        }
+        
+        await Utils.wait(150); // Wait for animation completion
+        icon.style.transform = 'rotate(0deg)';
+    }
+
+    /**
+     * Update ARIA label for accessibility
+     * @private
+     */
+    async #updateAriaLabel(theme) {
+        const label = theme === ThemeController.THEMES.LIGHT 
+            ? 'Switch to dark theme' 
+            : 'Switch to light theme';
+        
+        this.#themeToggle.setAttribute('aria-label', label);
+        this.#themeToggle.setAttribute('title', label);
+        this.#themeToggle.setAttribute('aria-pressed', 'false');
+    }
+
+    /**
+     * Notify other components of theme change
+     * @private
+     */
+    async #notifyThemeChange(theme) {
+        // Dispatch custom event
+        const event = new CustomEvent('themechange', {
+            detail: { theme, timestamp: Date.now() },
+            bubbles: true
+        });
+        
+        document.dispatchEvent(event);
+    }
+
+    /**
+     * Get current theme
+     * @private
+     */
+    #getCurrentTheme() {
+        return document.documentElement.hasAttribute(ThemeController.ATTRIBUTE_NAME) 
+            ? ThemeController.THEMES.LIGHT 
+            : ThemeController.THEMES.DARK;
+    }
+
+    /**
+     * Get saved theme from localStorage with error handling
+     * @private
+     */
+    async #getSavedTheme() {
+        try {
+            if (!Utils.supportsFeature('localStorage')) {
+                return null;
+            }
+            
+            const savedTheme = localStorage.getItem(ThemeController.STORAGE_KEY);
+            
+            // Validate saved theme
+            if (savedTheme && Object.values(ThemeController.THEMES).includes(savedTheme)) {
+                return savedTheme;
+            }
+            
+            return null;
+        } catch (error) {
+            console.warn('[ThemeController] Could not access localStorage:', error);
+            return null;
+        }
+    }
+
+    /**
+     * Save theme to localStorage with error handling
+     * @private
+     */
+    async #saveTheme(theme) {
+        try {
+            if (!Utils.supportsFeature('localStorage')) {
+                console.warn('[ThemeController] localStorage not supported');
+                return;
+            }
+            
+            localStorage.setItem(ThemeController.STORAGE_KEY, theme);
+            
+            // Also save timestamp for analytics
+            localStorage.setItem(`${ThemeController.STORAGE_KEY}-timestamp`, Date.now().toString());
+        } catch (error) {
+            console.warn('[ThemeController] Could not save to localStorage:', error);
+        }
+    }
+
+    /**
+     * Get system theme preference
+     * @private
+     */
+    #getSystemTheme() {
+        return this.#prefersDarkScheme.matches 
+            ? ThemeController.THEMES.DARK 
+            : ThemeController.THEMES.LIGHT;
+    }
+
+    // Public API methods
+
+    /**
+     * Get current theme
+     * @returns {string} Current theme
+     */
+    getCurrentTheme() {
+        return this.#currentTheme || this.#getCurrentTheme();
+    }
+
+    /**
+     * Force set theme (useful for testing)
+     * @param {string} theme - Theme to set
+     */
+    async setTheme(theme) {
+        if (!Object.values(ThemeController.THEMES).includes(theme)) {
+            throw new Error(`Invalid theme: ${theme}. Must be one of: ${Object.values(ThemeController.THEMES).join(', ')}`);
+        }
+        
+        await this.#applyTheme(theme);
+        await this.#saveTheme(theme);
+    }
+
+    /**
+     * Toggle theme programmatically
+     */
+    async toggleTheme() {
+        const currentTheme = this.getCurrentTheme();
+        const newTheme = currentTheme === ThemeController.THEMES.LIGHT 
+            ? ThemeController.THEMES.DARK 
+            : ThemeController.THEMES.LIGHT;
+        
+        await this.setTheme(newTheme);
+    }
+
+    /**
+     * Reset to system theme
+     */
+    async resetToSystemTheme() {
+        try {
+            localStorage.removeItem(ThemeController.STORAGE_KEY);
+            localStorage.removeItem(`${ThemeController.STORAGE_KEY}-timestamp`);
+            
+            const systemTheme = this.#getSystemTheme();
+            await this.#applyTheme(systemTheme);
+            
+            console.debug('[ThemeController] Reset to system theme:', systemTheme);
+        } catch (error) {
+            console.error('[ThemeController] Error resetting to system theme:', error);
+        }
+    }
+
+    /**
+     * Get theme usage statistics
+     */
+    getThemeStats() {
+        try {
+            const savedTheme = localStorage.getItem(ThemeController.STORAGE_KEY);
+            const timestamp = localStorage.getItem(`${ThemeController.STORAGE_KEY}-timestamp`);
+            
+            return {
+                currentTheme: this.getCurrentTheme(),
+                savedTheme,
+                systemTheme: this.#getSystemTheme(),
+                lastChanged: timestamp ? new Date(parseInt(timestamp)) : null,
+                hasCustomPreference: !!savedTheme
+            };
+        } catch (error) {
+            console.warn('[ThemeController] Could not get theme stats:', error);
+            return null;
+        }
+    }
+
+    /**
+     * Handle visibility change (pause/resume theme transitions)
+     */
+    handleVisibilityChange(isVisible) {
+        if (!isVisible) {
+            // Pause theme transitions when page is hidden
+            document.documentElement.style.transition = 'none';
+        } else {
+            // Resume theme transitions when page is visible
+            setTimeout(() => {
+                document.documentElement.style.transition = '';
+            }, 100);
+        }
+    }
+}
