@@ -3,6 +3,299 @@
     background-color: var(--color-surface);
 }
 
+/* Portfolio Section Specific Styles */
+.portfolio-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.featured-project {
+    background: linear-gradient(135deg, 
+        rgba(103, 126, 234, 0.1), 
+        rgba(147, 197, 253, 0.1));
+    border: 1px solid rgba(103, 126, 234, 0.2);
+    border-radius: 20px;
+    padding: 3rem;
+    margin-bottom: 4rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.featured-project::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+}
+
+.featured-project .project-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.featured-project .project-header h3 {
+    font-size: 2.5rem;
+    color: var(--color-text-primary);
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.project-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.project-description {
+    margin-bottom: 3rem;
+}
+
+.project-description p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.project-resources {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.resource-item {
+    background: rgba(26, 32, 44, 0.6);
+    border: 1px solid rgba(103, 126, 234, 0.2);
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.resource-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.resource-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1.5rem;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.resource-icon i {
+    font-size: 1.5rem;
+    color: white;
+}
+
+.resource-content h4 {
+    color: var(--color-text-primary);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.resource-content p {
+    color: var(--color-text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.portfolio-options {
+    background: rgba(26, 32, 44, 0.4);
+    border: 1px solid rgba(103, 126, 234, 0.2);
+    border-radius: 20px;
+    padding: 3rem;
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.portfolio-options h3 {
+    color: var(--color-text-primary);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.portfolio-options p {
+    color: var(--color-text-secondary);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.download-options {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.additional-projects h3 {
+    color: var(--color-text-primary);
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+.additional-projects .projects-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.additional-projects .project-card {
+    background: rgba(26, 32, 44, 0.6);
+    border: 1px solid rgba(103, 126, 234, 0.2);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.additional-projects .project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.additional-projects .project-image {
+    height: 200px;
+    overflow: hidden;
+}
+
+.additional-projects .project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-speed);
+}
+
+.additional-projects .project-card:hover .project-image img {
+    transform: scale(1.1);
+}
+
+.additional-projects .project-content {
+    padding: 1.5rem;
+}
+
+.additional-projects .project-content h4 {
+    color: var(--color-text-primary);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.additional-projects .project-content p {
+    color: var(--color-text-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.5;
+    font-size: 0.95rem;
+}
+
+.additional-projects .project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.additional-projects .tech-tag {
+    background: rgba(103, 126, 234, 0.2);
+    color: var(--color-primary);
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.additional-projects .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: color var(--transition-speed);
+}
+
+.additional-projects .project-link:hover {
+    color: var(--color-secondary);
+}
+
+/* Responsive Design for Portfolio */
+@media (max-width: 768px) {
+    .featured-project {
+        padding: 2rem 1.5rem;
+    }
+    
+    .featured-project .project-header h3 {
+        font-size: 2rem;
+    }
+    
+    .project-resources {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .resource-item {
+        padding: 1.5rem;
+    }
+    
+    .portfolio-options {
+        padding: 2rem 1.5rem;
+    }
+    
+    .download-options {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .additional-projects .projects-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .featured-project {
+        padding: 1.5rem 1rem;
+    }
+    
+    .featured-project .project-header h3 {
+        font-size: 1.5rem;
+    }
+    
+    .project-description p {
+        font-size: 1rem;
+    }
+    
+    .resource-content h4 {
+        font-size: 1.1rem;
+    }
+    
+    .portfolio-options h3 {
+        font-size: 1.5rem;
+    }
+    
+    .portfolio-options p {
+        font-size: 1rem;
+    }
+}
+
 .projects-filter {
     display: flex;
     justify-content: center;

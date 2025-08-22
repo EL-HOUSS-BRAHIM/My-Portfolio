@@ -1,0 +1,218 @@
+/* ============================================================================
+   Elevator Pitch Section Styles
+   ============================================================================ */
+
+.elevator-pitch {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, 
+        var(--color-dark-bg) 0%, 
+        color-mix(in srgb, var(--color-dark-bg) 80%, var(--color-primary) 20%) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.elevator-pitch::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="rgba(103,126,234,0.1)"><polygon points="0,20 50,40 100,20 150,40 200,20 250,40 300,20 350,40 400,20 450,40 500,20 550,40 600,20 650,40 700,20 750,40 800,20 850,40 900,20 950,40 1000,20 1000,100 0,100"/></svg>') repeat-x;
+    background-size: 1000px 100px;
+    animation: wave 20s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes wave {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-1000px); }
+}
+
+.elevator-pitch-content {
+    position: relative;
+    z-index: 1;
+}
+
+.pitch-placeholder {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 3rem 2rem;
+    background: rgba(26, 32, 44, 0.8);
+    border-radius: 20px;
+    border: 1px solid rgba(103, 126, 234, 0.2);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.placeholder-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 2rem;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: pulse 2s infinite;
+}
+
+.placeholder-icon i {
+    font-size: 2rem;
+    color: white;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.pitch-placeholder h3 {
+    font-size: 2rem;
+    color: var(--color-text-primary);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.pitch-placeholder > p {
+    font-size: 1.1rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 3rem;
+    line-height: 1.6;
+}
+
+.pitch-preview {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    text-align: left;
+}
+
+.preview-item {
+    background: rgba(103, 126, 234, 0.1);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 1px solid rgba(103, 126, 234, 0.2);
+}
+
+.preview-item h4 {
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.preview-item ul {
+    list-style: none;
+    padding: 0;
+}
+
+.preview-item li {
+    color: var(--color-text-secondary);
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.preview-item li::before {
+    content: '▸';
+    color: var(--color-primary);
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+.preview-item p {
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    font-style: italic;
+}
+
+.pitch-cta {
+    padding: 2rem;
+    background: linear-gradient(135deg, 
+        rgba(103, 126, 234, 0.2), 
+        rgba(147, 197, 253, 0.2));
+    border-radius: 15px;
+    border: 1px solid rgba(103, 126, 234, 0.3);
+}
+
+.cta-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: var(--color-primary);
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.cta-content i {
+    font-size: 1.5rem;
+    animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0.5; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .elevator-pitch {
+        padding: 3rem 0;
+    }
+    
+    .pitch-placeholder {
+        padding: 2rem 1rem;
+        margin: 0 1rem;
+    }
+    
+    .pitch-preview {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .preview-item {
+        padding: 1.5rem;
+    }
+    
+    .placeholder-icon {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 1.5rem;
+    }
+    
+    .placeholder-icon i {
+        font-size: 1.5rem;
+    }
+    
+    .pitch-placeholder h3 {
+        font-size: 1.5rem;
+    }
+    
+    .cta-content {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .pitch-placeholder {
+        padding: 1.5rem 1rem;
+    }
+    
+    .preview-item {
+        padding: 1rem;
+    }
+    
+    .pitch-placeholder h3 {
+        font-size: 1.3rem;
+    }
+    
+    .pitch-placeholder > p {
+        font-size: 1rem;
+    }
+}

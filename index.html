@@ -260,6 +260,7 @@
     <link rel="stylesheet" href="assets/css/about.css">
     <link rel="stylesheet" href="assets/css/skills.css">
     <link rel="stylesheet" href="assets/css/projects.css">
+    <link rel="stylesheet" href="assets/css/elevator-pitch.css">
     <link rel="stylesheet" href="assets/css/experience.css">
     <link rel="stylesheet" href="assets/css/contact.css">
     <link rel="stylesheet" href="assets/css/testimonial.css">
@@ -318,14 +319,20 @@
                         </a>
                     </li>
                     <li class="nav__item" role="none">
-                        <a href="#projects" class="nav__link" role="menuitem">
-                            <i class="fas fa-folder-open" aria-hidden="true"></i>
-                            <span>Projects</span>
+                        <a href="#portfolio" class="nav__link" role="menuitem">
+                            <i class="fas fa-briefcase" aria-hidden="true"></i>
+                            <span>Portfolio</span>
+                        </a>
+                    </li>
+                    <li class="nav__item" role="none">
+                        <a href="#elevator-pitch" class="nav__link" role="menuitem">
+                            <i class="fas fa-microphone" aria-hidden="true"></i>
+                            <span>Elevator Pitch</span>
                         </a>
                     </li>
                     <li class="nav__item" role="none">
                         <a href="#experience" class="nav__link" role="menuitem">
-                            <i class="fas fa-briefcase" aria-hidden="true"></i>
+                            <i class="fas fa-graduation-cap" aria-hidden="true"></i>
                             <span>Experience</span>
                         </a>
                     </li>
@@ -385,7 +392,7 @@
                             </div>
                         </div>
                         <div class="hero__actions">
-                            <a href="#projects" class="btn btn--primary" aria-label="View portfolio projects">
+                            <a href="#portfolio" class="btn btn--primary" aria-label="View portfolio projects">
                                 <i class="fas fa-rocket" aria-hidden="true"></i>
                                 View My Work
                             </a>
@@ -797,184 +804,191 @@
             </div>
         </section>
 
-        <!-- Projects Section -->
-        <section id="projects" class="projects">
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="projects">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-tag">My Work</span>
-                    <h2 class="section-title">Featured Projects</h2>
+                    <span class="section-tag">My Portfolio</span>
+                    <h2 class="section-title">Professional Portfolio</h2>
                     <p class="section-subtitle">
-                        A collection of projects that showcase my technical skills and problem-solving abilities
+                        Showcasing my technical expertise and collaborative project experience
                     </p>
                 </div>
                 
-                <div class="projects-filter">
-                    <button class="filter-btn active" data-filter="all">All Projects</button>
-                    <button class="filter-btn" data-filter="fullstack">Full Stack</button>
-                    <button class="filter-btn" data-filter="frontend">Frontend</button>
-                    <button class="filter-btn" data-filter="backend">Backend</button>
-                    <button class="filter-btn" data-filter="algorithms">Algorithms</button>
-                </div>
-                
-                <div class="projects-grid">
-                    <article class="project-card featured" data-category="fullstack">
-                        <div class="project-image">
-                            <img src="assets/images/Budgetify.png" alt="Budgetify Project" loading="lazy">
-                            <div class="project-overlay">
-                                <div class="project-links">
-                                    <a href="https://github.com/EL-HOUSS-BRAHIM/Budgetify" class="project-link" target="_blank" aria-label="View source code">
-                                        <i class="fab fa-github"></i>
-                                    </a>
-                                    <a href="https://youtu.be/IqNBjMrFzSg?si=2-3FeAyJa_UI3dLy" class="project-link" target="_blank" aria-label="View demo">
+                <div class="portfolio-content">
+                    <!-- Phase 2 Team Project Highlight -->
+                    <div class="featured-project">
+                        <div class="project-header">
+                            <h3>Phase 2 Team Project - Budgetify</h3>
+                            <span class="project-badge">Team Collaboration</span>
+                        </div>
+                        <div class="project-description">
+                            <p>
+                                Collaborative full-stack web application for personal finance management, developed as part of ALX Phase 2 requirements. 
+                                This project demonstrates my ability to work in a team environment and deliver a complete software solution.
+                            </p>
+                        </div>
+                        <div class="project-resources">
+                            <div class="resource-item">
+                                <div class="resource-icon">
+                                    <i class="fab fa-youtube"></i>
+                                </div>
+                                <div class="resource-content">
+                                    <h4>Project Demo Video</h4>
+                                    <p>Watch our team's presentation and demonstration of the Budgetify application</p>
+                                    <a href="https://youtu.be/IqNBjMrFzSg?si=2-3FeAyJa_UI3dLy" class="btn btn--primary" target="_blank">
                                         <i class="fas fa-play"></i>
+                                        Watch Video
                                     </a>
-                                    <a href="#" class="project-link" target="_blank" aria-label="View live site">
-                                        <i class="fas fa-external-link-alt"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="resource-item">
+                                <div class="resource-icon">
+                                    <i class="fas fa-file-pdf"></i>
+                                </div>
+                                <div class="resource-content">
+                                    <h4>Project Slide Deck</h4>
+                                    <p>Comprehensive presentation slides covering project architecture, features, and implementation</p>
+                                    <a href="/assets/Budgetify-Presentation.pdf" class="btn btn--secondary" download>
+                                        <i class="fas fa-download"></i>
+                                        Download PDF
                                     </a>
                                 </div>
                             </div>
                         </div>
-                        <div class="project-content">
-                            <div class="project-header">
-                                <span class="project-featured">Featured</span>
-                                <h3 class="project-title">Budgetify - Personal Finance Manager</h3>
-                            </div>
-                            <p class="project-description">
-                                A comprehensive full-stack web application for personal finance management. Built with modern 
-                                technologies including Node.js, Express, MongoDB, and a responsive frontend. Features include 
-                                expense tracking, budget planning, and financial analytics.
-                            </p>
-                            <div class="project-tech">
-                                <span class="tech-tag">Node.js</span>
-                                <span class="tech-tag">Express</span>
-                                <span class="tech-tag">MongoDB</span>
-                                <span class="tech-tag">JavaScript</span>
-                                <span class="tech-tag">HTML/CSS</span>
-                            </div>
-                            <div class="project-stats">
-                                <div class="stat">
-                                    <i class="fas fa-star"></i>
-                                    <span>Team Project</span>
-                                </div>
-                                <div class="stat">
-                                    <i class="fas fa-code-branch"></i>
-                                    <span>Multiple Branches</span>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
+                    </div>
                     
-                    <article class="project-card" data-category="backend">
-                        <div class="project-image">
-                            <img src="assets/images/log_parsing.webp" alt="Log Parsing Project" loading="lazy">
-                            <div class="project-overlay">
-                                <div class="project-links">
+                    <!-- Portfolio Download Options -->
+                    <div class="portfolio-options">
+                        <h3>Complete Portfolio</h3>
+                        <p>Download my comprehensive portfolio showcasing all projects and technical achievements</p>
+                        <div class="download-options">
+                            <a href="/assets/Brahim-ElHouss-Portfolio.pdf" class="btn btn--outline" download>
+                                <i class="fas fa-download"></i>
+                                Download Full Portfolio (PDF)
+                            </a>
+                            <a href="https://github.com/EL-HOUSS-BRAHIM" class="btn btn--outline" target="_blank">
+                                <i class="fab fa-github"></i>
+                                View GitHub Portfolio
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Additional Projects Preview -->
+                    <div class="additional-projects">
+                        <h3>Other Notable Projects</h3>
+                        <div class="projects-grid">
+                            <div class="project-card">
+                                <div class="project-image">
+                                    <img src="assets/images/log_parsing.webp" alt="Log Parsing Project" loading="lazy">
+                                </div>
+                                <div class="project-content">
+                                    <h4>Real-time Log Parser</h4>
+                                    <p>Python-based system for processing log data in real-time</p>
+                                    <div class="project-tech">
+                                        <span class="tech-tag">Python</span>
+                                        <span class="tech-tag">Regex</span>
+                                        <span class="tech-tag">Data Processing</span>
+                                    </div>
                                     <a href="https://github.com/EL-HOUSS-BRAHIM/alx-interview/tree/main/0x03-log_parsing" class="project-link" target="_blank">
-                                        <i class="fab fa-github"></i>
+                                        View Project
                                     </a>
                                 </div>
                             </div>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">Real-time Log Parser</h3>
-                            <p class="project-description">
-                                Python-based log parsing system that processes data in real-time from stdin. 
-                                Computes metrics like file sizes and HTTP status codes using regex and signal handling.
-                            </p>
-                            <div class="project-tech">
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">Regex</span>
-                                <span class="tech-tag">Signal Handling</span>
-                                <span class="tech-tag">Data Processing</span>
-                            </div>
-                        </div>
-                    </article>
-                    
-                    <article class="project-card" data-category="frontend">
-                        <div class="project-image">
-                            <img src="assets/images/Star Wars API.jpg" alt="Star Wars API Project" loading="lazy">
-                            <div class="project-overlay">
-                                <div class="project-links">
-                                    <a href="https://github.com/EL-HOUSS-BRAHIM/alx-interview/tree/main/0x06-starwars_api" class="project-link" target="_blank">
-                                        <i class="fab fa-github"></i>
-                                    </a>
+                            
+                            <div class="project-card">
+                                <div class="project-image">
+                                    <img src="assets/images/simple shell.jpg" alt="Simple Shell Project" loading="lazy">
                                 </div>
-                            </div>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">Star Wars Character Explorer</h3>
-                            <p class="project-description">
-                                Interactive JavaScript application that fetches and displays Star Wars characters 
-                                from the SWAPI. Demonstrates async programming, API integration, and promise handling.
-                            </p>
-                            <div class="project-tech">
-                                <span class="tech-tag">JavaScript</span>
-                                <span class="tech-tag">API Integration</span>
-                                <span class="tech-tag">Async/Await</span>
-                                <span class="tech-tag">HTTP Requests</span>
-                            </div>
-                        </div>
-                    </article>
-                    
-                    <article class="project-card" data-category="algorithms">
-                        <div class="project-image">
-                            <img src="assets/images/Monty Interpreter.png" alt="Monty Interpreter Project" loading="lazy">
-                            <div class="project-overlay">
-                                <div class="project-links">
-                                    <a href="https://github.com/EL-HOUSS-BRAHIM/monty" class="project-link" target="_blank">
-                                        <i class="fab fa-github"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">Monty ByteCode Interpreter</h3>
-                            <p class="project-description">
-                                A stack-based interpreter for Monty ByteCode files. Implements various opcodes 
-                                for stack manipulation, demonstrating deep understanding of data structures.
-                            </p>
-                            <div class="project-tech">
-                                <span class="tech-tag">C</span>
-                                <span class="tech-tag">Data Structures</span>
-                                <span class="tech-tag">Stack Operations</span>
-                                <span class="tech-tag">Interpreter Design</span>
-                            </div>
-                        </div>
-                    </article>
-                    
-                    <article class="project-card" data-category="backend">
-                        <div class="project-image">
-                            <img src="assets/images/simple shell.jpg" alt="Simple Shell Project" loading="lazy">
-                            <div class="project-overlay">
-                                <div class="project-links">
+                                <div class="project-content">
+                                    <h4>Custom Shell Implementation</h4>
+                                    <p>Unix shell implementation in C with process management</p>
+                                    <div class="project-tech">
+                                        <span class="tech-tag">C</span>
+                                        <span class="tech-tag">Unix Systems</span>
+                                        <span class="tech-tag">System Calls</span>
+                                    </div>
                                     <a href="https://github.com/EL-HOUSS-BRAHIM/simple_shell" class="project-link" target="_blank">
-                                        <i class="fab fa-github"></i>
+                                        View Project
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="project-card">
+                                <div class="project-image">
+                                    <img src="assets/images/Monty Interpreter.png" alt="Monty Interpreter Project" loading="lazy">
+                                </div>
+                                <div class="project-content">
+                                    <h4>Monty ByteCode Interpreter</h4>
+                                    <p>Stack-based interpreter for Monty ByteCode files</p>
+                                    <div class="project-tech">
+                                        <span class="tech-tag">C</span>
+                                        <span class="tech-tag">Data Structures</span>
+                                        <span class="tech-tag">Interpreter Design</span>
+                                    </div>
+                                    <a href="https://github.com/EL-HOUSS-BRAHIM/monty" class="project-link" target="_blank">
+                                        View Project
                                     </a>
                                 </div>
                             </div>
                         </div>
-                        <div class="project-content">
-                            <h3 class="project-title">Custom Shell Implementation</h3>
-                            <p class="project-description">
-                                A Unix shell implementation in C that handles command execution, built-in commands, 
-                                and process management. Showcases system programming skills.
-                            </p>
-                            <div class="project-tech">
-                                <span class="tech-tag">C</span>
-                                <span class="tech-tag">Unix Systems</span>
-                                <span class="tech-tag">Process Management</span>
-                                <span class="tech-tag">System Calls</span>
-                            </div>
-                        </div>
-                    </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Elevator Pitch Section -->
+        <section id="elevator-pitch" class="elevator-pitch">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Professional Introduction</span>
+                    <h2 class="section-title">Elevator Pitch</h2>
+                    <p class="section-subtitle">
+                        A concise introduction to my professional background and career aspirations
+                    </p>
                 </div>
                 
-                <div class="projects-cta">
-                    <p>Want to see more of my work?</p>
-                    <a href="https://github.com/EL-HOUSS-BRAHIM" class="btn btn--primary" target="_blank">
-                        <i class="fab fa-github"></i>
-                        <span></span>View All Projects on GitHub</span>
-                    </a>
+                <div class="elevator-pitch-content">
+                    <div class="pitch-placeholder">
+                        <div class="placeholder-icon">
+                            <i class="fas fa-microphone-alt"></i>
+                        </div>
+                        <h3>Elevator Pitch Coming Soon</h3>
+                        <p>
+                            This section will feature a professional elevator pitch video showcasing my background, 
+                            skills, and career goals as a Full Stack Software Engineer.
+                        </p>
+                        
+                        <div class="pitch-preview">
+                            <div class="preview-item">
+                                <h4>What You'll Learn About Me:</h4>
+                                <ul>
+                                    <li>My journey into software engineering</li>
+                                    <li>Key technical skills and expertise</li>
+                                    <li>Professional accomplishments and projects</li>
+                                    <li>Career goals and aspirations</li>
+                                    <li>What makes me unique as a developer</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="preview-item">
+                                <h4>Professional Summary:</h4>
+                                <p>
+                                    "Hi, I'm Brahim El Houss, a passionate Full Stack Software Engineer with expertise in 
+                                    Python, JavaScript, and Node.js. I'm an ALX graduate specializing in backend development, 
+                                    with hands-on experience in building scalable web applications and solving complex technical challenges."
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="pitch-cta">
+                            <div class="cta-content">
+                                <i class="fas fa-video"></i>
+                                <span>Video elevator pitch will be available soon</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1255,7 +1269,8 @@
                             <li><a href="#home">Home</a></li>
                             <li><a href="#about">About</a></li>
                             <li><a href="#skills">Skills</a></li>
-                            <li><a href="#projects">Projects</a></li>
+                            <li><a href="#portfolio">Portfolio</a></li>
+                            <li><a href="#elevator-pitch">Elevator Pitch</a></li>
                         </ul>
                     </div>
                     
