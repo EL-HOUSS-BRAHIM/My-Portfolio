@@ -1,0 +1,11 @@
+CSS Accessibility Analysis - Fri Aug 22 18:56:05 +01 2025
+===================================
+Accessibility Features:
+  Focus styles: 3 files
+  Hover styles: 10 files
+  Screen reader styles: 0 files
+  High contrast support: 2 files
+  Reduced motion support: 3 files
+
+Accessibility Recommendations:
+  - Add screen reader only styles for better accessibility

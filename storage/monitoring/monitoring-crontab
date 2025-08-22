@@ -1,0 +1,20 @@
+# Portfolio Monitoring Cron Jobs
+# Edit this file and load with: crontab monitoring-crontab
+
+# Uptime check every 5 minutes
+*/5 * * * * /home/bross/Desktop/My-Portfolio/storage/monitoring/uptime-check.sh
+
+# Performance check every 10 minutes
+*/10 * * * * /home/bross/Desktop/My-Portfolio/storage/monitoring/performance-check.sh
+
+# Disk space check every hour
+0 * * * * /home/bross/Desktop/My-Portfolio/storage/monitoring/disk-check.sh
+
+# Error monitoring every 15 minutes
+*/15 * * * * /home/bross/Desktop/My-Portfolio/storage/monitoring/error-check.sh
+
+# Log rotation daily at 2 AM
+0 2 * * * /usr/sbin/logrotate /home/bross/Desktop/My-Portfolio/logrotate.conf
+
+# Generate daily report at 6 AM
+0 6 * * * /home/bross/Desktop/My-Portfolio/storage/monitoring/generate-report.sh

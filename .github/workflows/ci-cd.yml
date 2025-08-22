@@ -1,0 +1,355 @@
+name: Portfolio CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # Run daily at 2 AM UTC for security checks
+    - cron: '0 2 * * *'
+
+env:
+  PHP_VERSION: '8.2'
+  NODE_VERSION: '18'
+
+jobs:
+  # Code Quality and Testing
+  quality-check:
+    runs-on: ubuntu-latest
+    name: Code Quality & Testing
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ env.PHP_VERSION }}
+        extensions: mbstring, xml, ctype, json, tokenizer, openssl, pdo, sqlite, pdo_sqlite
+        coverage: xdebug
+        
+    - name: Cache Composer dependencies
+      uses: actions/cache@v3
+      with:
+        path: /tmp/composer-cache
+        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+        restore-keys: ${{ runner.os }}-composer-
+        
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+        cache-dependency-path: tests/package-lock.json
+        
+    - name: Install PHP dependencies
+      run: |
+        cd tests
+        composer install --no-interaction --prefer-dist --optimize-autoloader
+        
+    - name: Install Node.js dependencies
+      run: |
+        cd tests
+        npm ci
+        
+    - name: Run PHPStan
+      run: |
+        cd tests
+        vendor/bin/phpstan analyse ../src --level=8 --memory-limit=256M
+        
+    - name: Run PHP Code Sniffer
+      run: |
+        cd tests
+        vendor/bin/phpcs ../src --standard=PSR12 --colors
+        
+    - name: Run PHP Mess Detector
+      run: |
+        cd tests
+        vendor/bin/phpmd ../src text cleancode,codesize,controversial,design,naming,unusedcode
+        
+    - name: Run ESLint
+      run: |
+        cd tests
+        npx eslint ../assets/js-clean/**/*.js
+        
+    - name: Run Stylelint
+      run: |
+        cd tests
+        npx stylelint "../assets/css/**/*.css"
+        
+    - name: Run PHPUnit Tests
+      run: |
+        cd tests
+        vendor/bin/phpunit --coverage-text --coverage-clover=coverage.xml
+        
+    - name: Run Jest Tests
+      run: |
+        cd tests
+        npm test -- --coverage --watchAll=false
+        
+    - name: Upload PHP Coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        file: tests/coverage.xml
+        flags: php
+        name: php-coverage
+        
+    - name: Upload JS Coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        file: tests/coverage/lcov.info
+        flags: javascript
+        name: js-coverage
+
+  # Security Scanning
+  security-scan:
+    runs-on: ubuntu-latest
+    name: Security Scanning
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ env.PHP_VERSION }}
+        
+    - name: Install dependencies
+      run: |
+        cd tests
+        composer install --no-interaction --prefer-dist
+        
+    - name: Run security audit for Composer
+      run: |
+        cd tests
+        composer audit
+        
+    - name: Run security audit for npm
+      run: |
+        cd tests
+        npm audit --audit-level=moderate
+        
+    - name: Run PHPMD security rules
+      run: |
+        cd tests
+        vendor/bin/phpmd ../src text security
+        
+    - name: Check for secrets
+      uses: trufflesecurity/trufflehog@main
+      with:
+        path: ./
+        base: main
+        head: HEAD
+
+  # Performance Testing
+  performance-test:
+    runs-on: ubuntu-latest
+    name: Performance Testing
+    needs: [quality-check]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ env.PHP_VERSION }}
+        extensions: mbstring, xml, ctype, json, tokenizer, openssl, pdo, sqlite
+        
+    - name: Install Apache Benchmark
+      run: sudo apt-get update && sudo apt-get install -y apache2-utils
+      
+    - name: Start PHP built-in server
+      run: |
+        php -S localhost:8000 -t . &
+        sleep 5
+        
+    - name: Run performance tests
+      run: |
+        chmod +x scripts/performance-test.sh
+        ./scripts/performance-test.sh --base-url http://localhost:8000 --skip-db
+        
+    - name: Upload performance results
+      uses: actions/upload-artifact@v3
+      with:
+        name: performance-results
+        path: tests/performance-results/
+
+  # Build and Deploy (Production)
+  deploy-production:
+    runs-on: ubuntu-latest
+    name: Deploy to Production
+    needs: [quality-check, security-scan, performance-test]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    environment:
+      name: production
+      url: https://brahim-elhouss.me
+      
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ env.PHP_VERSION }}
+        
+    - name: Install Composer dependencies
+      run: composer install --no-dev --optimize-autoloader --no-interaction
+      
+    - name: Setup Node.js for asset optimization
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        
+    - name: Install Node dependencies for build tools
+      run: |
+        npm install -g csso-cli terser imagemin-cli
+        
+    - name: Optimize assets
+      run: |
+        chmod +x scripts/optimize.sh
+        ./scripts/optimize.sh
+        
+    - name: Run security setup
+      run: |
+        chmod +x scripts/setup-security.sh
+        ./scripts/setup-security.sh
+        
+    - name: Create deployment package
+      run: |
+        tar -czf portfolio-deploy.tar.gz \
+          --exclude='.git*' \
+          --exclude='tests' \
+          --exclude='node_modules' \
+          --exclude='*.md' \
+          --exclude='*.log' \
+          .
+          
+    - name: Deploy to server
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.DEPLOY_HOST }}
+        username: ${{ secrets.DEPLOY_USER }}
+        key: ${{ secrets.DEPLOY_KEY }}
+        port: ${{ secrets.DEPLOY_PORT }}
+        script: |
+          # Create backup
+          if [ -d "/var/www/portfolio" ]; then
+            sudo tar -czf "/tmp/portfolio-backup-$(date +%Y%m%d_%H%M%S).tar.gz" -C /var/www portfolio
+          fi
+          
+          # Deploy new version
+          sudo mkdir -p /var/www/portfolio-new
+          cd /var/www/portfolio-new
+          
+          # Download and extract deployment package
+          wget -O portfolio-deploy.tar.gz "${{ secrets.DEPLOY_URL }}/portfolio-deploy.tar.gz"
+          tar -xzf portfolio-deploy.tar.gz
+          
+          # Set permissions
+          sudo chown -R www-data:www-data .
+          sudo find . -type d -exec chmod 755 {} \;
+          sudo find . -type f -exec chmod 644 {} \;
+          sudo chmod 700 storage/ config/
+          
+          # Atomic switch
+          sudo mv /var/www/portfolio /var/www/portfolio-old 2>/dev/null || true
+          sudo mv /var/www/portfolio-new /var/www/portfolio
+          
+          # Restart services
+          sudo systemctl reload nginx
+          sudo systemctl restart php8.2-fpm
+          
+          # Health check
+          sleep 5
+          if curl -f https://brahim-elhouss.me/ > /dev/null 2>&1; then
+            echo "Deployment successful"
+            sudo rm -rf /var/www/portfolio-old
+          else
+            echo "Deployment failed, rolling back"
+            sudo mv /var/www/portfolio /var/www/portfolio-failed
+            sudo mv /var/www/portfolio-old /var/www/portfolio
+            sudo systemctl reload nginx
+            exit 1
+          fi
+          
+    - name: Notify deployment success
+      if: success()
+      run: |
+        curl -X POST -H 'Content-type: application/json' \
+          --data '{"text":"✅ Portfolio deployed successfully to production!"}' \
+          ${{ secrets.SLACK_WEBHOOK_URL }}
+          
+    - name: Notify deployment failure
+      if: failure()
+      run: |
+        curl -X POST -H 'Content-type: application/json' \
+          --data '{"text":"❌ Portfolio deployment failed!"}' \
+          ${{ secrets.SLACK_WEBHOOK_URL }}
+
+  # Deploy to Staging
+  deploy-staging:
+    runs-on: ubuntu-latest
+    name: Deploy to Staging
+    needs: [quality-check]
+    if: github.ref == 'refs/heads/develop' && github.event_name == 'push'
+    
+    environment:
+      name: staging
+      url: https://staging.brahim-elhouss.me
+      
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ env.PHP_VERSION }}
+        
+    - name: Install dependencies
+      run: composer install --optimize-autoloader --no-interaction
+      
+    - name: Deploy to staging server
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.STAGING_HOST }}
+        username: ${{ secrets.STAGING_USER }}
+        key: ${{ secrets.STAGING_KEY }}
+        port: ${{ secrets.STAGING_PORT }}
+        script: |
+          cd /var/www/staging-portfolio
+          git pull origin develop
+          composer install --optimize-autoloader --no-interaction
+          
+          # Set staging environment
+          cp .env.staging .env
+          
+          # Set permissions
+          sudo chown -R www-data:www-data .
+          sudo find . -type d -exec chmod 755 {} \;
+          sudo find . -type f -exec chmod 644 {} \;
+          
+          # Restart services
+          sudo systemctl reload nginx
+
+  # Cleanup old artifacts
+  cleanup:
+    runs-on: ubuntu-latest
+    name: Cleanup
+    needs: [deploy-production, deploy-staging]
+    if: always()
+    
+    steps:
+    - name: Cleanup workflow artifacts
+      uses: geekyeggo/delete-artifact@v2
+      with:
+        name: |
+          performance-results
+        failOnError: false

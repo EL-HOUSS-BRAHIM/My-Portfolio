@@ -1,0 +1,4 @@
+Admin Panel CSS Analysis - Fri Aug 22 18:56:06 +01 2025
+==================================
+Missing: Dedicated admin CSS files
+Admin classes found: 37

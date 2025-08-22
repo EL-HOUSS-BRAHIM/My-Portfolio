@@ -391,6 +391,13 @@
     .tech-icon i {
         font-size: 18px;
     }
+    
+    .hero__badge {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+        bottom: 12%;
+        right: 12%;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -795,7 +802,7 @@
     width: 100%;
     padding-top: 100%;
     /* 1:1 Aspect Ratio */
-    background-image: url('https://brahim-elhouss.me/assets/images/profile-img.jpg');
+    background-image: url('../images/profile-img.jpg');
     background-size: cover;
     background-position: center;
     border-radius: 50%;
@@ -840,8 +847,8 @@
 
 .hero__badge {
     position: absolute;
-    bottom: 10%;
-    right: 0;
+    bottom: 15%;
+    right: 15%;
     background-color: var(--color-accent-orange);
     color: var(--color-white);
     padding: 0.5rem 1rem;
@@ -856,6 +863,9 @@
     animation: slideInFromBottom 0.8s ease-out 1.4s forwards;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
+    z-index: 3;
+    /* Center the badge on the circular profile image */
+    transform-origin: center center;
 }
 
 .hero__badge:hover {

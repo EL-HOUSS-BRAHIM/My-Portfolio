@@ -1,0 +1,37 @@
+{
+  "name": "brahim/portfolio-code-quality",
+  "version": "1.0.0",
+  "description": "Code quality tools configuration",
+  "require-dev": {
+    "phpstan/phpstan": "^1.10",
+    "squizlabs/php_codesniffer": "^3.7",
+    "phpmd/phpmd": "^2.13",
+    "sebastian/phpcpd": "^6.0",
+    "phpunit/phpunit": "^10.3"
+  },
+  "scripts": {
+    "phpstan": "phpstan analyse src --level=8 --memory-limit=256M",
+    "phpcs": "phpcs src --standard=PSR12 --colors",
+    "phpcs-fix": "phpcbf src --standard=PSR12",
+    "phpmd": "phpmd src text cleancode,codesize,controversial,design,naming,unusedcode",
+    "phpcpd": "phpcpd src",
+    "test": "phpunit tests",
+    "test-coverage": "phpunit tests --coverage-html tests/coverage",
+    "quality": "composer run phpstan && composer run phpcs && composer run phpmd && composer run phpcpd",
+    "quality-fix": "composer run phpcs-fix",
+    "all-tests": "composer run quality && composer run test"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/",
+      "Tests\\": "tests/"
+    }
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "sort-packages": true,
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  }
+}

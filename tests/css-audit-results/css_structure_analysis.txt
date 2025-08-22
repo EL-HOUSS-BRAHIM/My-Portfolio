@@ -1,0 +1,123 @@
+CSS File Structure Analysis - Fri Aug 22 18:55:59 +01 2025
+=====================================
+
+File: projects.css
+  Lines: 211
+  Rules: 31
+  Size: 4255 bytes
+  Media Queries: 0
+0
+  Keyframes: 0
+0
+  Imports: 0
+0
+
+File: base.css
+  Lines: 735
+  Rules: 54
+  Size: 18441 bytes
+  Media Queries: 1
+  Keyframes: 2
+  Imports: 0
+0
+
+File: Header.css
+  Lines: 17
+  Rules: 2
+  Size: 509 bytes
+  Media Queries: 0
+0
+  Keyframes: 0
+0
+  Imports: 0
+0
+
+File: nav.css
+  Lines: 218
+  Rules: 29
+  Size: 5628 bytes
+  Media Queries: 1
+  Keyframes: 0
+0
+  Imports: 0
+0
+
+File: contact.css
+  Lines: 376
+  Rules: 56
+  Size: 8243 bytes
+  Media Queries: 4
+  Keyframes: 0
+0
+  Imports: 0
+0
+
+File: Hero.css
+  Lines: 1016
+  Rules: 165
+  Size: 22479 bytes
+  Media Queries: 8
+  Keyframes: 11
+  Imports: 0
+0
+
+File: about.css
+  Lines: 166
+  Rules: 26
+  Size: 3358 bytes
+  Media Queries: 2
+  Keyframes: 0
+0
+  Imports: 0
+0
+
+File: font-optimization.css
+  Lines: 381
+  Rules: 51
+  Size: 10724 bytes
+  Media Queries: 6
+  Keyframes: 0
+0
+  Imports: 0
+0
+
+File: testimonial.css
+  Lines: 189
+  Rules: 26
+  Size: 3791 bytes
+  Media Queries: 1
+  Keyframes: 0
+0
+  Imports: 0
+0
+
+File: footer.css
+  Lines: 157
+  Rules: 28
+  Size: 3077 bytes
+  Media Queries: 2
+  Keyframes: 0
+0
+  Imports: 0
+0
+
+File: experience.css
+  Lines: 197
+  Rules: 30
+  Size: 3947 bytes
+  Media Queries: 1
+  Keyframes: 0
+0
+  Imports: 0
+0
+
+File: skills.css
+  Lines: 89
+  Rules: 15
+  Size: 1746 bytes
+  Media Queries: 0
+0
+  Keyframes: 0
+0
+  Imports: 0
+0

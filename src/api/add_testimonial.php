@@ -15,6 +15,8 @@ require_once __DIR__ . '/../utils/Validator.php';
 require_once __DIR__ . '/../utils/Response.php';
 require_once __DIR__ . '/../utils/RateLimit.php';
 
+use Portfolio\Utils\Validator;
+
 try {
     // Initialize configuration
     $config = Config::getInstance();

@@ -201,6 +201,9 @@
     --space-component-gap: var(--space-4);
     --space-element-gap: var(--space-2);
     
+    /* Main section padding variable */
+    --section-padding: var(--space-section-padding-y) var(--space-section-padding-x);
+    
     /* === LAYOUT SYSTEM === */
     
     /* Container Widths */
@@ -453,6 +456,56 @@ p {
 section {
      padding: var(--section-padding);
      overflow: hidden;
+     position: relative;
+}
+
+/* Section spacing utilities */
+.section-spacing {
+    padding: var(--section-padding);
+}
+
+.section-spacing-sm {
+    padding: var(--space-16) var(--space-section-padding-x);
+}
+
+.section-spacing-lg {
+    padding: var(--space-32) var(--space-section-padding-x);
+}
+
+.section-spacing-xl {
+    padding: var(--space-40) var(--space-section-padding-x);
+}
+
+/* Add bottom margin to create space between sections */
+section:not(:last-child) {
+    margin-bottom: var(--space-8);
+}
+
+/* Subtle visual separation for sections with background colors */
+section.about,
+section.projects,
+section.contact,
+section.testimonials {
+    position: relative;
+}
+
+section.about::before,
+section.projects::before,
+section.contact::before,
+section.testimonials::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-border), transparent);
+    opacity: 0.3;
+}
+
+/* Ensure hero section has proper spacing */
+.hero {
+    margin-bottom: var(--space-8);
 }
 
 .section-header {
@@ -717,6 +770,16 @@ section {
 
 
 /* Media Queries */
+@media (max-width: 1024px) {
+    section {
+        padding: var(--space-20) var(--space-5);
+    }
+    
+    section:not(:last-child) {
+        margin-bottom: var(--space-6);
+    }
+}
+
 @media (max-width: 768px) {
      h1 {
         font-size: 2.5rem;
@@ -727,9 +790,27 @@ section {
     }
 
      section {
-        padding: 4rem 0;
+        padding: var(--space-16) var(--space-4);
     }
-
     
+     /* Reduce section spacing on mobile */
+     section:not(:last-child) {
+        margin-bottom: var(--space-4);
+    }
+}
+
+@media (max-width: 480px) {
+     section {
+        padding: var(--space-12) var(--space-3);
+    }
+    
+     section:not(:last-child) {
+        margin-bottom: var(--space-3);
+    }
+    
+     /* Ensure minimum spacing even on small screens */
+     .section-header {
+        margin-bottom: var(--space-8);
+    }
 }
 

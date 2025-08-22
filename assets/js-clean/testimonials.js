@@ -92,16 +92,35 @@ class TestimonialController {
      */
     setupResponsiveCards() {
         const viewportWidth = window.innerWidth;
+        const totalTestimonials = this.testimonials.length;
         
-        if (viewportWidth < 768) {
+        // Determine optimal number of visible cards based on screen size and available content
+        if (viewportWidth < 480) {
             this.numVisibleCards = 1;
+        } else if (viewportWidth < 768) {
+            this.numVisibleCards = Math.min(totalTestimonials, 1);
         } else if (viewportWidth < 1024) {
-            this.numVisibleCards = 2;
+            this.numVisibleCards = Math.min(totalTestimonials, 2);
         } else {
-            this.numVisibleCards = 3;
+            // For large screens, show up to 3 cards, but adapt based on content
+            if (totalTestimonials <= 3) {
+                this.numVisibleCards = totalTestimonials;
+            } else {
+                this.numVisibleCards = 3;
+            }
+        }
+        
+        // If we can show all testimonials at once, disable auto-slide
+        if (this.numVisibleCards >= totalTestimonials) {
+            this.stopAutoSlide();
+            this.currentTestimonial = 0;
+        } else if (this.autoSlideTimer === null && totalTestimonials > 1) {
+            // Re-enable auto-slide if we have multiple testimonials that don't fit
+            this.startAutoSlide();
         }
         
         this.updateSliderPosition();
+        this.updateNavigationButtons();
     }
 
     /**
@@ -136,6 +155,7 @@ class TestimonialController {
                     this.testimonials = [];
                 }
                 
+                this.setupResponsiveCards(); // Setup responsive behavior first
                 this.displayTestimonials();
                 this.updateNavigationButtons();
                 this.startAutoSlide();
@@ -176,7 +196,7 @@ class TestimonialController {
             {
                 id: 2,
                 name: "Michael Chen",
-                image: "assets/images/testimonials/michael.jpg",
+                image: "", // Test missing image
                 rating: 5,
                 testimonial: "Working with Brahim was a fantastic experience. He's professional, communicative, and delivers high-quality code on time.",
                 created_at: "2024-02-01"
@@ -186,7 +206,7 @@ class TestimonialController {
                 name: "Emily Rodriguez",
                 image: "assets/images/testimonials/emily.jpg",
                 rating: 5,
-                testimonial: "Brahim's full-stack development skills are impressive. He transformed our ideas into a beautiful, functional website.",
+                testimonial: "Brahim's full-stack development skills are impressive. He transformed our ideas into a beautiful, functional website that exceeded our expectations. The attention to detail and the quality of the code were outstanding. I would definitely work with him again.",
                 created_at: "2024-02-15"
             },
             {
@@ -194,11 +214,12 @@ class TestimonialController {
                 name: "David Thompson",
                 image: "assets/images/testimonials/david.jpg",
                 rating: 4,
-                testimonial: "Great developer with strong problem-solving skills. Would definitely recommend for any web development project.",
+                testimonial: "Great developer!",
                 created_at: "2024-03-01"
             }
         ];
         
+        this.setupResponsiveCards(); // Setup responsive behavior first
         this.displayTestimonials();
         this.updateNavigationButtons();
         this.startAutoSlide();
@@ -208,9 +229,20 @@ class TestimonialController {
      * Display testimonials in the slider
      */
     displayTestimonials() {
-        if (!this.elements.slider || this.testimonials.length === 0) {
+        if (!this.elements.slider) {
             this.showEmptyState();
             return;
+        }
+        
+        if (this.testimonials.length === 0) {
+            this.showEmptyState();
+            return;
+        }
+        
+        // Update testimonials section with count data attribute
+        const testimonialsSection = document.querySelector('.testimonials');
+        if (testimonialsSection) {
+            testimonialsSection.setAttribute('data-count', this.testimonials.length);
         }
         
         const testimonialsHTML = this.testimonials.map(testimonial => 
@@ -219,6 +251,30 @@ class TestimonialController {
         
         this.elements.slider.innerHTML = testimonialsHTML;
         this.updateSliderPosition();
+        this.handleSingleTestimonial();
+    }
+
+    /**
+     * Handle single testimonial scenario
+     */
+    handleSingleTestimonial() {
+        if (this.testimonials.length === 1) {
+            // Disable auto-slide for single testimonial
+            this.stopAutoSlide();
+            
+            // Hide navigation buttons
+            if (this.elements.prevButton) this.elements.prevButton.style.display = 'none';
+            if (this.elements.nextButton) this.elements.nextButton.style.display = 'none';
+            
+            // Center the single testimonial
+            this.elements.slider.style.justifyContent = 'center';
+        } else {
+            // Show navigation buttons for multiple testimonials
+            if (this.elements.prevButton) this.elements.prevButton.style.display = 'flex';
+            if (this.elements.nextButton) this.elements.nextButton.style.display = 'flex';
+            
+            this.elements.slider.style.justifyContent = 'flex-start';
+        }
     }
 
     /**
@@ -231,7 +287,24 @@ class TestimonialController {
         const escapedName = this.escapeHtml(testimonial.name);
         
         // Use image_url if provided, otherwise fallback to image field
-        const imageUrl = testimonial.image_url || testimonial.image || 'assets/images/placeholder-avatar.svg';
+        const imageUrl = testimonial.image_url || testimonial.image || '';
+        
+        // Determine text length class for adaptive styling
+        const textLength = escapedText.length;
+        let textLengthClass = 'medium';
+        if (textLength < 100) {
+            textLengthClass = 'short';
+        } else if (textLength > 200) {
+            textLengthClass = 'long';
+        }
+        
+        // Handle missing image scenario
+        const imageHTML = imageUrl 
+            ? `<img src="${imageUrl}" alt="${escapedName}" loading="lazy" 
+                 onerror="this.closest('.testimonial-image').classList.add('no-image'); this.style.display='none'; this.closest('.testimonial-image').innerHTML='<span>${escapedName.charAt(0).toUpperCase()}</span>';">`
+            : `<span>${escapedName.charAt(0).toUpperCase()}</span>`;
+        
+        const imageClass = imageUrl ? 'testimonial-image' : 'testimonial-image no-image';
         
         return `
             <div class="testimonial-item" data-id="${testimonial.id}">
@@ -239,13 +312,12 @@ class TestimonialController {
                     <div class="testimonial-rating">
                         ${stars}
                     </div>
-                    <blockquote class="testimonial-text">
+                    <blockquote class="testimonial-text ${textLengthClass}">
                         "${escapedText}"
                     </blockquote>
                     <div class="testimonial-author">
-                        <div class="testimonial-image">
-                            <img src="${imageUrl}" alt="${escapedName}" loading="lazy" 
-                                 onerror="this.src='assets/images/placeholder-avatar.svg'">
+                        <div class="${imageClass}">
+                            ${imageHTML}
                         </div>
                         <div class="testimonial-details">
                             <h4 class="testimonial-name">${escapedName}</h4>
@@ -343,23 +415,63 @@ class TestimonialController {
     updateNavigationButtons() {
         if (!this.elements.prevButton || !this.elements.nextButton) return;
         
-        const maxIndex = Math.max(0, this.testimonials.length - this.numVisibleCards);
+        const totalTestimonials = this.testimonials.length;
+        const maxIndex = Math.max(0, totalTestimonials - this.numVisibleCards);
         
+        // Hide buttons if we have 1 or fewer testimonials, or if all fit on screen
+        if (totalTestimonials <= 1 || totalTestimonials <= this.numVisibleCards) {
+            this.elements.prevButton.style.display = 'none';
+            this.elements.nextButton.style.display = 'none';
+            return;
+        }
+        
+        // Show buttons for navigation
+        this.elements.prevButton.style.display = 'flex';
+        this.elements.nextButton.style.display = 'flex';
+        
+        // Update disabled states
         this.elements.prevButton.disabled = this.currentTestimonial === 0;
         this.elements.nextButton.disabled = this.currentTestimonial >= maxIndex;
         
-        // Update ARIA labels
+        // Update ARIA labels with better context
+        const currentPage = Math.floor(this.currentTestimonial / this.numVisibleCards) + 1;
+        const totalPages = Math.ceil(totalTestimonials / this.numVisibleCards);
+        
         this.elements.prevButton.setAttribute('aria-label', 
-            `Previous testimonial (${this.currentTestimonial + 1} of ${this.testimonials.length})`);
+            `Previous testimonials (Page ${currentPage} of ${totalPages})`);
         this.elements.nextButton.setAttribute('aria-label', 
-            `Next testimonial (${this.currentTestimonial + 1} of ${this.testimonials.length})`);
+            `Next testimonials (Page ${currentPage} of ${totalPages})`);
+        
+        // Add visual feedback for disabled state
+        if (this.elements.prevButton.disabled) {
+            this.elements.prevButton.style.opacity = '0.3';
+            this.elements.prevButton.style.cursor = 'not-allowed';
+        } else {
+            this.elements.prevButton.style.opacity = '1';
+            this.elements.prevButton.style.cursor = 'pointer';
+        }
+        
+        if (this.elements.nextButton.disabled) {
+            this.elements.nextButton.style.opacity = '0.3';
+            this.elements.nextButton.style.cursor = 'not-allowed';
+        } else {
+            this.elements.nextButton.style.opacity = '1';
+            this.elements.nextButton.style.cursor = 'pointer';
+        }
     }
 
     /**
      * Start auto-slide functionality
      */
     startAutoSlide() {
+        // Don't start auto-slide if we have 1 or fewer testimonials
+        if (this.testimonials.length <= 1) return;
+        
+        // Don't start auto-slide if all testimonials fit on screen
         if (this.testimonials.length <= this.numVisibleCards) return;
+        
+        // Stop existing timer before starting new one
+        this.stopAutoSlide();
         
         this.autoSlideTimer = setInterval(() => {
             if (!this.isAutoPaused) {
