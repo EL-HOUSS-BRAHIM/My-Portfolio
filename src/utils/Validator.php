@@ -23,7 +23,7 @@ class Validator
      * Check if value is required
      * Accepts 0, '0', and non-string values as valid
      */
-    public static function required(mixed $value): bool
+    public static function required($value): bool
     {
         if (is_string($value)) {
             return strlen(trim($value)) > 0;
@@ -42,12 +42,12 @@ class Validator
         return mb_strlen(trim($value)) <= $max;
     }
 
-    public static function numeric(mixed $value): bool
+    public static function numeric($value): bool
     {
         return is_numeric($value) && preg_match('/^\d+(\.\d+)?$/', (string)$value);
     }
 
-    public static function between(mixed $value, int|float $min, int|float $max): bool
+    public static function between($value, $min, $max): bool
     {
         if (!self::numeric($value)) {
             return false;
