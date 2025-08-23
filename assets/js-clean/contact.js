@@ -208,11 +208,19 @@ class ContactController {
 
         // Validate reCAPTCHA if present
         if (typeof grecaptcha !== 'undefined') {
+            console.log('[reCAPTCHA Debug] grecaptcha object found');
             const captchaResponse = grecaptcha.getResponse();
+            console.log('[reCAPTCHA Debug] Captcha response:', captchaResponse);
             if (!captchaResponse) {
+                console.log('[reCAPTCHA Debug] No captcha response - showing error');
                 this.showMessage('Please complete the reCAPTCHA verification.', 'error');
                 isValid = false;
+            } else {
+                console.log('[reCAPTCHA Debug] Captcha response valid');
             }
+        } else {
+            console.log('[reCAPTCHA Debug] grecaptcha object not found');
+            console.log('[reCAPTCHA Debug] Window RECAPTCHA_CONFIG:', window.RECAPTCHA_CONFIG);
         }
 
         return isValid;

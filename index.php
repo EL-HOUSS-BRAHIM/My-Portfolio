@@ -257,7 +257,25 @@ $recaptchaEnabled = $config->get('recaptcha.enabled');
     
     <!-- Google reCAPTCHA v2 -->
     <?php if ($recaptchaEnabled): ?>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+        console.log('[reCAPTCHA Debug] Loading reCAPTCHA API...');
+        console.log('[reCAPTCHA Debug] Site key will be:', '<?php echo htmlspecialchars($recaptchaSiteKey); ?>');
+        
+        // reCAPTCHA callback functions
+        window.onRecaptchaLoad = function() {
+            console.log('[reCAPTCHA Debug] reCAPTCHA API loaded successfully');
+            console.log('[reCAPTCHA Debug] grecaptcha object:', grecaptcha);
+        };
+        
+        window.onRecaptchaError = function() {
+            console.error('[reCAPTCHA Debug] reCAPTCHA failed to load');
+        };
+        
+        window.onRecaptchaExpired = function() {
+            console.warn('[reCAPTCHA Debug] reCAPTCHA expired');
+        };
+    </script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit" async defer onerror="onRecaptchaError()"></script>
     <?php endif; ?>
     
     <!-- Styles and icons -->
@@ -1410,6 +1428,59 @@ $recaptchaEnabled = $config->get('recaptcha.enabled');
     <script src="assets/js-clean/contact.js"></script>
     <script src="assets/js-clean/testimonials.js"></script>
     <script src="assets/js-clean/app.js"></script>
+
+    <!-- reCAPTCHA Debug Script -->
+    <?php if ($recaptchaEnabled): ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('[reCAPTCHA Debug] DOM loaded, checking reCAPTCHA status...');
+            
+            function checkRecaptcha() {
+                if (typeof grecaptcha !== 'undefined') {
+                    console.log('[reCAPTCHA Debug] grecaptcha is available');
+                    
+                    // Try to render reCAPTCHA manually for debugging
+                    const recaptchaElements = document.querySelectorAll('.g-recaptcha');
+                    console.log('[reCAPTCHA Debug] Found', recaptchaElements.length, 'reCAPTCHA elements');
+                    
+                    recaptchaElements.forEach((element, index) => {
+                        const sitekey = element.getAttribute('data-sitekey');
+                        console.log('[reCAPTCHA Debug] Element', index, 'sitekey:', sitekey);
+                        
+                        if (!element.innerHTML.trim()) {
+                            console.log('[reCAPTCHA Debug] Rendering element', index);
+                            try {
+                                const widgetId = grecaptcha.render(element, {
+                                    'sitekey': sitekey,
+                                    'callback': function(response) {
+                                        console.log('[reCAPTCHA Debug] Callback success for element', index, 'response:', response);
+                                    },
+                                    'expired-callback': function() {
+                                        console.log('[reCAPTCHA Debug] Expired callback for element', index);
+                                    },
+                                    'error-callback': function() {
+                                        console.error('[reCAPTCHA Debug] Error callback for element', index);
+                                    }
+                                });
+                                console.log('[reCAPTCHA Debug] Widget ID for element', index, ':', widgetId);
+                            } catch (error) {
+                                console.error('[reCAPTCHA Debug] Error rendering element', index, ':', error);
+                            }
+                        } else {
+                            console.log('[reCAPTCHA Debug] Element', index, 'already has content');
+                        }
+                    });
+                } else {
+                    console.log('[reCAPTCHA Debug] grecaptcha not available yet, retrying in 1 second...');
+                    setTimeout(checkRecaptcha, 1000);
+                }
+            }
+            
+            // Start checking
+            checkRecaptcha();
+        });
+    </script>
+    <?php endif; ?>
 
 </body>
 
