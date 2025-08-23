@@ -20,17 +20,23 @@ class ProjectController {
      * Initialize project functionality
      */
     init() {
-        if (!this.filterButtons.length || !this.projectCards.length) {
-            console.warn('[ProjectController] Filter buttons or project cards not found');
+        if (!this.projectCards.length) {
+            console.warn('[ProjectController] Project cards not found');
             return;
         }
 
-        this.setupFilters();
+        // Only setup filters if filter buttons exist
+        if (this.filterButtons.length > 0) {
+            this.setupFilters();
+        } else {
+            console.debug('[ProjectController] No filter buttons found, skipping filter setup');
+        }
+        
         this.setupImageLoading();
         this.setupHoverEffects();
         this.setupEntranceAnimations();
         
-        console.debug('[ProjectController] Initialized');
+        console.debug('[ProjectController] Initialized successfully');
     }
 
     /**
