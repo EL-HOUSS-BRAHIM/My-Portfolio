@@ -1,3 +1,9 @@
+<?php
+require_once 'src/config/Config.php';
+$config = Config::getInstance();
+$recaptchaSiteKey = $config->get('recaptcha.site_key');
+$recaptchaEnabled = $config->get('recaptcha.enabled');
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -250,7 +256,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Google reCAPTCHA v2 -->
+    <?php if ($recaptchaEnabled): ?>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <?php endif; ?>
     
     <!-- Styles and icons -->
     <!-- Base styles and variables -->
@@ -1232,12 +1240,14 @@
                             </div>
                             
                             <!-- reCAPTCHA Widget -->
+                            <?php if ($recaptchaEnabled): ?>
                             <div class="form-group">
-                                <div class="g-recaptcha" data-sitekey="6LeK_YoqAAAAABEXXXXXXXXXXXXXXXXXXXXXXXXX"></div>
+                                <div class="g-recaptcha" data-sitekey="<?php echo htmlspecialchars($recaptchaSiteKey); ?>"></div>
                                 <div class="recaptcha-error" style="display: none; color: var(--color-error); font-size: var(--font-size-sm); margin-top: 0.5rem;">
                                     Please complete the CAPTCHA verification.
                                 </div>
                             </div>
+                            <?php endif; ?>
                             
                             <div class="form-actions">
                                 <button type="submit" class="btn btn--primary">
@@ -1283,12 +1293,14 @@
                     </div>
                     
                     <!-- reCAPTCHA Widget for Testimonials -->
+                    <?php if ($recaptchaEnabled): ?>
                     <div class="form-group">
-                        <div class="g-recaptcha" data-sitekey="6LeK_YoqAAAAABEXXXXXXXXXXXXXXXXXXXXXXXXX"></div>
+                        <div class="g-recaptcha" data-sitekey="<?php echo htmlspecialchars($recaptchaSiteKey); ?>"></div>
                         <div class="recaptcha-error" style="display: none; color: var(--color-error); font-size: var(--font-size-sm); margin-top: 0.5rem;">
                             Please complete the CAPTCHA verification.
                         </div>
                     </div>
+                    <?php endif; ?>
                     
                     <button type="submit">Submit Testimonial</button>
                 </form>

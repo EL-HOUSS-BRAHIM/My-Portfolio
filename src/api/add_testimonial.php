@@ -14,6 +14,7 @@ require_once __DIR__ . '/../config/Database.php';
 require_once __DIR__ . '/../utils/Validator.php';
 require_once __DIR__ . '/../utils/Response.php';
 require_once __DIR__ . '/../utils/RateLimit.php';
+require_once __DIR__ . '/../utils/Captcha.php';
 
 use Portfolio\Utils\Validator;
 
@@ -52,6 +53,16 @@ try {
     
     if (!empty($errors)) {
         Response::validationError($errors);
+    }
+
+    // Verify reCAPTCHA
+    if ($config->get('recaptcha.enabled')) {
+        $captchaToken = $_POST['g-recaptcha-response'] ?? '';
+        $captcha = new Captcha($config->get('recaptcha.secret_key'));
+        
+        if (!$captcha->verify($captchaToken, $clientIp)) {
+            Response::error('Please verify that you are not a robot.');
+        }
     }
     
     // Validate image

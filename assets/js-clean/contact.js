@@ -171,6 +171,11 @@ class ContactController {
             this.form.reset();
             this.clearAllFilledStates();
             
+            // Reset reCAPTCHA if present
+            if (typeof grecaptcha !== 'undefined') {
+                grecaptcha.reset();
+            }
+            
             // Focus first field for better UX
             const firstField = this.form.querySelector('input, textarea');
             if (firstField) firstField.focus();
@@ -200,6 +205,15 @@ class ContactController {
                 isValid = false;
             }
         });
+
+        // Validate reCAPTCHA if present
+        if (typeof grecaptcha !== 'undefined') {
+            const captchaResponse = grecaptcha.getResponse();
+            if (!captchaResponse) {
+                this.showMessage('Please complete the reCAPTCHA verification.', 'error');
+                isValid = false;
+            }
+        }
 
         return isValid;
     }
@@ -406,5 +420,10 @@ class ContactController {
         this.form.reset();
         this.clearAllErrors();
         this.clearAllFilledStates();
+        
+        // Reset reCAPTCHA if present
+        if (typeof grecaptcha !== 'undefined') {
+            grecaptcha.reset();
+        }
     }
 }

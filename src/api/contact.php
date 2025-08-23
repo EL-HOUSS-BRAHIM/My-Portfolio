@@ -31,6 +31,7 @@ require_once __DIR__ . '/../config/Database.php';
 require_once __DIR__ . '/../utils/Validator.php';
 require_once __DIR__ . '/../utils/Response.php';
 require_once __DIR__ . '/../utils/RateLimit.php';
+require_once __DIR__ . '/../utils/Captcha.php';
 require_once __DIR__ . '/../../PHPMailer/src/PHPMailer.php';
 require_once __DIR__ . '/../../PHPMailer/src/SMTP.php';
 require_once __DIR__ . '/../../PHPMailer/src/Exception.php';
@@ -94,6 +95,20 @@ try {
     if (!empty($errors)) {
         Response::validationError($errors);
         exit;
+    }
+
+    // Verify reCAPTCHA
+    if ($config->get('recaptcha.enabled')) {
+        $captchaToken = $_POST['g-recaptcha-response'] ?? '';
+        $captcha = new Captcha($config->get('recaptcha.secret_key'));
+        
+        if (!$captcha->verify($captchaToken, $clientIp)) {
+            if ($debug) error_log("Contact API: CAPTCHA verification failed for $clientIp");
+            Response::error('Please verify that you are not a robot.');
+            exit;
+        }
+        
+        if ($debug) error_log("Contact API: CAPTCHA verification successful for $clientIp");
     }
 
     // Sanitize input for output

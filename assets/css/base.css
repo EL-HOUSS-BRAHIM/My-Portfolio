@@ -223,6 +223,7 @@
     /* Main Layout */
     --container-width: var(--container-6xl);
     --header-height: 4rem;
+    --header-height-mobile: 3.5rem;
     --footer-height: auto;
     --sidebar-width: 16rem;
     
@@ -333,29 +334,68 @@
 
 
 
-/* 2. CSS Reset & Global Styles---------------------------------------------------------------------------------------------------- */
-*,
-*::before,
-*::after {
-     box-sizing: border-box;
-     margin: 0;
-     padding: 0;
-    
+/* Final mobile optimizations to prevent overflow */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    /* Prevent any element from causing horizontal overflow */
+    max-width: 100%;
 }
 
+/* Ensure all containers respect viewport width */
 html {
-     scroll-behavior: smooth;
-     font-size: 16px;
-    
+    scroll-behavior: smooth;
+    font-size: 16px;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Prevent wide elements from breaking layout */
+img, 
+video, 
+iframe, 
+embed, 
+object {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Ensure text doesn't overflow */
+pre, 
+code {
+    max-width: 100%;
+    overflow-x: auto;
+    word-wrap: break-word;
+}
+
+/* Fix for elements that might extend beyond viewport */
+table {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    display: block;
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    table {
+        font-size: var(--font-size-sm);
+    }
 }
 
 body {
-     font-family: var(--font-primary);
-     background-color: var(--color-background);
-     color: var(--color-text-secondary);
-     line-height: 1.7;
-     overflow-x: hidden;
-    
+    font-family: var(--font-primary);
+    background-color: var(--color-background);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    overflow-x: hidden;
+    /* Prevent horizontal scrolling */
+    min-height: 100vh;
+    width: 100%;
+    max-width: 100vw;
+    position: relative;
 }
 
 
@@ -781,9 +821,108 @@ section.testimonials::before {
 }
 
 /* Enhanced typography scaling for mobile */
+@media (max-width: 768px) {
+    :root {
+        /* Better mobile font sizes */
+        --font-size-xs: 0.75rem;    /* 12px */
+        --font-size-sm: 0.875rem;   /* 14px */
+        --font-size-base: 1rem;     /* 16px */
+        --font-size-lg: 1.125rem;   /* 18px */
+        --font-size-xl: 1.25rem;    /* 20px */
+        --font-size-2xl: 1.375rem;  /* 22px */
+        --font-size-3xl: 1.625rem;  /* 26px */
+        --font-size-4xl: 2rem;      /* 32px */
+        --font-size-5xl: 2.5rem;    /* 40px */
+        --font-size-6xl: 3rem;      /* 48px */
+        
+        /* Mobile section padding */
+        --mobile-section-padding-x: var(--space-4);
+        --mobile-section-padding-y: var(--space-16);
+    }
+    
+    /* Mobile typography improvements */
+    h1 {
+        font-size: var(--font-size-4xl);
+        line-height: 1.1;
+        margin-bottom: var(--space-4);
+    }
+
+    h2 {
+        font-size: var(--font-size-3xl);
+        line-height: 1.2;
+        margin-bottom: var(--space-4);
+    }
+
+    h3 {
+        font-size: var(--font-size-2xl);
+        line-height: 1.3;
+        margin-bottom: var(--space-3);
+    }
+
+    h4 {
+        font-size: var(--font-size-xl);
+        margin-bottom: var(--space-3);
+    }
+
+    h5 {
+        font-size: var(--font-size-lg);
+        margin-bottom: var(--space-2);
+    }
+
+    h6 {
+        font-size: var(--font-size-base);
+        margin-bottom: var(--space-2);
+    }
+    
+    p {
+        font-size: var(--font-size-base);
+        line-height: 1.6;
+        margin-bottom: var(--space-4);
+    }
+    
+    .section-header {
+        margin-bottom: var(--space-8);
+        text-align: center;
+    }
+    
+    .section-tag {
+        font-size: var(--font-size-xs);
+        padding: var(--space-2) var(--space-4);
+    }
+    
+    .section-title {
+        font-size: var(--font-size-3xl);
+        margin-bottom: var(--space-3);
+    }
+    
+    /* Mobile section spacing */
+    section {
+        padding: var(--mobile-section-padding-y) var(--mobile-section-padding-x);
+        margin-bottom: var(--space-6);
+    }
+    
+    /* Mobile-optimized containers */
+    .container {
+        padding-left: var(--mobile-section-padding-x);
+        padding-right: var(--mobile-section-padding-x);
+        max-width: 100%;
+    }
+    
+    /* Prevent horizontal overflow */
+    * {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    img, video, iframe {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
 @media (max-width: 480px) {
     :root {
-        /* Smaller font sizes for mobile */
+        /* Smaller font sizes for small mobile */
         --font-size-xs: 0.75rem;    /* 12px */
         --font-size-sm: 0.825rem;   /* 13.2px */
         --font-size-base: 0.9rem;   /* 14.4px */
@@ -793,26 +932,17 @@ section.testimonials::before {
         --font-size-3xl: 1.5rem;    /* 24px */
         --font-size-4xl: 1.875rem;  /* 30px */
         --font-size-5xl: 2.25rem;   /* 36px */
-        --font-size-6xl: 2.75rem;   /* 44px */
-        
-        /* Adjusted spacing for mobile */
-        --space-1: 0.2rem;   /* 3.2px */
-        --space-2: 0.4rem;   /* 6.4px */
-        --space-3: 0.6rem;   /* 9.6px */
-        --space-4: 0.8rem;   /* 12.8px */
-        --space-5: 1rem;     /* 16px */
-        --space-6: 1.2rem;   /* 19.2px */
         
         /* Mobile section padding */
         --mobile-section-padding-x: var(--space-3);
-        --mobile-section-padding-y: var(--space-10);
+        --mobile-section-padding-y: var(--space-12);
     }
     
-    /* Mobile typography */
+    /* Small mobile typography */
     h1 {
         font-size: var(--font-size-4xl);
         line-height: 1.1;
-        margin-bottom: var(--space-4);
+        margin-bottom: var(--space-3);
     }
 
     h2 {
@@ -844,47 +974,56 @@ section.testimonials::before {
     
     p {
         font-size: var(--font-size-sm);
-        line-height: 1.6;
-        margin-bottom: var(--space-4);
-    }
-    
-    /* Mobile section spacing */
-    section {
-        padding: var(--mobile-section-padding-y) var(--mobile-section-padding-x);
-        margin-bottom: var(--space-6);
+        line-height: 1.5;
+        margin-bottom: var(--space-3);
     }
     
     .section-header {
         margin-bottom: var(--space-6);
-        text-align: center;
     }
     
-    .section-header h2 {
+    .section-title {
         font-size: var(--font-size-3xl);
+        margin-bottom: var(--space-2);
     }
     
-    .section-header p {
+    /* Small mobile section spacing */
+    section {
+        padding: var(--mobile-section-padding-y) var(--mobile-section-padding-x);
+        margin-bottom: var(--space-4);
+    }
+    
+    /* Small mobile containers */
+    .container {
+        padding-left: var(--mobile-section-padding-x);
+        padding-right: var(--mobile-section-padding-x);
+        max-width: 100%;
+    }
+    
+    /* Tighter spacing for small screens */
+    .section-header {
+        margin-bottom: var(--space-6);
+    }
+    
+    .section-title {
+        font-size: var(--font-size-3xl);
+        margin-bottom: var(--space-2);
+    }
+    
+    .section-subtitle {
         font-size: var(--font-size-sm);
         max-width: 90%;
-        margin: 0 auto;
-    }
-    
-    /* Mobile-optimized containers */
-    .container,
-    .container-fluid {
-        padding-left: var(--space-3);
-        padding-right: var(--space-3);
     }
     
     /* Mobile button styling */
     .btn,
     .cta-button {
-        padding: var(--space-3) var(--space-5);
+        padding: var(--space-3) var(--space-4);
         font-size: var(--font-size-base);
         min-height: 44px; /* Touch target size */
         width: 100%;
         justify-content: center;
-        margin-bottom: var(--space-3);
+        margin-bottom: var(--space-2);
     }
     
     /* Mobile form styling */
@@ -905,13 +1044,13 @@ section.testimonials::before {
     .grid {
         display: grid;
         grid-template-columns: 1fr;
-        gap: var(--space-4);
+        gap: var(--space-3);
     }
     
     /* Mobile-friendly cards */
     .card {
-        margin-bottom: var(--space-4);
-        padding: var(--space-4);
+        margin-bottom: var(--space-3);
+        padding: var(--space-3);
         border-radius: var(--radius-lg);
     }
 }
@@ -1155,6 +1294,133 @@ html {
     border-top: 2px solid var(--color-primary-500);
     border-radius: 50%;
     animation: spin 1s linear infinite;
+}
+
+/* Touch-friendly interactions for all mobile devices */
+@media (hover: none) and (pointer: coarse) {
+    /* Increase touch targets for all interactive elements */
+    button,
+    .btn,
+    .cta-button,
+    a[role="button"],
+    input[type="button"],
+    input[type="submit"] {
+        min-height: 44px;
+        min-width: 44px;
+        padding: max(var(--space-3), 11px);
+        touch-action: manipulation;
+    }
+    
+    /* Remove hover effects that don't work on touch */
+    .hover-effect:hover,
+    *:hover {
+        transform: none !important;
+    }
+    
+    /* Add active states for better touch feedback */
+    button:active,
+    .btn:active,
+    .cta-button:active,
+    a[role="button"]:active {
+        transform: scale(0.95);
+        opacity: 0.8;
+    }
+    
+    /* Improve link tap targets */
+    a {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        padding: var(--space-1) var(--space-2);
+    }
+}
+
+/* Enhanced button styles for all screen sizes */
+.btn,
+.cta-button {
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    cursor: pointer;
+    outline: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    font-family: var(--font-secondary);
+    font-weight: 500;
+    border-radius: var(--radius-lg);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Focus styles for accessibility */
+.btn:focus,
+.cta-button:focus,
+button:focus,
+input:focus,
+textarea:focus,
+select:focus {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 2px;
+}
+
+/* Ensure proper touch targets on mobile */
+@media (max-width: 768px) {
+    .btn,
+    .cta-button {
+        min-height: 48px;
+        padding: var(--space-3) var(--space-6);
+        font-size: var(--font-size-base);
+    }
+    
+    /* Full-width buttons on mobile by default */
+    .btn:not(.btn--inline),
+    .cta-button:not(.btn--inline) {
+        width: 100%;
+    }
+    
+    /* Inline buttons for grouped actions */
+    .btn--inline,
+    .cta-button.btn--inline {
+        width: auto;
+        flex: 1;
+        min-width: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .btn,
+    .cta-button {
+        min-height: 44px;
+        padding: var(--space-3) var(--space-4);
+        font-size: var(--font-size-sm);
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --header-height: 3rem;
+    }
+}
+
+/* Smooth scroll offset for fixed header */
+html {
+    scroll-padding-top: calc(var(--header-height) + var(--space-4));
+}
+
+/* Hide scrollbar when mobile menu is open */
+@media (max-width: 992px) {
+    body.nav-open {
+        overflow: hidden;
+        position: fixed;
+        width: 100%;
+    }
 }
 
 @keyframes spin {

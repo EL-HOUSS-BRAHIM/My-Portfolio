@@ -86,6 +86,13 @@ class Config {
                 'allowed_image_types' => explode(',', $_ENV['ALLOWED_IMAGE_TYPES'] ?? 'image/jpeg,image/png,image/gif,image/webp')
             ],
 
+            // reCAPTCHA
+            'recaptcha' => [
+                'site_key' => $_ENV['RECAPTCHA_SITE_KEY'] ?? '',
+                'secret_key' => $_ENV['RECAPTCHA_SECRET_KEY'] ?? '',
+                'enabled' => filter_var($_ENV['RECAPTCHA_ENABLED'] ?? true, FILTER_VALIDATE_BOOLEAN)
+            ],
+
             // Application
             'app' => [
                 'name' => $_ENV['APP_NAME'] ?? 'Portfolio',
@@ -105,7 +112,8 @@ class Config {
         if ($this->config['app']['debug']) {
             $required = [
                 'DB_HOST', 'DB_NAME', 'DB_USER', 'DB_PASS',
-                'SMTP_HOST', 'SMTP_USERNAME', 'SMTP_PASSWORD', 'FROM_EMAIL', 'TO_EMAIL'
+                'SMTP_HOST', 'SMTP_USERNAME', 'SMTP_PASSWORD', 'FROM_EMAIL', 'TO_EMAIL',
+                'RECAPTCHA_SITE_KEY', 'RECAPTCHA_SECRET_KEY'
             ];
             foreach ($required as $key) {
                 if (empty($_ENV[$key])) {

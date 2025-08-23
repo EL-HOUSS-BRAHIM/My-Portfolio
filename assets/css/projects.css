@@ -241,6 +241,7 @@
 @media (max-width: 768px) {
     .featured-project {
         padding: 2rem 1.5rem;
+        margin-bottom: 3rem;
     }
     
     .featured-project .project-header h3 {
@@ -258,25 +259,53 @@
     
     .portfolio-options {
         padding: 2rem 1.5rem;
+        margin-bottom: 3rem;
     }
     
     .download-options {
         flex-direction: column;
-        align-items: center;
+        align-items: stretch;
+        gap: 1rem;
+    }
+    
+    .download-options .btn {
+        width: 100%;
+        justify-content: center;
+        min-height: 48px;
     }
     
     .additional-projects .projects-grid {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .projects-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .projects-filter {
+        gap: 0.75rem;
+        margin-bottom: 2rem;
+    }
+    
+    .filter-btn {
+        padding: 0.75rem 1.25rem;
+        font-size: var(--font-size-sm);
+        min-height: 44px;
+        flex: 1;
+        min-width: 100px;
     }
 }
 
 @media (max-width: 480px) {
     .featured-project {
         padding: 1.5rem 1rem;
+        margin-bottom: 2rem;
     }
     
     .featured-project .project-header h3 {
-        font-size: 1.5rem;
+        font-size: 1.75rem;
     }
     
     .project-description p {
@@ -287,12 +316,51 @@
         font-size: 1.1rem;
     }
     
+    .portfolio-options {
+        padding: 1.5rem 1rem;
+        margin-bottom: 2rem;
+    }
+    
     .portfolio-options h3 {
         font-size: 1.5rem;
     }
     
     .portfolio-options p {
         font-size: 1rem;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .projects-filter {
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .filter-btn {
+        width: 100%;
+        padding: 0.75rem;
+        min-height: 44px;
+    }
+    
+    .project-card {
+        margin-bottom: var(--space-4);
+    }
+    
+    .project-content {
+        padding: 1rem;
+    }
+    
+    .project-title {
+        font-size: 1.1rem;
+    }
+    
+    .project-description {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
     }
 }
 

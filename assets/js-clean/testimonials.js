@@ -607,6 +607,15 @@ class TestimonialController {
             alert('Testimonial form submission is disabled in development mode.');
             return;
         }
+
+        // Validate reCAPTCHA if present
+        if (typeof grecaptcha !== 'undefined') {
+            const captchaResponse = grecaptcha.getResponse();
+            if (!captchaResponse) {
+                alert('Please complete the reCAPTCHA verification.');
+                return;
+            }
+        }
         
         const formData = new FormData(this.elements.form);
         
@@ -621,6 +630,10 @@ class TestimonialController {
             if (data.success) {
                 alert('Thank you for your testimonial! It will be reviewed before being published.');
                 this.elements.form.reset();
+                // Reset reCAPTCHA if present
+                if (typeof grecaptcha !== 'undefined') {
+                    grecaptcha.reset();
+                }
                 this.toggleForm();
             } else {
                 alert(data.message || 'Failed to submit testimonial. Please try again.');
