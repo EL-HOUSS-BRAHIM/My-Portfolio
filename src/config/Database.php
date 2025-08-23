@@ -208,7 +208,7 @@ class Database
      * }
      * ```
      */
-    public function fetchOne(string $sql, array $params = []): array|false
+    public function fetchOne(string $sql, array $params = [])
     {
         $stmt = $this->query($sql, $params);
         return $stmt->fetch();
