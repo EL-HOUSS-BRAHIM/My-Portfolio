@@ -950,44 +950,72 @@
                 </div>
                 
                 <div class="elevator-pitch-content">
-                    <div class="pitch-placeholder">
-                        <div class="placeholder-icon">
-                            <i class="fas fa-microphone-alt"></i>
-                        </div>
-                        <h3>Elevator Pitch Coming Soon</h3>
-                        <p>
-                            This section will feature a professional elevator pitch video showcasing my background, 
-                            skills, and career goals as a Full Stack Software Engineer.
-                        </p>
-                        
-                        <div class="pitch-preview">
-                            <div class="preview-item">
-                                <h4>What You'll Learn About Me:</h4>
-                                <ul>
-                                    <li>My journey into software engineering</li>
-                                    <li>Key technical skills and expertise</li>
-                                    <li>Professional accomplishments and projects</li>
-                                    <li>Career goals and aspirations</li>
-                                    <li>What makes me unique as a developer</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="preview-item">
-                                <h4>Professional Summary:</h4>
-                                <p>
-                                    "Hi, I'm Brahim El Houss, a passionate Full Stack Software Engineer with expertise in 
-                                    Python, JavaScript, and Node.js. I'm an ALX graduate specializing in backend development, 
-                                    with hands-on experience in building scalable web applications and solving complex technical challenges."
+                    <div class="video-container">
+                        <div class="video-wrapper">
+                            <video 
+                                id="elevator-pitch-video" 
+                                class="elevator-video"
+                                controls 
+                                preload="metadata"
+                                poster="assets/images/elevator-pitch-poster.jpg"
+                                controlslist="nodownload"
+                                disablepictureinpicture
+                                width="100%"
+                                height="auto">
+                                <source src="assets/media/videos/elevator-pitch.mp4" type="video/mp4">
+                                <source src="assets/media/videos/elevator-pitch.webm" type="video/webm">
+                                <p class="video-fallback">
+                                    Your browser doesn't support video playback. 
+                                    <a href="mailto:brahim.elhouss@example.com">Contact me</a> for alternative access to my elevator pitch.
                                 </p>
+                            </video>
+                            
+                            <div class="video-overlay" id="video-overlay">
+                                <div class="play-button" id="play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
                             </div>
                         </div>
                         
-                        <div class="pitch-cta">
-                            <div class="cta-content">
-                                <i class="fas fa-video"></i>
-                                <span>Video elevator pitch will be available soon</span>
+                        <div class="video-info">
+                            <div class="video-header">
+                                <h3>
+                                    <i class="fas fa-microphone-alt"></i>
+                                    Professional Elevator Pitch
+                                </h3>
+                                <span class="video-duration">2:30</span>
                             </div>
+                            <p class="video-description">
+                                Get to know me as a Full Stack Software Engineer - my background, expertise, and passion for creating innovative solutions.
+                            </p>
                         </div>
+                    </div>
+                    
+                    <div class="pitch-highlights">
+                        <div class="highlight-item">
+                            <div class="highlight-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <h4>Technical Expertise</h4>
+                            <p>Python, JavaScript, Node.js, React, MongoDB</p>
+                        </div>
+                        
+                        <div class="highlight-item">
+                            <div class="highlight-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h4>ALX Graduate</h4>
+                            <p>Software Engineering Program</p>
+                        </div>
+                        
+                        <div class="highlight-item">
+                            <div class="highlight-icon">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <h4>Innovation Focus</h4>
+                            <p>Building scalable, modern web solutions</p>
+                        </div>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -1346,6 +1374,7 @@
     <script src="assets/js-clean/hero.js"></script>
     <script src="assets/js-clean/viewport.js"></script>
     <script src="assets/js-clean/projects.js"></script>
+    <script src="assets/js-clean/elevator-pitch.js"></script>
     <script src="assets/js-clean/contact.js"></script>
     <script src="assets/js-clean/testimonials.js"></script>
     <script src="assets/js-clean/app.js"></script>

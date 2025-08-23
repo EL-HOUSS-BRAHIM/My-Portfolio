@@ -32,187 +32,353 @@
 .elevator-pitch-content {
     position: relative;
     z-index: 1;
-}
-
-.pitch-placeholder {
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
-    text-align: center;
-    padding: 3rem 2rem;
-    background: rgba(26, 32, 44, 0.8);
-    border-radius: 20px;
-    border: 1px solid rgba(103, 126, 234, 0.2);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    padding: 0 2rem;
 }
 
-.placeholder-icon {
+/* ============================================================================
+   Video Player Styles
+   ============================================================================ */
+
+.video-container {
+    margin-bottom: 3rem;
+}
+
+.video-wrapper {
+    position: relative;
+    background: rgba(26, 32, 44, 0.9);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(103, 126, 234, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.elevator-video {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 20px;
+    background: var(--color-dark-bg);
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.video-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.play-button {
     width: 80px;
     height: 80px;
-    margin: 0 auto 2rem;
     background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    animation: pulse 2s infinite;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(103, 126, 234, 0.4);
 }
 
-.placeholder-icon i {
+.play-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 15px 40px rgba(103, 126, 234, 0.6);
+}
+
+.play-button i {
     font-size: 2rem;
     color: white;
+    margin-left: 4px; /* Adjust for visual centering */
 }
 
-@keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-}
-
-.pitch-placeholder h3 {
-    font-size: 2rem;
-    color: var(--color-text-primary);
-    margin-bottom: 1rem;
-    font-weight: 600;
-}
-
-.pitch-placeholder > p {
-    font-size: 1.1rem;
-    color: var(--color-text-secondary);
-    margin-bottom: 3rem;
-    line-height: 1.6;
-}
-
-.pitch-preview {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-bottom: 3rem;
-    text-align: left;
-}
-
-.preview-item {
-    background: rgba(103, 126, 234, 0.1);
+.video-info {
     padding: 2rem;
+    background: rgba(26, 32, 44, 0.8);
     border-radius: 15px;
+    margin-top: 1.5rem;
     border: 1px solid rgba(103, 126, 234, 0.2);
 }
 
-.preview-item h4 {
-    color: var(--color-primary);
+.video-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.video-header h3 {
+    color: var(--color-text-primary);
+    font-size: 1.4rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.video-header i {
+    color: var(--color-primary);
+}
+
+.video-duration {
+    background: var(--color-primary);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.video-description {
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    font-size: 1.1rem;
+}
+
+.video-fallback {
+    color: var(--color-text-secondary);
+    padding: 2rem;
+    text-align: center;
+    background: rgba(220, 38, 38, 0.1);
+    border: 1px solid rgba(220, 38, 38, 0.3);
+    border-radius: 10px;
+}
+
+.video-fallback a {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+/* ============================================================================
+   Pitch Highlights
+   ============================================================================ */
+
+.pitch-highlights {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.highlight-item {
+    background: rgba(26, 32, 44, 0.8);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 1px solid rgba(103, 126, 234, 0.2);
+    text-align: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.highlight-item:hover {
+    transform: translateY(-5px);
+    border-color: var(--color-primary);
+    box-shadow: 0 10px 30px rgba(103, 126, 234, 0.3);
+}
+
+.highlight-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1.5rem;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.highlight-item:hover .highlight-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.highlight-icon i {
+    font-size: 1.5rem;
+    color: white;
+}
+
+.highlight-item h4 {
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
     font-size: 1.2rem;
     font-weight: 600;
 }
 
-.preview-item ul {
-    list-style: none;
-    padding: 0;
-}
-
-.preview-item li {
+.highlight-item p {
     color: var(--color-text-secondary);
-    margin-bottom: 0.5rem;
-    padding-left: 1.5rem;
-    position: relative;
+    line-height: 1.5;
 }
 
-.preview-item li::before {
-    content: '▸';
-    color: var(--color-primary);
-    font-weight: bold;
-    position: absolute;
-    left: 0;
-}
+/* ============================================================================
+   Responsive Design
+   ============================================================================ */
 
-.preview-item p {
-    color: var(--color-text-secondary);
-    line-height: 1.6;
-    font-style: italic;
-}
-
-.pitch-cta {
-    padding: 2rem;
-    background: linear-gradient(135deg, 
-        rgba(103, 126, 234, 0.2), 
-        rgba(147, 197, 253, 0.2));
-    border-radius: 15px;
-    border: 1px solid rgba(103, 126, 234, 0.3);
-}
-
-.cta-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    color: var(--color-primary);
-    font-weight: 500;
-    font-size: 1.1rem;
-}
-
-.cta-content i {
-    font-size: 1.5rem;
-    animation: blink 1.5s infinite;
-}
-
-@keyframes blink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0.5; }
-}
-
-/* Responsive Design */
 @media (max-width: 768px) {
     .elevator-pitch {
         padding: 3rem 0;
     }
     
-    .pitch-placeholder {
-        padding: 2rem 1rem;
-        margin: 0 1rem;
+    .elevator-pitch-content {
+        padding: 0 1rem;
     }
     
-    .pitch-preview {
+    .video-info {
+        padding: 1.5rem;
+    }
+    
+    .video-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .video-header h3 {
+        font-size: 1.2rem;
+    }
+    
+    .play-button {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .play-button i {
+        font-size: 1.5rem;
+    }
+    
+    .pitch-highlights {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
     
-    .preview-item {
+    .highlight-item {
         padding: 1.5rem;
     }
     
-    .placeholder-icon {
-        width: 60px;
-        height: 60px;
-        margin-bottom: 1.5rem;
+    .highlight-icon {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 1rem;
     }
     
-    .placeholder-icon i {
-        font-size: 1.5rem;
-    }
-    
-    .pitch-placeholder h3 {
-        font-size: 1.5rem;
-    }
-    
-    .cta-content {
-        flex-direction: column;
-        gap: 0.5rem;
+    .highlight-icon i {
+        font-size: 1.3rem;
     }
 }
 
 @media (max-width: 480px) {
-    .pitch-placeholder {
-        padding: 1.5rem 1rem;
+    .elevator-pitch {
+        padding: 2rem 0;
     }
     
-    .preview-item {
+    .video-info {
+        padding: 1rem;
+        margin-top: 1rem;
+    }
+    
+    .video-header h3 {
+        font-size: 1.1rem;
+    }
+    
+    .video-description {
+        font-size: 1rem;
+    }
+    
+    .play-button {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .play-button i {
+        font-size: 1.2rem;
+    }
+    
+    .highlight-item {
         padding: 1rem;
     }
     
-    .pitch-placeholder h3 {
-        font-size: 1.3rem;
+    .highlight-item h4 {
+        font-size: 1.1rem;
     }
-    
-    .pitch-placeholder > p {
-        font-size: 1rem;
-    }
+}
+
+/* ============================================================================
+   Video Controls Enhancement
+   ============================================================================ */
+
+.elevator-video::-webkit-media-controls-panel {
+    background-color: rgba(26, 32, 44, 0.9);
+}
+
+.elevator-video::-webkit-media-controls-play-button,
+.elevator-video::-webkit-media-controls-pause-button {
+    background-color: var(--color-primary);
+    border-radius: 50%;
+}
+
+/* Loading state */
+.video-wrapper.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(103, 126, 234, 0.3);
+    border-top: 3px solid var(--color-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* ============================================================================
+   Video Error Styles
+   ============================================================================ */
+
+.video-error {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(220, 38, 38, 0.9);
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    z-index: 10;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    animation: fadeInError 0.3s ease;
+}
+
+@keyframes fadeInError {
+    from { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+    to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+.video-error i {
+    font-size: 1.1rem;
 }

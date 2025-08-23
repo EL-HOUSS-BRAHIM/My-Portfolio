@@ -1,0 +1,31 @@
+# Media Security Configuration
+# Protect media files from unauthorized access and hotlinking
+
+# Security Headers for Media Files
+<FilesMatch "\.(mp4|webm|avi|mov|wmv|flv|m4v)$">
+    Header set X-Content-Type-Options nosniff
+    Header set X-Frame-Options DENY
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    Header set Cache-Control "private, max-age=3600"
+</FilesMatch>
+
+# Prevent hotlinking of videos
+RewriteEngine On
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !^https?://(www\.)?v2\.brahim-elhouss\.me [NC]
+RewriteCond %{HTTP_REFERER} !^https?://(www\.)?brahim-elhouss\.me [NC]
+RewriteRule \.(mp4|webm|avi|mov|wmv|flv|m4v)$ - [F,L]
+
+# Deny direct access to video directory browsing
+Options -Indexes
+
+# Only allow specific file types
+<Files "*">
+    Order Deny,Allow
+    Deny from all
+</Files>
+
+<FilesMatch "\.(mp4|webm|jpg|jpeg|png|gif|svg)$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
