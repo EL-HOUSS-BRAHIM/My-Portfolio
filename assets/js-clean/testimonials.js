@@ -68,6 +68,15 @@ class TestimonialController {
             this.elements.form.addEventListener('submit', (e) => this.handleFormSubmit(e));
         }
         
+        // Close form when clicking outside
+        if (this.elements.formContainer) {
+            this.elements.formContainer.addEventListener('click', (e) => {
+                if (e.target === this.elements.formContainer) {
+                    this.toggleForm();
+                }
+            });
+        }
+        
         // Window resize
         window.addEventListener('resize', this.debounce(() => {
             this.setupResponsiveCards();
@@ -250,8 +259,12 @@ class TestimonialController {
         ).join('');
         
         this.elements.slider.innerHTML = testimonialsHTML;
-        this.updateSliderPosition();
-        this.handleSingleTestimonial();
+        
+        // Wait for DOM to update before calculating positions
+        setTimeout(() => {
+            this.updateSliderPosition();
+            this.handleSingleTestimonial();
+        }, 100);
     }
 
     /**
@@ -377,10 +390,19 @@ class TestimonialController {
     updateSliderPosition() {
         if (!this.elements.slider || this.testimonials.length === 0) return;
         
-        const slideWidth = 100 / this.numVisibleCards;
-        const translateX = -this.currentTestimonial * slideWidth;
+        // Get the actual width of one testimonial card including gap
+        const firstCard = this.elements.slider.querySelector('.testimonial-item');
+        if (!firstCard) return;
         
-        this.elements.slider.style.transform = `translateX(${translateX}%)`;
+        const cardStyle = window.getComputedStyle(firstCard);
+        const cardWidth = firstCard.offsetWidth;
+        const gap = parseInt(window.getComputedStyle(this.elements.slider).gap) || 24;
+        
+        // Calculate movement based on one card at a time
+        const moveDistance = cardWidth + gap;
+        const translateX = -this.currentTestimonial * moveDistance;
+        
+        this.elements.slider.style.transform = `translateX(${translateX}px)`;
         this.elements.slider.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
     }
 
@@ -517,9 +539,19 @@ class TestimonialController {
      * Handle keyboard navigation
      */
     handleKeyboardNavigation(event) {
-        // Only handle if testimonials are in focus
+        // Check if testimonial form is open
+        const isFormOpen = this.elements.formContainer && 
+                          !this.elements.formContainer.classList.contains('hidden');
+        
+        if (isFormOpen && event.key === 'Escape') {
+            event.preventDefault();
+            this.toggleForm();
+            return;
+        }
+        
+        // Only handle navigation if testimonials are in focus and form is not open
         const isTestimonialFocused = event.target.closest('.testimonials');
-        if (!isTestimonialFocused) return;
+        if (!isTestimonialFocused || isFormOpen) return;
         
         switch (event.key) {
             case 'ArrowLeft':
@@ -590,9 +622,16 @@ class TestimonialController {
         
         if (isHidden) {
             this.elements.formContainer.classList.remove('hidden');
+            this.elements.formContainer.classList.add('show');
             this.elements.addButton.textContent = 'Cancel';
+            // Focus on first input for better UX
+            setTimeout(() => {
+                const firstInput = this.elements.form?.querySelector('input');
+                if (firstInput) firstInput.focus();
+            }, 300);
         } else {
             this.elements.formContainer.classList.add('hidden');
+            this.elements.formContainer.classList.remove('show');
             this.elements.addButton.textContent = 'Add Your Testimonial';
         }
     }

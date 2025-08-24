@@ -437,6 +437,27 @@
         padding: var(--space-4);
         font-size: var(--font-size-sm);
     }
+    
+    /* Smaller form on very small screens */
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .contact-form-container {
+        padding: 1rem;
+        border-radius: var(--radius-base);
+    }
+    
+    .form-group input,
+    .form-group textarea {
+        font-size: 14px;
+        padding: var(--space-2) 0;
+    }
+    
+    .form-group label {
+        font-size: var(--font-size-sm);
+    }
 }
 
 /* Animation and interaction improvements */
