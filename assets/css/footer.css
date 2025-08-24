@@ -229,7 +229,7 @@
 
 @media (max-width: 768px) {
     .footer {
-        padding: 1rem 0 0.75rem;
+        padding: 0.75rem 0 0.5rem;
     }
     
     .footer .container {
@@ -237,57 +237,75 @@
     }
     
     .footer-content {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-        margin-bottom: 1rem;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+        margin-bottom: 0.75rem;
+        text-align: center;
     }
     
     .footer-brand {
+        grid-column: 1 / -1;
         text-align: center;
-        grid-column: 1;
+        margin-bottom: 0.5rem;
     }
     
-    .footer-brand .footer-tagline {
-        font-size: 0.85rem;
-        max-width: 100%;
-        margin: 0 auto;
-    }
-    
-    .footer-links {
-        grid-column: 1;
-        grid-template-columns: 1fr;
-        gap: 0.75rem;
-    }
-    
-    .footer-section {
-        padding: 0.75rem;
+    .footer-brand .footer-logo {
+        font-size: 1rem;
         margin-bottom: 0.25rem;
     }
     
+    .footer-brand .footer-tagline {
+        font-size: 0.8rem;
+        max-width: 100%;
+        margin: 0 auto;
+        line-height: 1.3;
+    }
+    
+    .footer-links {
+        grid-column: 1 / -1;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+    }
+    
+    .footer-section {
+        padding: 0.5rem;
+        margin-bottom: 0;
+        text-align: center;
+    }
+    
     .footer-section h4 {
-        font-size: 0.9rem;
-        margin-bottom: 0.75rem;
+        font-size: 0.85rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .footer-section ul li {
+        margin-bottom: 0.25rem;
     }
     
     .footer-social {
         text-align: center;
-        margin-top: 1rem;
-        padding-top: 1rem;
+        margin-top: 0.5rem;
+        padding-top: 0.5rem;
+        grid-column: 1 / -1;
     }
     
     .footer-social h4 {
-        margin-bottom: 1rem;
+        margin-bottom: 0.5rem;
+        font-size: 0.85rem;
     }
     
     .footer-bottom {
-        padding-top: 1rem;
-        font-size: 0.85rem;
+        padding-top: 0.5rem;
+        font-size: 0.75rem;
+        text-align: center;
+        flex-direction: column;
+        gap: 0.25rem;
     }
 }
 
 @media (max-width: 480px) {
     .footer {
-        padding: 0.75rem 0 0.5rem;
+        padding: 0.5rem 0 0.25rem;
     }
     
     .footer .container {
@@ -295,86 +313,84 @@
     }
     
     .footer-content {
-        gap: 0.75rem;
-        margin-bottom: 0.75rem;
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+        text-align: center;
     }
     
     .footer-brand .footer-logo {
-        font-size: 1rem;
-        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+        margin-bottom: 0.25rem;
     }
     
     .footer-brand .footer-tagline {
-        font-size: 0.8rem;
-        line-height: 1.3;
+        font-size: 0.75rem;
+        line-height: 1.2;
     }
     
     .footer-links {
-        gap: 0.5rem;
+        grid-template-columns: 1fr;
+        gap: 0.25rem;
     }
     
     .footer-section {
         text-align: center;
-        padding: 0.5rem;
+        padding: 0.25rem;
         background: transparent;
         border: none;
         box-shadow: none;
     }
     
-    .footer-section:hover {
-        transform: none;
-        box-shadow: none;
-    }
-    
     .footer-section h4 {
-        font-size: 0.95rem;
-        margin-bottom: 0.75rem;
+        font-size: 0.8rem;
+        margin-bottom: 0.25rem;
     }
     
     .footer-section h4::before {
         display: none;
     }
     
-    .footer-links ul li {
-        margin-bottom: 0.5rem;
+    .footer-section ul li {
+        margin-bottom: 0.15rem;
     }
     
     .footer-links ul a,
     .footer-links ul span {
-        font-size: 0.85rem;
+        font-size: 0.75rem;
     }
     
     .footer-social {
-        margin-top: 0.75rem;
-        padding-top: 0.75rem;
+        margin-top: 0.25rem;
+        padding-top: 0.25rem;
     }
     
     .footer-social h4 {
-        font-size: 0.95rem;
-        margin-bottom: 0.75rem;
+        font-size: 0.8rem;
+        margin-bottom: 0.25rem;
     }
     
     .footer-bottom {
         flex-direction: column;
         text-align: center;
-        gap: 0.75rem;
-        padding-top: 0.75rem;
-        font-size: 0.8rem;
+        gap: 0.25rem;
+        padding-top: 0.25rem;
+        font-size: 0.7rem;
     }
     
     .footer-legal {
         justify-content: center;
-        gap: 1rem;
+        gap: 0.5rem;
     }
     
     .social-links {
         justify-content: center;
-        gap: 0.5rem;
+        gap: 0.25rem;
     }
     
     .social-links a {
-        width: 32px;
-        height: 32px;
-        font-size: 0.9rem;
+        width: 28px;
+        height: 28px;
+        font-size: 0.8rem;
     }
 }
