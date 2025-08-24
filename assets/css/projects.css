@@ -226,19 +226,31 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    color: var(--color-primary);
+    color: var(--color-white);
+    background-color: var(--color-primary);
     text-decoration: none;
     font-weight: 500;
     font-size: 0.9rem;
-    transition: color var(--transition-speed);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    transition: all var(--transition-speed);
+    border: 2px solid var(--color-primary);
 }
 
 .additional-projects .project-link:hover {
-    color: var(--color-secondary);
+    background-color: var(--color-primary-light);
+    border-color: var(--color-primary-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
 }
 
 /* Responsive Design for Portfolio */
 @media (max-width: 768px) {
+    .portfolio-content {
+        padding: 0 1rem;
+        max-width: 100%;
+    }
+    
     .featured-project {
         padding: 2rem 1.5rem;
         margin-bottom: 3rem;
@@ -251,6 +263,7 @@
     .project-resources {
         grid-template-columns: 1fr;
         gap: 1.5rem;
+        margin-bottom: 2rem;
     }
     
     .resource-item {
@@ -272,6 +285,12 @@
         width: 100%;
         justify-content: center;
         min-height: 48px;
+        padding: 0.75rem 0.5rem;
+        font-size: 0.9rem;
+        white-space: normal;
+        text-align: center;
+        line-height: 1.3;
+        overflow: visible;
     }
     
     .additional-projects .projects-grid {
@@ -279,14 +298,24 @@
         gap: 1.5rem;
     }
     
+    .additional-projects .project-link {
+        width: 100%;
+        justify-content: center;
+        min-height: 44px;
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+    }
+    
     .projects-grid {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        grid-template-columns: 1fr;
         gap: 1.5rem;
+        padding: 0 0.5rem;
     }
     
     .projects-filter {
         gap: 0.75rem;
         margin-bottom: 2rem;
+        padding: 0 0.5rem;
     }
     
     .filter-btn {
@@ -327,6 +356,23 @@
     
     .portfolio-options p {
         font-size: 1rem;
+    }
+    
+    .download-options .btn {
+        font-size: 0.85rem;
+        padding: 0.875rem 0.5rem;
+        min-height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        white-space: normal;
+        line-height: 1.2;
+    }
+    
+    .download-options .btn i {
+        margin-right: 0.5rem;
+        flex-shrink: 0;
     }
     
     .projects-grid {

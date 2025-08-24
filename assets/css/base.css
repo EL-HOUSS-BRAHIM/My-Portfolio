@@ -814,10 +814,10 @@ section.testimonials::before {
 /* Base mobile styles (320px+) */
 :root {
     /* Mobile-optimized spacing */
-    --mobile-section-padding-x: var(--space-3);
-    --mobile-section-padding-y: var(--space-8);
-    --mobile-component-gap: var(--space-3);
-    --mobile-element-gap: var(--space-2);
+    --mobile-section-padding-x: var(--space-2);
+    --mobile-section-padding-y: var(--space-6);
+    --mobile-component-gap: var(--space-2);
+    --mobile-element-gap: var(--space-1);
 }
 
 /* Enhanced typography scaling for mobile */
@@ -836,8 +836,8 @@ section.testimonials::before {
         --font-size-6xl: 3rem;      /* 48px */
         
         /* Mobile section padding */
-        --mobile-section-padding-x: var(--space-3);
-        --mobile-section-padding-y: var(--space-10);
+        --mobile-section-padding-x: var(--space-2);
+        --mobile-section-padding-y: var(--space-8);
     }
     
     /* Mobile typography improvements */
@@ -903,8 +903,8 @@ section.testimonials::before {
     
     /* Mobile-optimized containers */
     .container {
-        padding-left: var(--space-3);
-        padding-right: var(--space-3);
+        padding-left: var(--space-2);
+        padding-right: var(--space-2);
         max-width: 100%;
     }
     
@@ -934,8 +934,8 @@ section.testimonials::before {
         --font-size-5xl: 2.25rem;   /* 36px */
         
         /* Mobile section padding */
-        --mobile-section-padding-x: var(--space-2);
-        --mobile-section-padding-y: var(--space-8);
+        --mobile-section-padding-x: var(--space-1_5);
+        --mobile-section-padding-y: var(--space-6);
     }
     
     /* Small mobile typography */
@@ -995,8 +995,8 @@ section.testimonials::before {
     
     /* Small mobile containers */
     .container {
-        padding-left: var(--space-2);
-        padding-right: var(--space-2);
+        padding-left: var(--space-1_5);
+        padding-right: var(--space-1_5);
         max-width: 100%;
     }
     

@@ -104,10 +104,9 @@ class TestimonialController {
         const totalTestimonials = this.testimonials.length;
         
         // Determine optimal number of visible cards based on screen size and available content
-        if (viewportWidth < 480) {
+        // Force single card display on mobile for better UX
+        if (viewportWidth < 768) {
             this.numVisibleCards = 1;
-        } else if (viewportWidth < 768) {
-            this.numVisibleCards = Math.min(totalTestimonials, 1);
         } else if (viewportWidth < 1024) {
             this.numVisibleCards = Math.min(totalTestimonials, 2);
         } else {

@@ -392,21 +392,23 @@
 @media screen and (max-width: 768px) {
     .hero {
         padding-top: calc(var(--header-height) + 1rem);
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
         padding-bottom: 2rem;
-        min-height: calc(100vh - var(--header-height));
+        min-height: auto;
+        height: auto;
     }
     
     .hero__container {
-        gap: clamp(1.5rem, 3vh, 2rem);
-        justify-content: center;
+        gap: 1.5rem;
+        justify-content: flex-start;
+        min-height: auto;
     }
     
     .hero__content {
         flex-direction: column;
         text-align: center;
-        gap: clamp(1.5rem, 3vh, 2rem);
+        gap: 1.5rem;
         align-items: center;
     }
     
@@ -425,7 +427,7 @@
         display: flex;
         justify-content: center;
         flex: none;
-        margin-bottom: 1rem;
+        margin-bottom: 0.5rem;
     }
     
     .hero__greeting {
@@ -452,7 +454,7 @@
     
     .hero__stats {
         justify-content: center;
-        gap: clamp(2rem, 8vw, 3rem);
+        gap: clamp(1.5rem, 6vw, 2.5rem);
         flex-wrap: wrap;
         margin-bottom: 1.5rem;
         width: 100%;
@@ -467,8 +469,8 @@
     }
     
     .profile-image {
-        width: clamp(180px, 25vh, 220px);
-        height: clamp(180px, 25vh, 220px);
+        width: clamp(160px, 20vh, 200px);
+        height: clamp(160px, 20vh, 200px);
     }
     
     /* Hide tech icons orbiting around profile image on tablet */
@@ -479,24 +481,34 @@
     .tech-icon {
         display: none;
     }
+    
+    /* Ensure scroll indicator doesn't interfere */
+    .scroll-indicator {
+        position: relative;
+        bottom: auto;
+        margin-top: 2rem;
+        transform: none;
+    }
 }
 
 @media screen and (max-width: 480px) {
     .hero {
-        padding-top: calc(var(--header-height) + 1rem);
+        padding-top: calc(var(--header-height) + 0.5rem);
         padding-left: 1rem;
         padding-right: 1rem;
-        padding-bottom: 1.5rem;
-        min-height: calc(100vh - var(--header-height));
+        padding-bottom: 1rem;
+        min-height: auto;
+        height: auto;
     }
     
     .hero__container {
-        gap: clamp(1rem, 2vh, 1.5rem);
-        justify-content: center;
+        gap: 1rem;
+        justify-content: flex-start;
+        min-height: auto;
     }
     
     .hero__content {
-        gap: clamp(1rem, 2vh, 1.5rem);
+        gap: 1rem;
         flex-direction: column;
     }
     
@@ -509,12 +521,12 @@
     .hero__visual {
         width: 100%;
         order: 1;
-        margin-bottom: 1rem;
+        margin-bottom: 0.5rem;
     }
     
     .hero__greeting {
         font-size: clamp(0.95rem, 2vh, 1.1rem);
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.25rem;
     }
     
     .hero__name {
@@ -529,18 +541,18 @@
     
     .hero__description {
         font-size: clamp(0.9rem, 1.8vh, 1rem);
-        margin-bottom: clamp(1rem, 2vh, 1.5rem);
+        margin-bottom: clamp(1rem, 2vh, 1.25rem);
         max-width: 100%;
         line-height: 1.5;
     }
     
     .hero__stats {
         flex-direction: row;
-        justify-content: space-around;
-        gap: clamp(1.5rem, 6vw, 2rem);
-        margin-bottom: clamp(1rem, 2vh, 1.5rem);
+        justify-content: space-between;
+        gap: clamp(0.5rem, 2vw, 1rem);
+        margin-bottom: clamp(1rem, 2vh, 1.25rem);
         width: 100%;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
     }
     
     /* Show only top 3 stats on mobile */
@@ -549,27 +561,28 @@
     }
     
     .stat {
-        padding: 0.5rem;
+        padding: 0.5rem 0.25rem;
         flex: 1;
-        min-width: 80px;
+        min-width: 60px;
         text-align: center;
     }
     
     .stat__number {
-        font-size: clamp(1.25rem, 3vh, 1.75rem);
+        font-size: clamp(1.1rem, 3vh, 1.5rem);
     }
     
     .stat__label {
-        font-size: clamp(0.7rem, 1.2vh, 0.85rem);
+        font-size: clamp(0.65rem, 1.2vh, 0.75rem);
+        line-height: 1.2;
     }
     
     .hero__actions {
-        flex-direction: row;
+        flex-direction: column;
         width: 100%;
-        gap: clamp(0.75rem, 2vw, 1rem);
+        gap: clamp(0.5rem, 2vw, 0.75rem);
         margin-bottom: 1rem;
         justify-content: center;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
     }
     
     /* Show primary and secondary actions only */
@@ -578,12 +591,17 @@
     }
     
     .profile-image {
-        width: clamp(140px, 20vh, 180px);
-        height: clamp(140px, 20vh, 180px);
+        width: clamp(130px, 18vh, 160px);
+        height: clamp(130px, 18vh, 160px);
     }
     
     .hero__image-container {
-        width: clamp(140px, 20vh, 180px);
+        width: clamp(130px, 18vh, 160px);
+    }
+    
+    .hero__image {
+        width: 100%;
+        height: 100%;
     }
     
     /* Hide all decorative elements on mobile */
