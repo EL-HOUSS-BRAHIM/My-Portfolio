@@ -498,30 +498,30 @@
 /* Small screens (480px - 768px) */
 @media screen and (max-width: 768px) {
     .testimonials {
-        margin: var(--space-4) var(--space-2);
-        padding: var(--space-16) var(--space-3);
+        margin: 0.75rem 0.5rem;
+        padding: 2rem 0.75rem;
     }
     
     .testimonials h2 {
-        font-size: 2rem;
-        margin-bottom: var(--space-8);
+        font-size: 1.6rem;
+        margin-bottom: 1.5rem;
     }
     
     .testimonial-slider {
-        padding: var(--space-3) var(--space-6);
-        min-height: 320px;
-        gap: var(--space-3);
+        padding: 0.75rem 1rem;
+        min-height: 280px;
+        gap: 0.75rem;
     }
     
     .testimonial-item {
         width: 100%;
-        min-width: 260px;
-        padding: var(--space-5);
+        min-width: 240px;
+        padding: 1rem;
     }
     
     .testimonial-image {
-        width: 60px;
-        height: 60px;
+        width: 50px;
+        height: 50px;
     }
     
     .testimonial-text::before,
@@ -531,22 +531,22 @@
     
     #prevTestimonial,
     #nextTestimonial {
-        width: 40px;
-        height: 40px;
-        font-size: 1rem;
+        width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
     }
     
     #prevTestimonial {
-        left: var(--space-1);
+        left: 0.25rem;
     }
     
     #nextTestimonial {
-        right: var(--space-1);
+        right: 0.25rem;
     }
     
     #addTestimonialBtn {
-        padding: var(--space-3) var(--space-6);
-        font-size: 0.9rem;
+        padding: 0.75rem 1rem;
+        font-size: 0.85rem;
         margin-top: var(--space-8);
     }
     
@@ -559,55 +559,55 @@
 /* Extra small screens (under 480px) */
 @media screen and (max-width: 480px) {
     .testimonials {
-        margin: var(--space-3) var(--space-1);
-        padding: var(--space-12) var(--space-2);
+        margin: 0.5rem 0.25rem;
+        padding: 1.5rem 0.5rem;
     }
     
     .testimonials h2 {
-        font-size: 1.75rem;
-        margin-bottom: var(--space-6);
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
     }
     
     .testimonial-slider {
-        padding: var(--space-2) var(--space-4);
-        min-height: 280px;
-        gap: var(--space-2);
+        padding: 0.5rem 0.75rem;
+        min-height: 250px;
+        gap: 0.5rem;
     }
     
     .testimonial-item {
         width: 100%;
-        min-width: 240px;
-        padding: var(--space-4);
+        min-width: 220px;
+        padding: 0.75rem;
     }
     
     .testimonial-content {
-        gap: var(--space-4);
+        gap: 0.75rem;
     }
     
     .testimonial-image {
-        width: 50px;
-        height: 50px;
+        width: 45px;
+        height: 45px;
     }
     
     .testimonial-name {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
     
     .testimonial-text.short {
-        font-size: 1.125rem;
-    }
-    
-    .testimonial-text.medium {
         font-size: 1rem;
     }
     
-    .testimonial-text.long {
+    .testimonial-text.medium {
         font-size: 0.9rem;
+    }
+    
+    .testimonial-text.long {
+        font-size: 0.85rem;
     }
     
     #prevTestimonial,
     #nextTestimonial {
-        width: 35px;
+        width: 32px;
         height: 35px;
         font-size: 0.9rem;
     }
