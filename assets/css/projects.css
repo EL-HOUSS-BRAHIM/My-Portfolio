@@ -285,13 +285,19 @@
     .download-options .btn {
         width: 100%;
         justify-content: center;
-        min-height: 44px;
-        padding: 0.6rem 0.4rem;
-        font-size: 0.85rem;
-        white-space: normal;
+        min-height: 48px;
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+        white-space: nowrap;
         text-align: center;
-        line-height: 1.2;
-        overflow: visible;
+        line-height: 1.3;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+        word-wrap: break-word;
+        hyphens: auto;
     }
     
     .additional-projects .projects-grid {
@@ -362,21 +368,26 @@
     }
     
     .download-options .btn {
-        font-size: 0.8rem;
-        padding: 0.6rem 0.4rem;
-        min-height: 42px;
+        font-size: 0.85rem;
+        padding: 0.75rem 0.8rem;
+        min-height: 48px;
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
-        white-space: normal;
-        line-height: 1.1;
+        white-space: nowrap;
+        line-height: 1.2;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        box-sizing: border-box;
+        word-break: break-word;
+        hyphens: auto;
     }
     
     .download-options .btn i {
-        margin-right: 0.4rem;
+        margin-right: 0.5rem;
         flex-shrink: 0;
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
     
     .projects-grid {
