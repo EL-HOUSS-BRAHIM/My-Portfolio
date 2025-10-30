@@ -42,13 +42,11 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ env.NODE_VERSION }}
-        cache: 'npm'
-        cache-dependency-path: tests/package-lock.json
         
     - name: Install PHP dependencies
       run: |
         cd tests
-        composer install --no-interaction --prefer-dist --optimize-autoloader
+        composer update --no-interaction --prefer-dist --optimize-autoloader || composer install --no-interaction --prefer-dist --optimize-autoloader
         
     - name: Install Node.js dependencies
       run: |
@@ -121,7 +119,7 @@ jobs:
     - name: Install dependencies
       run: |
         cd tests
-        composer install --no-interaction --prefer-dist
+        composer update --no-interaction --prefer-dist || composer install --no-interaction --prefer-dist
         
     - name: Run security audit for Composer
       run: |
