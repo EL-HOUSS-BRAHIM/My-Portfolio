@@ -1,0 +1,184 @@
+{
+  "skills": [
+    {
+      "id": 1,
+      "category": "Frontend Development",
+      "name": "JavaScript / ES6+",
+      "description": "Modern JavaScript, async/await, modules",
+      "level": 90,
+      "icon": "fab fa-js-square",
+      "order_position": 1,
+      "is_active": true
+    },
+    {
+      "id": 2,
+      "category": "Frontend Development",
+      "name": "React",
+      "description": "Hooks, Context API, Component Architecture",
+      "level": 85,
+      "icon": "fab fa-react",
+      "order_position": 2,
+      "is_active": true
+    },
+    {
+      "id": 3,
+      "category": "Frontend Development",
+      "name": "HTML5",
+      "description": "Semantic markup, accessibility, SEO",
+      "level": 95,
+      "icon": "fab fa-html5",
+      "order_position": 3,
+      "is_active": true
+    },
+    {
+      "id": 4,
+      "category": "Frontend Development",
+      "name": "CSS3 / SCSS",
+      "description": "Flexbox, Grid, Animations, Responsive Design",
+      "level": 90,
+      "icon": "fab fa-css3-alt",
+      "order_position": 4,
+      "is_active": true
+    },
+    {
+      "id": 5,
+      "category": "Frontend Development",
+      "name": "Bootstrap",
+      "description": "Rapid prototyping, component library",
+      "level": 80,
+      "icon": "fab fa-bootstrap",
+      "order_position": 5,
+      "is_active": true
+    },
+    {
+      "id": 6,
+      "category": "Frontend Development",
+      "name": "Figma",
+      "description": "UI/UX design, prototyping",
+      "level": 75,
+      "icon": "fab fa-figma",
+      "order_position": 6,
+      "is_active": true
+    },
+    {
+      "id": 7,
+      "category": "Backend Development",
+      "name": "Node.js",
+      "description": "Express.js, RESTful APIs, middleware",
+      "level": 85,
+      "icon": "fab fa-node-js",
+      "order_position": 1,
+      "is_active": true
+    },
+    {
+      "id": 8,
+      "category": "Backend Development",
+      "name": "Python",
+      "description": "Flask, data structures, algorithms",
+      "level": 88,
+      "icon": "fab fa-python",
+      "order_position": 2,
+      "is_active": true
+    },
+    {
+      "id": 9,
+      "category": "Backend Development",
+      "name": "PHP",
+      "description": "Server-side scripting, web development",
+      "level": 75,
+      "icon": "fab fa-php",
+      "order_position": 3,
+      "is_active": true
+    },
+    {
+      "id": 10,
+      "category": "Backend Development",
+      "name": "MongoDB",
+      "description": "NoSQL, aggregation, indexing",
+      "level": 80,
+      "icon": "fas fa-database",
+      "order_position": 4,
+      "is_active": true
+    },
+    {
+      "id": 11,
+      "category": "Backend Development",
+      "name": "PostgreSQL",
+      "description": "Relational databases, complex queries",
+      "level": 78,
+      "icon": "fas fa-database",
+      "order_position": 5,
+      "is_active": true
+    },
+    {
+      "id": 12,
+      "category": "Backend Development",
+      "name": "Firebase",
+      "description": "Real-time database, authentication",
+      "level": 82,
+      "icon": "fas fa-fire",
+      "order_position": 6,
+      "is_active": true
+    },
+    {
+      "id": 13,
+      "category": "Tools & DevOps",
+      "name": "Git",
+      "description": "Version control, branching, collaboration",
+      "level": 90,
+      "icon": "fab fa-git-alt",
+      "order_position": 1,
+      "is_active": true
+    },
+    {
+      "id": 14,
+      "category": "Tools & DevOps",
+      "name": "Linux",
+      "description": "Command line, server administration",
+      "level": 85,
+      "icon": "fab fa-linux",
+      "order_position": 2,
+      "is_active": true
+    },
+    {
+      "id": 15,
+      "category": "Tools & DevOps",
+      "name": "Cloud Platforms",
+      "description": "Heroku, deployment, hosting",
+      "level": 80,
+      "icon": "fas fa-cloud",
+      "order_position": 3,
+      "is_active": true
+    },
+    {
+      "id": 16,
+      "category": "Tools & DevOps",
+      "name": "VS Code",
+      "description": "Advanced debugging, extensions",
+      "level": 88,
+      "icon": "fas fa-code",
+      "order_position": 4,
+      "is_active": true
+    },
+    {
+      "id": 17,
+      "category": "Tools & DevOps",
+      "name": "Analytics",
+      "description": "Google Analytics, performance monitoring",
+      "level": 75,
+      "icon": "fas fa-chart-line",
+      "order_position": 5,
+      "is_active": true
+    },
+    {
+      "id": 18,
+      "category": "Tools & DevOps",
+      "name": "SEO",
+      "description": "Search optimization, performance",
+      "level": 82,
+      "icon": "fas fa-search",
+      "order_position": 6,
+      "is_active": true
+    }
+  ]
+}
