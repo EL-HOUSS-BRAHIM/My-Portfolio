@@ -1,0 +1,312 @@
+# Advanced Browser Caching Configuration
+# Optimized caching rules for maximum performance
+# Compatible with Apache, Nginx, and other web servers
+
+# This configuration provides:
+# - Aggressive caching for static assets
+# - Proper cache-control headers
+# - ETag and Last-Modified support
+# - Compression optimization
+# - Security-aware caching
+
+# ==========================================================================
+# Apache Configuration (.htaccess)
+# ==========================================================================
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+</IfModule>
+
+# Enable compression
+<IfModule mod_deflate.c>
+    # Compress HTML, CSS, JavaScript, Text, XML and fonts
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
+    AddOutputFilterByType DEFLATE application/x-font
+    AddOutputFilterByType DEFLATE application/x-font-opentype
+    AddOutputFilterByType DEFLATE application/x-font-otf
+    AddOutputFilterByType DEFLATE application/x-font-truetype
+    AddOutputFilterByType DEFLATE application/x-font-ttf
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE font/opentype
+    AddOutputFilterByType DEFLATE font/otf
+    AddOutputFilterByType DEFLATE font/ttf
+    AddOutputFilterByType DEFLATE image/svg+xml
+    AddOutputFilterByType DEFLATE image/x-icon
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/xml
+    
+    # Remove browser bugs (only needed for really old browsers)
+    BrowserMatch ^Mozilla/4 gzip-only-text/html
+    BrowserMatch ^Mozilla/4\.0[678] no-gzip
+    BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+    Header append Vary User-Agent
+</IfModule>
+
+# Expire headers and cache control
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 1 month"
+    
+    # CSS and JavaScript
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType application/x-javascript "access plus 1 year"
+    
+    # Media files
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/avif "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+    ExpiresByType image/vnd.microsoft.icon "access plus 1 year"
+    
+    # Fonts
+    ExpiresByType font/ttf "access plus 1 year"
+    ExpiresByType font/otf "access plus 1 year"
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType application/font-woff "access plus 1 year"
+    ExpiresByType application/font-woff2 "access plus 1 year"
+    ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
+    
+    # Documents and data
+    ExpiresByType application/pdf "access plus 1 month"
+    ExpiresByType application/json "access plus 1 day"
+    ExpiresByType application/xml "access plus 1 day"
+    ExpiresByType text/xml "access plus 1 day"
+    
+    # HTML (short cache for dynamic content)
+    ExpiresByType text/html "access plus 1 hour"
+    
+    # Manifests and service workers (should not be cached aggressively)
+    ExpiresByType application/manifest+json "access plus 1 day"
+    ExpiresByType text/cache-manifest "access plus 0 seconds"
+</IfModule>
+
+# Cache-Control headers for fine-grained control
+<IfModule mod_headers.c>
+    # Default cache control
+    Header set Cache-Control "public, max-age=2592000"
+    
+    # Static assets with immutable flag (versioned assets)
+    <FilesMatch "\.(css|js|png|jpg|jpeg|gif|svg|webp|avif|woff|woff2|ttf|otf|eot)\.(v[0-9]+|[a-f0-9]{8,})\.(css|js|png|jpg|jpeg|gif|svg|webp|avif|woff|woff2|ttf|otf|eot)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+        Header unset ETag
+        FileETag None
+    </FilesMatch>
+    
+    # Long-term caching for static assets
+    <FilesMatch "\.(css|js|png|jpg|jpeg|gif|svg|webp|avif|ico)$">
+        Header set Cache-Control "public, max-age=31536000"
+    </FilesMatch>
+    
+    # Font files
+    <FilesMatch "\.(woff|woff2|ttf|otf|eot)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+        Header set Access-Control-Allow-Origin "*"
+    </FilesMatch>
+    
+    # HTML files - shorter cache
+    <FilesMatch "\.html$">
+        Header set Cache-Control "public, max-age=3600, must-revalidate"
+    </FilesMatch>
+    
+    # API responses - very short cache
+    <FilesMatch "\.(json|xml)$">
+        Header set Cache-Control "public, max-age=300, must-revalidate"
+    </FilesMatch>
+    
+    # No cache for sensitive files
+    <FilesMatch "\.(php|htaccess|htpasswd)$">
+        Header set Cache-Control "no-cache, no-store, must-revalidate"
+        Header set Pragma "no-cache"
+        Header set Expires 0
+    </FilesMatch>
+    
+    # Enable ETags for better caching
+    Header unset ETag
+    FileETag MTime Size
+    
+    # Vary header for proper caching
+    Header append Vary Accept-Encoding
+</IfModule>
+
+# ==========================================================================
+# Nginx Configuration
+# ==========================================================================
+
+# Add this to your nginx.conf or site configuration:
+
+# Gzip compression
+# gzip on;
+# gzip_vary on;
+# gzip_min_length 1024;
+# gzip_proxied any;
+# gzip_comp_level 6;
+# gzip_types
+#     application/atom+xml
+#     application/geo+json
+#     application/javascript
+#     application/x-javascript
+#     application/json
+#     application/ld+json
+#     application/manifest+json
+#     application/rdf+xml
+#     application/rss+xml
+#     application/xhtml+xml
+#     application/xml
+#     font/eot
+#     font/otf
+#     font/ttf
+#     image/svg+xml
+#     text/css
+#     text/javascript
+#     text/plain
+#     text/xml;
+
+# Cache static assets
+# location ~* \.(css|js|png|jpg|jpeg|gif|svg|webp|avif|ico|woff|woff2|ttf|otf|eot)$ {
+#     expires 1y;
+#     add_header Cache-Control "public, immutable";
+#     add_header Vary Accept-Encoding;
+#     access_log off;
+# }
+
+# Cache versioned assets more aggressively
+# location ~* \.(css|js|png|jpg|jpeg|gif|svg|webp|avif|woff|woff2|ttf|otf|eot)\.(v[0-9]+|[a-f0-9]{8,})\.(css|js|png|jpg|jpeg|gif|svg|webp|avif|woff|woff2|ttf|otf|eot)$ {
+#     expires 1y;
+#     add_header Cache-Control "public, max-age=31536000, immutable";
+#     add_header Vary Accept-Encoding;
+#     access_log off;
+# }
+
+# Cache HTML with shorter duration
+# location ~* \.html$ {
+#     expires 1h;
+#     add_header Cache-Control "public, max-age=3600, must-revalidate";
+#     add_header Vary Accept-Encoding;
+# }
+
+# No cache for dynamic content
+# location ~* \.(php|json|xml)$ {
+#     expires -1;
+#     add_header Cache-Control "no-cache, no-store, must-revalidate";
+#     add_header Pragma "no-cache";
+# }
+
+# ==========================================================================
+# Performance Optimizations
+# ==========================================================================
+
+# Preload key resources
+<IfModule mod_headers.c>
+    # Preload critical CSS
+    <FilesMatch "index\.html$">
+        Header add Link "</assets/css/critical.css>; rel=preload; as=style"
+        Header add Link "</assets/css/base.css>; rel=preload; as=style"
+        Header add Link "</assets/js/app.js>; rel=preload; as=script"
+    </FilesMatch>
+    
+    # Preconnect to external domains
+    Header add Link "<https://fonts.googleapis.com>; rel=preconnect"
+    Header add Link "<https://fonts.gstatic.com>; rel=preconnect; crossorigin"
+</IfModule>
+
+# Service Worker caching rules
+<FilesMatch "sw\.js$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires 0
+</FilesMatch>
+
+# Manifest.json
+<FilesMatch "manifest\.json$">
+    Header set Cache-Control "public, max-age=86400"
+    Header set Content-Type "application/manifest+json"
+</FilesMatch>
+
+# Security headers (cache-related)
+<IfModule mod_headers.c>
+    # Prevent caching of sensitive content
+    <FilesMatch "\.(php|cgi|pl|htaccess|htpasswd|ini|log|sh|sql|conf)$">
+        Header set Cache-Control "no-cache, no-store, must-revalidate"
+        Header set Pragma "no-cache"
+        Header set Expires 0
+    </FilesMatch>
+</IfModule>
+
+# ==========================================================================
+# Cache Busting Support
+# ==========================================================================
+
+# Support for versioned assets (e.g., style.v123.css)
+<IfModule mod_rewrite.c>
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.+)\.v[0-9]+\.(css|js|png|jpg|jpeg|gif|svg|webp|avif|woff|woff2|ttf|otf|eot)$ $1.$2 [L]
+    
+    # Support for hash-based versioning (e.g., style.abc123.css)
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.+)\.[a-f0-9]{8,}\.(css|js|png|jpg|jpeg|gif|svg|webp|avif|woff|woff2|ttf|otf|eot)$ $1.$2 [L]
+</IfModule>
+
+# ==========================================================================
+# Browser-Specific Optimizations
+# ==========================================================================
+
+# Chrome/Chromium optimizations
+<IfModule mod_headers.c>
+    # Enable early hints for supported browsers
+    Header add Link "</assets/css/critical.css>; rel=preload; as=style"
+    Header add Link "</assets/js/app.js>; rel=preload; as=script"
+    
+    # Optimize for mobile browsers
+    BrowserMatch "Mobile" mobile
+    Header set Cache-Control "public, max-age=86400" env=mobile
+</IfModule>
+
+# ==========================================================================
+# Debugging and Monitoring
+# ==========================================================================
+
+# Add cache status headers for debugging (remove in production)
+<IfModule mod_headers.c>
+    # Uncomment for debugging
+    # Header add X-Cache-Status "HIT from static"
+    # Header add X-Cache-Date "%D %t"
+    # Header add X-Served-By "Apache/Portfolio"
+</IfModule>
+
+# Log cache performance
+<IfModule mod_log_config.c>
+    # Custom log format for cache analysis
+    LogFormat "%h %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\" %{Cache-Control}o %{Expires}o" cache_log
+    
+    # Uncomment to enable cache logging
+    # CustomLog ${APACHE_LOG_DIR}/cache.log cache_log env=!dontlog
+</IfModule>
+# Application Cache Headers
+<IfModule mod_headers.c>
+    # Cache dynamic API responses
+    <Files "*.php">
+        <If "%{QUERY_STRING} =~ /api/">
+            Header set Cache-Control "private, max-age=300"
+            Header set Vary "Accept-Encoding"
+        </If>
+    </Files>
+    
+    # Cache control for AJAX requests
+    <If "%{HTTP:X-Requested-With} == 'XMLHttpRequest'">
+        Header set Cache-Control "private, max-age=60"
+    </If>
+</IfModule>
+
