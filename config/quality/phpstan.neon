@@ -1,0 +1,46 @@
+parameters:
+    level: 8
+    paths:
+        - src
+        - admin
+    excludePaths:
+        - src/cache
+        - vendor
+        - storage
+        - tests/fixtures
+    
+    # Include functions and constants from extensions
+    scanFiles:
+        - vendor/autoload.php
+    
+    # Ignore common false positives
+    ignoreErrors:
+        # Ignore dynamic property access (common in legacy code)
+        - '#Access to an undefined property#'
+        # Ignore mixed types from external APIs
+        - '#Parameter .* of function .* expects .*, mixed given#'
+        # Allow superglobals
+        - '#Variable \$_(GET|POST|REQUEST|SERVER|SESSION|COOKIE|FILES) .* always exists and is not nullable#'
+    
+    # Report unused private properties and methods
+    checkMissingIterableValueType: true
+    checkGenericClassInNonGenericObjectType: false
+    
+    # Allow mixed types in some contexts
+    checkTooWideReturnTypesInProtectedAndPublicMethods: true
+    checkUninitializedProperties: true
+    
+    # Memory limit for large projects
+    memoryLimitFile: 256M
+    
+    # Cache configuration
+    tmpDir: storage/phpstan
+    
+    # Additional extensions
+    stubFiles:
+        - stubs/pdo.stub
+    
+    # Custom rules
+    rules:
+        - PHPStan\Rules\DeadCode\UnusedPrivateMethodRule
+        - PHPStan\Rules\DeadCode\UnusedPrivatePropertyRule
