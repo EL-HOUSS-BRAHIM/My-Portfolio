@@ -158,7 +158,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Performance Testing
     needs: [quality-check]
-    if: false  # Temporarily disabled
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'  # Only run manually or on schedule
     
     steps:
     - name: Checkout code
@@ -193,7 +193,7 @@ jobs:
   deploy-production:
     runs-on: ubuntu-latest
     name: Deploy to Production
-    needs: [quality-check, security-scan, performance-test]
+    needs: [quality-check, security-scan]
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     
     environment:
@@ -308,7 +308,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Deploy to Staging
     needs: [quality-check]
-    if: github.ref == 'refs/heads/develop' && github.event_name == 'push'
+    if: (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop') && github.event_name == 'push'
     
     environment:
       name: staging
