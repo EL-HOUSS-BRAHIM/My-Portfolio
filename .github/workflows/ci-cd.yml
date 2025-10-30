@@ -244,6 +244,8 @@ jobs:
           .
           
     - name: Deploy to server
+      if: secrets.DEPLOY_HOST != ''
+      continue-on-error: true
       uses: appleboy/ssh-action@v1.0.0
       with:
         host: ${{ secrets.DEPLOY_HOST }}
@@ -329,6 +331,8 @@ jobs:
       run: composer install --optimize-autoloader --no-interaction --no-scripts
       
     - name: Deploy to staging server
+      if: secrets.STAGING_HOST != ''
+      continue-on-error: true
       uses: appleboy/ssh-action@v1.0.0
       with:
         host: ${{ secrets.STAGING_HOST }}
