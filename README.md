@@ -55,9 +55,44 @@ A professional portfolio website featuring:
 │   ├── /icons/                # Icon files
 │   └── /uploads/              # User uploads
 ├── /config/                   # Configuration files
+│   ├── /backups/              # Backup configuration files
+│   ├── /quality/              # Code quality configs (phpcs, phpstan, eslint)
+│   ├── /environments/         # Environment-specific configs
+│   ├── cache.php              # Cache configuration
+│   ├── security.php           # Security settings
+│   └── logrotate.conf         # Log rotation config
 ├── /database/                 # Database scripts
 │   ├── init.sql              # Database initialization
+│   ├── /migrations/           # Database migrations
 │   └── setup.sh              # Automated setup
+├── /docs/                     # Documentation
+│   ├── /reports/              # Project reports and checklists
+│   │   ├── DEPLOYMENT_CHECKLIST.md
+│   │   ├── PHASE_3_COMPLETION_REPORT.md
+│   │   └── PROJECT_CLEANUP_PLAN.md
+│   ├── ADMIN_GUIDE.md         # Admin panel documentation
+│   ├── API.md                 # API documentation
+│   ├── DEPLOYMENT_GUIDE.md    # Deployment instructions
+│   └── RECAPTCHA_SETUP.md     # ReCAPTCHA setup guide
+├── /public/                   # Publicly accessible files
+│   ├── /icons/                # Favicons and app icons
+│   │   ├── favicon.ico
+│   │   ├── apple-touch-icon.png
+│   │   ├── site.webmanifest
+│   │   └── browserconfig.xml
+│   ├── robots.txt             # Search engine directives
+│   ├── sitemap.xml            # Site map
+│   ├── humans.txt             # Credits
+│   ├── BingSiteAuth.xml       # Bing verification
+│   └── health.php             # Health check endpoint
+├── /scripts/                  # Automation and utility scripts
+│   ├── /logs/                 # Script execution logs
+│   ├── deploy.sh              # Enhanced deployment script
+│   ├── optimize.sh            # Performance optimization
+│   ├── validate.sh            # Validation script
+│   ├── security-audit.sh      # Security checks
+│   ├── warmup-cache.php       # Cache warming
+│   └── backup.sh              # Backup automation
 ├── /src/                     # PHP backend
 │   ├── /api/                  # API endpoints
 │   │   ├── contact.php        # Contact form handler
@@ -66,20 +101,26 @@ A professional portfolio website featuring:
 │   │   └── get_image.php      # Image serving
 │   ├── /auth/                 # Authentication classes
 │   ├── /config/               # Configuration classes
+│   ├── /security/             # Security utilities
 │   └── /utils/                # Utility classes
 ├── /storage/                  # Runtime storage
 │   ├── /logs/                 # Application logs
 │   ├── /cache/                # Cached data
 │   └── /sessions/             # PHP sessions
+├── /tests/                    # Testing suite
+│   ├── /manual/               # Manual test files
+│   │   ├── test_hero.html
+│   │   ├── test_testimonials.html
+│   │   └── cache-test.html
+│   ├── bootstrap.php          # Test bootstrap
+│   └── phpunit.xml            # PHPUnit configuration
 ├── /vendor/                   # Composer dependencies
-├── /scripts/                  # Deployment and optimization scripts
-│   ├── deploy.sh              # Enhanced deployment script
-│   ├── optimize.sh            # Performance optimization script
-│   ├── validate.sh            # Validation script
-│   └── security-audit.sh      # Security checks
-├── index.html                 # Main portfolio page
 ├── .env.example               # Environment template
-└── composer.json              # PHP dependencies
+├── .htaccess                  # Apache configuration
+├── composer.json              # PHP dependencies
+├── package.json               # Node.js dependencies
+├── index.html                 # Main portfolio page
+└── index.php                  # PHP entry point
 ```
 
 ## 🚀 Quick Start
