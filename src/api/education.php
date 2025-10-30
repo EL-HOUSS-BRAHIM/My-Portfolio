@@ -9,6 +9,9 @@ require_once __DIR__ . '/../config/Database.php';
 require_once __DIR__ . '/../auth/AdminAuth.php';
 require_once __DIR__ . '/../utils/Response.php';
 
+use Portfolio\Config\Database;
+use Portfolio\Utils\Response;
+
 header('Content-Type: application/json');
 
 $method = $_SERVER['REQUEST_METHOD'];
@@ -50,7 +53,7 @@ try {
     Response::error('Server error: ' . $e->getMessage(), 500);
 }
 
-function handleGet($db) {
+function handleGet(Database $db): void {
     $activeOnly = isset($_GET['active']) ? filter_var($_GET['active'], FILTER_VALIDATE_BOOLEAN) : true;
     
     $sql = "SELECT * FROM education WHERE 1=1";
@@ -68,7 +71,7 @@ function handleGet($db) {
     Response::success(['education' => $education]);
 }
 
-function handlePost($db) {
+function handlePost(Database $db): void {
     $data = json_decode(file_get_contents('php://input'), true);
     
     if (!$data) {
@@ -113,7 +116,7 @@ function handlePost($db) {
     }
 }
 
-function handlePut($db) {
+function handlePut(Database $db): void {
     $data = json_decode(file_get_contents('php://input'), true);
     
     if (!$data || !isset($data['id'])) {
@@ -158,7 +161,7 @@ function handlePut($db) {
     }
 }
 
-function handleDelete($db) {
+function handleDelete(Database $db): void {
     $id = $_GET['id'] ?? null;
     
     if (!$id) {
