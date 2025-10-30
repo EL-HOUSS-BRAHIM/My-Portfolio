@@ -57,7 +57,7 @@ jobs:
       continue-on-error: true
       run: |
         cd tests
-        vendor/bin/phpstan analyse ../src --level=8 --memory-limit=256M || echo "⚠️ PHPStan found issues"
+        vendor/bin/phpstan analyse --configuration=phpstan.neon --memory-limit=256M || echo "⚠️ PHPStan found issues"
         
     - name: Run PHP Code Sniffer
       continue-on-error: true
