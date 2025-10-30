@@ -16,7 +16,12 @@ require_once __DIR__ . '/../utils/Response.php';
 require_once __DIR__ . '/../utils/RateLimit.php';
 require_once __DIR__ . '/../utils/Captcha.php';
 
+use Portfolio\Config\Config;
+use Portfolio\Config\Database;
 use Portfolio\Utils\Validator;
+use Portfolio\Utils\Response;
+use Portfolio\Utils\RateLimit;
+use Portfolio\Utils\Captcha;
 
 try {
     // Initialize configuration
@@ -107,7 +112,8 @@ try {
 } catch (Exception $e) {
     error_log("Testimonial API error: " . $e->getMessage());
     
-    if ($config->get('app.debug')) {
+    $debugMode = isset($config) ? $config->get('app.debug') : false;
+    if ($debugMode) {
         Response::serverError('Error: ' . $e->getMessage());
     } else {
         Response::serverError('An unexpected error occurred. Please try again later.');
