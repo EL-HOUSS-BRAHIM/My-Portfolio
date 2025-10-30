@@ -12,7 +12,7 @@ header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type');
 
 // Simple error handler
-function sendErrorResponse($message, $code = 400) {
+function sendErrorResponse(string $message, int $code = 400): void {
     http_response_code($code);
     echo json_encode(['success' => false, 'message' => $message]);
     exit;
