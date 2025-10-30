@@ -1,0 +1,60 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "Budgetify - Personal Finance Manager",
+      "description": "Collaborative full-stack web application for personal finance management, developed as part of ALX Phase 2 requirements. Features include expense tracking, budget planning, financial analytics, and multi-user support. Built with Node.js, Express, MongoDB, and React.",
+      "short_description": "Full-stack finance management app with budget tracking and analytics",
+      "image_url": "assets/images/budgetify.jpg",
+      "demo_url": "https://drive.google.com/file/d/1gf2EE9NnM8j4FTtRQyVG1OhQRUXP7HhX/view",
+      "github_url": "",
+      "technologies": "Node.js, Express, MongoDB, React, JWT, REST API",
+      "category": "Team Collaboration",
+      "featured": true,
+      "order_position": 1,
+      "is_active": true
+    },
+    {
+      "id": 2,
+      "title": "Real-time Log Parser",
+      "description": "Python-based system for processing and analyzing log data in real-time. Implements efficient regex patterns for parsing various log formats, statistical analysis, and alert generation. Handles large-scale log files with optimized memory usage.",
+      "short_description": "Python-based system for processing log data in real-time",
+      "image_url": "assets/images/log_parsing.webp",
+      "demo_url": "",
+      "github_url": "https://github.com/EL-HOUSS-BRAHIM/alx-interview/tree/main/0x03-log_parsing",
+      "technologies": "Python, Regex, Data Processing, File I/O",
+      "category": "Backend",
+      "featured": false,
+      "order_position": 2,
+      "is_active": true
+    },
+    {
+      "id": 3,
+      "title": "Custom Shell Implementation",
+      "description": "Unix shell implementation in C with process management, built-in commands, and environment variable handling. Features include command execution, piping, input/output redirection, and signal handling. Demonstrates deep understanding of system calls and process control.",
+      "short_description": "Unix shell implementation in C with process management",
+      "image_url": "assets/images/simple shell.jpg",
+      "demo_url": "",
+      "github_url": "https://github.com/EL-HOUSS-BRAHIM/simple_shell",
+      "technologies": "C, Unix Systems, System Calls, Process Management",
+      "category": "System Programming",
+      "featured": false,
+      "order_position": 3,
+      "is_active": true
+    },
+    {
+      "id": 4,
+      "title": "Monty ByteCode Interpreter",
+      "description": "Stack-based interpreter for Monty ByteCode files. Implements various stack and queue operations, mathematical operations, and control flow. Built with C, demonstrating proficiency in data structures and interpreter design patterns.",
+      "short_description": "Stack-based interpreter for Monty ByteCode files",
+      "image_url": "assets/images/Monty Interpreter.png",
+      "demo_url": "",
+      "github_url": "https://github.com/EL-HOUSS-BRAHIM/monty",
+      "technologies": "C, Data Structures, Interpreter Design, Stack/Queue",
+      "category": "System Programming",
+      "featured": false,
+      "order_position": 4,
+      "is_active": true
+    }
+  ]
+}
