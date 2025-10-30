@@ -38,7 +38,11 @@ require_once __DIR__ . '/../../PHPMailer/src/Exception.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use Portfolio\Config\Config;
 use Portfolio\Utils\Validator;
+use Portfolio\Utils\Captcha;
+use Portfolio\Utils\Response;
+use Portfolio\Utils\RateLimit;
 
 try {
     // Initialize configuration
