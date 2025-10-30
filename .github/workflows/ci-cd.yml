@@ -295,17 +295,19 @@ jobs:
           
     - name: Notify deployment success
       if: success()
+      continue-on-error: true
       run: |
         curl -X POST -H 'Content-type: application/json' \
           --data '{"text":"✅ Portfolio deployed successfully to production!"}' \
-          ${{ secrets.SLACK_WEBHOOK_URL }}
+          ${{ secrets.SLACK_WEBHOOK_URL }} || echo "⚠️ Slack notification skipped"
           
     - name: Notify deployment failure
       if: failure()
+      continue-on-error: true
       run: |
         curl -X POST -H 'Content-type: application/json' \
           --data '{"text":"❌ Portfolio deployment failed!"}' \
-          ${{ secrets.SLACK_WEBHOOK_URL }}
+          ${{ secrets.SLACK_WEBHOOK_URL }} || echo "⚠️ Slack notification skipped"
 
   # Deploy to Staging
   deploy-staging:
