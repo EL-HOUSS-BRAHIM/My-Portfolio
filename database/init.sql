@@ -128,3 +128,64 @@ CREATE EVENT IF NOT EXISTS cleanup_admin_sessions
 ON SCHEDULE EVERY 1 HOUR
 DO
     DELETE FROM admin_sessions WHERE expires_at < NOW();
+
+-- Create skills table
+CREATE TABLE IF NOT EXISTS skills (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    category VARCHAR(100) NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    description TEXT,
+    level INT NOT NULL CHECK (level >= 0 AND level <= 100),
+    icon VARCHAR(100),
+    order_position INT DEFAULT 0,
+    is_active BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_category (category),
+    INDEX idx_active (is_active),
+    INDEX idx_order (order_position)
+);
+
+-- Create education table
+CREATE TABLE IF NOT EXISTS education (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    institution VARCHAR(255) NOT NULL,
+    degree VARCHAR(255) NOT NULL,
+    field_of_study VARCHAR(255),
+    start_date DATE NOT NULL,
+    end_date DATE,
+    is_current BOOLEAN DEFAULT FALSE,
+    description TEXT,
+    location VARCHAR(255),
+    achievements TEXT,
+    skills TEXT,
+    order_position INT DEFAULT 0,
+    is_active BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_active (is_active),
+    INDEX idx_order (order_position),
+    INDEX idx_dates (start_date, end_date)
+);
+
+-- Create projects table
+CREATE TABLE IF NOT EXISTS projects (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    short_description VARCHAR(500),
+    image_url VARCHAR(500),
+    demo_url VARCHAR(500),
+    github_url VARCHAR(500),
+    technologies TEXT,
+    category VARCHAR(100),
+    featured BOOLEAN DEFAULT FALSE,
+    order_position INT DEFAULT 0,
+    is_active BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_active (is_active),
+    INDEX idx_featured (featured),
+    INDEX idx_category (category),
+    INDEX idx_order (order_position)
+);
