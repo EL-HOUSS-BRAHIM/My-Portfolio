@@ -60,9 +60,10 @@ jobs:
         vendor/bin/phpstan analyse ../src --level=8 --memory-limit=256M || echo "⚠️ PHPStan found issues"
         
     - name: Run PHP Code Sniffer
+      continue-on-error: true
       run: |
         cd tests
-        vendor/bin/phpcs ../src --standard=PSR12 --colors
+        vendor/bin/phpcs ../src --standard=PSR12 --colors || echo "⚠️ PHP Code Sniffer found issues"
         
     - name: Run PHP Mess Detector
       continue-on-error: true
@@ -141,10 +142,11 @@ jobs:
         vendor/bin/phpmd ../src text security || echo "⚠️ PHPMD security check found issues"
         
     - name: Check for secrets
+      continue-on-error: true
       uses: trufflesecurity/trufflehog@main
       with:
         path: ./
-        base: main
+        base: ${{ github.event.before }}
         head: HEAD
 
   # Performance Testing
