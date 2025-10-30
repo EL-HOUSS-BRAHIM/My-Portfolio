@@ -5,13 +5,18 @@
  * Provides standardized JSON responses for API endpoints.
  */
 
+namespace Portfolio\Utils;
+
+use Portfolio\Config\Config;
+use Exception;
+
 class Response {
     /**
      * Returns true if app.debug is enabled in config or env
      */
     private static function isDebug() {
         // Try config singleton if available
-        if (class_exists('Config')) {
+        if (class_exists('Portfolio\\Config\\Config')) {
             try {
                 $config = Config::getInstance();
                 return $config->get('app.debug');
