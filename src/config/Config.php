@@ -6,6 +6,8 @@
  * loaded from environment variables.
  */
 
+namespace Portfolio\Config;
+
 class Config {
     private static $instance = null;
     private $config = [];
