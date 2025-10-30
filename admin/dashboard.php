@@ -21,6 +21,31 @@ $db = Database::getInstance();
 
 // Get dashboard stats
 try {
+    // Skills stats
+    $skillsStats = $db->fetchOne("
+        SELECT 
+            COUNT(*) as total,
+            SUM(CASE WHEN is_active = 1 THEN 1 ELSE 0 END) as active
+        FROM skills
+    ");
+    
+    // Education stats
+    $educationStats = $db->fetchOne("
+        SELECT 
+            COUNT(*) as total,
+            SUM(CASE WHEN is_active = 1 THEN 1 ELSE 0 END) as active
+        FROM education
+    ");
+    
+    // Projects stats
+    $projectsStats = $db->fetchOne("
+        SELECT 
+            COUNT(*) as total,
+            SUM(CASE WHEN is_active = 1 THEN 1 ELSE 0 END) as active,
+            SUM(CASE WHEN featured = 1 THEN 1 ELSE 0 END) as featured
+        FROM projects
+    ");
+    
     // Testimonials stats
     $testimonialStats = $db->fetchOne("
         SELECT 
@@ -59,6 +84,9 @@ try {
     
 } catch (Exception $e) {
     error_log("Dashboard error: " . $e->getMessage());
+    $skillsStats = ['total' => 0, 'active' => 0];
+    $educationStats = ['total' => 0, 'active' => 0];
+    $projectsStats = ['total' => 0, 'active' => 0, 'featured' => 0];
     $testimonialStats = ['total' => 0, 'pending' => 0, 'approved' => 0, 'rejected' => 0];
     $contactStats = ['total' => 0, 'unread' => 0, 'read' => 0, 'replied' => 0];
     $recentTestimonials = [];
@@ -309,14 +337,66 @@ try {
     
     <div class="container">
         <div class="quick-actions">
-            <a href="testimonials.php" class="btn btn-primary">Manage Testimonials</a>
-            <a href="messages.php" class="btn btn-primary">View Messages</a>
-            <a href="../index.html" class="btn btn-primary" target="_blank">View Site</a>
-        </div>
-        
+            <a href="manage-skills.php" class="btn btn-primary">
+                <i class="fas fa-cog"></i> Manage Skills
+            </a>
+            <a href="manage-education.php" class="btn btn-primary">
+                <i class="fas fa-graduation-cap"></i> Manage Education
+            </a>
+            <a href="manage-projects.php" class="btn btn-primary">
+                <i class="fas fa-folder"></i> Manage Projects
+            </a>
+            <a href="testimonials.php" class="btn btn-primary">
+                <i class="fas fa-comments"></i> Manage Testimonials
+            </a>
+            <a href="messages.php" class="btn btn-primary">
+                <i class="fas fa-envelope"></i> View Messages
+            </a>
+            <a href="../index.html" class="btn btn-primary" target="_blank">
+                <i class="fas fa-external-link-alt"></i> View Site
         <div class="dashboard-grid">
             <div class="card">
-                <h3>Testimonials</h3>
+                <h3><i class="fas fa-cog"></i> Skills</h3>
+                <div class="stat-number"><?php echo number_format($skillsStats['total'] ?? 0); ?></div>
+                <div class="stat-label">Total Skills</div>
+                <div class="stats-breakdown">
+                    <div class="stat-item">
+                        <div class="number"><?php echo $skillsStats['active'] ?? 0; ?></div>
+                        <div class="label">Active</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+                <div class="stat-number"><?php echo number_format($educationStats['total'] ?? 0); ?></div>
+                <div class="stat-label">Education Entries</div>
+                <div class="stats-breakdown">
+                    <div class="stat-item">
+                        <div class="number"><?php echo $educationStats['active'] ?? 0; ?></div>
+                        <div class="label">Active</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3><i class="fas fa-folder"></i> Projects</h3>
+                <div class="stat-number"><?php echo number_format($projectsStats['total'] ?? 0); ?></div>
+                <div class="stat-label">Total Projects</div>
+                <div class="stats-breakdown">
+                    <div class="stat-item">
+                        <div class="number"><?php echo $projectsStats['active'] ?? 0; ?></div>
+                        <div class="label">Active</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="number"><?php echo $projectsStats['featured'] ?? 0; ?></div>
+                        <div class="label">Featured</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3><i class="fas fa-comments"></i> Testimonials</h3>
                 <div class="stat-number"><?php echo number_format($testimonialStats['total'] ?? 0); ?></div>
                 <div class="stat-label">Total Testimonials</div>
                 <div class="stats-breakdown">
@@ -328,30 +408,25 @@ try {
                         <div class="number"><?php echo $testimonialStats['approved'] ?? 0; ?></div>
                         <div class="label">Approved</div>
                     </div>
-                    <div class="stat-item">
-                        <div class="number"><?php echo $testimonialStats['rejected'] ?? 0; ?></div>
-                        <div class="label">Rejected</div>
-                    </div>
                 </div>
             </div>
             
             <div class="card">
-                <h3>Contact Messages</h3>
+                <h3><i class="fas fa-envelope"></i> Messages</h3>
                 <div class="stat-number"><?php echo number_format($contactStats['total'] ?? 0); ?></div>
-                <div class="stat-label">Total Messages</div>
+                <div class="stat-label">Contact Messages</div>
                 <div class="stats-breakdown">
                     <div class="stat-item">
                         <div class="number"><?php echo $contactStats['unread'] ?? 0; ?></div>
                         <div class="label">Unread</div>
                     </div>
                     <div class="stat-item">
-                        <div class="number"><?php echo $contactStats['read'] ?? 0; ?></div>
-                        <div class="label">Read</div>
-                    </div>
-                    <div class="stat-item">
                         <div class="number"><?php echo $contactStats['replied'] ?? 0; ?></div>
                         <div class="label">Replied</div>
                     </div>
+                </div>
+            </div>
+        </div>      </div>
                 </div>
             </div>
         </div>
