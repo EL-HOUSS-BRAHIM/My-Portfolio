@@ -10,11 +10,15 @@
  * Implements simple rate limiting to prevent abuse.
  */
 
+namespace Portfolio\Utils;
+
+use Portfolio\Config\Config;
+
 class RateLimit {
-    private $config;
-    private $storage = [];
+    private Config $config;
+    private array $storage = [];
     
-    public function __construct($config) {
+    public function __construct(Config $config) {
         $this->config = $config;
     }
     
