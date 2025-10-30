@@ -1,0 +1,49 @@
+{
+  "education": [
+    {
+      "id": 1,
+      "institution": "ALX Software Engineering Program",
+      "degree": "Certified Full Stack Software Engineer",
+      "field_of_study": "Backend Specialization",
+      "start_date": "2023-01-01",
+      "end_date": "2024-01-01",
+      "is_current": false,
+      "description": "Intensive 12-month program covering full-stack development with backend specialization. Gained expertise in modern software engineering practices, data structures, algorithms, and web technologies.",
+      "location": "Online",
+      "achievements": "Completed 12-month intensive program, Backend specialization certification, Multiple hands-on projects",
+      "skills": "C Programming, Python, JavaScript/Node.js, SQL/MySQL, Linux/DevOps, Web Servers, APIs, TypeScript, NoSQL, Redis",
+      "order_position": 1,
+      "is_active": true
+    },
+    {
+      "id": 2,
+      "institution": "Hassan II University, Casablanca",
+      "degree": "Higher Education in Physics Sciences",
+      "field_of_study": "Physics",
+      "start_date": "2022-09-01",
+      "end_date": null,
+      "is_current": true,
+      "description": "Advanced studies in physics and related mathematical concepts. Developed strong analytical and problem-solving skills applicable to software engineering.",
+      "location": "Casablanca, Morocco",
+      "achievements": "Strong academic performance, Research experience, Scientific computing projects",
+      "skills": "Mathematical Analysis, Physics, Scientific Computing, Research Methods",
+      "order_position": 2,
+      "is_active": true
+    },
+    {
+      "id": 3,
+      "institution": "Lycée Tayeb Lkhamal Dar Bouazza",
+      "degree": "Bachelor's Degree in Physics",
+      "field_of_study": "Physics",
+      "start_date": "2019-09-01",
+      "end_date": "2022-06-30",
+      "is_current": false,
+      "description": "Strong foundation in physics, mathematics, and scientific methodology. Developed critical thinking and analytical skills.",
+      "location": "Dar Bouazza, Morocco",
+      "achievements": "Graduated with honors, Science competition awards",
+      "skills": "Physics, Mathematics, Scientific Method, Problem Solving",
+      "order_position": 3,
+      "is_active": true
+    }
+  ]
+}
