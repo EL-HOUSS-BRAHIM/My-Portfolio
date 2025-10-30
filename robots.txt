@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /private/
-Disallow: /.well-known/appspecific/
-Allow: /.well-known/security.txt
-Sitemap: https://brahim-elhouss.me/sitemap.xml
