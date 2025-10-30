@@ -1,13 +1,16 @@
 name: Portfolio CI/CD Pipeline
 
-on:
-  push:
-    branches: [ main, develop ]
-  pull_request:
-    branches: [ main ]
-  schedule:
-    # Run daily at 2 AM UTC for security checks
-    - cron: '0 2 * * *'
+# Temporarily disabled
+# on:
+#   push:
+#     branches: [ main, develop ]
+#   pull_request:
+#     branches: [ main ]
+#   schedule:
+#     # Run daily at 2 AM UTC for security checks
+#     - cron: '0 2 * * *'
+
+on: workflow_dispatch
 
 env:
   PHP_VERSION: '8.2'
