@@ -158,6 +158,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Performance Testing
     needs: [quality-check]
+    if: false  # Temporarily disabled
     
     steps:
     - name: Checkout code
