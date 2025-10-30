@@ -8,44 +8,37 @@
 namespace Portfolio\Utils;
 
 class Captcha {
-    private static $secretKey;
-    private static $verifyUrl = 'https://www.google.com/recaptcha/api/siteverify';
+    private string $secretKey;
+    private string $verifyUrl = 'https://www.google.com/recaptcha/api/siteverify';
     
     /**
      * Initialize with secret key
      */
-    public static function init($secretKey) {
-        self::$secretKey = $secretKey;
+    public function __construct(string $secretKey) {
+        $this->secretKey = $secretKey;
     }
     
     /**
      * Verify reCAPTCHA response
      * 
      * @param string $response The reCAPTCHA response token
-     * @param string $remoteIp Optional remote IP address
-     * @return array Verification result with success status and error codes
+     * @param string|null $remoteIp Optional remote IP address
+     * @return bool True if verification succeeds, false otherwise
      */
-    public static function verify($response, $remoteIp = null) {
+    public function verify(string $response, ?string $remoteIp = null): bool {
         if (empty($response)) {
-            return [
-                'success' => false,
-                'error-codes' => ['missing-input-response'],
-                'message' => 'reCAPTCHA response is required'
-            ];
+            error_log('CAPTCHA: Empty response provided');
+            return false;
         }
         
-        if (empty(self::$secretKey)) {
+        if (empty($this->secretKey)) {
             error_log('CAPTCHA: Secret key not configured');
-            return [
-                'success' => false,
-                'error-codes' => ['missing-input-secret'],
-                'message' => 'reCAPTCHA configuration error'
-            ];
+            return false;
         }
         
         // Prepare POST data
         $postData = [
-            'secret' => self::$secretKey,
+            'secret' => $this->secretKey,
             'response' => $response
         ];
         
@@ -55,7 +48,7 @@ class Captcha {
         
         // Make request to Google's verify endpoint
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, self::$verifyUrl);
+        curl_setopt($ch, CURLOPT_URL, $this->verifyUrl);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -70,75 +63,29 @@ class Captcha {
         
         if ($error) {
             error_log('CAPTCHA: cURL error: ' . $error);
-            return [
-                'success' => false,
-                'error-codes' => ['network-error'],
-                'message' => 'Network error during CAPTCHA verification'
-            ];
+            return false;
         }
         
         if ($httpCode !== 200) {
             error_log('CAPTCHA: HTTP error: ' . $httpCode);
-            return [
-                'success' => false,
-                'error-codes' => ['http-error'],
-                'message' => 'HTTP error during CAPTCHA verification'
-            ];
+            return false;
         }
         
         $result = json_decode($response, true);
         
-        if (!$result) {
+        if (!$result || !is_array($result)) {
             error_log('CAPTCHA: Invalid JSON response');
-            return [
-                'success' => false,
-                'error-codes' => ['invalid-json'],
-                'message' => 'Invalid response from CAPTCHA service'
-            ];
+            return false;
         }
         
-        // Add user-friendly error messages
-        if (!$result['success']) {
-            $message = self::getErrorMessage($result['error-codes'] ?? []);
-            $result['message'] = $message;
+        $success = $result['success'] ?? false;
+        
+        if (!$success) {
+            $errorCodes = $result['error-codes'] ?? [];
+            error_log('CAPTCHA: Verification failed: ' . implode(', ', $errorCodes));
         }
         
-        return $result;
+        return $success;
     }
     
-    /**
-     * Get user-friendly error message based on error codes
-     */
-    private static function getErrorMessage($errorCodes) {
-        $messages = [
-            'missing-input-secret' => 'CAPTCHA configuration error',
-            'invalid-input-secret' => 'CAPTCHA configuration error',
-            'missing-input-response' => 'Please complete the CAPTCHA verification',
-            'invalid-input-response' => 'CAPTCHA verification failed. Please try again',
-            'bad-request' => 'Invalid CAPTCHA request',
-            'timeout-or-duplicate' => 'CAPTCHA verification expired. Please try again'
-        ];
-        
-        foreach ($errorCodes as $code) {
-            if (isset($messages[$code])) {
-                return $messages[$code];
-            }
-        }
-        
-        return 'CAPTCHA verification failed. Please try again';
-    }
-    
-    /**
-     * Validate reCAPTCHA response and throw exception on failure
-     */
-    public static function validateOrFail($response, $remoteIp = null) {
-        $result = self::verify($response, $remoteIp);
-        
-        if (!$result['success']) {
-            $message = $result['message'] ?? 'CAPTCHA verification failed';
-            throw new \Exception($message);
-        }
-        
-        return true;
-    }
 }
