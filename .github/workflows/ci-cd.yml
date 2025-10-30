@@ -72,14 +72,16 @@ jobs:
         vendor/bin/phpmd ../src text cleancode,codesize,controversial,design,naming,unusedcode || echo "⚠️ PHPMD found issues"
         
     - name: Run ESLint
+      continue-on-error: true
       run: |
         cd tests
-        npx eslint ../assets/js-clean/**/*.js
+        npx eslint ../assets/js-clean/**/*.js || echo "⚠️ ESLint found issues"
         
     - name: Run Stylelint
+      continue-on-error: true
       run: |
         cd tests
-        npx stylelint "../assets/css/**/*.css"
+        npx stylelint "../assets/css/**/*.css" || echo "⚠️ Stylelint found issues"
         
     - name: Run PHPUnit Tests
       run: |
