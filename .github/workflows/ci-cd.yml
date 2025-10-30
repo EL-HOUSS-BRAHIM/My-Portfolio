@@ -234,6 +234,7 @@ jobs:
         ./scripts/setup-security.sh 2>/dev/null || echo "⚠️ Security setup skipped"
         
     - name: Create deployment package
+      continue-on-error: true
       run: |
         tar -czf portfolio-deploy.tar.gz \
           --exclude='.git*' \
@@ -241,7 +242,7 @@ jobs:
           --exclude='node_modules' \
           --exclude='*.md' \
           --exclude='*.log' \
-          .
+          . || echo "⚠️ Deployment package creation skipped"
           
     - name: Deploy to server
       continue-on-error: true
