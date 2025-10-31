@@ -115,6 +115,14 @@ install_dependencies() {
     case $PKG_MANAGER in
         apt)
             sudo apt update
+            
+            # Add Ondřej Surý PPA for latest PHP versions
+            print_info "Adding PHP repository..."
+            sudo apt install -y software-properties-common
+            sudo add-apt-repository -y ppa:ondrej/php
+            sudo apt update
+            
+            print_info "Installing packages..."
             sudo apt install -y \
                 nginx \
                 php8.2-fpm \
