@@ -5,6 +5,21 @@
 # ====================================
 # This script sets up production and staging servers
 # and generates GitHub secrets for CI/CD deployment
+#
+# Usage Examples:
+#   Basic setup:
+#     ./bootstrap-server.sh
+#
+#   Custom app name (creates deploy-portfolio user):
+#     APP_NAME="portfolio" ./bootstrap-server.sh
+#
+#   Multiple apps on same server:
+#     APP_NAME="portfolio" DOMAIN="site1.com" ./bootstrap-server.sh
+#     APP_NAME="blog" DOMAIN="blog.com" DEPLOY_USER="deploy-blog" ./bootstrap-server.sh
+#     APP_NAME="api" DOMAIN="api.com" DEPLOY_USER="deploy-api" ./bootstrap-server.sh
+#
+#   Custom deploy user:
+#     DEPLOY_USER="deploy-myapp" ./bootstrap-server.sh
 
 set -e
 
@@ -16,15 +31,16 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 # Configuration
+APP_NAME="${APP_NAME:-portfolio}"
 DOMAIN="${DOMAIN:-brahim-elhouss.me}"
 STAGING_DOMAIN="${STAGING_DOMAIN:-staging.brahim-elhouss.me}"
-PRODUCTION_PATH="/var/www/portfolio"
-STAGING_PATH="/var/www/staging-portfolio"
-DEPLOY_USER="${DEPLOY_USER:-deploy}"
+PRODUCTION_PATH="${PRODUCTION_PATH:-/var/www/$APP_NAME}"
+STAGING_PATH="${STAGING_PATH:-/var/www/staging-$APP_NAME}"
+DEPLOY_USER="${DEPLOY_USER:-deploy-$APP_NAME}"
 SSH_PORT="${SSH_PORT:-22}"
 
-# Output directory for secrets
-SECRETS_DIR="./deployment-secrets"
+# Output directory for secrets (app-specific to avoid conflicts)
+SECRETS_DIR="./deployment-secrets-${APP_NAME}"
 mkdir -p "$SECRETS_DIR"
 
 print_header() {
@@ -243,7 +259,7 @@ configure_nginx() {
     print_header "Configuring Nginx"
     
     # Production config
-    sudo tee /etc/nginx/sites-available/portfolio > /dev/null <<EOF
+    sudo tee /etc/nginx/sites-available/$APP_NAME > /dev/null <<EOF
 server {
     listen 80;
     listen [::]:80;
@@ -259,8 +275,8 @@ server {
     add_header Referrer-Policy "strict-origin-when-cross-origin" always;
     
     # Logging
-    access_log /var/log/nginx/portfolio_access.log;
-    error_log /var/log/nginx/portfolio_error.log;
+    access_log /var/log/nginx/${APP_NAME}_access.log;
+    error_log /var/log/nginx/${APP_NAME}_error.log;
     
     # Main location
     location / {
@@ -293,7 +309,7 @@ server {
 EOF
     
     # Staging config
-    sudo tee /etc/nginx/sites-available/portfolio-staging > /dev/null <<EOF
+    sudo tee /etc/nginx/sites-available/$APP_NAME-staging > /dev/null <<EOF
 server {
     listen 80;
     listen [::]:80;
@@ -308,8 +324,8 @@ server {
     add_header X-Robots-Tag "noindex, nofollow" always;
     
     # Logging
-    access_log /var/log/nginx/portfolio_staging_access.log;
-    error_log /var/log/nginx/portfolio_staging_error.log;
+    access_log /var/log/nginx/${APP_NAME}_staging_access.log;
+    error_log /var/log/nginx/${APP_NAME}_staging_error.log;
     
     # Basic auth for staging
     auth_basic "Staging Area";
@@ -333,8 +349,8 @@ server {
 EOF
     
     # Enable sites
-    sudo ln -sf /etc/nginx/sites-available/portfolio /etc/nginx/sites-enabled/
-    sudo ln -sf /etc/nginx/sites-available/portfolio-staging /etc/nginx/sites-enabled/
+    sudo ln -sf /etc/nginx/sites-available/$APP_NAME /etc/nginx/sites-enabled/
+    sudo ln -sf /etc/nginx/sites-available/$APP_NAME-staging /etc/nginx/sites-enabled/
     
     # Create htpasswd for staging
     STAGING_PASSWORD=$(openssl rand -base64 16)
@@ -375,17 +391,17 @@ configure_fail2ban() {
     sudo systemctl enable fail2ban
     sudo systemctl start fail2ban
     
-    # Create nginx jail
-    sudo tee /etc/fail2ban/jail.d/nginx.conf > /dev/null <<EOF
-[nginx-http-auth]
+    # Create nginx jail for this app
+    sudo tee /etc/fail2ban/jail.d/nginx-$APP_NAME.conf > /dev/null <<EOF
+[nginx-http-auth-$APP_NAME]
 enabled = true
 port = http,https
-logpath = /var/log/nginx/portfolio*error.log
+logpath = /var/log/nginx/${APP_NAME}*error.log
 
-[nginx-noscript]
+[nginx-noscript-$APP_NAME]
 enabled = true
 port = http,https
-logpath = /var/log/nginx/portfolio*access.log
+logpath = /var/log/nginx/${APP_NAME}*access.log
 EOF
     
     sudo systemctl restart fail2ban
@@ -415,12 +431,12 @@ get_server_info() {
     
     # Save server info
     cat > "$SECRETS_DIR/server_info.txt" <<EOF
-Server Information
-==================
+Server Information for: $APP_NAME
+==================================
 
 Public IP: $PUBLIC_IP
 SSH Port: $ACTUAL_SSH_PORT
-Deploy User: $DEPLOY_USER
+Deploy User: $DEPLOY_USER (dedicated for $APP_NAME)
 
 Production Domain: $DOMAIN
 Production Path: $PRODUCTION_PATH
@@ -434,6 +450,10 @@ DNS Configuration Required:
 $DOMAIN          A    $PUBLIC_IP
 www.$DOMAIN      A    $PUBLIC_IP
 $STAGING_DOMAIN  A    $PUBLIC_IP
+
+NOTE: This deploy user ($DEPLOY_USER) is isolated for $APP_NAME only.
+You can run this script again with different APP_NAME to create
+separate deploy users for other applications on the same server.
 EOF
     
     print_success "Server information saved"
@@ -449,11 +469,13 @@ generate_github_secrets() {
     
     # Create secrets file
     cat > "$SECRETS_DIR/github_secrets.txt" <<EOF
-GitHub Repository Secrets
-=========================
+GitHub Repository Secrets for: $APP_NAME
+=========================================
 
 Add these secrets to your GitHub repository:
 Settings > Secrets and variables > Actions > New repository secret
+
+Deploy User: $DEPLOY_USER (isolated for $APP_NAME)
 
 Production Deployment Secrets:
 -------------------------------
@@ -588,6 +610,9 @@ print_final_instructions() {
     print_success "Server bootstrap completed successfully!"
     echo ""
     
+    print_info "Application: $APP_NAME"
+    print_info "Deploy User: $DEPLOY_USER"
+    echo ""
     print_info "Next Steps:"
     echo ""
     echo "1. Configure DNS records (see $SECRETS_DIR/server_info.txt)"
@@ -597,6 +622,9 @@ print_final_instructions() {
     echo "   sudo certbot --nginx -d $DOMAIN -d www.$DOMAIN"
     echo "   sudo certbot --nginx -d $STAGING_DOMAIN"
     echo "5. Test deployment: $SECRETS_DIR/test_deployment.sh"
+    echo ""
+    print_info "To setup another app on this server:"
+    echo "   APP_NAME=\"another-app\" DOMAIN=\"another.com\" ./bootstrap-server.sh"
     echo ""
     
     print_warning "Security Reminders:"
@@ -626,6 +654,13 @@ main() {
 ╚═══════════════════════════════════════════════╝
 EOF
     echo -e "${NC}"
+    
+    echo ""
+    print_info "Application Name: $APP_NAME"
+    print_info "Deploy User: $DEPLOY_USER"
+    print_info "Production Path: $PRODUCTION_PATH"
+    print_info "Staging Path: $STAGING_PATH"
+    echo ""
     
     check_root
     detect_os
