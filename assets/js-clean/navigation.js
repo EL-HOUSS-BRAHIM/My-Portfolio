@@ -83,10 +83,15 @@ class NavigationController {
      * Handle scroll events
      */
     handleScroll() {
+        // Get the header element
+        const header = document.querySelector('header[role="banner"]');
+        
         // Update navbar appearance
         if (window.scrollY > 50) {
+            if (header) header.classList.add('scrolled');
             this.navbar.classList.add('nav--scrolled');
         } else {
+            if (header) header.classList.remove('scrolled');
             this.navbar.classList.remove('nav--scrolled');
         }
 

@@ -421,25 +421,15 @@ class HeroController {
     handleScroll() {
         const scrollY = window.scrollY;
         
-        // Parallax effect for hero elements
-        if (this.hero && scrollY < window.innerHeight) {
-            const heroText = this.hero.querySelector('.hero__text');
-            const heroVisual = this.hero.querySelector('.hero__visual');
-            
-            if (heroText) {
-                heroText.style.transform = `translateY(${scrollY * 0.3}px)`;
-            }
-            
-            if (heroVisual) {
-                heroVisual.style.transform = `translateY(${scrollY * 0.2}px)`;
-            }
-        }
-
+        // Disable parallax effect - it causes scrolling issues
+        // Keep hero elements fixed in place
+        
         // Update scroll indicator opacity
         if (this.scrollIndicator) {
             const opacity = Math.max(0, 1 - scrollY / 300);
             this.scrollIndicator.style.opacity = opacity;
             this.scrollIndicator.style.visibility = opacity > 0.1 ? 'visible' : 'hidden';
+            this.scrollIndicator.style.pointerEvents = opacity > 0.1 ? 'auto' : 'none';
         }
     }
 

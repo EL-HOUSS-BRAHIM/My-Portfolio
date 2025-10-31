@@ -90,8 +90,11 @@ class MobileController {
         this.isMenuOpen = !this.isMenuOpen;
         
         // Toggle classes
-        this.navMenu.classList.toggle('active', this.isMenuOpen);
-        this.navToggle.classList.toggle('active', this.isMenuOpen);
+        this.navMenu.classList.toggle('show-menu', this.isMenuOpen);
+        this.body.classList.toggle('nav-open', this.isMenuOpen);
+        
+        // Create/remove overlay
+        this.toggleOverlay(this.isMenuOpen);
         
         // Handle body scroll
         this.body.style.overflow = this.isMenuOpen ? 'hidden' : '';
@@ -111,6 +114,29 @@ class MobileController {
         
         console.debug(`[MobileController] Navigation ${this.isMenuOpen ? 'opened' : 'closed'}`);
     }
+    
+    /**
+     * Toggle mobile navigation overlay
+     */
+    toggleOverlay(show) {
+        let overlay = document.querySelector('.mobile-nav-overlay');
+        
+        if (show && !overlay) {
+            overlay = document.createElement('div');
+            overlay.className = 'mobile-nav-overlay';
+            document.body.appendChild(overlay);
+            
+            // Trigger reflow to enable transition
+            overlay.offsetHeight;
+            overlay.classList.add('active');
+            
+            // Close menu when clicking overlay
+            overlay.addEventListener('click', () => this.closeNavigation());
+        } else if (!show && overlay) {
+            overlay.classList.remove('active');
+            setTimeout(() => overlay.remove(), 300);
+        }
+    }
 
     /**
      * Close the mobile navigation
@@ -121,8 +147,11 @@ class MobileController {
         this.isMenuOpen = false;
         
         // Remove classes
-        this.navMenu.classList.remove('active');
-        this.navToggle.classList.remove('active');
+        this.navMenu.classList.remove('show-menu');
+        this.body.classList.remove('nav-open');
+        
+        // Remove overlay
+        this.toggleOverlay(false);
         
         // Re-enable body scroll
         this.body.style.overflow = '';

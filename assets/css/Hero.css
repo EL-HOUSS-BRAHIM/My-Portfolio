@@ -4,6 +4,7 @@
     padding-left: clamp(1rem, 4vw, 6rem);
     padding-right: clamp(1rem, 4vw, 6rem);
     padding-bottom: 2rem;
+    height: 100vh;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -695,8 +696,9 @@
 
 .hero__badge {
     position: absolute;
-    bottom: 15%;
-    right: 15%;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%) rotate(10deg);
     background-color: var(--color-accent-orange);
     color: var(--color-white);
     padding: 0.5rem 1rem;
@@ -706,18 +708,17 @@
     align-items: center;
     gap: 0.5rem;
     font-size: 0.9rem;
-    transform: rotate(10deg);
     opacity: 0;
     animation: slideInFromBottom 0.8s ease-out 1.4s forwards;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
     z-index: 3;
-    /* Center the badge on the circular profile image */
+    /* Center the badge horizontally */
     transform-origin: center center;
 }
 
 .hero__badge:hover {
-    transform: rotate(10deg) scale(1.05);
+    transform: translateX(-50%) rotate(10deg) scale(1.05);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
@@ -776,7 +777,7 @@
 }
 
 .scroll-indicator {
-    position: absolute;
+    position: fixed;
     bottom: 2rem;
     left: 50%;
     transform: translateX(-50%);
@@ -790,6 +791,8 @@
     opacity: 0;
     animation: slideInFromBottom 0.8s ease-out 2s forwards;
     transition: all 0.3s ease;
+    z-index: 100;
+    cursor: pointer;
 }
 
 .scroll-indicator:hover {

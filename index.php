@@ -1,5 +1,8 @@
 <?php
 require_once 'src/config/Config.php';
+
+use Portfolio\Config\Config;
+
 $config = Config::getInstance();
 $recaptchaSiteKey = $config->get('recaptcha.site_key');
 $recaptchaEnabled = $config->get('recaptcha.enabled');

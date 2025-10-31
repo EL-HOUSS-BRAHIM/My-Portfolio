@@ -8,97 +8,110 @@
     
     /* === COLOR SYSTEM === */
     
-    /* Primary Colors */
-    --color-primary-50: #eef2ff;
-    --color-primary-100: #e0e7ff;
-    --color-primary-200: #c7d2fe;
-    --color-primary-300: #a5b4fc;
-    --color-primary-400: #818cf8;
-    --color-primary-500: #667eea;  /* Main primary */
-    --color-primary-600: #5a67d8;
-    --color-primary-700: #4c51bf;
-    --color-primary-800: #434190;
-    --color-primary-900: #3c366b;
+    /* Primary Colors - Cosmic Blue/Cyan */
+    --color-primary-50: #e6f7ff;
+    --color-primary-100: #b3ecff;
+    --color-primary-200: #80e1ff;
+    --color-primary-300: #4dd0ff;
+    --color-primary-400: #1abfff;
+    --color-primary-500: #00d9ff;  /* Main primary - Electric Cyan */
+    --color-primary-600: #0099cc;
+    --color-primary-700: #007399;
+    --color-primary-800: #004d66;
+    --color-primary-900: #002633;
     
-    /* Secondary Colors */
-    --color-secondary-50: #fef5e7;
-    --color-secondary-100: #fde8c4;
-    --color-secondary-200: #fbd38d;
-    --color-secondary-300: #f6ad55;
-    --color-secondary-400: #ed8936;  /* Main secondary */
-    --color-secondary-500: #dd6b20;
-    --color-secondary-600: #c05621;
-    --color-secondary-700: #9c4221;
-    --color-secondary-800: #7b341e;
-    --color-secondary-900: #652b19;
+    /* Secondary Colors - Vibrant Purple/Magenta */
+    --color-secondary-50: #ffe6ff;
+    --color-secondary-100: #ffb3ff;
+    --color-secondary-200: #ff80ff;
+    --color-secondary-300: #ff4dff;
+    --color-secondary-400: #ff1aff;
+    --color-secondary-500: #d946ef;  /* Main secondary - Magenta */
+    --color-secondary-600: #a020f0;
+    --color-secondary-700: #8b00ff;
+    --color-secondary-800: #6600cc;
+    --color-secondary-900: #4d0099;
     
-    /* Accent Colors */
-    --color-accent-red-50: #fed7d7;
-    --color-accent-red-100: #feb2b2;
-    --color-accent-red-200: #fc8181;
-    --color-accent-red-300: #f56565;  /* Main accent red */
-    --color-accent-red-400: #e53e3e;
-    --color-accent-red-500: #c53030;
-    --color-accent-red-600: #9b2c2c;
-    --color-accent-red-700: #742a2a;
-    --color-accent-red-800: #4a1c1c;
-    --color-accent-red-900: #1a0d0d;
+    /* Accent Colors - Neon Pink */
+    --color-accent-red-50: #ffe6f0;
+    --color-accent-red-100: #ffb3d9;
+    --color-accent-red-200: #ff80c2;
+    --color-accent-red-300: #ff4da6;  /* Main accent - Neon Pink */
+    --color-accent-red-400: #ff0080;
+    --color-accent-red-500: #ff006e;
+    --color-accent-red-600: #cc0059;
+    --color-accent-red-700: #990044;
+    --color-accent-red-800: #66002e;
+    --color-accent-red-900: #330017;
     
-    --color-accent-green-50: #f0fff4;
-    --color-accent-green-100: #c6f6d5;
-    --color-accent-green-200: #9ae6b4;
-    --color-accent-green-300: #68d391;
-    --color-accent-green-400: #48bb78;  /* Success green */
-    --color-accent-green-500: #38a169;
-    --color-accent-green-600: #2f855a;
-    --color-accent-green-700: #276749;
-    --color-accent-green-800: #22543d;
-    --color-accent-green-900: #1c4532;
+    /* Tertiary Colors - Orange/Warm */
+    --color-accent-orange-50: #fff4e6;
+    --color-accent-orange-100: #ffd9b3;
+    --color-accent-orange-200: #ffbf80;
+    --color-accent-orange-300: #ffa44d;
+    --color-accent-orange-400: #ff8c42;
+    --color-accent-orange-500: #ff6b35;  /* Warm Orange */
+    --color-accent-orange-600: #ff4500;
+    --color-accent-orange-700: #cc3700;
+    --color-accent-orange-800: #992900;
+    --color-accent-orange-900: #661c00;
     
-    /* Neutral Colors (Dark Theme Base) */
-    --color-neutral-50: #f7fafc;
-    --color-neutral-100: #edf2f7;
-    --color-neutral-200: #e2e8f0;
-    --color-neutral-300: #cbd5e0;
-    --color-neutral-400: #a0aec0;
-    --color-neutral-500: #718096;
-    --color-neutral-600: #4a5568;
-    --color-neutral-700: #2d3748;
-    --color-neutral-800: #1a202c;
-    --color-neutral-900: #171923;
+    /* Success Green - Keep existing */
+    --color-accent-green-50: #e6fff2;
+    --color-accent-green-100: #b3ffd9;
+    --color-accent-green-200: #80ffc0;
+    --color-accent-green-300: #4dffa6;
+    --color-accent-green-400: #00ff88;  /* Success green */
+    --color-accent-green-500: #00cc6e;
+    --color-accent-green-600: #009954;
+    --color-accent-green-700: #00663a;
+    --color-accent-green-800: #003320;
+    --color-accent-green-900: #001a10;
     
-    /* Semantic Color Aliases (Dark Theme) */
+    /* Neutral Colors (Dark Theme Base) - Deep Space Blues */
+    --color-neutral-50: #f0f4ff;
+    --color-neutral-100: #d9e4ff;
+    --color-neutral-200: #b3c9ff;
+    --color-neutral-300: #8caeff;
+    --color-neutral-400: #6693ff;
+    --color-neutral-500: #4d7acc;
+    --color-neutral-600: #3d5fa3;
+    --color-neutral-700: #2d4a8c;
+    --color-neutral-800: #1a2850;
+    --color-neutral-900: #0a1428;
+    
+    /* Semantic Color Aliases (Dark Theme - Night/Space) */
     --color-primary: var(--color-primary-500);
     --color-primary-light: var(--color-primary-400);
     --color-primary-dark: var(--color-primary-600);
     
-    --color-secondary: var(--color-secondary-400);
-    --color-secondary-light: var(--color-secondary-300);
-    --color-secondary-dark: var(--color-secondary-500);
+    --color-secondary: var(--color-secondary-500);
+    --color-secondary-light: var(--color-secondary-400);
+    --color-secondary-dark: var(--color-secondary-600);
     
-    --color-accent-orange: var(--color-secondary-400);
-    --color-accent-red: var(--color-accent-red-300);
+    --color-accent-orange: var(--color-accent-orange-500);
+    --color-accent-red: var(--color-accent-red-400);
     --color-success: var(--color-accent-green-400);
-    --color-warning: var(--color-secondary-400);
-    --color-error: var(--color-accent-red-300);
-    --color-info: var(--color-primary-400);
+    --color-warning: var(--color-accent-orange-500);
+    --color-error: var(--color-accent-red-400);
+    --color-info: var(--color-primary-500);
     
-    /* Surface Colors */
-    --color-background: var(--color-neutral-800);
-    --color-background-secondary: var(--color-neutral-900);
-    --color-surface: var(--color-neutral-700);
-    --color-surface-light: var(--color-neutral-600);
-    --color-surface-lighter: var(--color-neutral-500);
+    /* Surface Colors - Deep Space Theme */
+    --color-background: var(--color-neutral-900);
+    --color-background-secondary: #05091a;
+    --color-surface: var(--color-neutral-800);
+    --color-surface-light: var(--color-neutral-700);
+    --color-surface-lighter: var(--color-neutral-600);
     
     /* Text Colors */
-    --color-text-primary: var(--color-neutral-200);
-    --color-text-secondary: var(--color-neutral-400);
-    --color-text-tertiary: var(--color-neutral-500);
-    --color-text-inverse: var(--color-neutral-800);
+    --color-text-primary: var(--color-neutral-100);
+    --color-text-secondary: var(--color-neutral-300);
+    --color-text-tertiary: var(--color-neutral-400);
+    --color-text-inverse: var(--color-neutral-900);
     
     /* Border Colors */
-    --color-border: var(--color-neutral-600);
-    --color-border-light: var(--color-neutral-500);
+    --color-border: var(--color-neutral-700);
+    --color-border-light: var(--color-neutral-600);
     --color-border-dark: var(--color-neutral-700);
     --color-border-focus: var(--color-primary-400);
     
@@ -332,7 +345,191 @@
     --breakpoint-2xl: 1536px;
 }
 
+/* === LIGHT THEME - Day Sky Version === */
+[data-theme="light"] {
+    /* Surface Colors - Light Sky/Cloud Colors */
+    --color-background: #f0f4ff;
+    --color-background-secondary: #ffffff;
+    --color-surface: #ffffff;
+    --color-surface-light: #f0f4ff;
+    --color-surface-lighter: #d9e4ff;
+    
+    /* Text Colors - Deep Blues for contrast */
+    --color-text-primary: #0a1428;
+    --color-text-secondary: #1a2850;
+    --color-text-tertiary: #2d4a8c;
+    --color-text-inverse: #ffffff;
+    
+    /* Accent adjustments for light theme - more saturated */
+    --color-primary: #0099cc;
+    --color-primary-light: #00d9ff;
+    --color-secondary: #a020f0;
+    --color-secondary-light: #d946ef;
+    --color-accent-orange: #ff6b35;
+    --color-accent-red: #ff0080;
+    
+    /* Border Colors */
+    --color-border: #b3c9ff;
+    --color-border-light: #d9e4ff;
+    --color-border-dark: #8caeff;
+    --color-border-focus: var(--color-primary-500);
+    
+    /* Shadow adjustments - colorful glows */
+    --shadow-xs: 0 1px 2px 0 rgba(0, 153, 204, 0.08);
+    --shadow-sm: 0 1px 3px 0 rgba(0, 153, 204, 0.12), 0 1px 2px 0 rgba(217, 70, 239, 0.08);
+    --shadow-base: 0 4px 6px -1px rgba(0, 153, 204, 0.15), 0 2px 4px -1px rgba(217, 70, 239, 0.1);
+    --shadow-md: 0 10px 15px -3px rgba(0, 217, 255, 0.2), 0 4px 6px -2px rgba(217, 70, 239, 0.15);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 217, 255, 0.25), 0 10px 10px -5px rgba(217, 70, 239, 0.15);
+    --shadow-xl: 0 25px 50px -12px rgba(0, 153, 204, 0.3);
+    --shadow-2xl: 0 50px 100px -20px rgba(0, 153, 204, 0.3);
+    
+    /* Gradient shadows for cards */
+    --shadow-primary: 0 10px 15px -3px rgba(0, 217, 255, 0.3), 0 4px 6px -2px rgba(0, 153, 204, 0.2);
+    --shadow-secondary: 0 10px 15px -3px rgba(217, 70, 239, 0.3), 0 4px 6px -2px rgba(160, 32, 240, 0.2);
+}
 
+/* Light theme specific adjustments */
+[data-theme="light"] body {
+    background: linear-gradient(135deg, #f0f4ff 0%, #d9e4ff 50%, #b3c9ff 100%);
+}
+
+[data-theme="light"] header[role="banner"] {
+    background-color: rgba(255, 255, 255, 0.85);
+    border-bottom-color: rgba(0, 217, 255, 0.2);
+    box-shadow: 0 2px 10px rgba(0, 153, 204, 0.1);
+}
+
+[data-theme="light"] header.scrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 4px 20px rgba(0, 217, 255, 0.2);
+}
+
+[data-theme="light"] .nav__link:hover,
+[data-theme="light"] .nav__link.active {
+    background-color: rgba(0, 217, 255, 0.12);
+    color: #0099cc;
+}
+
+[data-theme="light"] .theme-toggle,
+[data-theme="light"] .nav__toggle {
+    background: rgba(240, 244, 255, 0.9);
+    border-color: rgba(0, 217, 255, 0.3);
+}
+
+[data-theme="light"] .theme-toggle:hover,
+[data-theme="light"] .nav__toggle:hover {
+    background: rgba(217, 228, 255, 1);
+    border-color: #00d9ff;
+    box-shadow: 0 0 12px rgba(0, 217, 255, 0.3);
+}
+
+[data-theme="light"] .cta-button {
+    background: linear-gradient(135deg, #00d9ff, #0099cc);
+    box-shadow: 0 4px 12px rgba(0, 217, 255, 0.4);
+}
+
+[data-theme="light"] .cta-button:hover {
+    background: linear-gradient(135deg, #4dd0ff, #00d9ff);
+    box-shadow: 0 6px 20px rgba(0, 217, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+/* Light theme - mobile menu */
+[data-theme="light"] .nav__menu {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(240, 244, 255, 0.98));
+    border-left-color: rgba(0, 217, 255, 0.3);
+    box-shadow: -4px 0 20px rgba(0, 217, 255, 0.15);
+}
+
+[data-theme="light"] .mobile-nav-overlay {
+    background-color: rgba(10, 20, 40, 0.5);
+}
+
+/* Light theme - scrollbar */
+[data-theme="light"] body::-webkit-scrollbar-track {
+    background: #f0f4ff;
+}
+
+[data-theme="light"] body::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #00d9ff, #0099cc);
+    border-color: #f0f4ff;
+}
+
+[data-theme="light"] body::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #4dd0ff, #00d9ff);
+}
+
+/* Light theme - sections and cards */
+[data-theme="light"] section {
+    background-color: transparent;
+}
+
+[data-theme="light"] .card,
+[data-theme="light"] .project-card,
+[data-theme="light"] .skill-item,
+[data-theme="light"] .experience-item {
+    background-color: var(--color-surface);
+    border-color: var(--color-border);
+    box-shadow: var(--shadow-sm);
+}
+
+[data-theme="light"] .card:hover,
+[data-theme="light"] .project-card:hover,
+[data-theme="light"] .skill-item:hover {
+    box-shadow: var(--shadow-md);
+}
+
+/* Light theme - buttons */
+[data-theme="light"] .btn {
+    box-shadow: var(--shadow-sm);
+}
+
+[data-theme="light"] .btn:hover {
+    box-shadow: var(--shadow-md);
+}
+
+[data-theme="light"] .btn--secondary {
+    background-color: var(--color-surface);
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-border);
+}
+
+[data-theme="light"] .btn--outline {
+    background-color: transparent;
+    border: 2px solid var(--color-primary);
+    color: var(--color-primary);
+}
+
+[data-theme="light"] .btn--outline:hover {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+/* Light theme - forms */
+[data-theme="light"] input,
+[data-theme="light"] textarea,
+[data-theme="light"] select {
+    background-color: var(--color-surface);
+    border-color: var(--color-border);
+    color: var(--color-text-primary);
+}
+
+[data-theme="light"] input:focus,
+[data-theme="light"] textarea:focus,
+[data-theme="light"] select:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* Light theme - floating shapes */
+[data-theme="light"] .shape {
+    opacity: 0.03;
+}
+
+/* Light theme - loading screen */
+[data-theme="light"] .loading-screen {
+    background: #f7fafc;
+}
 
 /* Final mobile optimizations to prevent overflow */
 * {
@@ -639,20 +836,26 @@ section.testimonials::before {
 }
 
 .skip-link {
-     position: absolute;
-     top: -100px;
-     left: 0;
-     background: var(--color-primary);
-     color: var(--color-white);
-     padding: 1rem;
-     z-index: 10000;
-     transition: top 0.3s ease-in-out;
-    
+    position: fixed;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: var(--color-white);
+    padding: 1rem 2rem;
+    border-radius: var(--radius-lg);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-base);
+    text-decoration: none;
+    z-index: 10001;
+    box-shadow: 0 10px 40px rgba(0, 217, 255, 0.5);
+    transition: all 0.3s ease-in-out;
 }
 
 .skip-link:focus {
-     top: 0;
-    
+    top: 1rem;
+    outline: 3px solid var(--color-primary);
+    outline-offset: 4px;
 }
 
 
@@ -1244,23 +1447,6 @@ section.testimonials::before {
 *:focus {
     outline: 2px solid var(--color-primary-500);
     outline-offset: 2px;
-}
-
-/* Skip links for accessibility */
-.skip-link {
-    position: absolute;
-    top: -40px;
-    left: 6px;
-    background: var(--color-primary-500);
-    color: var(--color-white);
-    padding: 8px;
-    text-decoration: none;
-    transition: top 0.3s;
-    z-index: 9999;
-}
-
-.skip-link:focus {
-    top: 6px;
 }
 
 /* Touch-friendly interactions */
