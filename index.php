@@ -1024,6 +1024,36 @@ $recaptchaEnabled = $config->get('recaptcha.enabled');
                 <div class="timeline">
                     <div class="timeline-item">
                         <div class="timeline-marker">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h3>Novate Ltd</h3>
+                                <span class="timeline-date">2024 - Present</span>
+                            </div>
+                            <div class="timeline-body">
+                                <h4>Full Stack Software Engineer & DevOps</h4>
+                                <p>
+                                    Started as a Frontend Developer and evolved into a Full Stack Software Engineer role, managing end-to-end development. 
+                                    Responsible for frontend, backend, database architecture, cloud infrastructure (GCP), and DevOps practices. 
+                                    Leading full development lifecycle from design to deployment and maintenance.
+                                </p>
+                                <div class="timeline-skills">
+                                    <span class="skill-badge">Frontend Development</span>
+                                    <span class="skill-badge">Backend Development</span>
+                                    <span class="skill-badge">Database Management</span>
+                                    <span class="skill-badge">GCP</span>
+                                    <span class="skill-badge">DevOps</span>
+                                    <span class="skill-badge">CI/CD</span>
+                                    <span class="skill-badge">Cloud Infrastructure</span>
+                                    <span class="skill-badge">Full Stack Architecture</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-marker">
                             <i class="fas fa-graduation-cap"></i>
                         </div>
                         <div class="timeline-content">
