@@ -177,19 +177,34 @@ check_sitemap() {
     echo ""
     echo -e "${BLUE}═══ sitemap.xml ═══${NC}"
     
+    # Try both /sitemap.xml and /public/sitemap.xml
     sitemap_url="${SITE_URL}/sitemap.xml"
     sitemap_status=$(curl -sI -o /dev/null -w "%{http_code}" "$sitemap_url")
+    
+    if [ "$sitemap_status" != "200" ]; then
+        sitemap_url="${SITE_URL}/public/sitemap.xml"
+        sitemap_status=$(curl -sI -o /dev/null -w "%{http_code}" "$sitemap_url")
+    fi
     
     if [ "$sitemap_status" = "200" ]; then
         echo -e "${GREEN}✓ sitemap.xml accessible${NC}"
         
-        # Count URLs in sitemap
-        url_count=$(curl -s "$sitemap_url" | grep -o "<loc>" | wc -l | tr -d ' ')
-        echo "  URLs found: $url_count"
+        # Check if it's actually XML (not HTML redirect)
+        content_type=$(curl -sI "$sitemap_url" | grep -i "content-type" | cut -d' ' -f2- | tr -d '\r')
+        sitemap_content=$(curl -s "$sitemap_url")
         
-        if [ "$VERBOSE" = "true" ]; then
-            echo "  URLs in sitemap:"
-            curl -s "$sitemap_url" | grep "<loc>" | sed 's/.*<loc>\(.*\)<\/loc>.*/  - \1/'
+        if echo "$sitemap_content" | grep -q "<?xml"; then
+            # Count URLs in sitemap
+            url_count=$(echo "$sitemap_content" | grep -o "<loc>" | wc -l | tr -d ' ')
+            echo "  URLs found: $url_count"
+            
+            if [ "$VERBOSE" = "true" ]; then
+                echo "  URLs in sitemap:"
+                echo "$sitemap_content" | grep "<loc>" | sed 's/.*<loc>\(.*\)<\/loc>.*/  - \1/'
+            fi
+        else
+            echo -e "  ${YELLOW}⚠ Sitemap returns HTML instead of XML (check redirect)${NC}"
+            echo "  Use: https://your-domain.com/public/sitemap.xml"
         fi
     else
         echo -e "${RED}✗ sitemap.xml not accessible (HTTP $sitemap_status)${NC}"
