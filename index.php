@@ -1085,6 +1085,161 @@ $recaptchaEnabled = $config->get('recaptcha.enabled');
                     
                     <div class="timeline-item">
                         <div class="timeline-marker">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h3>Google Foundations of Cybersecurity</h3>
+                                <span class="timeline-date">November 2025</span>
+                            </div>
+                            <div class="timeline-body">
+                                <h4>Cybersecurity Fundamentals</h4>
+                                <p>
+                                    Comprehensive introduction to cybersecurity concepts, security frameworks, and best practices. 
+                                    Learned about threat detection, risk management, and security protocols.
+                                </p>
+                                <div class="timeline-skills">
+                                    <span class="skill-badge">Cybersecurity</span>
+                                    <span class="skill-badge">Security Frameworks</span>
+                                    <span class="skill-badge">Threat Detection</span>
+                                    <span class="skill-badge">Risk Management</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-marker">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h3>Backend Professional Web Development</h3>
+                                <span class="timeline-date">August 2025</span>
+                            </div>
+                            <div class="timeline-body">
+                                <h4>Advanced Backend Development</h4>
+                                <p>
+                                    Professional-level backend development training covering server-side programming, 
+                                    database design, API development, and scalable application architecture.
+                                </p>
+                                <div class="timeline-skills">
+                                    <span class="skill-badge">Backend Development</span>
+                                    <span class="skill-badge">Server-Side Programming</span>
+                                    <span class="skill-badge">API Design</span>
+                                    <span class="skill-badge">Database Architecture</span>
+                                    <span class="skill-badge">Scalability</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-marker">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h3>Frontend Professional Web Development</h3>
+                                <span class="timeline-date">August 2025</span>
+                            </div>
+                            <div class="timeline-body">
+                                <h4>Advanced Frontend Development</h4>
+                                <p>
+                                    Professional frontend development training covering modern JavaScript frameworks, 
+                                    responsive design, UI/UX principles, and performance optimization.
+                                </p>
+                                <div class="timeline-skills">
+                                    <span class="skill-badge">Frontend Development</span>
+                                    <span class="skill-badge">React/Vue</span>
+                                    <span class="skill-badge">Responsive Design</span>
+                                    <span class="skill-badge">UI/UX</span>
+                                    <span class="skill-badge">Performance Optimization</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-marker">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h3>AI Starter Kit</h3>
+                                <span class="timeline-date">June 2025</span>
+                            </div>
+                            <div class="timeline-body">
+                                <h4>Artificial Intelligence Fundamentals</h4>
+                                <p>
+                                    Introduction to artificial intelligence concepts, machine learning basics, 
+                                    and practical applications of AI in modern software development.
+                                </p>
+                                <div class="timeline-skills">
+                                    <span class="skill-badge">Artificial Intelligence</span>
+                                    <span class="skill-badge">ML Basics</span>
+                                    <span class="skill-badge">AI Applications</span>
+                                    <span class="skill-badge">Neural Networks</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-marker">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h3>DevOps Bootcamp</h3>
+                                <span class="timeline-date">January 2025</span>
+                            </div>
+                            <div class="timeline-body">
+                                <h4>DevOps Engineering & Practices</h4>
+                                <p>
+                                    Intensive bootcamp covering DevOps methodologies, CI/CD pipelines, 
+                                    containerization, cloud infrastructure, and automated deployment strategies.
+                                </p>
+                                <div class="timeline-skills">
+                                    <span class="skill-badge">DevOps</span>
+                                    <span class="skill-badge">CI/CD</span>
+                                    <span class="skill-badge">Docker</span>
+                                    <span class="skill-badge">Kubernetes</span>
+                                    <span class="skill-badge">Cloud Infrastructure</span>
+                                    <span class="skill-badge">Automation</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-marker">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h3>Machine Learning</h3>
+                                <span class="timeline-date">May 2024</span>
+                            </div>
+                            <div class="timeline-body">
+                                <h4>Machine Learning Fundamentals</h4>
+                                <p>
+                                    Comprehensive training in machine learning algorithms, data analysis, 
+                                    model training, and practical implementation of ML solutions.
+                                </p>
+                                <div class="timeline-skills">
+                                    <span class="skill-badge">Machine Learning</span>
+                                    <span class="skill-badge">Data Analysis</span>
+                                    <span class="skill-badge">Model Training</span>
+                                    <span class="skill-badge">Python/Scikit-learn</span>
+                                    <span class="skill-badge">Algorithms</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-marker">
                             <i class="fas fa-university"></i>
                         </div>
                         <div class="timeline-content">
