@@ -6,6 +6,34 @@ use Portfolio\Config\Config;
 $config = Config::getInstance();
 $recaptchaSiteKey = $config->get('recaptcha.site_key');
 $recaptchaEnabled = $config->get('recaptcha.enabled');
+
+// Crawler-friendly headers
+header('X-Robots-Tag: index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
+header('Cache-Control: public, max-age=3600, must-revalidate');
+header('Vary: Accept-Encoding, User-Agent');
+
+// ETag for efficient caching
+$etag = md5_file(__FILE__);
+header('ETag: "' . $etag . '"');
+
+// Check if client has cached version
+if (isset($_SERVER['HTTP_IF_NONE_MATCH']) && $_SERVER['HTTP_IF_NONE_MATCH'] === '"' . $etag . '"') {
+    header('HTTP/1.1 304 Not Modified');
+    exit;
+}
+
+// Last-Modified header
+$lastModified = filemtime(__FILE__);
+header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $lastModified) . ' GMT');
+
+// Check if client has cached version based on time
+if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
+    $ifModifiedSince = strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']);
+    if ($lastModified <= $ifModifiedSince) {
+        header('HTTP/1.1 304 Not Modified');
+        exit;
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -61,7 +89,8 @@ $recaptchaEnabled = $config->get('recaptcha.enabled');
     <meta property="og:description" content="ALX-certified Full Stack Developer with expertise in Python, JavaScript, Node.js, React, and MongoDB. Passionate about building scalable applications.">
     
     <!-- Search Engine Verification -->
-    <meta name="google-site-verification" content="your-google-verification-code">
+    <!-- TODO: Replace with your actual Google Search Console verification code after adding property -->
+    <!-- <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE_HERE"> -->
     <meta name="msvalidate.01" content="your-bing-verification-code">
     <meta name="yandex-verification" content="your-yandex-verification-code">
     <meta name="p:domain_verify" content="your-pinterest-verification-code">
