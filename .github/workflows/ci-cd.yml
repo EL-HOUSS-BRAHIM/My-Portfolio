@@ -234,43 +234,59 @@ jobs:
         ./scripts/setup-security.sh 2>/dev/null || echo "⚠️ Security setup skipped"
         
     - name: Create deployment package
-      continue-on-error: true
       run: |
         tar -czf portfolio-deploy.tar.gz \
           --exclude='.git*' \
           --exclude='tests' \
           --exclude='node_modules' \
+          --exclude='deployment-secrets-*' \
           --exclude='*.md' \
           --exclude='*.log' \
-          . || echo "⚠️ Deployment package creation skipped"
+          .
           
-    - name: Deploy to server
-      continue-on-error: true
-      uses: appleboy/ssh-action@v1.0.0
-      with:
-        host: ${{ secrets.DEPLOY_HOST }}
-        username: ${{ secrets.DEPLOY_USER }}
-        key: ${{ secrets.DEPLOY_KEY }}
-        port: ${{ secrets.DEPLOY_PORT }}
-        script: |
+    - name: Deploy to server via SCP and SSH
+      env:
+        DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+        DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+        DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+        DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
+      run: |
+        # Setup SSH key
+        mkdir -p ~/.ssh
+        echo "$DEPLOY_KEY" > ~/.ssh/deploy_key
+        chmod 600 ~/.ssh/deploy_key
+        ssh-keyscan -p $DEPLOY_PORT $DEPLOY_HOST >> ~/.ssh/known_hosts 2>/dev/null
+        
+        # Upload deployment package
+        scp -i ~/.ssh/deploy_key -P $DEPLOY_PORT portfolio-deploy.tar.gz $DEPLOY_USER@$DEPLOY_HOST:/tmp/
+        
+        # Deploy on server
+        ssh -i ~/.ssh/deploy_key -p $DEPLOY_PORT $DEPLOY_USER@$DEPLOY_HOST << 'ENDSSH'
           # Create backup
           if [ -d "/var/www/portfolio" ]; then
-            sudo tar -czf "/tmp/portfolio-backup-$(date +%Y%m%d_%H%M%S).tar.gz" -C /var/www portfolio
+            sudo tar -czf "/tmp/portfolio-backup-$(date +%Y%m%d_%H%M%S).tar.gz" -C /var/www portfolio 2>/dev/null || true
+            # Keep only last 5 backups
+            cd /tmp && ls -t portfolio-backup-*.tar.gz 2>/dev/null | tail -n +6 | xargs -r sudo rm -f
           fi
           
-          # Deploy new version
+          # Prepare new deployment
+          sudo rm -rf /var/www/portfolio-new
           sudo mkdir -p /var/www/portfolio-new
-          cd /var/www/portfolio-new
+          sudo tar -xzf /tmp/portfolio-deploy.tar.gz -C /var/www/portfolio-new
           
-          # Download and extract deployment package
-          wget -O portfolio-deploy.tar.gz "${{ secrets.DEPLOY_URL }}/portfolio-deploy.tar.gz"
-          tar -xzf portfolio-deploy.tar.gz
+          # Install/update Composer dependencies
+          cd /var/www/portfolio-new
+          sudo COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --optimize-autoloader --no-interaction 2>/dev/null || true
+          
+          # Setup storage directories
+          sudo mkdir -p storage/{logs,cache,sessions,monitoring,optimized}
           
           # Set permissions
           sudo chown -R www-data:www-data .
           sudo find . -type d -exec chmod 755 {} \;
           sudo find . -type f -exec chmod 644 {} \;
-          sudo chmod 700 storage/ config/
+          sudo chmod -R 775 storage
+          sudo chmod -R 777 storage/{cache,logs,sessions}
           
           # Atomic switch
           sudo mv /var/www/portfolio /var/www/portfolio-old 2>/dev/null || true
@@ -281,17 +297,24 @@ jobs:
           sudo systemctl restart php8.2-fpm
           
           # Health check
-          sleep 5
-          if curl -f https://brahim-elhouss.me/ > /dev/null 2>&1; then
-            echo "Deployment successful"
+          sleep 3
+          if curl -f -k https://localhost/ > /dev/null 2>&1; then
+            echo "✅ Deployment successful"
             sudo rm -rf /var/www/portfolio-old
           else
-            echo "Deployment failed, rolling back"
+            echo "❌ Deployment failed, rolling back"
             sudo mv /var/www/portfolio /var/www/portfolio-failed
-            sudo mv /var/www/portfolio-old /var/www/portfolio
+            sudo mv /var/www/portfolio-old /var/www/portfolio 2>/dev/null || true
             sudo systemctl reload nginx
             exit 1
           fi
+          
+          # Cleanup
+          rm -f /tmp/portfolio-deploy.tar.gz
+        ENDSSH
+        
+        # Cleanup local SSH key
+        rm -f ~/.ssh/deploy_key
           
     - name: Notify deployment success
       if: success()
@@ -332,29 +355,54 @@ jobs:
     - name: Install dependencies
       run: composer install --optimize-autoloader --no-interaction --no-scripts
       
+    - name: Create staging deployment package
+      run: |
+        tar -czf portfolio-staging.tar.gz \
+          --exclude='.git*' \
+          --exclude='tests' \
+          --exclude='node_modules' \
+          --exclude='deployment-secrets-*' \
+          .
+      
     - name: Deploy to staging server
-      continue-on-error: true
-      uses: appleboy/ssh-action@v1.0.0
-      with:
-        host: ${{ secrets.STAGING_HOST }}
-        username: ${{ secrets.STAGING_USER }}
-        key: ${{ secrets.STAGING_KEY }}
-        port: ${{ secrets.STAGING_PORT }}
-        script: |
-          cd /var/www/staging-portfolio
-          git pull origin develop
-          composer install --optimize-autoloader --no-interaction
+      env:
+        STAGING_KEY: ${{ secrets.STAGING_KEY }}
+        STAGING_HOST: ${{ secrets.STAGING_HOST }}
+        STAGING_USER: ${{ secrets.STAGING_USER }}
+        STAGING_PORT: ${{ secrets.STAGING_PORT }}
+      run: |
+        # Setup SSH key
+        mkdir -p ~/.ssh
+        echo "$STAGING_KEY" > ~/.ssh/staging_key
+        chmod 600 ~/.ssh/staging_key
+        ssh-keyscan -p $STAGING_PORT $STAGING_HOST >> ~/.ssh/known_hosts 2>/dev/null
+        
+        # Upload and deploy
+        scp -i ~/.ssh/staging_key -P $STAGING_PORT portfolio-staging.tar.gz $STAGING_USER@$STAGING_HOST:/tmp/
+        
+        ssh -i ~/.ssh/staging_key -p $STAGING_PORT $STAGING_USER@$STAGING_HOST << 'ENDSSH'
+          sudo rm -rf /var/www/staging-portfolio-new
+          sudo mkdir -p /var/www/staging-portfolio-new
+          sudo tar -xzf /tmp/portfolio-staging.tar.gz -C /var/www/staging-portfolio-new
           
-          # Set staging environment
-          cp .env.staging .env
+          cd /var/www/staging-portfolio-new
+          sudo COMPOSER_ALLOW_SUPERUSER=1 composer install --optimize-autoloader --no-interaction 2>/dev/null || true
           
-          # Set permissions
+          sudo mkdir -p storage/{logs,cache,sessions}
           sudo chown -R www-data:www-data .
           sudo find . -type d -exec chmod 755 {} \;
           sudo find . -type f -exec chmod 644 {} \;
+          sudo chmod -R 775 storage
           
-          # Restart services
+          sudo mv /var/www/staging-portfolio /var/www/staging-portfolio-old 2>/dev/null || true
+          sudo mv /var/www/staging-portfolio-new /var/www/staging-portfolio
+          sudo rm -rf /var/www/staging-portfolio-old
+          
           sudo systemctl reload nginx
+          rm -f /tmp/portfolio-staging.tar.gz
+        ENDSSH
+        
+        rm -f ~/.ssh/staging_key
 
   # Cleanup old artifacts
   cleanup:
