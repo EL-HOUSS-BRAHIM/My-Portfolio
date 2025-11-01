@@ -1054,37 +1054,6 @@ $recaptchaEnabled = $config->get('recaptcha.enabled');
                     
                     <div class="timeline-item">
                         <div class="timeline-marker">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <div class="timeline-content">
-                            <div class="timeline-header">
-                                <h3>ALX Software Engineering</h3>
-                                <span class="timeline-date">2023 - 2024</span>
-                            </div>
-                            <div class="timeline-body">
-                                <h4>Certified Full Stack Software Engineer (Backend Specialization)</h4>
-                                <p>
-                                    Intensive 12-month covering full-stack development with backend specialization. 
-                                    Gained expertise in modern software engineering practices, data structures, algorithms, and web technologies.
-                                </p>
-                                <div class="timeline-skills">
-                                    <span class="skill-badge">C Programming</span>
-                                    <span class="skill-badge">Python</span>
-                                    <span class="skill-badge">JavaScript/Node.js</span>
-                                    <span class="skill-badge">SQL/MySQL</span>
-                                    <span class="skill-badge">Linux/DevOps</span>
-                                    <span class="skill-badge">Web Servers</span>
-                                    <span class="skill-badge">APIs</span>
-                                    <span class="skill-badge">TypeScript</span>
-                                    <span class="skill-badge">NoSQL</span>
-                                    <span class="skill-badge">Redis</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-marker">
                             <i class="fas fa-certificate"></i>
                         </div>
                         <div class="timeline-content">
@@ -1233,6 +1202,37 @@ $recaptchaEnabled = $config->get('recaptcha.enabled');
                                     <span class="skill-badge">Model Training</span>
                                     <span class="skill-badge">Python/Scikit-learn</span>
                                     <span class="skill-badge">Algorithms</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-marker">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h3>ALX Software Engineering</h3>
+                                <span class="timeline-date">2023 - 2024</span>
+                            </div>
+                            <div class="timeline-body">
+                                <h4>Certified Full Stack Software Engineer (Backend Specialization)</h4>
+                                <p>
+                                    Intensive 12-month covering full-stack development with backend specialization. 
+                                    Gained expertise in modern software engineering practices, data structures, algorithms, and web technologies.
+                                </p>
+                                <div class="timeline-skills">
+                                    <span class="skill-badge">C Programming</span>
+                                    <span class="skill-badge">Python</span>
+                                    <span class="skill-badge">JavaScript/Node.js</span>
+                                    <span class="skill-badge">SQL/MySQL</span>
+                                    <span class="skill-badge">Linux/DevOps</span>
+                                    <span class="skill-badge">Web Servers</span>
+                                    <span class="skill-badge">APIs</span>
+                                    <span class="skill-badge">TypeScript</span>
+                                    <span class="skill-badge">NoSQL</span>
+                                    <span class="skill-badge">Redis</span>
                                 </div>
                             </div>
                         </div>
