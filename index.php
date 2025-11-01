@@ -88,17 +88,16 @@ $recaptchaEnabled = $config->get('recaptcha.enabled');
     <meta name="application-name" content="Brahim El Houss Portfolio">
     
     <!-- Favicon and Icons -->
-    <link rel="icon" href="/favicon.ico" sizes="32x32">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#667eea">
-    <meta name="msapplication-TileColor" content="#667eea">
-    <meta name="msapplication-TileImage" content="/mstile-150x150.png">
+    <link rel="icon" href="/icons/favicon.ico" sizes="32x32">
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/icons/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/icons/android-chrome-512x512.png">
+    <link rel="manifest" href="/icons/site.webmanifest">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#001a40">
+    <meta name="msapplication-TileColor" content="#001a40">
+    <meta name="msapplication-TileImage" content="/icons/mstile-150x150.png">
     <meta name="msapplication-config" content="/browserconfig.xml">
     <meta name="theme-color" content="#1a202c">
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#667eea">
