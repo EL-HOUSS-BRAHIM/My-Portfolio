@@ -1058,13 +1058,13 @@ $recaptchaEnabled = $config->get('recaptcha.enabled');
                         </div>
                         <div class="timeline-content">
                             <div class="timeline-header">
-                                <h3>ALX Software Engineering Program</h3>
+                                <h3>ALX Software Engineering</h3>
                                 <span class="timeline-date">2023 - 2024</span>
                             </div>
                             <div class="timeline-body">
                                 <h4>Certified Full Stack Software Engineer (Backend Specialization)</h4>
                                 <p>
-                                    Intensive 12-month program covering full-stack development with backend specialization. 
+                                    Intensive 12-month covering full-stack development with backend specialization. 
                                     Gained expertise in modern software engineering practices, data structures, algorithms, and web technologies.
                                 </p>
                                 <div class="timeline-skills">
