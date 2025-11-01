@@ -260,7 +260,7 @@ jobs:
         ssh-keyscan -p $DEPLOY_PORT $DEPLOY_HOST >> ~/.ssh/known_hosts 2>/dev/null
         
         # Upload deployment package
-        scp -i ~/.ssh/deploy_key -P $DEPLOY_PORT portfolio-deploy.tar.gz $DEPLOY_USER@$DEPLOY_HOST:/tmp/
+        scp -i ~/.ssh/deploy_key -P $DEPLOY_PORT portfolio-deploy.tar.gz $DEPLOY_USER@$DEPLOY_HOST:~/
         
         # Deploy on server
         ssh -i ~/.ssh/deploy_key -p $DEPLOY_PORT $DEPLOY_USER@$DEPLOY_HOST << 'ENDSSH'
@@ -274,7 +274,7 @@ jobs:
           # Prepare new deployment
           sudo rm -rf /var/www/portfolio-new
           sudo mkdir -p /var/www/portfolio-new
-          sudo tar -xzf /tmp/portfolio-deploy.tar.gz -C /var/www/portfolio-new
+          sudo tar -xzf ~/portfolio-deploy.tar.gz -C /var/www/portfolio-new
           
           # Install/update Composer dependencies
           cd /var/www/portfolio-new
@@ -312,7 +312,7 @@ jobs:
           fi
           
           # Cleanup
-          rm -f /tmp/portfolio-deploy.tar.gz
+          rm -f ~/portfolio-deploy.tar.gz
         ENDSSH
         
         # Cleanup local SSH key
@@ -382,12 +382,12 @@ jobs:
         ssh-keyscan -p $STAGING_PORT $STAGING_HOST >> ~/.ssh/known_hosts 2>/dev/null
         
         # Upload and deploy
-        scp -i ~/.ssh/staging_key -P $STAGING_PORT portfolio-staging.tar.gz $STAGING_USER@$STAGING_HOST:/tmp/
+        scp -i ~/.ssh/staging_key -P $STAGING_PORT portfolio-staging.tar.gz $STAGING_USER@$STAGING_HOST:~/
         
         ssh -i ~/.ssh/staging_key -p $STAGING_PORT $STAGING_USER@$STAGING_HOST << 'ENDSSH'
           sudo rm -rf /var/www/staging-portfolio-new
           sudo mkdir -p /var/www/staging-portfolio-new
-          sudo tar -xzf /tmp/portfolio-staging.tar.gz -C /var/www/staging-portfolio-new
+          sudo tar -xzf ~/portfolio-staging.tar.gz -C /var/www/staging-portfolio-new
           
           cd /var/www/staging-portfolio-new
           sudo COMPOSER_ALLOW_SUPERUSER=1 composer install --optimize-autoloader --no-interaction 2>/dev/null || true
@@ -403,7 +403,7 @@ jobs:
           sudo rm -rf /var/www/staging-portfolio-old
           
           sudo systemctl reload nginx
-          rm -f /tmp/portfolio-staging.tar.gz
+          rm -f ~/portfolio-staging.tar.gz
         ENDSSH
         
         rm -f ~/.ssh/staging_key
