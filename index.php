@@ -283,20 +283,20 @@ $recaptchaEnabled = $config->get('recaptcha.enabled');
     
     <!-- Styles and icons -->
     <!-- Base styles and variables -->
-    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/base.css?v=<?php echo time(); ?>">
     
     <!-- Component-specific styles -->
-    <link rel="stylesheet" href="assets/css/Header.css">
-    <link rel="stylesheet" href="assets/css/nav.css">
-    <link rel="stylesheet" href="assets/css/Hero.css">
-    <link rel="stylesheet" href="assets/css/about.css">
-    <link rel="stylesheet" href="assets/css/skills.css">
-    <link rel="stylesheet" href="assets/css/projects.css">
-    <link rel="stylesheet" href="assets/css/elevator-pitch.css">
-    <link rel="stylesheet" href="assets/css/experience.css">
-    <link rel="stylesheet" href="assets/css/contact.css">
-    <link rel="stylesheet" href="assets/css/testimonial.css">
-    <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="assets/css/Header.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="assets/css/nav.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="assets/css/Hero.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="assets/css/about.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="assets/css/skills.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="assets/css/projects.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="assets/css/elevator-pitch.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="assets/css/experience.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="assets/css/contact.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="assets/css/testimonial.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="assets/css/footer.css?v=<?php echo time(); ?>"
     
     <link rel="icon" href="/favicon.ico">
 </head>
