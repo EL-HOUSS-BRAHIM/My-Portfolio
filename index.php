@@ -1029,7 +1029,7 @@ $recaptchaEnabled = $config->get('recaptcha.enabled');
                         <div class="timeline-content">
                             <div class="timeline-header">
                                 <h3>Novate Ltd</h3>
-                                <span class="timeline-date">2024 - Present</span>
+                                <span class="timeline-date">July 2025 - Present</span>
                             </div>
                             <div class="timeline-body">
                                 <h4>Full Stack Software Engineer & DevOps</h4>
