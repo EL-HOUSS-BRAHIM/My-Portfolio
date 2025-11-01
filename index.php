@@ -12,21 +12,28 @@ header('X-Robots-Tag: index, follow, max-snippet:-1, max-image-preview:large, ma
 header('Cache-Control: public, max-age=3600, must-revalidate');
 header('Vary: Accept-Encoding, User-Agent');
 
-// ETag for efficient caching
-$etag = md5_file(__FILE__);
-header('ETag: "' . $etag . '"');
+// Security headers (in case server config isn't active)
+if (!headers_sent()) {
+    header('X-Content-Type-Options: nosniff');
+    header('X-Frame-Options: DENY');
+    header('Referrer-Policy: strict-origin-when-cross-origin');
+    header('Strict-Transport-Security: max-age=31536000; includeSubDomains; preload');
+    header('Content-Security-Policy: default-src \'self\'; script-src \'self\' \'unsafe-inline\' \'unsafe-eval\' https://www.google.com https://www.gstatic.com https://cdnjs.cloudflare.com; style-src \'self\' \'unsafe-inline\' https://fonts.googleapis.com; font-src \'self\' https://fonts.gstatic.com; img-src \'self\' data: https:; frame-src \'self\' https://www.google.com; connect-src \'self\' https://www.google.com; object-src \'none\'; base-uri \'self\'; form-action \'self\';');
+}
 
-// Check if client has cached version
+// ETag for efficient caching (using timestamp for speed)
+$lastModified = filemtime(__FILE__);
+$etag = md5($lastModified . __FILE__);
+header('ETag: "' . $etag . '"');
+header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $lastModified) . ' GMT');
+
+// Check if client has cached version (ETag)
 if (isset($_SERVER['HTTP_IF_NONE_MATCH']) && $_SERVER['HTTP_IF_NONE_MATCH'] === '"' . $etag . '"') {
     header('HTTP/1.1 304 Not Modified');
     exit;
 }
 
-// Last-Modified header
-$lastModified = filemtime(__FILE__);
-header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $lastModified) . ' GMT');
-
-// Check if client has cached version based on time
+// Check if client has cached version (Last-Modified)
 if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     $ifModifiedSince = strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']);
     if ($lastModified <= $ifModifiedSince) {

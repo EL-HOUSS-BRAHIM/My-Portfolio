@@ -184,7 +184,7 @@ check_sitemap() {
         echo -e "${GREEN}✓ sitemap.xml accessible${NC}"
         
         # Count URLs in sitemap
-        url_count=$(curl -s "$sitemap_url" | grep -c "<loc>" || echo "0")
+        url_count=$(curl -s "$sitemap_url" | grep -o "<loc>" | wc -l | tr -d ' ')
         echo "  URLs found: $url_count"
         
         if [ "$VERBOSE" = "true" ]; then
