@@ -848,49 +848,6 @@ $recaptchaEnabled = $config->get('recaptcha.enabled');
                 </div>
                 
                 <div class="portfolio-content">
-                    <!-- Phase 2 Team Project Highlight -->
-                    <div class="featured-project">
-                        <div class="project-header">
-                            <h3>Phase 2 Team Project - Budgetify</h3>
-                            <span class="project-badge">Team Collaboration</span>
-                        </div>
-                        <div class="project-description">
-                            <p>
-                                Collaborative full-stack web application for personal finance management, developed as part of ALX Phase 2 requirements. 
-                                This project demonstrates my ability to work in a team environment and deliver a complete software solution.
-                            </p>
-                        </div>
-                        <div class="project-resources">
-                            <div class="resource-item">
-                                <div class="resource-icon">
-                                    <i class="fab fa-google-drive"></i>
-                                </div>
-                                <div class="resource-content">
-                                    <h4>Project Demo Video</h4>
-                                    <p>Watch our team's presentation and demonstration of the Budgetify application</p>
-                                    <a href="https://drive.google.com/file/d/1gf2EE9NnM8j4FTtRQyVG1OhQRUXP7HhX/view?usp=drivesdk" class="btn btn--primary" target="_blank">
-                                        <i class="fas fa-play"></i>
-                                        Watch Video
-                                    </a>
-                                </div>
-                            </div>
-                            
-                            <div class="resource-item">
-                                <div class="resource-icon">
-                                    <i class="fab fa-google-drive"></i>
-                                </div>
-                                <div class="resource-content">
-                                    <h4>Project Slide Deck</h4>
-                                    <p>Comprehensive presentation slides covering project architecture, features, and implementation</p>
-                                    <a href="https://drive.google.com/file/d/1B5SuFTOYINFY2_jVbnFo68YQJaXwixjr/view?usp=drivesdk" class="btn btn--secondary" target="_blank">
-                                        <i class="fas fa-external-link-alt"></i>
-                                        View Slides
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
                     <!-- Portfolio Download Options -->
                     <div class="portfolio-options">
                         <h3>Complete Portfolio</h3>

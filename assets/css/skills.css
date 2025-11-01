@@ -6,16 +6,39 @@
 }
 
 .skills-category {
-    background-color: var(--color-surface);
+    background: rgba(26, 13, 64, 0.6);
+    backdrop-filter: blur(10px);
     padding: 2.5rem;
-    border-radius: var(--border-radius);
-    border: 1px solid var(--color-border);
-    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    border-radius: var(--radius-xl);
+    border: 1px solid rgba(0, 217, 255, 0.2);
+    transition: all var(--transition-speed);
+    position: relative;
+    overflow: hidden;
+}
+
+.skills-category::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at top right, rgba(0, 217, 255, 0.1) 0%, transparent 60%),
+                radial-gradient(circle at bottom left, rgba(217, 70, 239, 0.1) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+    pointer-events: none;
 }
 
 .skills-category:hover {
     transform: translateY(-5px);
-    box-shadow: 0 0 20px rgba(102, 126, 234, 0.15);
+    border-color: rgba(0, 217, 255, 0.5);
+    box-shadow: 0 10px 40px rgba(0, 217, 255, 0.25),
+                0 0 30px rgba(217, 70, 239, 0.15);
+}
+
+.skills-category:hover::before {
+    opacity: 1;
 }
 
 .category-header {
@@ -25,8 +48,16 @@
 
 .category-icon {
     font-size: 2.5rem;
-    color: var(--color-primary);
+    color: rgba(0, 217, 255, 0.9);
     margin-bottom: 1rem;
+    filter: drop-shadow(0 0 15px rgba(0, 217, 255, 0.6));
+    transition: all var(--transition-normal);
+}
+
+.skills-category:hover .category-icon {
+    color: rgba(217, 70, 239, 0.9);
+    filter: drop-shadow(0 0 20px rgba(217, 70, 239, 0.7));
+    transform: scale(1.1);
 }
 
 .category-header h3 {
@@ -46,14 +77,18 @@
 
 .skill-icon {
     font-size: 2.5rem;
-    color: var(--color-text-secondary);
+    color: rgba(0, 217, 255, 0.7);
     width: 50px;
     text-align: center;
     flex-shrink: 0;
+    filter: drop-shadow(0 0 8px rgba(0, 217, 255, 0.4));
+    transition: all var(--transition-normal);
 }
 
 .skill-item:hover .skill-icon {
-    color: var(--color-primary);
+    color: rgba(217, 70, 239, 0.9);
+    filter: drop-shadow(0 0 12px rgba(217, 70, 239, 0.6));
+    transform: scale(1.1);
 }
 
 .skill-info {
@@ -86,11 +121,30 @@
 
 .skill-bar {
     height: 100%;
-    background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));
+    background: linear-gradient(90deg, rgba(0, 217, 255, 0.8), rgba(217, 70, 239, 0.8));
     border-radius: 8px;
     transition: width 1s ease-in-out;
     width: 0%;
+    box-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+    position: relative;
+    overflow: hidden;
     /* JS will set this on scroll */
+}
+
+.skill-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shimmerBar 2s infinite;
+}
+
+@keyframes shimmerBar {
+    0% { left: -100%; }
+    100% { left: 100%; }
 }
 
 /* Responsive Design for Skills Section */
@@ -146,14 +200,36 @@
         gap: 1rem;
         align-items: flex-start;
         padding: var(--space-3);
-        background-color: var(--color-background-secondary);
+        background: rgba(26, 13, 64, 0.4);
+        backdrop-filter: blur(5px);
         border-radius: var(--radius-lg);
+        border: 1px solid rgba(0, 217, 255, 0.15);
         transition: all var(--transition-normal);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .skill-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at center, rgba(0, 217, 255, 0.1) 0%, transparent 70%);
+        opacity: 0;
+        transition: opacity var(--transition-normal);
     }
     
     .skill-item:hover {
         transform: translateY(-2px);
-        box-shadow: var(--shadow-sm);
+        border-color: rgba(0, 217, 255, 0.4);
+        box-shadow: 0 5px 20px rgba(0, 217, 255, 0.2),
+                    0 0 15px rgba(217, 70, 239, 0.1);
+    }
+    
+    .skill-item:hover::before {
+        opacity: 1;
     }
     
     .skill-icon {

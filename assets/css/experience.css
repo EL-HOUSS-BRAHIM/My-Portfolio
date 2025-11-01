@@ -57,7 +57,8 @@
 
 .timeline-content {
     padding: 2rem;
-    background-color: var(--color-surface);
+    background: linear-gradient(135deg, rgba(26, 13, 64, 0.8) 0%, rgba(10, 20, 40, 0.9) 100%);
+    backdrop-filter: blur(10px);
     position: relative;
     border-radius: var(--border-radius);
     border: 1px solid var(--color-border);
@@ -65,19 +66,19 @@
 
 /* Arrows */
 .timeline-content::after {
-    content: \" \";
+    content: " ";
     position: absolute;
     top: 32px;
     right: -15px;
     border-top: 15px solid transparent;
     border-bottom: 15px solid transparent;
-    border-left: 15px solid var(--color-surface);
+    border-left: 15px solid rgba(26, 13, 64, 0.9);
 }
 
 .timeline-item:nth-child(even) .timeline-content::after {
     left: -15px;
     border-left: none;
-    border-right: 15px solid var(--color-surface);
+    border-right: 15px solid rgba(26, 13, 64, 0.9);
 }
 
 .timeline-header {
@@ -144,7 +145,8 @@
 }
 
 .cert-item {
-    background-color: var(--color-surface);
+    background: linear-gradient(135deg, rgba(26, 13, 64, 0.8) 0%, rgba(10, 20, 40, 0.9) 100%);
+    backdrop-filter: blur(10px);
     padding: 2rem;
     border-radius: var(--border-radius);
     border: 1px solid var(--color-border);
@@ -277,7 +279,8 @@
     .cert-item {
         padding: 1.5rem;
         border-radius: 8px;
-        background: var(--color-surface);
+        background: linear-gradient(135deg, rgba(26, 13, 64, 0.8) 0%, rgba(10, 20, 40, 0.9) 100%);
+        backdrop-filter: blur(10px);
         border: 1px solid var(--color-border);
     }
 }

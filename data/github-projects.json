@@ -1,0 +1,134 @@
+[
+  {
+    "id": 1,
+    "name": "Watch Party Platform V2",
+    "description": "Real-time collaborative video watching platform with synchronized playback, chat functionality, and room management. Built with modern web technologies for seamless streaming experience.",
+    "image": "assets/images/watch-party.jpg",
+    "github": "https://github.com/EL-HOUSS-BRAHIM/watch-party-v2",
+    "demo": null,
+    "tags": ["Node.js", "WebSocket", "React", "Real-time", "Video Streaming"],
+    "stars": 0,
+    "category": "full-stack"
+  },
+  {
+    "id": 2,
+    "name": "Quick Chat V2",
+    "description": "Fast and responsive real-time chat application with modern UI/UX, message encryption, and multi-platform support. Enhanced version with better performance and features.",
+    "image": "assets/images/quick-chat.jpg",
+    "github": "https://github.com/EL-HOUSS-BRAHIM/quick-chat-v2",
+    "demo": null,
+    "tags": ["React", "WebSocket", "Chat", "Real-time", "Node.js"],
+    "stars": 0,
+    "category": "full-stack"
+  },
+  {
+    "id": 3,
+    "name": "AWS SES Mailbox SaaS",
+    "description": "Scalable email management SaaS platform using AWS services. Features include email handling, storage, and delivery using AWS SES, S3, and Lambda functions for serverless architecture.",
+    "image": "assets/images/aws-mailbox.jpg",
+    "github": "https://github.com/EL-HOUSS-BRAHIM/aws-mailbox-saas",
+    "demo": null,
+    "tags": ["AWS", "Lambda", "SES", "S3", "Serverless", "SaaS"],
+    "stars": 0,
+    "category": "cloud"
+  },
+  {
+    "id": 4,
+    "name": "ALX Interview - Log Parsing",
+    "description": "Real-time log parser built with Python for processing and analyzing log data efficiently. Implements regex patterns and data processing algorithms for extracting meaningful insights.",
+    "image": "assets/images/log_parsing.webp",
+    "github": "https://github.com/EL-HOUSS-BRAHIM/alx-interview/tree/main/0x03-log_parsing",
+    "demo": null,
+    "tags": ["Python", "Regex", "Data Processing", "Algorithms"],
+    "stars": 0,
+    "category": "backend"
+  },
+  {
+    "id": 5,
+    "name": "Simple Shell",
+    "description": "Custom Unix shell implementation in C with process management, command execution, and built-in commands. A complete command-line interpreter following Unix principles.",
+    "image": "assets/images/simple shell.jpg",
+    "github": "https://github.com/EL-HOUSS-BRAHIM/simple_shell",
+    "demo": null,
+    "tags": ["C", "Unix Systems", "System Calls", "Process Management"],
+    "stars": 0,
+    "category": "system"
+  },
+  {
+    "id": 6,
+    "name": "Monty ByteCode Interpreter",
+    "description": "Stack-based interpreter for Monty ByteCode files. Implements stack and queue data structures with various operations for bytecode execution and manipulation.",
+    "image": "assets/images/Monty Interpreter.png",
+    "github": "https://github.com/EL-HOUSS-BRAHIM/monty",
+    "demo": null,
+    "tags": ["C", "Data Structures", "Interpreter Design", "Stack", "Queue"],
+    "stars": 0,
+    "category": "system"
+  },
+  {
+    "id": 7,
+    "name": "My Portfolio",
+    "description": "Personal portfolio website showcasing my projects, skills, and experience. Built with modern web technologies featuring responsive design, smooth animations, and cosmic theme.",
+    "image": "assets/images/portfolio.jpg",
+    "github": "https://github.com/EL-HOUSS-BRAHIM/My-Portfolio",
+    "demo": "https://brahim-elhouss.me",
+    "tags": ["HTML", "CSS", "JavaScript", "PHP", "Responsive Design"],
+    "stars": 0,
+    "category": "frontend"
+  },
+  {
+    "id": 8,
+    "name": "AirBnB Clone",
+    "description": "Full-stack clone of AirBnB with property listings, booking system, user authentication, and review functionality. Comprehensive web application demonstrating full-stack development skills.",
+    "image": "assets/images/airbnb.jpg",
+    "github": "https://github.com/EL-HOUSS-BRAHIM/AirBnB_clone",
+    "demo": null,
+    "tags": ["Python", "Flask", "MySQL", "HTML", "CSS", "JavaScript"],
+    "stars": 0,
+    "category": "full-stack"
+  },
+  {
+    "id": 9,
+    "name": "Printf Implementation",
+    "description": "Custom implementation of the printf function in C, handling various format specifiers and edge cases. Deep dive into variadic functions and formatted output.",
+    "image": "assets/images/printf.jpg",
+    "github": "https://github.com/EL-HOUSS-BRAHIM/printf",
+    "demo": null,
+    "tags": ["C", "Systems Programming", "Variadic Functions"],
+    "stars": 0,
+    "category": "system"
+  },
+  {
+    "id": 10,
+    "name": "Binary Trees",
+    "description": "Comprehensive implementation of binary tree data structures and algorithms including traversal methods, insertion, deletion, and various tree operations.",
+    "image": "assets/images/binary-trees.jpg",
+    "github": "https://github.com/EL-HOUSS-BRAHIM/binary_trees",
+    "demo": null,
+    "tags": ["C", "Data Structures", "Algorithms", "Trees"],
+    "stars": 0,
+    "category": "algorithms"
+  },
+  {
+    "id": 11,
+    "name": "Sorting Algorithms",
+    "description": "Implementation and analysis of various sorting algorithms including bubble sort, insertion sort, selection sort, quick sort, and merge sort with time complexity analysis.",
+    "image": "assets/images/sorting.jpg",
+    "github": "https://github.com/EL-HOUSS-BRAHIM/sorting_algorithms",
+    "demo": null,
+    "tags": ["C", "Algorithms", "Big O", "Sorting"],
+    "stars": 0,
+    "category": "algorithms"
+  },
+  {
+    "id": 12,
+    "name": "Low-Level Programming",
+    "description": "Collection of low-level programming projects and exercises covering pointers, memory allocation, file I/O, and systems programming concepts in C.",
+    "image": "assets/images/low-level.jpg",
+    "github": "https://github.com/EL-HOUSS-BRAHIM/alx-low_level_programming",
+    "demo": null,
+    "tags": ["C", "Systems Programming", "Memory Management", "Pointers"],
+    "stars": 0,
+    "category": "system"
+  }
+]

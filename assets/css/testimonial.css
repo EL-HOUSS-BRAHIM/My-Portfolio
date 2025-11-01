@@ -10,6 +10,7 @@
     margin: var(--space-8) var(--space-4);
     background: var(--color-background);
     border-radius: var(--border-radius-large);
+    overflow: hidden;
 }
 
 /* Section title */
@@ -27,7 +28,7 @@
     margin: 0 auto;
     min-height: 400px;
     padding: var(--space-4) var(--space-12);
-    overflow: hidden;
+    overflow: visible;
     display: flex;
     align-items: stretch;
     justify-content: flex-start;
@@ -42,7 +43,7 @@
     width: calc(33.333% - var(--space-4));
     min-width: 300px;
     max-width: 400px;
-    background: var(--color-surface);
+    background: linear-gradient(135deg, rgba(26, 13, 64, 0.8) 0%, rgba(10, 20, 40, 0.9) 100%);
     border-radius: var(--border-radius);
     padding: var(--space-8);
     box-shadow: var(--shadow-lg);
@@ -50,6 +51,7 @@
     border: 1px solid var(--color-border);
     display: flex;
     flex-direction: column;
+    backdrop-filter: blur(10px);
 }
 
 .testimonial-item:hover {

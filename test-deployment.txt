@@ -1,3 +1,0 @@
-This file was created to test automatic deployment via GitHub Actions.
-Deployment timestamp: 2025-11-01 12:52 UTC
-If you see this file on the server, the CI/CD pipeline is working perfectly!

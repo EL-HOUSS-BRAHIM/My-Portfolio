@@ -118,9 +118,16 @@ class ViewportHandler {
         const headerHeight = this.header.offsetHeight;
         const heroHeight = viewportHeight - headerHeight;
         
-        // Set hero height
-        this.hero.style.height = `${heroHeight}px`;
-        this.hero.style.minHeight = `${heroHeight}px`;
+        // Only set hero height on desktop (not on mobile/tablet)
+        // Let CSS media queries handle mobile responsive behavior
+        if (window.innerWidth > 768) {
+            this.hero.style.height = `${heroHeight}px`;
+            this.hero.style.minHeight = `${heroHeight}px`;
+        } else {
+            // Remove inline styles on mobile to let CSS take over
+            this.hero.style.height = '';
+            this.hero.style.minHeight = '';
+        }
         
         // Add CSS custom property for other elements to use
         document.documentElement.style.setProperty('--viewport-height', `${viewportHeight}px`);
