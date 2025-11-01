@@ -380,7 +380,7 @@ $recaptchaEnabled = $config->get('recaptcha.enabled');
                     <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme" aria-pressed="false">
                         <i class="fas fa-moon" aria-hidden="true"></i>
                     </button>
-                    <a href="https://github.com/BrahimElHouss" class="cta-button" target="_blank" rel="noopener noreferrer" aria-label="Visit my GitHub profile">
+                    <a href="https://github.com/EL-HOUSS-BRAHIM" class="cta-button" target="_blank" rel="noopener noreferrer" aria-label="Visit my GitHub profile">
                         <i class="fab fa-github" aria-hidden="true"></i>
                         <span>GitHub</span>
                     </a>
