@@ -235,14 +235,16 @@ jobs:
         
     - name: Create deployment package
       run: |
-        tar -czf portfolio-deploy.tar.gz \
+        tar -czf /tmp/portfolio-deploy.tar.gz \
           --exclude='.git*' \
           --exclude='tests' \
           --exclude='node_modules' \
           --exclude='deployment-secrets-*' \
           --exclude='*.md' \
           --exclude='*.log' \
+          --warning=no-file-changed \
           .
+        mv /tmp/portfolio-deploy.tar.gz ./portfolio-deploy.tar.gz
           
     - name: Deploy to server via SCP and SSH
       env:
@@ -357,12 +359,14 @@ jobs:
       
     - name: Create staging deployment package
       run: |
-        tar -czf portfolio-staging.tar.gz \
+        tar -czf /tmp/portfolio-staging.tar.gz \
           --exclude='.git*' \
           --exclude='tests' \
           --exclude='node_modules' \
           --exclude='deployment-secrets-*' \
+          --warning=no-file-changed \
           .
+        mv /tmp/portfolio-staging.tar.gz ./portfolio-staging.tar.gz
       
     - name: Deploy to staging server
       env:
