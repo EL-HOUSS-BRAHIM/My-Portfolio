@@ -194,7 +194,7 @@
 .about__image {
     width: 100%;
     padding-top: 100%;
-    background-image: url('https://v2.brahim-elhouss.me/assets/images/profile-img.jpg');
+    background-image: url('../images/profile-img.jpg');
     background-size: cover;
     background-position: center;
     border-radius: var(--border-radius);

@@ -5,7 +5,8 @@ use Portfolio\Config\Config;
 
 $config = Config::getInstance();
 $recaptchaSiteKey = $config->get('recaptcha.site_key');
-$recaptchaEnabled = $config->get('recaptcha.enabled');
+// Only enable reCAPTCHA when explicitly enabled and a site key is present to avoid runtime errors
+$recaptchaEnabled = $config->get('recaptcha.enabled') && !empty($recaptchaSiteKey);
 
 // Crawler-friendly headers
 header('X-Robots-Tag: index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
@@ -18,7 +19,8 @@ if (!headers_sent()) {
     header('X-Frame-Options: DENY');
     header('Referrer-Policy: strict-origin-when-cross-origin');
     header('Strict-Transport-Security: max-age=31536000; includeSubDomains; preload');
-    header('Content-Security-Policy: default-src \'self\'; script-src \'self\' \'unsafe-inline\' \'unsafe-eval\' https://www.google.com https://www.gstatic.com https://cdnjs.cloudflare.com; style-src \'self\' \'unsafe-inline\' https://fonts.googleapis.com; font-src \'self\' https://fonts.gstatic.com; img-src \'self\' data: https:; frame-src \'self\' https://www.google.com; connect-src \'self\' https://www.google.com; object-src \'none\'; base-uri \'self\'; form-action \'self\';');
+    // Allow styles from Google Fonts, CDNJS and jsDelivr (Font Awesome may be loaded from CDNJS)
+    header('Content-Security-Policy: default-src \'self\'; script-src \'self\' \'unsafe-inline\' \'unsafe-eval\' https://www.google.com https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src \'self\' \'unsafe-inline\' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; font-src \'self\' https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; img-src \'self\' data: https: blob:; frame-src \'self\' https://www.google.com; connect-src \'self\' https://www.google.com; object-src \'none\'; base-uri \'self\'; form-action \'self\';');
 }
 
 // ETag for efficient caching (using timestamp for speed)
@@ -272,8 +274,8 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     {
       "@context": "https://schema.org",
       "@type": "ProfilePage",
-      "dateCreated": "2024-01-01",
-      "dateModified": "2024-12-27",
+      "dateCreated": "2024-01-01T00:00:00Z",
+      "dateModified": "2025-11-02T00:00:00Z",
       "mainEntity": {
         "@type": "Person",
         "name": "Brahim El Houss",
@@ -331,7 +333,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     <link rel="stylesheet" href="assets/css/experience.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="assets/css/contact.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="assets/css/testimonial.css?v=<?php echo time(); ?>">
-    <link rel="stylesheet" href="assets/css/footer.css?v=<?php echo time(); ?>"
+    <link rel="stylesheet" href="assets/css/footer.css?v=<?php echo time(); ?>">
     
     <link rel="icon" href="/favicon.ico">
 </head>
