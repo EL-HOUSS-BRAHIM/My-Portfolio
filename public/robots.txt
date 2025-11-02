@@ -8,6 +8,5 @@ Disallow: /database/
 Disallow: /.well-known/appspecific/
 Allow: /.well-known/security.txt
 
-# Sitemap locations
-Sitemap: https://brahim-crafts.tech/sitemap.xml
+# Sitemap location
 Sitemap: https://brahim-elhouss.me/sitemap.xml
