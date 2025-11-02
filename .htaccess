@@ -20,7 +20,10 @@ ErrorDocument 500 /404.html
 <IfModule mod_rewrite.c>
     RewriteEngine On
     
-    # Redirect moved files for backward compatibility
+    # Redirect /icons/ to /public/icons/ for all icon requests
+    RewriteRule ^icons/(.*)$ /public/icons/$1 [L]
+    
+    # Redirect moved files for backward compatibility (root-level requests)
     RewriteRule ^favicon\.ico$ /public/icons/favicon.ico [L]
     RewriteRule ^apple-touch-icon\.png$ /public/icons/apple-touch-icon.png [L]
     RewriteRule ^favicon-32x32\.png$ /public/icons/favicon-32x32.png [L]
