@@ -1,0 +1,17 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ReadOnlySecretsAccess",
+      "Effect": "Allow",
+      "Action": [
+        "secretsmanager:GetSecretValue",
+        "secretsmanager:DescribeSecret"
+      ],
+      "Resource": [
+        "arn:aws:secretsmanager:eu-west-3:*:secret:portfolio/smtp-credentials-*",
+        "arn:aws:secretsmanager:eu-west-3:*:secret:portfolio/*"
+      ]
+    }
+  ]
+}
