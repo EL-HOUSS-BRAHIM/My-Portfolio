@@ -11,9 +11,11 @@ namespace Portfolio\Config;
 class Config {
     private static $instance = null;
     private $config = [];
+    private $secretsManager = null;
     
     private function __construct() {
         $this->loadEnvironment();
+        $this->initSecretsManager();
         $this->setDefaults();
     }
     
@@ -22,6 +24,57 @@ class Config {
             self::$instance = new self();
         }
         return self::$instance;
+    }
+    
+    /**
+     * Initialize AWS Secrets Manager if enabled
+     */
+    private function initSecretsManager() {
+        // Check if AWS Secrets Manager is enabled
+        $enabled = filter_var($_ENV['AWS_SECRETS_ENABLED'] ?? false, FILTER_VALIDATE_BOOLEAN);
+        
+        if ($enabled) {
+            try {
+                require_once __DIR__ . '/../utils/SecretsManager.php';
+                $region = $_ENV['AWS_SECRETS_REGION'] ?? 'eu-west-3';
+                $this->secretsManager = new \Portfolio\Utils\SecretsManager($region);
+            } catch (\Exception $e) {
+                error_log("Config: Failed to initialize Secrets Manager: " . $e->getMessage());
+                $this->secretsManager = null;
+            }
+        }
+    }
+    
+    /**
+     * Load SMTP credentials from AWS Secrets Manager
+     */
+    private function loadSmtpFromSecrets() {
+        if (!$this->secretsManager) {
+            return null;
+        }
+        
+        $secretName = $_ENV['AWS_SMTP_SECRET_NAME'] ?? 'portfolio/smtp-credentials';
+        
+        try {
+            $smtpSecret = $this->secretsManager->getSecret($secretName);
+            if ($smtpSecret) {
+                return [
+                    'smtp_host' => $smtpSecret['smtp_host'] ?? null,
+                    'smtp_port' => $smtpSecret['smtp_port'] ?? 587,
+                    'smtp_username' => $smtpSecret['smtp_username'] ?? null,
+                    'smtp_password' => $smtpSecret['smtp_password'] ?? null,
+                    'smtp_encryption' => $smtpSecret['smtp_encryption'] ?? 'tls',
+                    'from_email' => $smtpSecret['from_email'] ?? null,
+                    'from_name' => $smtpSecret['from_name'] ?? null,
+                    'to_email' => $smtpSecret['to_email'] ?? null,
+                    'to_name' => $smtpSecret['to_name'] ?? null,
+                ];
+            }
+        } catch (\Exception $e) {
+            error_log("Config: Error loading SMTP secrets: " . $e->getMessage());
+        }
+        
+        return null;
     }
     
     private function loadEnvironment() {
@@ -58,6 +111,9 @@ class Config {
     }
     
     private function setDefaults() {
+        // Try to load SMTP credentials from AWS Secrets Manager first
+        $smtpSecrets = $this->loadSmtpFromSecrets();
+        
         $this->config = [
             // Database
             'db' => [
@@ -68,17 +124,17 @@ class Config {
                 'charset' => 'utf8mb4'
             ],
 
-            // Email
+            // Email - prioritize AWS Secrets Manager, fallback to .env
             'email' => [
-                'smtp_host' => $_ENV['SMTP_HOST'] ?? '',
-                'smtp_port' => $_ENV['SMTP_PORT'] ?? 587,
-                'smtp_username' => $_ENV['SMTP_USERNAME'] ?? '',
-                'smtp_password' => $_ENV['SMTP_PASSWORD'] ?? '',
-                'smtp_encryption' => $_ENV['SMTP_ENCRYPTION'] ?? 'tls',
-                'from_email' => $_ENV['FROM_EMAIL'] ?? '',
-                'from_name' => $_ENV['FROM_NAME'] ?? '',
-                'to_email' => $_ENV['TO_EMAIL'] ?? '',
-                'to_name' => $_ENV['TO_NAME'] ?? ''
+                'smtp_host' => $smtpSecrets['smtp_host'] ?? $_ENV['SMTP_HOST'] ?? '',
+                'smtp_port' => $smtpSecrets['smtp_port'] ?? $_ENV['SMTP_PORT'] ?? 587,
+                'smtp_username' => $smtpSecrets['smtp_username'] ?? $_ENV['SMTP_USERNAME'] ?? '',
+                'smtp_password' => $smtpSecrets['smtp_password'] ?? $_ENV['SMTP_PASSWORD'] ?? '',
+                'smtp_encryption' => $smtpSecrets['smtp_encryption'] ?? $_ENV['SMTP_ENCRYPTION'] ?? 'tls',
+                'from_email' => $smtpSecrets['from_email'] ?? $_ENV['FROM_EMAIL'] ?? '',
+                'from_name' => $smtpSecrets['from_name'] ?? $_ENV['FROM_NAME'] ?? '',
+                'to_email' => $smtpSecrets['to_email'] ?? $_ENV['TO_EMAIL'] ?? '',
+                'to_name' => $smtpSecrets['to_name'] ?? $_ENV['TO_NAME'] ?? ''
             ],
 
             // Security
