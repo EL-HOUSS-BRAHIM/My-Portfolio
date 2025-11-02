@@ -13,6 +13,10 @@
 # Apache Configuration (.htaccess)
 # ==========================================================================
 
+# Custom Error Pages
+ErrorDocument 404 /404.html
+ErrorDocument 500 /404.html
+
 <IfModule mod_rewrite.c>
     RewriteEngine On
     
@@ -466,9 +470,9 @@
     RewriteCond %{QUERY_STRING} \.(php|asp|jsp|cgi|pl|py)\? [NC]
     RewriteRule .* - [F,L]
     
-    # Force HTTPS (uncomment if SSL certificate is available)
-    # RewriteCond %{HTTPS} off
-    # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+    # Force HTTPS - Enabled for production security
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 </IfModule>
 
 # ================================
