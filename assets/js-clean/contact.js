@@ -206,21 +206,28 @@ class ContactController {
             }
         });
 
-        // Validate reCAPTCHA if present
-        if (typeof grecaptcha !== 'undefined') {
+        // Validate reCAPTCHA if present and loaded
+        const recaptchaElement = this.form.querySelector('.g-recaptcha');
+        if (recaptchaElement && typeof grecaptcha !== 'undefined' && typeof grecaptcha.getResponse === 'function') {
             console.log('[reCAPTCHA Debug] grecaptcha object found');
-            const captchaResponse = grecaptcha.getResponse();
-            console.log('[reCAPTCHA Debug] Captcha response:', captchaResponse);
-            if (!captchaResponse) {
-                console.log('[reCAPTCHA Debug] No captcha response - showing error');
-                this.showMessage('Please complete the reCAPTCHA verification.', 'error');
-                isValid = false;
-            } else {
-                console.log('[reCAPTCHA Debug] Captcha response valid');
+            try {
+                const captchaResponse = grecaptcha.getResponse();
+                console.log('[reCAPTCHA Debug] Captcha response:', captchaResponse);
+                if (!captchaResponse) {
+                    console.log('[reCAPTCHA Debug] No captcha response - showing error');
+                    this.showMessage('Please complete the reCAPTCHA verification.', 'error');
+                    isValid = false;
+                } else {
+                    console.log('[reCAPTCHA Debug] Captcha response valid');
+                }
+            } catch (error) {
+                console.error('[reCAPTCHA Debug] Error getting captcha response:', error);
             }
         } else {
-            console.log('[reCAPTCHA Debug] grecaptcha object not found');
-            console.log('[reCAPTCHA Debug] Window RECAPTCHA_CONFIG:', window.RECAPTCHA_CONFIG);
+            console.log('[reCAPTCHA Debug] reCAPTCHA not available or not loaded');
+            if (recaptchaElement) {
+                console.warn('[reCAPTCHA Debug] reCAPTCHA element exists but grecaptcha not loaded');
+            }
         }
 
         return isValid;

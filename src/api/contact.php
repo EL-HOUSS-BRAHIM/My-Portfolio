@@ -101,18 +101,30 @@ try {
         exit;
     }
 
-    // Verify reCAPTCHA
-    if ($config->get('recaptcha.enabled')) {
+    // Verify reCAPTCHA only if enabled and secret key exists
+    $recaptchaEnabled = $config->get('recaptcha.enabled');
+    $recaptchaSecret = $config->get('recaptcha.secret_key');
+    
+    if ($recaptchaEnabled && !empty($recaptchaSecret)) {
         $captchaToken = $_POST['g-recaptcha-response'] ?? '';
-        $captcha = new Captcha($config->get('recaptcha.secret_key'));
+        
+        if (empty($captchaToken)) {
+            if ($debug) error_log("Contact API: CAPTCHA token missing for $clientIp");
+            Response::error('Please complete the reCAPTCHA verification.');
+            exit;
+        }
+        
+        $captcha = new Captcha($recaptchaSecret);
         
         if (!$captcha->verify($captchaToken, $clientIp)) {
             if ($debug) error_log("Contact API: CAPTCHA verification failed for $clientIp");
-            Response::error('Please verify that you are not a robot.');
+            Response::error('CAPTCHA verification failed. Please try again.');
             exit;
         }
         
         if ($debug) error_log("Contact API: CAPTCHA verification successful for $clientIp");
+    } else {
+        if ($debug) error_log("Contact API: reCAPTCHA validation skipped (not configured)");
     }
 
     // Sanitize input for output
