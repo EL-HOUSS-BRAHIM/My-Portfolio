@@ -184,7 +184,7 @@ jobs:
         ./scripts/performance-test.sh --base-url http://localhost:8000 --skip-db
         
     - name: Upload performance results
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: performance-results
         path: tests/performance-results/
@@ -194,7 +194,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Deploy to Production
     needs: [quality-check, security-scan]
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
     
     environment:
       name: production
@@ -339,7 +339,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Deploy to Staging
     needs: [quality-check]
-    if: (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop') && github.event_name == 'push'
+    if: (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop') && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
     
     environment:
       name: staging
