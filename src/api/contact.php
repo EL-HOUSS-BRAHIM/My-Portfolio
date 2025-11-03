@@ -25,6 +25,8 @@ if (isset($_ENV['APP_DEBUG']) && filter_var($_ENV['APP_DEBUG'], FILTER_VALIDATE_
     ini_set('display_errors', 0);
 }
 
+// Load Composer autoloader for dependencies
+require_once __DIR__ . '/../../vendor/autoload.php';
 
 require_once __DIR__ . '/../config/Config.php';
 require_once __DIR__ . '/../config/Database.php';
