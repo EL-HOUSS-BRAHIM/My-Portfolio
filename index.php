@@ -110,7 +110,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     <meta name="expertise-level" content="professional">
     <meta name="professional-status" content="available-for-hire">
     <meta name="technical-skills" content="Python, JavaScript, Node.js, React, MongoDB, Express.js, HTML5, CSS3, Git, Linux">
-    <meta name="experience-years" content="2+">
+    <meta name="experience-years" content="3+">
     <meta name="location" content="Casablanca, Morocco">
     <meta name="work-preference" content="remote, hybrid, on-site">
     
