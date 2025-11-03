@@ -3,8 +3,15 @@
   <!-- Main Page -->
   <url>
     <loc>https://brahim-elhouss.me/</loc>
-    <lastmod>2025-11-02</lastmod>
+    <lastmod>2025-11-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  </url>
+  <!-- About Page -->
+  <url>
+    <loc>https://brahim-elhouss.me/about.php</loc>
+    <lastmod>2025-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>
