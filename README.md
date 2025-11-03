@@ -3,8 +3,7 @@
 🌟 **Modern Portfolio Website** showcasing Full Stack Software Engineering skills and projects.
 
 ## 🚀 Live Demo
-- **Production**: [brahim-crafts.tech](https://brahim-crafts.tech)
-- **Alternative**: [brahim-elhouss.me](https://brahim-elhouss.me)
+- **Production**: [brahim-elhouss.me](https://brahim-elhouss.me)
 
 ## 📋 Project Overview
 

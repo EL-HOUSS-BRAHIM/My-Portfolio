@@ -84,12 +84,9 @@ After verification:
 
 ---
 
-## Step 6: Add Second Domain (Optional)
+## Step 6: Domain Consolidation
 
-If you want both domains indexed:
-
-1. Repeat Steps 2-5 for: `https://brahim-crafts.tech`
-2. Or set up a **301 redirect** from one domain to the other
+All traffic is consolidated to the primary domain: `https://brahim-elhouss.me`
 
 ---
 

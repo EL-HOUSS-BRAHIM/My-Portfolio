@@ -47,7 +47,7 @@ $email = htmlspecialchars($email, ENT_QUOTES, 'UTF-8');
 $message = htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
 
 // Try to send email
-$to = 'brahim.crafts.tech@gmail.com';
+$to = 'brahim.elhouss@gmail.com';
 $subject = 'New Contact Form Submission from ' . $name;
 $body = "Name: $name\nEmail: $email\n\nMessage:\n$message\n\nSubmitted: " . date('Y-m-d H:i:s');
 $headers = "From: noreply@brahim-elhouss.me\r\n";
@@ -63,7 +63,7 @@ if (mail($to, $subject, $body, $headers)) {
 } else {
     echo json_encode([
         'success' => false,
-        'message' => 'Sorry, there was an issue sending your message. Please try emailing me directly at brahim.crafts.tech@gmail.com'
+        'message' => 'Sorry, there was an issue sending your message. Please try emailing me directly at brahim.elhouss@gmail.com'
     ]);
 }
 ?>

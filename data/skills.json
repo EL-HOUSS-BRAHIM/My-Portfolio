@@ -143,10 +143,10 @@
     {
       "id": 15,
       "category": "Tools & DevOps",
-      "name": "Cloud Platforms",
-      "description": "Heroku, deployment, hosting",
-      "level": 80,
-      "icon": "fas fa-cloud",
+      "name": "Google Cloud Platform (GCP)",
+      "description": "Cloud infrastructure, deployment, services",
+      "level": 75,
+      "icon": "fab fa-google",
       "order_position": 3,
       "is_active": true
     },

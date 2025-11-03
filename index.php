@@ -91,7 +91,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     <meta name="twitter:description" content="Full Stack Developer specializing in Python, JavaScript, Node.js. Building innovative web applications. Available for hire.">
     <meta name="twitter:image" content="https://brahim-elhouss.me/assets/images/profile-img.jpg">
     <meta name="twitter:image:alt" content="Brahim El Houss - Full Stack Software Engineer">
-    <meta name="twitter:domain" content="brahim-crafts.tech">
+    <meta name="twitter:domain" content="brahim-elhouss.me">
     
     <!-- LinkedIn Specific -->
     <meta property="og:title" content="Brahim El Houss - Full Stack Software Engineer">
@@ -205,7 +205,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
         "addressCountry": "Morocco"
       },
       "nationality": "Moroccan",
-      "email": "brahim-crafts.tech@gmail.com",
+      "email": "brahim-elhouss@gmail.com",
       "availableLanguage": ["English", "Arabic", "French"],
       "seeks": {
         "@type": "Demand",
@@ -257,7 +257,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
       },
       "potentialAction": {
         "@type": "SearchAction",
-        "target": "https://brahim-crafts.tech/?s={search_term_string}",
+        "target": "https://brahim-elhouss.me/?s={search_term_string}",
         "query-input": "required name=search_term_string"
       }
     }
@@ -442,7 +442,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                         </p>
                         <div class="hero__stats" aria-label="Professional statistics">
                             <div class="stat">
-                                <span class="stat__number" aria-label="Years of experience">2+</span>
+                                <span class="stat__number" aria-label="Years of experience">3+</span>
                                 <span class="stat__label">Years Experience</span>
                             </div>
                             <div class="stat">
@@ -1367,8 +1367,8 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                             </div>
                             <div class="contact-details">
                                 <h4>Email</h4>
-                                <p>brahim-crafts.tech@gmail.com</p>
-                                <a href="mailto:brahim-crafts.tech@gmail.com">Send a message</a>
+                                <p>brahim-elhouss@gmail.com</p>
+                                <a href="mailto:brahim-elhouss@gmail.com">Send a message</a>
                             </div>
                         </div>
                         
