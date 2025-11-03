@@ -123,7 +123,7 @@
           "name": "How to contact Brahim El Houss?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "You can contact Brahim El Houss through his website at brahim-elhouss.me, via email at brahim-crafts.tech@gmail.com, or connect on LinkedIn and GitHub."
+            "text": "You can contact Brahim El Houss through his website at brahim-elhouss.me, via email at brahim-elhouss@gmail.com, or connect on LinkedIn and GitHub."
           }
         }
       ]

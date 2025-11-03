@@ -23,7 +23,7 @@ Your website is well-optimized for search engine crawlers!
 - **Location**: `/public/sitemap.xml`
 - **Status**: Created and up-to-date
 - **Last Modified**: 2025-11-01
-- **URLs Included**: Both domains (brahim-elhouss.me, brahim-crafts.tech)
+- **URLs Included**: Primary domain (brahim-elhouss.me)
 
 ```
 ✅ Valid XML format

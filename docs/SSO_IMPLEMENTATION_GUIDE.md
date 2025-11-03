@@ -46,7 +46,6 @@ Your site currently has:
    - Create OAuth 2.0 credentials
    - Add authorized redirect URIs:
      - https://brahim-elhouss.me/auth/google/callback
-     - https://brahim-crafts.tech/auth/google/callback
    ```
 
 2. **Install Dependencies**

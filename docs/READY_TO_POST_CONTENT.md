@@ -301,7 +301,7 @@ Python • JavaScript • Node.js • React • MongoDB • Express.js • HTML5
 ## 📫 How to reach me
 - Portfolio: [brahim-elhouss.me](https://brahim-elhouss.me)
 - LinkedIn: [linkedin.com/in/brahim-elhouss](https://linkedin.com/in/brahim-elhouss)
-- Email: brahim-crafts.tech@gmail.com
+- Email: brahim-elhouss@gmail.com
 
 💼 **Open to opportunities** | Remote & Hybrid roles
 ```

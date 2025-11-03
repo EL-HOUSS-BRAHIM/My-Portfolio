@@ -1,6 +1,6 @@
 /* TEAM */
 Developer: Brahim El Houss
-Contact: brahim-crafts.tech@gmail.com
+Contact: brahim-elhouss@gmail.com
 Site: https://brahim-elhouss.me
 LinkedIn: https://www.linkedin.com/in/brahim-el-houss
 GitHub: https://github.com/EL-HOUSS-BRAHIM
