@@ -71,9 +71,9 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     <meta property="og:type" content="website">
     <meta property="og:title" content="Brahim El Houss - Full Stack Software Engineer Portfolio">
     <meta property="og:description" content="Experienced Full Stack Developer specializing in modern web technologies. Check out my projects in Python, JavaScript, Node.js, and more. Available for hire.">
-    <meta property="og:url" content="https://brahim-crafts.tech">
+    <meta property="og:url" content="https://brahim-elhouss.me">
     <meta property="og:site_name" content="Brahim El Houss Portfolio">
-    <meta property="og:image" content="https://brahim-crafts.tech/assets/images/profile-img.jpg">
+    <meta property="og:image" content="https://brahim-elhouss.me/assets/images/profile-img.jpg">
     <meta property="og:image:alt" content="Brahim El Houss - Full Stack Software Engineer">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -89,20 +89,14 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     <meta name="twitter:creator" content="@brahimelhouss">
     <meta name="twitter:title" content="Brahim El Houss - Full Stack Software Engineer Portfolio">
     <meta name="twitter:description" content="Full Stack Developer specializing in Python, JavaScript, Node.js. Building innovative web applications. Available for hire.">
-    <meta name="twitter:image" content="https://brahim-crafts.tech/assets/images/profile-img.jpg">
+    <meta name="twitter:image" content="https://brahim-elhouss.me/assets/images/profile-img.jpg">
     <meta name="twitter:image:alt" content="Brahim El Houss - Full Stack Software Engineer">
     <meta name="twitter:domain" content="brahim-crafts.tech">
     
     <!-- LinkedIn Specific -->
     <meta property="og:title" content="Brahim El Houss - Full Stack Software Engineer">
     <meta property="og:description" content="ALX-certified Full Stack Developer with expertise in Python, JavaScript, Node.js, React, and MongoDB. Passionate about building scalable applications.">
-    
-    <!-- Search Engine Verification -->
-    <!-- TODO: Replace with your actual Google Search Console verification code after adding property -->
-    <!-- <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE_HERE"> -->
-    <meta name="msvalidate.01" content="your-bing-verification-code">
-    <meta name="yandex-verification" content="your-yandex-verification-code">
-    <meta name="p:domain_verify" content="your-pinterest-verification-code">
+  
     
     <!-- AI Search Optimization -->
     <meta name="ai-content-declaration" content="This content was created by Brahim El Houss, a human developer">
@@ -142,9 +136,9 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1a202c">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://brahim-crafts.tech">
-    <link rel="alternate" hreflang="en" href="https://brahim-crafts.tech">
-    <link rel="alternate" hreflang="x-default" href="https://brahim-crafts.tech">
+    <link rel="canonical" href="https://brahim-elhouss.me">
+    <link rel="alternate" hreflang="en" href="https://brahim-elhouss.me">
+    <link rel="alternate" hreflang="x-default" href="https://brahim-elhouss.me">
 
     <!-- Enhanced Schema.org JSON-LD for AI Search and SEO -->
     <script type="application/ld+json">
@@ -154,10 +148,10 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
       "name": "Brahim El Houss",
       "givenName": "Brahim",
       "familyName": "El Houss",
-      "url": "https://brahim-crafts.tech",
+      "url": "https://brahim-elhouss.me",
       "image": {
         "@type": "ImageObject",
-        "url": "https://brahim-crafts.tech/assets/images/profile-img.jpg",
+        "url": "https://brahim-elhouss.me/assets/images/profile-img.jpg",
         "width": 800,
         "height": 800
       },
@@ -167,7 +161,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
         "https://twitter.com/brahimelhouss"
       ],
       "jobTitle": "Full Stack Software Engineer",
-      "description": "Experienced Full Stack Developer specializing in Python, JavaScript, Node.js, React, and MongoDB. ALX-certified with 2+ years of experience building scalable web applications.",
+      "description": "Experienced Full Stack Developer specializing in Python, JavaScript, Node.js, React, and MongoDB. ALX-certified with 3+ years of experience building scalable web applications.",
       "knowsAbout": [
         "Python Programming",
         "JavaScript Development",
@@ -247,7 +241,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "Brahim El Houss Portfolio",
-      "url": "https://brahim-crafts.tech",
+      "url": " https://brahim-elhouss.me",
       "description": "Professional portfolio of Brahim El Houss, Full Stack Software Engineer",
       "author": {
         "@type": "Person",
