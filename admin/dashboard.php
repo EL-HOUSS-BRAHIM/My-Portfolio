@@ -352,7 +352,7 @@ try {
             <a href="messages.php" class="btn btn-primary">
                 <i class="fas fa-envelope"></i> View Messages
             </a>
-            <a href="../index.html" class="btn btn-primary" target="_blank">
+            <a href="../index.php" class="btn btn-primary" target="_blank">
                 <i class="fas fa-external-link-alt"></i> View Site
         <div class="dashboard-grid">
             <div class="card">
