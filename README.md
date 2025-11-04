@@ -270,12 +270,12 @@ See `/database/init.sql` for complete schema.
 
 #### Building Digital Footprint
 To improve search visibility and rankings, add portfolio backlinks to:
-- ✅ **GitHub Profile**: Add website URL to your GitHub profile
-- ✅ **LinkedIn**: Add website to "Contact Info" → "Website" section
-- ✅ **Twitter/X**: Add to bio or pinned tweet
-- ✅ **Dev.to**: Create profile and link to portfolio
-- ✅ **Hashnode**: Link from your blog profile
-- ✅ **Other platforms**: Stack Overflow, Medium, personal repos
+- **GitHub Profile**: Add website URL to your GitHub profile
+- **LinkedIn**: Add website to "Contact Info" → "Website" section
+- **Twitter/X**: Add to bio or pinned tweet
+- **Dev.to**: Create profile and link to portfolio
+- **Hashnode**: Link from your blog profile
+- **Other platforms**: Stack Overflow, Medium, personal repos
 
 **Note**: The site is Google-indexed. Focus on building quality backlinks for improved ranking and discoverability.
 
