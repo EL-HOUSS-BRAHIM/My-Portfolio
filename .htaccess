@@ -35,7 +35,6 @@ ErrorDocument 500 /404.html
     RewriteRule ^mstile-150x150\.png$ /public/icons/mstile-150x150.png [L]
     RewriteRule ^browserconfig\.xml$ /public/icons/browserconfig.xml [L]
     RewriteRule ^robots\.txt$ /public/robots.txt [L]
-    RewriteRule ^sitemap\.xml$ /public/sitemap.xml [L]
     RewriteRule ^humans\.txt$ /public/humans.txt [L]
     RewriteRule ^BingSiteAuth\.xml$ /public/BingSiteAuth.xml [L]
 </IfModule>
