@@ -262,9 +262,22 @@ See `/database/init.sql` for complete schema.
 ### SEO Optimization
 - Meta tags optimization
 - Open Graph and Twitter Cards
-- Schema.org JSON-LD markup
-- XML sitemap
+- Schema.org JSON-LD markup (Person, WebSite, ProfilePage)
+- XML sitemap (located at `/sitemap.xml`)
 - Robots.txt configuration
+- Mobile-first indexing ready
+- Structured data for search engines
+
+#### Building Digital Footprint
+To improve search visibility and rankings, add portfolio backlinks to:
+- ✅ **GitHub Profile**: Add website URL to your GitHub profile
+- ✅ **LinkedIn**: Add website to "Contact Info" → "Website" section
+- ✅ **Twitter/X**: Add to bio or pinned tweet
+- ✅ **Dev.to**: Create profile and link to portfolio
+- ✅ **Hashnode**: Link from your blog profile
+- ✅ **Other platforms**: Stack Overflow, Medium, personal repos
+
+**Note**: The site is Google-indexed. Focus on building quality backlinks for improved ranking and discoverability.
 
 ## 📱 Responsive Design
 

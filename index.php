@@ -55,8 +55,8 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     <meta name="format-detection" content="telephone=no">
     
     <!-- SEO Meta Tags -->
-    <title>Brahim El Houss - Full Stack Software Engineer | Python, JavaScript, Node.js Developer</title>
-    <meta name="description" content="Brahim El Houss - Experienced Full Stack Software Engineer specializing in Python, JavaScript, Node.js, React, and MongoDB. Building scalable web applications and innovative digital solutions. Available for hire.">
+    <title>Brahim El Houss | Software Engineer & Creator</title>
+    <meta name="description" content="Full-stack software engineer building scalable projects, exploring AI, and crafting digital experiences. Specialized in Python, JavaScript, Node.js, and modern web technologies.">
     <meta name="keywords" content="Brahim El Houss, Full Stack Developer, Software Engineer, Python Developer, JavaScript Developer, Node.js, React, MongoDB, Web Development, Backend Development, ALX Graduate, Morocco Developer">
     <meta name="author" content="Brahim El Houss">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
@@ -278,8 +278,6 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
       }
     }
     </script>
-
-    <title>Brahim El Houss - Full Stack Software Engineer | Python, JavaScript, Node.js Developer</title>
     
     <!-- Google Fonts for modern typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
