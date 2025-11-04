@@ -143,16 +143,21 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     <!-- Sitemap -->
     <link rel="sitemap" type="application/xml" title="Sitemap" href="https://brahim-elhouss.me/sitemap.xml">
 
-    <!-- Enhanced Schema.org JSON-LD for AI Search and SEO -->
+    <!-- Enhanced Schema.org JSON-LD for AI Search and SEO with Entity Recognition -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Person",
+      "@id": "https://brahim-elhouss.me/#person",
       "name": "Brahim El Houss",
       "alternateName": ["Brahim Elhouss", "brahim elhouss", "BRAHIM EL HOUSS"],
       "givenName": "Brahim",
       "familyName": "El Houss",
       "url": "https://brahim-elhouss.me",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://brahim-elhouss.me/#webpage"
+      },
       "image": {
         "@type": "ImageObject",
         "url": "https://brahim-elhouss.me/assets/images/profile-img.jpg",
@@ -239,25 +244,27 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     }
     </script>
 
-    <!-- Additional Structured Data for Portfolio -->
+    <!-- Additional Structured Data for Portfolio with Entity Cross-Reference -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
+      "@id": "https://brahim-elhouss.me/#website",
       "name": "Brahim El Houss Portfolio",
-      "url": " https://brahim-elhouss.me",
+      "url": "https://brahim-elhouss.me",
       "description": "Professional portfolio of Brahim El Houss, Full Stack Software Engineer",
       "author": {
-        "@type": "Person",
-        "name": "Brahim El Houss"
+        "@id": "https://brahim-elhouss.me/#person"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://brahim-elhouss.me/#webpage"
       },
       "inLanguage": "en-US",
       "copyrightYear": "2024",
       "genre": "Professional Portfolio",
       "keywords": "Full Stack Developer, Software Engineer, Python, JavaScript, Portfolio",
-      "mainEntity": {
-        "@type": "Person",
-        "name": "Brahim El Houss"
+      "about": {
+        "@id": "https://brahim-elhouss.me/#person"
       },
       "potentialAction": {
         "@type": "SearchAction",
@@ -267,18 +274,20 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     }
     </script>
 
-    <!-- Professional Profile Structured Data -->
+    <!-- Professional Profile Structured Data with Entity Cross-Reference -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "ProfilePage",
+      "@id": "https://brahim-elhouss.me/#webpage",
+      "url": "https://brahim-elhouss.me",
       "dateCreated": "2024-01-01T00:00:00Z",
-      "dateModified": "2025-11-02T00:00:00Z",
+      "dateModified": "2025-11-04T00:00:00Z",
       "mainEntity": {
-        "@type": "Person",
-        "name": "Brahim El Houss",
-        "jobTitle": "Full Stack Software Engineer",
-        "description": "ALX-certified Full Stack Developer with expertise in modern web technologies"
+        "@id": "https://brahim-elhouss.me/#person"
+      },
+      "about": {
+        "@id": "https://brahim-elhouss.me/#person"
       }
     }
     </script>
