@@ -57,7 +57,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     <!-- SEO Meta Tags -->
     <title>Brahim El Houss | Software Engineer & Creator</title>
     <meta name="description" content="Full-stack software engineer building scalable projects, exploring AI, and crafting digital experiences. Specialized in Python, JavaScript, Node.js, and modern web technologies.">
-    <meta name="keywords" content="Brahim El Houss, Full Stack Developer, Software Engineer, Python Developer, JavaScript Developer, Node.js, React, MongoDB, Web Development, Backend Development, ALX Graduate, Morocco Developer">
+    <meta name="keywords" content="Brahim El Houss, brahim elhouss, Brahim Elhouss, Full Stack Developer, Software Engineer, Python Developer, JavaScript Developer, Node.js, React, MongoDB, Web Development, Backend Development, ALX Graduate, Morocco Developer, Casablanca Developer">
     <meta name="author" content="Brahim El Houss">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="googlebot" content="index, follow">
@@ -146,6 +146,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Brahim El Houss",
+      "alternateName": ["Brahim Elhouss", "brahim elhouss", "BRAHIM EL HOUSS"],
       "givenName": "Brahim",
       "familyName": "El Houss",
       "url": "https://brahim-elhouss.me",
