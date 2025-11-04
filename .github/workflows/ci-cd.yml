@@ -257,14 +257,54 @@ jobs:
         mkdir -p ~/.ssh
         echo "$DEPLOY_KEY" > ~/.ssh/deploy_key
         chmod 600 ~/.ssh/deploy_key
-        ssh-keyscan -p $DEPLOY_PORT $DEPLOY_HOST >> ~/.ssh/known_hosts 2>/dev/null
         
-        # Upload deployment package
-        scp -i ~/.ssh/deploy_key -P $DEPLOY_PORT portfolio-deploy.tar.gz $DEPLOY_USER@$DEPLOY_HOST:~/
+        # Verify the tar file exists locally
+        if [ ! -f "portfolio-deploy.tar.gz" ]; then
+          echo "❌ Error: portfolio-deploy.tar.gz not found!"
+          exit 1
+        fi
+        echo "✅ Deployment package found: $(ls -lh portfolio-deploy.tar.gz)"
+        
+        # Add host to known_hosts
+        ssh-keyscan -p $DEPLOY_PORT $DEPLOY_HOST >> ~/.ssh/known_hosts 2>/dev/null || {
+          echo "⚠️ ssh-keyscan failed, adding host key manually"
+        }
+        
+        # Test SSH connection first
+        echo "🔍 Testing SSH connection..."
+        ssh -i ~/.ssh/deploy_key -p $DEPLOY_PORT -o StrictHostKeyChecking=no -o ConnectTimeout=10 $DEPLOY_USER@$DEPLOY_HOST "echo '✅ SSH connection successful'" || {
+          echo "❌ SSH connection failed!"
+          exit 1
+        }
+        
+        # Upload deployment package with verbose output
+        echo "📤 Uploading deployment package..."
+        scp -v -i ~/.ssh/deploy_key -P $DEPLOY_PORT -o StrictHostKeyChecking=no portfolio-deploy.tar.gz $DEPLOY_USER@$DEPLOY_HOST:~/ || {
+          echo "❌ SCP upload failed!"
+          exit 1
+        }
+        
+        # Verify upload succeeded
+        echo "✅ Verifying upload..."
+        ssh -i ~/.ssh/deploy_key -p $DEPLOY_PORT -o StrictHostKeyChecking=no $DEPLOY_USER@$DEPLOY_HOST "ls -lh ~/portfolio-deploy.tar.gz" || {
+          echo "❌ Uploaded file not found on server!"
+          exit 1
+        }
         
         # Deploy on server
-        ssh -i ~/.ssh/deploy_key -p $DEPLOY_PORT $DEPLOY_USER@$DEPLOY_HOST << 'ENDSSH'
+        echo "🚀 Starting deployment on server..."
+        ssh -i ~/.ssh/deploy_key -p $DEPLOY_PORT -o StrictHostKeyChecking=no $DEPLOY_USER@$DEPLOY_HOST << 'ENDSSH'
+          set -e  # Exit on any error
+          
+          echo "📋 Verifying deployment package..."
+          if [ ! -f ~/portfolio-deploy.tar.gz ]; then
+            echo "❌ Error: portfolio-deploy.tar.gz not found in home directory!"
+            exit 1
+          fi
+          echo "✅ Package found: $(ls -lh ~/portfolio-deploy.tar.gz)"
+          
           # Create backup
+          echo "💾 Creating backup..."
           if [ -d "/var/www/portfolio" ]; then
             sudo tar -czf "/tmp/portfolio-backup-$(date +%Y%m%d_%H%M%S).tar.gz" -C /var/www portfolio 2>/dev/null || true
             # Keep only last 5 backups
@@ -272,18 +312,28 @@ jobs:
           fi
           
           # Prepare new deployment
+          echo "📦 Extracting deployment package..."
           sudo rm -rf /var/www/portfolio-new
           sudo mkdir -p /var/www/portfolio-new
-          sudo tar -xzf ~/portfolio-deploy.tar.gz -C /var/www/portfolio-new
+          sudo tar -xzf ~/portfolio-deploy.tar.gz -C /var/www/portfolio-new || {
+            echo "❌ Failed to extract deployment package!"
+            exit 1
+          }
+          echo "✅ Package extracted successfully"
           
           # Install/update Composer dependencies
+          echo "📚 Installing Composer dependencies..."
           cd /var/www/portfolio-new
-          sudo COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --optimize-autoloader --no-interaction 2>/dev/null || true
+          sudo COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --optimize-autoloader --no-interaction 2>&1 | tail -20 || {
+            echo "⚠️ Composer install had issues, but continuing..."
+          }
           
           # Setup storage directories
+          echo "📁 Setting up storage directories..."
           sudo mkdir -p storage/{logs,cache,sessions,monitoring,optimized}
           
           # Set permissions
+          echo "🔒 Setting permissions..."
           sudo chown -R www-data:www-data .
           sudo find . -type d -exec chmod 755 {} \;
           sudo find . -type f -exec chmod 644 {} \;
@@ -291,28 +341,35 @@ jobs:
           sudo chmod -R 777 storage/{cache,logs,sessions}
           
           # Atomic switch
+          echo "🔄 Performing atomic switch..."
           sudo mv /var/www/portfolio /var/www/portfolio-old 2>/dev/null || true
           sudo mv /var/www/portfolio-new /var/www/portfolio
           
           # Restart services
-          sudo systemctl reload nginx
-          sudo systemctl restart php8.2-fpm
+          echo "🔄 Restarting services..."
+          sudo systemctl reload nginx || echo "⚠️ Nginx reload failed"
+          sudo systemctl restart php8.2-fpm || echo "⚠️ PHP-FPM restart failed"
           
           # Health check
-          sleep 3
+          echo "🏥 Running health check..."
+          sleep 5
           if curl -f -k https://localhost/ > /dev/null 2>&1; then
-            echo "✅ Deployment successful"
+            echo "✅ Deployment successful - Site is responding"
             sudo rm -rf /var/www/portfolio-old
+            echo "🧹 Cleaned up old deployment"
           else
-            echo "❌ Deployment failed, rolling back"
+            echo "❌ Health check failed - rolling back..."
             sudo mv /var/www/portfolio /var/www/portfolio-failed
             sudo mv /var/www/portfolio-old /var/www/portfolio 2>/dev/null || true
             sudo systemctl reload nginx
+            echo "↩️ Rollback completed"
             exit 1
           fi
           
           # Cleanup
+          echo "🧹 Cleaning up deployment package..."
           rm -f ~/portfolio-deploy.tar.gz
+          echo "✅ Deployment completed successfully!"
         ENDSSH
         
         # Cleanup local SSH key
