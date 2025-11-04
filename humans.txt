@@ -1,0 +1,75 @@
+/* TEAM */
+Developer: Brahim El Houss
+Contact: brahim-elhouss@gmail.com
+Site: https://brahim-elhouss.me
+LinkedIn: https://www.linkedin.com/in/brahim-el-houss
+GitHub: https://github.com/EL-HOUSS-BRAHIM
+Location: Casablanca, Morocco
+
+/* THANKS */
+ALX Software Engineering Program
+Hassan II University
+Open Source Community
+
+/* SITE */
+Last update: 2025/11/04
+Language: English
+Doctype: HTML5
+IDE: Visual Studio Code
+Standards: HTML5, CSS3, ES6+, PHP 8+
+Components: Vanilla JavaScript, PHP, MySQL
+Technologies: Node.js, React, Python, MongoDB
+Design: Custom responsive design
+Performance: Optimized for speed and SEO
+
+/* FEATURES */
+- Fully responsive design
+- Progressive enhancement
+- Accessibility compliant (WCAG 2.1)
+- SEO optimized with structured data
+- Performance optimized (caching, compression)
+- Security hardened (HTTPS, CSP, input validation)
+- Dark/Light theme support
+- Form spam protection (reCAPTCHA)
+
+/* HOSTING */
+Server: Nginx with PHP-FPM
+SSL/TLS: Let's Encrypt
+CDN: Google Fonts, Font Awesome
+Version Control: Git
+
+/* CREDITS */
+Icons: Font Awesome
+Fonts: Google Fonts (Inter, JetBrains Mono)
+Security: Google reCAPTCHA v2
+
+                                    
+                               -o/-                     
+                              +oooo/                    
+                             +oooooo+                   
+                            -+oooooo+:                  
+                            `/:-:oooo+:                 
+                           :+::/oooooo/                 
+                          /::+::oooooo/                 
+                        `.://:::/oooooo:                
+                       `://::////oooooo:`               
+                      .o++/:://////+ooo+.               
+                     +oo+:://///////+oo:`               
+                    /ooo+:://///////+oo-                
+                   +oooo+::////////+ooo-                
+                  :ooooo+::://////+oooo+`               
+                 -ooooooo+//////+oooooo-                
+                -oooooooo+/////+ooooooo:                
+               .ooooooooo+////+oooooooo+                
+               +ooooooooo+///+ooooooooo+`               
+              -oooooooooo+//+oooooooooo+.               
+              :oooooooooo+/+ooooooooooo/                
+              /oooooooooo++ooooooooooo+`                
+              +ooooooooooooooooooooooo-                 
+              +oooooooooooooooooooooo+                  
+              -ooooooooooooooooooooo+                   
+               .oooooooooooooooooo+:`                   
+                 `-/+oooooooooo+/:.                     
+                       ```````                          
+
+"Code is poetry written in logic"

@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /src/
+Disallow: /config/
+Disallow: /database/
+Disallow: /.well-known/appspecific/
+Allow: /.well-known/security.txt
+
+# Sitemap location
+Sitemap: https://brahim-elhouss.me/sitemap.xml
