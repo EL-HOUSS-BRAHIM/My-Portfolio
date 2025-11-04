@@ -7,7 +7,7 @@
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-  
+
   <!-- About Page -->
   <url>
     <loc>https://brahim-elhouss.me/about.php</loc>
@@ -15,7 +15,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
+
   <!-- Blog Section -->
   <url>
     <loc>https://brahim-elhouss.me/blog.php</loc>
@@ -23,7 +23,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
-  
+
   <!-- Blog Post: My Journey from Physics to Code -->
   <url>
     <loc>https://brahim-elhouss.me/blog/my-journey-from-physics-to-code.php</loc>
@@ -31,7 +31,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
+
   <!-- Videos Page -->
   <url>
     <loc>https://brahim-elhouss.me/videos.php</loc>
