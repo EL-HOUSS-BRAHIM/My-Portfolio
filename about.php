@@ -23,6 +23,9 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://brahim-elhouss.me/about.php">
     
+    <!-- Sitemap -->
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://brahim-elhouss.me/sitemap.xml">
+    
     <!-- Schema.org Person Markup -->
     <script type="application/ld+json">
     {

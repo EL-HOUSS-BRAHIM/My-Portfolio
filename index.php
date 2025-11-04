@@ -139,6 +139,9 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     <link rel="canonical" href="https://brahim-elhouss.me">
     <link rel="alternate" hreflang="en" href="https://brahim-elhouss.me">
     <link rel="alternate" hreflang="x-default" href="https://brahim-elhouss.me">
+    
+    <!-- Sitemap -->
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://brahim-elhouss.me/sitemap.xml">
 
     <!-- Enhanced Schema.org JSON-LD for AI Search and SEO -->
     <script type="application/ld+json">

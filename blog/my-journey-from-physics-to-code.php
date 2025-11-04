@@ -43,6 +43,9 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://brahim-elhouss.me/blog/my-journey-from-physics-to-code.php">
     
+    <!-- Sitemap -->
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://brahim-elhouss.me/sitemap.xml">
+    
     <!-- Stylesheets -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/assets/css/main.css">
