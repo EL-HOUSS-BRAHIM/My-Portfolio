@@ -55,8 +55,8 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     <meta name="format-detection" content="telephone=no">
     
     <!-- SEO Meta Tags -->
-    <title>Brahim El Houss - Full Stack Software Engineer | Python, JavaScript, Node.js Developer</title>
-    <meta name="description" content="Brahim El Houss - Experienced Full Stack Software Engineer specializing in Python, JavaScript, Node.js, React, and MongoDB. Building scalable web applications and innovative digital solutions. Available for hire.">
+    <title>Brahim El Houss | Software Engineer & Creator</title>
+    <meta name="description" content="Full-stack software engineer building scalable projects, exploring AI, and crafting digital experiences. Specialized in Python, JavaScript, Node.js, and modern web technologies.">
     <meta name="keywords" content="Brahim El Houss, Full Stack Developer, Software Engineer, Python Developer, JavaScript Developer, Node.js, React, MongoDB, Web Development, Backend Development, ALX Graduate, Morocco Developer">
     <meta name="author" content="Brahim El Houss">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
@@ -69,8 +69,8 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     
     <!-- Enhanced Open Graph for Social Media -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Brahim El Houss - Full Stack Software Engineer Portfolio">
-    <meta property="og:description" content="Experienced Full Stack Developer specializing in modern web technologies. Check out my projects in Python, JavaScript, Node.js, and more. Available for hire.">
+    <meta property="og:title" content="Brahim El Houss | Software Engineer & Creator">
+    <meta property="og:description" content="Full-stack software engineer building scalable projects, exploring AI, and crafting digital experiences.">
     <meta property="og:url" content="https://brahim-elhouss.me">
     <meta property="og:site_name" content="Brahim El Houss Portfolio">
     <meta property="og:image" content="https://brahim-elhouss.me/assets/images/profile-img.jpg">
@@ -87,15 +87,15 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@brahimelhouss">
     <meta name="twitter:creator" content="@brahimelhouss">
-    <meta name="twitter:title" content="Brahim El Houss - Full Stack Software Engineer Portfolio">
-    <meta name="twitter:description" content="Full Stack Developer specializing in Python, JavaScript, Node.js. Building innovative web applications. Available for hire.">
+    <meta name="twitter:title" content="Brahim El Houss | Software Engineer & Creator">
+    <meta name="twitter:description" content="Full-stack software engineer building scalable projects, exploring AI, and crafting digital experiences.">
     <meta name="twitter:image" content="https://brahim-elhouss.me/assets/images/profile-img.jpg">
     <meta name="twitter:image:alt" content="Brahim El Houss - Full Stack Software Engineer">
     <meta name="twitter:domain" content="brahim-elhouss.me">
     
     <!-- LinkedIn Specific -->
-    <meta property="og:title" content="Brahim El Houss - Full Stack Software Engineer">
-    <meta property="og:description" content="ALX-certified Full Stack Developer with expertise in Python, JavaScript, Node.js, React, and MongoDB. Passionate about building scalable applications.">
+    <meta property="og:title" content="Brahim El Houss | Software Engineer & Creator">
+    <meta property="og:description" content="Full-stack software engineer building scalable projects, exploring AI, and crafting digital experiences.">
   
     
     <!-- AI Search Optimization -->
@@ -278,8 +278,6 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
       }
     }
     </script>
-
-    <title>Brahim El Houss - Full Stack Software Engineer | Python, JavaScript, Node.js Developer</title>
     
     <!-- Google Fonts for modern typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
