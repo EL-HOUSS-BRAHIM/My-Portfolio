@@ -12,7 +12,7 @@ Hassan II University
 Open Source Community
 
 /* SITE */
-Last update: 2025/11/01
+Last update: 2025/11/04
 Language: English
 Doctype: HTML5
 IDE: Visual Studio Code
