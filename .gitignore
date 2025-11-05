@@ -92,3 +92,6 @@ local_config.php
 *.tar.gz
 *.rar
 *.7z
+
+# Performance test results
+tests/performance-results/

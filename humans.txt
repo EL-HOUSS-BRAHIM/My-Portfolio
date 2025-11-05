@@ -31,6 +31,7 @@ Performance: Optimized for speed and SEO
 - Security hardened (HTTPS, CSP, input validation)
 - Dark/Light theme support
 - Form spam protection (reCAPTCHA)
+- AI-friendly with llms.txt for LLM search engines
 
 /* HOSTING */
 Server: Nginx with PHP-FPM
