@@ -283,7 +283,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
       "@context": "https://schema.org",
       "@type": "ProfilePage",
       "@id": "https://brahim-elhouss.me/#profilepage",
-      "url": "https://brahim-elhouss.me/",
+      "url": "https://brahim-elhouss.me",
       "dateCreated": "2024-01-01T00:00:00Z",
       "dateModified": "2025-11-04T00:00:00Z",
       "name": "Brahim El Houss - Professional Portfolio",
