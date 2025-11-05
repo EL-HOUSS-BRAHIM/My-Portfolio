@@ -26,6 +26,9 @@
     <!-- Sitemap -->
     <link rel="sitemap" type="application/xml" title="Sitemap" href="https://brahim-elhouss.me/sitemap.xml">
     
+    <!-- LLMS.txt for AI/LLM Search Engines -->
+    <link rel="alternate" type="text/plain" title="LLMS Information" href="https://brahim-elhouss.me/llms.txt">
+    
     <!-- Schema.org Person Markup -->
     <script type="application/ld+json">
     {
