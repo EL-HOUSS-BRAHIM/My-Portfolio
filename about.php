@@ -57,7 +57,7 @@
           "address": {
             "@type": "PostalAddress",
             "addressLocality": "Casablanca",
-            "addressCountry": "Morocco"
+            "addressCountry": "MA"
           }
         }
       ],
@@ -66,7 +66,7 @@
         "@type": "Place",
         "address": {
           "@type": "PostalAddress",
-          "addressCountry": "Morocco"
+          "addressCountry": "MA"
         }
       },
       "homeLocation": {
@@ -75,7 +75,7 @@
           "@type": "PostalAddress",
           "addressLocality": "Casablanca",
           "addressRegion": "Casablanca-Settat",
-          "addressCountry": "Morocco"
+          "addressCountry": "MA"
         }
       },
       "sameAs": [
