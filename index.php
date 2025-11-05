@@ -207,14 +207,14 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Casablanca",
-          "addressCountry": "Morocco"
+          "addressCountry": "MA"
         }
       },
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Casablanca",
         "addressRegion": "Casablanca-Settat",
-        "addressCountry": "Morocco"
+        "addressCountry": "MA"
       },
       "nationality": "Moroccan",
       "email": "brahim-elhouss@gmail.com",
