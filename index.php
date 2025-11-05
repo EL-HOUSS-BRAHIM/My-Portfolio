@@ -158,8 +158,8 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
       "familyName": "El Houss",
       "url": "https://brahim-elhouss.me",
       "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://brahim-elhouss.me/#webpage"
+        "@type": "ProfilePage",
+        "@id": "https://brahim-elhouss.me/#profilepage"
       },
       "image": {
         "@type": "ImageObject",
@@ -260,7 +260,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
         "@id": "https://brahim-elhouss.me/#person"
       },
       "mainEntityOfPage": {
-        "@id": "https://brahim-elhouss.me/#webpage"
+        "@id": "https://brahim-elhouss.me/#profilepage"
       },
       "inLanguage": "en-US",
       "copyrightYear": "2024",
@@ -277,21 +277,17 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     }
     </script>
 
-    <!-- Professional Profile Structured Data with Entity Cross-Reference -->
+    <!-- Professional Profile Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "ProfilePage",
-      "@id": "https://brahim-elhouss.me/#webpage",
+      "@id": "https://brahim-elhouss.me/#profilepage",
       "url": "https://brahim-elhouss.me",
       "dateCreated": "2024-01-01T00:00:00Z",
       "dateModified": "2025-11-04T00:00:00Z",
-      "mainEntity": {
-        "@id": "https://brahim-elhouss.me/#person"
-      },
-      "about": {
-        "@id": "https://brahim-elhouss.me/#person"
-      }
+      "name": "Brahim El Houss - Professional Portfolio",
+      "description": "Professional portfolio and profile of Brahim El Houss, Full Stack Software Engineer"
     }
     </script>
     
