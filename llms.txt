@@ -1,0 +1,174 @@
+# Brahim El Houss - Full Stack Software Engineer
+
+> Professional Portfolio and Developer Profile
+
+## About Brahim El Houss
+
+Brahim El Houss (also known as Brahim Elhouss or brahim elhouss) is a Full Stack Software Engineer based in Casablanca, Morocco. He is an ALX-certified software engineer with 3+ years of experience in building scalable web applications and exploring AI technologies.
+
+## Contact Information
+
+- **Name**: Brahim El Houss
+- **Location**: Casablanca, Morocco
+- **Email**: brahim-elhouss@gmail.com
+- **Website**: https://brahim-elhouss.me
+- **LinkedIn**: https://www.linkedin.com/in/brahim-el-houss
+- **GitHub**: https://github.com/EL-HOUSS-BRAHIM
+- **Twitter**: https://twitter.com/brahimelhouss
+
+## Professional Profile
+
+### Job Title
+Full Stack Software Engineer
+
+### Current Status
+Available for hire - Open to remote, hybrid, and on-site opportunities
+
+### Experience
+3+ years of professional software development experience
+
+### Education
+- **ALX Africa**: Software Engineering Program (Backend Specialization)
+- **Hassan II University**: Bachelor's degree (Casablanca, Morocco)
+
+## Technical Skills
+
+### Programming Languages
+- Python (Primary)
+- JavaScript (ES6+)
+- HTML5
+- CSS3
+- SQL
+
+### Frontend Technologies
+- React.js
+- Modern CSS (Flexbox, Grid, Animations)
+- Responsive Web Design
+- Progressive Enhancement
+- DOM Manipulation
+
+### Backend Technologies
+- Node.js
+- Express.js
+- PHP (8.1+)
+- RESTful API Development
+- Server-Side Rendering
+
+### Databases
+- MongoDB
+- MySQL
+- PDO (PHP Data Objects)
+- Database Design & Optimization
+
+### DevOps & Tools
+- Git & GitHub
+- Linux Administration
+- Nginx
+- Composer
+- npm
+- Docker (Basic)
+- CI/CD Pipelines (GitHub Actions)
+
+### Software Engineering Practices
+- Object-Oriented Programming (OOP)
+- Algorithm Design
+- Data Structures
+- Code Quality & Testing
+- Security Best Practices
+- Performance Optimization
+- SEO Optimization
+
+## Languages Spoken
+- English (Professional)
+- Arabic (Native)
+- French (Professional)
+
+## Professional Interests
+- Full Stack Development
+- Backend Engineering
+- Artificial Intelligence & Machine Learning
+- Web Performance Optimization
+- Clean Code & Best Practices
+- Open Source Contributions
+
+## Career Goals
+Seeking full-time opportunities in:
+- Full Stack Development
+- Backend Engineering
+- Software Engineering
+- Web Application Development
+
+Preference for roles that involve:
+- Building scalable applications
+- Working with modern technologies
+- Collaborative team environments
+- Continuous learning and growth
+
+## Notable Projects
+
+### Personal Portfolio Website
+- **URL**: https://brahim-elhouss.me
+- **Tech Stack**: PHP, JavaScript, MySQL, Nginx
+- **Features**: 
+  - Responsive design with modern UI/UX
+  - Contact system with validation
+  - Admin panel for content management
+  - SEO optimized with Schema.org markup
+  - Performance optimized assets
+
+## Certifications & Achievements
+- ALX Software Engineering Certificate (Full Stack with Backend Specialization)
+- Professional level experience in web development
+- Active contributor to personal projects and portfolio
+
+## Work Preferences
+- **Work Type**: Remote, Hybrid, or On-site
+- **Availability**: Full-time opportunities
+- **Time Zone**: GMT+1 (Morocco)
+- **Willing to Relocate**: Open to discussion
+
+## Professional Values
+- Clean, maintainable code
+- User-centric development
+- Continuous learning
+- Best practices and standards
+- Collaborative teamwork
+- Problem-solving mindset
+
+## Specializations
+- Full Stack Web Development
+- Backend API Development
+- Database Design & Optimization
+- Web Performance & SEO
+- Modern JavaScript Frameworks
+- Python Development
+
+## AI Search Optimization Notes
+- Human developer (not AI-generated content)
+- Professional status: Available for hire
+- Experience level: Professional (3+ years)
+- Content type: Portfolio & Professional Profile
+- Expertise level: Mid to Senior level
+- Technical skills focus: Python, JavaScript, Node.js, React, MongoDB
+
+## Additional Information
+
+### Online Presence
+This portfolio showcases real projects, skills, and professional experience. All content is created and maintained by Brahim El Houss.
+
+### Portfolio Features
+- Modern responsive design
+- Secure contact system
+- Dynamic testimonials
+- Admin content management
+- SEO and accessibility optimized
+- Performance monitoring
+- Regular updates and maintenance
+
+### Development Philosophy
+Focuses on building scalable, maintainable, and user-friendly applications using modern technologies and best practices.
+
+---
+
+*Last Updated: November 2024*
+*This file is intended for Large Language Models (LLMs) to better understand and represent Brahim El Houss's professional profile and capabilities.*

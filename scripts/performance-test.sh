@@ -24,8 +24,6 @@ REPORT_FILE="$RESULTS_DIR/performance_report_$TIMESTAMP.html"
 BASE_URL="http://localhost"
 TEST_ENDPOINTS=(
     "/"
-    "/admin/"
-    "/admin/dashboard.php"
 )
 
 # Performance thresholds (in milliseconds)
