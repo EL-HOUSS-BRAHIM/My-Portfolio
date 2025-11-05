@@ -247,36 +247,6 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     }
     </script>
 
-    <!-- Additional Structured Data for Portfolio with Entity Cross-Reference -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "@id": "https://brahim-elhouss.me/#website",
-      "name": "Brahim El Houss Portfolio",
-      "url": "https://brahim-elhouss.me",
-      "description": "Professional portfolio of Brahim El Houss, Full Stack Software Engineer",
-      "author": {
-        "@id": "https://brahim-elhouss.me/#person"
-      },
-      "mainEntityOfPage": {
-        "@id": "https://brahim-elhouss.me/#profilepage"
-      },
-      "inLanguage": "en-US",
-      "copyrightYear": "2024",
-      "genre": "Professional Portfolio",
-      "keywords": "Full Stack Developer, Software Engineer, Python, JavaScript, Portfolio",
-      "about": {
-        "@id": "https://brahim-elhouss.me/#person"
-      },
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://brahim-elhouss.me/?s={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    }
-    </script>
-
     <!-- Professional Profile Structured Data -->
     <script type="application/ld+json">
     {
