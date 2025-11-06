@@ -356,6 +356,12 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                         </a>
                     </li>
                     <li class="nav__item" role="none">
+                        <a href="about.php" class="nav__link" role="menuitem">
+                            <i class="fas fa-file-alt" aria-hidden="true"></i>
+                            <span>More About Me</span>
+                        </a>
+                    </li>
+                    <li class="nav__item" role="none">
                         <a href="#skills" class="nav__link" role="menuitem">
                             <i class="fas fa-cog" aria-hidden="true"></i>
                             <span>Skills</span>
@@ -377,6 +383,18 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                         <a href="#experience" class="nav__link" role="menuitem">
                             <i class="fas fa-graduation-cap" aria-hidden="true"></i>
                             <span>Experience</span>
+                        </a>
+                    </li>
+                    <li class="nav__item" role="none">
+                        <a href="blog.php" class="nav__link" role="menuitem">
+                            <i class="fas fa-blog" aria-hidden="true"></i>
+                            <span>Blog</span>
+                        </a>
+                    </li>
+                    <li class="nav__item" role="none">
+                        <a href="videos.php" class="nav__link" role="menuitem">
+                            <i class="fas fa-video" aria-hidden="true"></i>
+                            <span>Videos</span>
                         </a>
                     </li>
                     <li class="nav__item" role="none">
@@ -443,7 +461,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                                 <i class="fas fa-envelope" aria-hidden="true"></i>
                                 Get In Touch
                             </a>
-                            <a href="/assets/resume.pdf" class="btn btn--outline" download aria-label="Download resume PDF">
+                            <a href="/assets/Brahim-ElHouss-Portfolio.pdf" class="btn btn--outline" download aria-label="Download Brahim El Houss resume PDF">
                                 <i class="fas fa-download" aria-hidden="true"></i>
                                 Download CV
                             </a>
@@ -1559,6 +1577,9 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                     <p>&copy; 2025 Brahim El Houss. All rights reserved.</p>
                 </div>
                 <div class="footer-legal">
+                    <a href="about.php">About</a>
+                    <a href="blog.php">Blog</a>
+                    <a href="videos.php">Videos</a>
                     <a href="#privacy">Privacy Policy</a>
                     <a href="#terms">Terms of Service</a>
                 </div>
