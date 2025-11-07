@@ -55,9 +55,9 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     <meta name="format-detection" content="telephone=no">
     
     <!-- SEO Meta Tags -->
-    <title>Brahim El Houss | Software Engineer & Creator</title>
-    <meta name="description" content="Full-stack software engineer building scalable projects, exploring AI, and crafting digital experiences. Specialized in Python, JavaScript, Node.js, and modern web technologies.">
-    <meta name="keywords" content="Brahim El Houss, brahim elhouss, Brahim Elhouss, Full Stack Developer, Software Engineer, Python Developer, JavaScript Developer, Node.js, React, MongoDB, Web Development, Backend Development, ALX Graduate, Morocco Developer, Casablanca Developer">
+    <title>Brahim El Houss | Full Stack Software Engineer & Backend Development Expert</title>
+    <meta name="description" content="Full-stack software engineer specialized in backend development, building scalable projects with Python, JavaScript, Node.js. Expert in software development, DevOps, and modern web technologies.">
+    <meta name="keywords" content="Brahim El Houss, brahim elhouss, Brahim Elhouss, Full Stack Developer, Software Engineer, Software Development, Backend Development, Python Developer, JavaScript Developer, Node.js, React, MongoDB, Web Development, DevOps, ALX Graduate, Morocco Developer, Casablanca Developer">
     <meta name="author" content="Brahim El Houss">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="googlebot" content="index, follow">
@@ -69,12 +69,12 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     
     <!-- Enhanced Open Graph for Social Media -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Brahim El Houss | Software Engineer & Creator">
-    <meta property="og:description" content="Full-stack software engineer building scalable projects, exploring AI, and crafting digital experiences.">
+    <meta property="og:title" content="Brahim El Houss | Full Stack Software Engineer & Backend Development Expert">
+    <meta property="og:description" content="Full-stack software engineer specialized in backend development, building scalable projects with Python, JavaScript, Node.js.">
     <meta property="og:url" content="https://brahim-elhouss.me">
     <meta property="og:site_name" content="Brahim El Houss Portfolio">
     <meta property="og:image" content="https://brahim-elhouss.me/assets/images/profile-img.jpg">
-    <meta property="og:image:alt" content="Brahim El Houss - Full Stack Software Engineer">
+    <meta property="og:image:alt" content="Brahim El Houss - Full Stack Software Engineer & Backend Development">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:locale" content="en_US">
@@ -87,10 +87,10 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@brahimelhouss">
     <meta name="twitter:creator" content="@brahimelhouss">
-    <meta name="twitter:title" content="Brahim El Houss | Software Engineer & Creator">
-    <meta name="twitter:description" content="Full-stack software engineer building scalable projects, exploring AI, and crafting digital experiences.">
+    <meta name="twitter:title" content="Brahim El Houss | Full Stack Software Engineer & Backend Development Expert">
+    <meta name="twitter:description" content="Full-stack software engineer specialized in backend development, building scalable projects with Python, JavaScript, Node.js.">
     <meta name="twitter:image" content="https://brahim-elhouss.me/assets/images/profile-img.jpg">
-    <meta name="twitter:image:alt" content="Brahim El Houss - Full Stack Software Engineer">
+    <meta name="twitter:image:alt" content="Brahim El Houss - Full Stack Software Engineer & Backend Development">
     <meta name="twitter:domain" content="brahim-elhouss.me">
     
     <!-- LinkedIn Specific -->
@@ -308,6 +308,18 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     <link rel="stylesheet" href="assets/css/contact.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="assets/css/testimonial.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="assets/css/footer.css?v=<?php echo time(); ?>">
+    
+    <!-- Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX', {
+            'anonymize_ip': true,
+            'cookie_flags': 'SameSite=None;Secure'
+        });
+    </script>
     
     <link rel="icon" href="/favicon.ico">
 </head>
@@ -886,7 +898,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                                 <i class="fas fa-download"></i>
                                 Download Full Portfolio (PDF)
                             </a>
-                            <a href="https://github.com/EL-HOUSS-BRAHIM" class="btn btn--outline" target="_blank">
+                            <a href="https://github.com/EL-HOUSS-BRAHIM" class="btn btn--outline" target="_blank" rel="noopener noreferrer">
                                 <i class="fab fa-github"></i>
                                 View GitHub Portfolio
                             </a>
@@ -909,7 +921,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                                         <span class="tech-tag">Regex</span>
                                         <span class="tech-tag">Data Processing</span>
                                     </div>
-                                    <a href="https://github.com/EL-HOUSS-BRAHIM/alx-interview/tree/main/0x03-log_parsing" class="project-link" target="_blank">
+                                    <a href="https://github.com/EL-HOUSS-BRAHIM/alx-interview/tree/main/0x03-log_parsing" class="project-link" target="_blank" rel="noopener noreferrer">
                                         View Project
                                     </a>
                                 </div>
@@ -927,7 +939,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                                         <span class="tech-tag">Unix Systems</span>
                                         <span class="tech-tag">System Calls</span>
                                     </div>
-                                    <a href="https://github.com/EL-HOUSS-BRAHIM/simple_shell" class="project-link" target="_blank">
+                                    <a href="https://github.com/EL-HOUSS-BRAHIM/simple_shell" class="project-link" target="_blank" rel="noopener noreferrer">
                                         View Project
                                     </a>
                                 </div>
@@ -945,7 +957,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                                         <span class="tech-tag">Data Structures</span>
                                         <span class="tech-tag">Interpreter Design</span>
                                     </div>
-                                    <a href="https://github.com/EL-HOUSS-BRAHIM/monty" class="project-link" target="_blank">
+                                    <a href="https://github.com/EL-HOUSS-BRAHIM/monty" class="project-link" target="_blank" rel="noopener noreferrer">
                                         View Project
                                     </a>
                                 </div>
@@ -1377,7 +1389,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                             <div class="contact-details">
                                 <h4>LinkedIn</h4>
                                 <p>Let's connect professionally</p>
-                                <a href="https://www.linkedin.com/in/brahim-el-houss" target="_blank">View Profile</a>
+                                <a href="https://www.linkedin.com/in/brahim-el-houss" target="_blank" rel="noopener noreferrer">View Profile</a>
                             </div>
                         </div>
                         
@@ -1388,7 +1400,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                             <div class="contact-details">
                                 <h4>GitHub</h4>
                                 <p>Check out my code</p>
-                                <a href="https://github.com/EL-HOUSS-BRAHIM" target="_blank">View Repositories</a>
+                                <a href="https://github.com/EL-HOUSS-BRAHIM" target="_blank" rel="noopener noreferrer">View Repositories</a>
                             </div>
                         </div>
                         
@@ -1529,9 +1541,9 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                     <div class="footer-section">
                         <h4>Connect</h4>
                         <ul>
-                            <li><a href="https://linkedin.com/in/brahim-el-houss" target="_blank">LinkedIn</a></li>
-                            <li><a href="https://github.com/EL-HOUSS-BRAHIM" target="_blank">GitHub</a></li>
-                            <li><a href="https://twitter.com/Brahim_EL_houss" target="_blank">Twitter</a></li>
+                            <li><a href="https://linkedin.com/in/brahim-el-houss" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                            <li><a href="https://github.com/EL-HOUSS-BRAHIM" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                            <li><a href="https://twitter.com/Brahim_EL_houss" target="_blank" rel="noopener noreferrer">Twitter</a></li>
                             <li><a href="#contact">Contact</a></li>
                         </ul>
                     </div>
@@ -1550,22 +1562,22 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                 <div class="footer-social">
                     <h4>Follow Me</h4>
                     <div class="social-links">
-                        <a href="https://www.linkedin.com/in/brahim-el-houss" target="_blank" aria-label="LinkedIn">
+                        <a href="https://www.linkedin.com/in/brahim-el-houss" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                             <i class="fab fa-linkedin"></i>
                         </a>
-                        <a href="https://twitter.com/Brahim_EL_houss" target="_blank" aria-label="Twitter">
+                        <a href="https://twitter.com/Brahim_EL_houss" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
                             <i class="fab fa-twitter"></i>
                         </a>
-                        <a href="https://www.instagram.com/brahimel205_/" target="_blank" aria-label="Instagram">
+                        <a href="https://www.instagram.com/brahimel205_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="https://www.facebook.com/brahim.el.102977" target="_blank" aria-label="Facebook">
+                        <a href="https://www.facebook.com/brahim.el.102977" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                             <i class="fab fa-facebook"></i>
                         </a>
-                        <a href="https://t.me/BrahimElHouss" target="_blank" aria-label="Telegram">
+                        <a href="https://t.me/BrahimElHouss" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
                             <i class="fab fa-telegram"></i>
                         </a>
-                        <a href="https://github.com/EL-HOUSS-BRAHIM" target="_blank" aria-label="GitHub">
+                        <a href="https://github.com/EL-HOUSS-BRAHIM" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                             <i class="fab fa-github"></i>
                         </a>
                     </div>
@@ -1592,19 +1604,19 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
         <i class="fas fa-chevron-up"></i>
     </button>
     
-    <!-- Clean JavaScript modules -->
-    <script src="assets/js-clean/utils.js"></script>
-    <script src="assets/js-clean/theme.js"></script>
-    <script src="assets/js-clean/navigation.js"></script>
-    <script src="assets/js-clean/mobile.js"></script>
-    <script src="assets/js-clean/animations.js"></script>
-    <script src="assets/js-clean/hero.js"></script>
-    <script src="assets/js-clean/viewport.js"></script>
-    <script src="assets/js-clean/projects.js"></script>
-    <script src="assets/js-clean/elevator-pitch.js"></script>
-    <script src="assets/js-clean/contact.js"></script>
-    <script src="assets/js-clean/testimonials.js"></script>
-    <script src="assets/js-clean/app.js"></script>
+    <!-- Minified JavaScript modules -->
+    <script src="assets/js/minified/utils.min.js"></script>
+    <script src="assets/js/minified/theme.min.js"></script>
+    <script src="assets/js/minified/navigation.min.js"></script>
+    <script src="assets/js/minified/mobile.min.js"></script>
+    <script src="assets/js/minified/animations.min.js"></script>
+    <script src="assets/js/minified/hero.min.js"></script>
+    <script src="assets/js/minified/viewport.min.js"></script>
+    <script src="assets/js/minified/projects.min.js"></script>
+    <script src="assets/js/minified/elevator-pitch.min.js"></script>
+    <script src="assets/js/minified/contact.min.js"></script>
+    <script src="assets/js/minified/testimonials.min.js"></script>
+    <script src="assets/js/minified/app.min.js"></script>
 
     <!-- reCAPTCHA Debug Script -->
     <?php if ($recaptchaEnabled): ?>
