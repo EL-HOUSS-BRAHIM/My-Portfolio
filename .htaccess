@@ -472,6 +472,10 @@ ErrorDocument 500 /404.html
     RewriteCond %{QUERY_STRING} \.(php|asp|jsp|cgi|pl|py)\? [NC]
     RewriteRule .* - [F,L]
     
+    # Redirect www to non-www (URL Canonicalization)
+    RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+    RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+    
     # Force HTTPS - Enabled for production security
     RewriteCond %{HTTPS} off
     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
