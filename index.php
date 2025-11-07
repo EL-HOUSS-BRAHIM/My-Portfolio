@@ -73,7 +73,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     <meta property="og:description" content="Full-stack software engineer specialized in backend development, building scalable projects with Python, JavaScript, Node.js.">
     <meta property="og:url" content="https://brahim-elhouss.me">
     <meta property="og:site_name" content="Brahim El Houss Portfolio">
-    <meta property="og:image" content="https://brahim-elhouss.me/assets/images/profile-img.jpg">
+    <meta property="og:image" content="https://brahim-elhouss.me/assets/images/profile-img.webp">
     <meta property="og:image:alt" content="Brahim El Houss - Full Stack Software Engineer & Backend Development">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -89,7 +89,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     <meta name="twitter:creator" content="@brahimelhouss">
     <meta name="twitter:title" content="Brahim El Houss | Full Stack Software Engineer & Backend Development Expert">
     <meta name="twitter:description" content="Full-stack software engineer specialized in backend development, building scalable projects with Python, JavaScript, Node.js.">
-    <meta name="twitter:image" content="https://brahim-elhouss.me/assets/images/profile-img.jpg">
+    <meta name="twitter:image" content="https://brahim-elhouss.me/assets/images/profile-img.webp">
     <meta name="twitter:image:alt" content="Brahim El Houss - Full Stack Software Engineer & Backend Development">
     <meta name="twitter:domain" content="brahim-elhouss.me">
     
@@ -163,7 +163,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
       },
       "image": {
         "@type": "ImageObject",
-        "url": "https://brahim-elhouss.me/assets/images/profile-img.jpg",
+        "url": "https://brahim-elhouss.me/assets/images/profile-img.webp",
         "width": 800,
         "height": 800
       },
@@ -929,7 +929,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                             
                             <div class="project-card">
                                 <div class="project-image">
-                                    <img src="assets/images/simple shell.jpg" alt="Simple Shell Project" loading="lazy">
+                                    <img src="assets/images/simple shell.webp" alt="Simple Shell Project" loading="lazy">
                                 </div>
                                 <div class="project-content">
                                     <h4>Custom Shell Implementation</h4>
@@ -947,7 +947,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                             
                             <div class="project-card">
                                 <div class="project-image">
-                                    <img src="assets/images/Monty Interpreter.png" alt="Monty Interpreter Project" loading="lazy">
+                                    <img src="assets/images/Monty Interpreter.webp" alt="Monty Interpreter Project" loading="lazy">
                                 </div>
                                 <div class="project-content">
                                     <h4>Monty ByteCode Interpreter</h4>
