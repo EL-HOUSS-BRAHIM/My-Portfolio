@@ -32,6 +32,22 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Blog Post: Day in the Life of a Moroccan Developer - by Brahim El Houss -->
+  <url>
+    <loc>https://brahim-elhouss.me/blog/day-in-life-moroccan-developer.php</loc>
+    <lastmod>2025-11-08T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog Post: Portfolio Deep Dive - by Brahim El Houss -->
+  <url>
+    <loc>https://brahim-elhouss.me/blog/portfolio-deep-dive.php</loc>
+    <lastmod>2025-11-08T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- Videos Page - Brahim El Houss Videos -->
   <url>
     <loc>https://brahim-elhouss.me/videos.php</loc>

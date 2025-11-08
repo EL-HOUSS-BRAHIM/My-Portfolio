@@ -55,10 +55,13 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     <meta name="format-detection" content="telephone=no">
     
     <!-- SEO Meta Tags -->
-    <title>Brahim El Houss - Full Stack Software Engineer | Backend Developer Portfolio</title>
-    <meta name="description" content="Brahim El Houss: Full-stack software engineer from Morocco. Backend development expert specializing in Python, Node.js, JavaScript. View portfolio.">
-    <meta name="keywords" content="Brahim El Houss, BRAHIM EL HOUSS, brahim elhouss, Brahim Elhouss, brahim el houss, Brahim El Houss Morocco, Brahim El Houss Casablanca, Brahim El Houss developer, Brahim El Houss software engineer, Full Stack Developer, Software Engineer, Backend Development, Python Developer, JavaScript Developer, Node.js Developer, React Developer, MongoDB Developer, Web Development, DevOps Engineer, ALX Software Engineering, Morocco Developer, Casablanca Developer, Moroccan Software Engineer">
+    <title>Brahim El Houss | Official Website - Full Stack Software Engineer Portfolio</title>
+    <meta name="description" content="Official website of Brahim El Houss - Full-stack software engineer from Casablanca, Morocco. Backend development expert specializing in Python, Node.js, React, MongoDB. 3+ years experience. Projects, blog, and professional portfolio.">
+    <meta name="keywords" content="Brahim El Houss, BRAHIM EL HOUSS, brahim elhouss, Brahim Elhouss, brahim el houss, BrahimElHouss, brahimelhouss, BRAHIMELHOUSS, Brahim-El-Houss, BRAHIM-EL-HOUSS, brahim-el-houss, EL-HOUSS-BRAHIM, el-houss-brahim, El Houss Brahim, Bross, bross developer, bross software engineer, Brahim El Houss Morocco, Brahim El Houss Casablanca, Brahim El Houss developer, Brahim El Houss software engineer, Brahim El Houss programmer, Brahim El Houss coder, Brahim software engineer, Brahim developer Morocco, Brahim Casablanca developer, Brahim full stack, Brahim backend developer, Brahim Python developer, Brahim JavaScript developer, El Houss developer, El Houss software engineer, El Houss programmer, Houss Brahim, Full Stack Developer, Software Engineer, Backend Development, Python Developer, JavaScript Developer, Node.js Developer, React Developer, MongoDB Developer, Web Development, DevOps Engineer, ALX Software Engineering, Morocco Developer, Casablanca Developer, Moroccan Software Engineer, Moroccan Full Stack Developer, Morocco Python Developer, Morocco Backend Developer">
     <meta name="author" content="Brahim El Houss">
+    <meta name="publisher" content="Brahim El Houss">
+    <meta name="owner" content="Brahim El Houss">
+    <meta name="copyright" content="Brahim El Houss">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="googlebot" content="index, follow">
     <meta name="bingbot" content="index, follow">
@@ -74,10 +77,19 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
     
+    <!-- Google Search Console Verification -->
+    <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE_HERE">
+    
+    <!-- Official Website Claims -->
+    <meta name="claim" content="This is the official website of Brahim El Houss">
+    <meta name="classification" content="Official Personal Website">
+    <link rel="me" href="https://brahim-elhouss.me">
+    <link rel="author" href="https://brahim-elhouss.me/about.php">
+    
     <!-- Enhanced Open Graph for Social Media -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Brahim El Houss - Full Stack Software Engineer Portfolio">
-    <meta property="og:description" content="Brahim El Houss: Full-stack software engineer from Morocco. Backend development expert specializing in Python, Node.js, JavaScript. View portfolio.">
+    <meta property="og:title" content="Brahim El Houss | Official Website - Full Stack Software Engineer">
+    <meta property="og:description" content="Brahim El Houss: Full-stack software engineer from Casablanca, Morocco. Backend development expert specializing in Python, Node.js, React, MongoDB. 3+ years experience. View portfolio.">
     <meta property="og:url" content="https://brahim-elhouss.me">
     <meta property="og:site_name" content="Brahim El Houss - Portfolio">
     <meta property="og:image" content="https://brahim-elhouss.me/assets/images/profile-img.webp">
@@ -98,7 +110,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     <meta name="twitter:site" content="@brahimelhouss">
     <meta name="twitter:creator" content="@brahimelhouss">
     <meta name="twitter:title" content="Brahim El Houss - Full Stack Software Engineer Portfolio">
-    <meta name="twitter:description" content="Brahim El Houss: Full-stack software engineer from Morocco. Backend development expert specializing in Python, Node.js, JavaScript. View portfolio.">
+    <meta name="twitter:description" content="Brahim El Houss: Full-stack software engineer from Casablanca, Morocco. Backend development expert specializing in Python, Node.js, React, MongoDB. View portfolio and projects.">
     <meta name="twitter:image" content="https://brahim-elhouss.me/assets/images/profile-img.webp">
     <meta name="twitter:image:alt" content="Brahim El Houss - Full Stack Software Engineer from Morocco">
     <meta name="twitter:domain" content="brahim-elhouss.me">
@@ -175,7 +187,15 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
       "url": "https://brahim-elhouss.me",
       "mainEntityOfPage": {
         "@type": "ProfilePage",
-        "@id": "https://brahim-elhouss.me/#profilepage"
+        "@id": "https://brahim-elhouss.me/#profilepage",
+        "url": "https://brahim-elhouss.me",
+        "name": "Brahim El Houss - Official Profile"
+      },
+      "owns": {
+        "@type": "WebSite",
+        "@id": "https://brahim-elhouss.me/#website",
+        "url": "https://brahim-elhouss.me",
+        "name": "Official Website of Brahim El Houss"
       },
       "image": {
         "@type": "ImageObject",
@@ -284,12 +304,24 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
       "@type": "WebSite",
       "@id": "https://brahim-elhouss.me/#website",
       "url": "https://brahim-elhouss.me",
-      "name": "Brahim El Houss Portfolio",
-      "description": "Full-stack software engineer specialized in backend development with Python, JavaScript, Node.js. Expert in DevOps and modern web technologies.",
+      "name": "Brahim El Houss - Official Website",
+      "alternateName": ["Brahim El Houss Portfolio", "Brahim Elhouss Official Site"],
+      "description": "Official website of Brahim El Houss - Full-stack software engineer specialized in backend development with Python, JavaScript, Node.js. Expert in DevOps and modern web technologies.",
       "publisher": {
         "@id": "https://brahim-elhouss.me/#person"
       },
+      "author": {
+        "@id": "https://brahim-elhouss.me/#person"
+      },
+      "copyrightHolder": {
+        "@id": "https://brahim-elhouss.me/#person"
+      },
+      "copyrightYear": 2024,
       "inLanguage": "en-US",
+      "isPartOf": {
+        "@type": "WebPage",
+        "@id": "https://brahim-elhouss.me/#webpage"
+      },
       "potentialAction": {
         "@type": "SearchAction",
         "target": {
@@ -297,6 +329,43 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
           "urlTemplate": "https://brahim-elhouss.me/?s={search_term_string}"
         },
         "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    
+    <!-- Main WebPage Entity -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": "https://brahim-elhouss.me/#webpage",
+      "url": "https://brahim-elhouss.me",
+      "name": "Brahim El Houss - Official Personal Website",
+      "description": "The official personal website of Brahim El Houss, full-stack software engineer from Morocco",
+      "isPartOf": {
+        "@id": "https://brahim-elhouss.me/#website"
+      },
+      "about": {
+        "@id": "https://brahim-elhouss.me/#person"
+      },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://brahim-elhouss.me/assets/images/profile-img.webp"
+      },
+      "datePublished": "2024-01-01T00:00:00Z",
+      "dateModified": "2025-11-08T00:00:00Z",
+      "author": {
+        "@id": "https://brahim-elhouss.me/#person"
+      },
+      "creator": {
+        "@id": "https://brahim-elhouss.me/#person"
+      },
+      "publisher": {
+        "@id": "https://brahim-elhouss.me/#person"
+      },
+      "inLanguage": "en-US",
+      "mainEntity": {
+        "@id": "https://brahim-elhouss.me/#person"
       }
     }
     </script>
