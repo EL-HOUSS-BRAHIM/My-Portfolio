@@ -56,7 +56,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     
     <!-- SEO Meta Tags -->
     <title>Brahim El Houss | Official Website - Full Stack Software Engineer Portfolio</title>
-    <meta name="description" content="Official website of Brahim El Houss - Full-stack software engineer from Casablanca, Morocco. Backend development expert specializing in Python, Node.js, React, MongoDB. 3+ years experience. Projects, blog, and professional portfolio.">
+    <meta name="description" content="Official website of Brahim El Houss (BrahimElhouss, Brahim-El-Houss, Bross) - Full-stack software engineer from Casablanca, Morocco. Backend development expert specializing in Python, Node.js, React, MongoDB. 3+ years experience. Projects, blog, and professional portfolio.">
     <meta name="keywords" content="Brahim El Houss, BRAHIM EL HOUSS, brahim elhouss, Brahim Elhouss, brahim el houss, BrahimElHouss, brahimelhouss, BRAHIMELHOUSS, Brahim-El-Houss, BRAHIM-EL-HOUSS, brahim-el-houss, EL-HOUSS-BRAHIM, el-houss-brahim, El Houss Brahim, Bross, bross developer, bross software engineer, Brahim El Houss Morocco, Brahim El Houss Casablanca, Brahim El Houss developer, Brahim El Houss software engineer, Brahim El Houss programmer, Brahim El Houss coder, Brahim software engineer, Brahim developer Morocco, Brahim Casablanca developer, Brahim full stack, Brahim backend developer, Brahim Python developer, Brahim JavaScript developer, El Houss developer, El Houss software engineer, El Houss programmer, Houss Brahim, Full Stack Developer, Software Engineer, Backend Development, Python Developer, JavaScript Developer, Node.js Developer, React Developer, MongoDB Developer, Web Development, DevOps Engineer, ALX Software Engineering, Morocco Developer, Casablanca Developer, Moroccan Software Engineer, Moroccan Full Stack Developer, Morocco Python Developer, Morocco Backend Developer">
     <meta name="author" content="Brahim El Houss">
     <meta name="publisher" content="Brahim El Houss">
@@ -89,7 +89,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     <!-- Enhanced Open Graph for Social Media -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Brahim El Houss | Official Website - Full Stack Software Engineer">
-    <meta property="og:description" content="Brahim El Houss: Full-stack software engineer from Casablanca, Morocco. Backend development expert specializing in Python, Node.js, React, MongoDB. 3+ years experience. View portfolio.">
+    <meta property="og:description" content="Brahim El Houss (BrahimElhouss): Full-stack software engineer from Casablanca, Morocco. Backend development expert specializing in Python, Node.js, React, MongoDB. 3+ years experience. View portfolio.">
     <meta property="og:url" content="https://brahim-elhouss.me">
     <meta property="og:site_name" content="Brahim El Houss - Portfolio">
     <meta property="og:image" content="https://brahim-elhouss.me/assets/images/profile-img.webp">
@@ -110,7 +110,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     <meta name="twitter:site" content="@brahimelhouss">
     <meta name="twitter:creator" content="@brahimelhouss">
     <meta name="twitter:title" content="Brahim El Houss - Full Stack Software Engineer Portfolio">
-    <meta name="twitter:description" content="Brahim El Houss: Full-stack software engineer from Casablanca, Morocco. Backend development expert specializing in Python, Node.js, React, MongoDB. View portfolio and projects.">
+    <meta name="twitter:description" content="Brahim El Houss (BrahimElhouss, Bross): Full-stack software engineer from Casablanca, Morocco. Backend development expert specializing in Python, Node.js, React, MongoDB. View portfolio and projects.">
     <meta name="twitter:image" content="https://brahim-elhouss.me/assets/images/profile-img.webp">
     <meta name="twitter:image:alt" content="Brahim El Houss - Full Stack Software Engineer from Morocco">
     <meta name="twitter:domain" content="brahim-elhouss.me">
@@ -137,6 +137,8 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     <meta name="application-name" content="Brahim El Houss Portfolio">
     
     <!-- Favicon and Icons -->
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/icons/favicon.ico" sizes="32x32">
     <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
@@ -170,10 +172,10 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
       "@type": "Person",
       "@id": "https://brahim-elhouss.me/#person",
       "name": "Brahim El Houss",
-      "alternateName": ["Brahim Elhouss", "brahim elhouss", "BRAHIM EL HOUSS", "brahim el houss", "Brahim El Houss Morocco", "Brahim El Houss Casablanca"],
+      "alternateName": ["Brahim Elhouss", "BrahimElhouss", "brahimelhouss", "BRAHIMELHOUSS", "brahim elhouss", "BRAHIM EL HOUSS", "brahim el houss", "Brahim-El-Houss", "BRAHIM-EL-HOUSS", "brahim-el-houss", "EL-HOUSS-BRAHIM", "el-houss-brahim", "El Houss Brahim", "Bross", "Brahim El Houss Morocco", "Brahim El Houss Casablanca"],
       "givenName": "Brahim",
       "familyName": "El Houss",
-      "additionalName": "El Houss",
+      "additionalName": ["El Houss", "Elhouss", "ElHouss", "ELHOUSS", "Bross"],
       "honorificPrefix": "Mr.",
       "gender": "Male",
       "birthPlace": {
@@ -206,7 +208,9 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
       "sameAs": [
         "https://www.linkedin.com/in/brahim-el-houss",
         "https://github.com/EL-HOUSS-BRAHIM",
-        "https://twitter.com/brahimelhouss"
+        "https://twitter.com/brahimelhouss",
+        "https://brahim-elhouss.me",
+        "https://www.brahim-elhouss.me"
       ],
       "jobTitle": "Full Stack Software Engineer",
       "description": "Experienced Full Stack Developer specializing in Python, JavaScript, Node.js, React, and MongoDB. ALX-certified with 3+ years of experience building scalable web applications.",
@@ -305,7 +309,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
       "@id": "https://brahim-elhouss.me/#website",
       "url": "https://brahim-elhouss.me",
       "name": "Brahim El Houss - Official Website",
-      "alternateName": ["Brahim El Houss Portfolio", "Brahim Elhouss Official Site"],
+      "alternateName": ["Brahim El Houss Portfolio", "Brahim Elhouss Official Site", "BrahimElhouss", "Brahim-El-Houss", "Bross Portfolio"],
       "description": "Official website of Brahim El Houss - Full-stack software engineer specialized in backend development with Python, JavaScript, Node.js. Expert in DevOps and modern web technologies.",
       "publisher": {
         "@id": "https://brahim-elhouss.me/#person"
@@ -397,7 +401,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
           "name": "Who is Brahim El Houss?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Brahim El Houss is a Full Stack Software Engineer from Casablanca, Morocco, specializing in backend development. He has expertise in Python, JavaScript, Node.js, React, and MongoDB. Brahim is an ALX Software Engineering graduate with professional experience in full-stack development and DevOps."
+            "text": "Brahim El Houss (also known as BrahimElhouss, Brahim-El-Houss, or Bross) is a Full Stack Software Engineer from Casablanca, Morocco, specializing in backend development. He has expertise in Python, JavaScript, Node.js, React, and MongoDB. Brahim is an ALX Software Engineering graduate with professional experience in full-stack development and DevOps."
           }
         },
         {
@@ -422,6 +426,14 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Brahim El Houss is a graduate of the ALX Software Engineering program with a specialization in backend development. He also studied Physics Sciences at Hassan II University in Casablanca and has completed various professional certifications in Frontend Development, Backend Development, DevOps, Machine Learning, and Cybersecurity."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you spell Brahim El Houss name?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The correct spelling is Brahim El Houss (with a space). However, you may also find references as BrahimElhouss (no space), Brahim-El-Houss (with hyphens), Brahim Elhouss, or the nickname Bross. All refer to the same person - a Full Stack Software Engineer from Morocco."
           }
         },
         {
@@ -634,7 +646,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                             <span class="hero__role">Full Stack Software Engineer</span>
                         </div>
                         <p class="hero__description">
-                            <strong>Brahim El Houss</strong> is a Full Stack Software Engineer from Morocco, crafting innovative digital solutions with clean code and modern technologies. 
+                            <strong>Brahim El Houss</strong> (also known as <strong>BrahimElhouss</strong>, <strong>Brahim-El-Houss</strong>, or <strong>Bross</strong>) is a Full Stack Software Engineer from Morocco, crafting innovative digital solutions with clean code and modern technologies. 
                             Passionate about building scalable applications that make a difference.
                         </p>
                         <div class="hero__stats" aria-label="Professional statistics">
@@ -704,7 +716,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
             <div class="container">
                 <div class="section-header">
                     <span class="section-tag">Get to know me</span>
-                    <h2 class="section-title">About Brahim El Houss</h2>
+                    <h2 class="section-title">About Brahim El Houss (BrahimElhouss)</h2>
                     <p class="section-subtitle">
                         Full Stack Software Engineer from Casablanca, Morocco
                     </p>
@@ -1778,7 +1790,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
             
             <div class="footer-bottom">
                 <div class="footer-copyright">
-                    <p>&copy; 2025 Brahim El Houss. All rights reserved.</p>
+                    <p>&copy; 2025 Brahim El Houss (BrahimElhouss). All rights reserved.</p>
                 </div>
                 <div class="footer-legal">
                     <a href="/">Home</a>
