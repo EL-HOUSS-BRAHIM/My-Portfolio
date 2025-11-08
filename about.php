@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
     <!-- SEO Meta Tags - Name Focused -->
-    <title>About Brahim Elhouss | Brahim El Houss - Full Stack Software Engineer Biography</title>
-    <meta name="description" content="Learn about Brahim Elhouss (also known as Brahim El Houss), a Full Stack Software Engineer from Casablanca, Morocco. ALX graduate specializing in Python, JavaScript, and Node.js development.">
+    <title>About Brahim El Houss - Full Stack Engineer</title>
+    <meta name="description" content="Full Stack Software Engineer from Casablanca, Morocco. ALX graduate specializing in Python, JavaScript, Node.js, React & MongoDB.">
     <meta name="keywords" content="Brahim Elhouss, Brahim El Houss, About Brahim Elhouss, Brahim El Houss biography, Brahim Elhouss developer, Brahim El Houss software engineer, who is Brahim Elhouss, Morocco developer">
     <meta name="author" content="Brahim Elhouss">
     <meta name="robots" content="index, follow">
