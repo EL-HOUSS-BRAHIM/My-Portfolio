@@ -56,7 +56,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     
     <!-- SEO Meta Tags -->
     <title>Brahim El Houss | Full Stack Software Engineer & Backend Development Expert</title>
-    <meta name="description" content="Full-stack software engineer specialized in backend development, building scalable projects with Python, JavaScript, Node.js. Expert in software development, DevOps, and modern web technologies.">
+    <meta name="description" content="Full-stack software engineer specialized in backend development with Python, JavaScript, Node.js. Expert in DevOps and modern web technologies.">
     <meta name="keywords" content="Brahim El Houss, brahim elhouss, Brahim Elhouss, Full Stack Developer, Software Engineer, Software Development, Backend Development, Python Developer, JavaScript Developer, Node.js, React, MongoDB, Web Development, DevOps, ALX Graduate, Morocco Developer, Casablanca Developer">
     <meta name="author" content="Brahim El Houss">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
@@ -70,7 +70,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     <!-- Enhanced Open Graph for Social Media -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Brahim El Houss | Full Stack Software Engineer & Backend Development Expert">
-    <meta property="og:description" content="Full-stack software engineer specialized in backend development, building scalable projects with Python, JavaScript, Node.js.">
+    <meta property="og:description" content="Full-stack software engineer specialized in backend development with Python, JavaScript, Node.js. Expert in DevOps and modern web technologies.">
     <meta property="og:url" content="https://brahim-elhouss.me">
     <meta property="og:site_name" content="Brahim El Houss Portfolio">
     <meta property="og:image" content="https://brahim-elhouss.me/assets/images/profile-img.webp">
@@ -88,7 +88,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     <meta name="twitter:site" content="@brahimelhouss">
     <meta name="twitter:creator" content="@brahimelhouss">
     <meta name="twitter:title" content="Brahim El Houss | Full Stack Software Engineer & Backend Development Expert">
-    <meta name="twitter:description" content="Full-stack software engineer specialized in backend development, building scalable projects with Python, JavaScript, Node.js.">
+    <meta name="twitter:description" content="Full-stack software engineer specialized in backend development with Python, JavaScript, Node.js. Expert in DevOps and modern web technologies.">
     <meta name="twitter:image" content="https://brahim-elhouss.me/assets/images/profile-img.webp">
     <meta name="twitter:image:alt" content="Brahim El Houss - Full Stack Software Engineer & Backend Development">
     <meta name="twitter:domain" content="brahim-elhouss.me">
@@ -1530,21 +1530,26 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                     <div class="footer-section">
                         <h4>Quick Links</h4>
                         <ul>
-                            <li><a href="#home">Home</a></li>
+                            <li><a href="/">Home</a></li>
                             <li><a href="#about">About</a></li>
+                            <li><a href="about.php">More About Me</a></li>
                             <li><a href="#skills">Skills</a></li>
                             <li><a href="#portfolio">Portfolio</a></li>
                             <li><a href="#elevator-pitch">Elevator Pitch</a></li>
+                            <li><a href="#experience">Experience</a></li>
+                            <li><a href="#testimonials">Testimonials</a></li>
                         </ul>
                     </div>
                     
                     <div class="footer-section">
                         <h4>Connect</h4>
                         <ul>
+                            <li><a href="#contact">Contact Me</a></li>
+                            <li><a href="blog.php">Blog</a></li>
+                            <li><a href="videos.php">Videos</a></li>
                             <li><a href="https://linkedin.com/in/brahim-el-houss" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
                             <li><a href="https://github.com/EL-HOUSS-BRAHIM" target="_blank" rel="noopener noreferrer">GitHub</a></li>
                             <li><a href="https://twitter.com/Brahim_EL_houss" target="_blank" rel="noopener noreferrer">Twitter</a></li>
-                            <li><a href="#contact">Contact</a></li>
                         </ul>
                     </div>
                     
@@ -1589,11 +1594,12 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                     <p>&copy; 2025 Brahim El Houss. All rights reserved.</p>
                 </div>
                 <div class="footer-legal">
+                    <a href="/">Home</a>
                     <a href="about.php">About</a>
                     <a href="blog.php">Blog</a>
                     <a href="videos.php">Videos</a>
-                    <a href="#privacy">Privacy Policy</a>
-                    <a href="#terms">Terms of Service</a>
+                    <a href="/sitemap.xml">Sitemap</a>
+                    <a href="/robots.txt">Robots</a>
                 </div>
             </div>
         </div>
