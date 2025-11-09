@@ -55,8 +55,8 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     <meta name="format-detection" content="telephone=no">
     
     <!-- SEO Meta Tags -->
-    <title>Brahim El Houss | Official Website - Full Stack Software Engineer Portfolio</title>
-    <meta name="description" content="Official website of Brahim El Houss (BrahimElhouss, Brahim-El-Houss, Bross) - Full-stack software engineer from Casablanca, Morocco. Backend development expert specializing in Python, Node.js, React, MongoDB. 3+ years experience. Projects, blog, and professional portfolio.">
+    <title>Brahim El Houss - Full Stack Software Engineer</title>
+    <meta name="description" content="Brahim El Houss: Full-stack software engineer from Morocco specializing in Python, Node.js, React & MongoDB. 3+ years experience.">
     <meta name="keywords" content="Brahim El Houss, BRAHIM EL HOUSS, brahim elhouss, Brahim Elhouss, brahim el houss, BrahimElHouss, brahimelhouss, BRAHIMELHOUSS, Brahim-El-Houss, BRAHIM-EL-HOUSS, brahim-el-houss, EL-HOUSS-BRAHIM, el-houss-brahim, El Houss Brahim, Bross, bross developer, bross software engineer, Brahim El Houss Morocco, Brahim El Houss Casablanca, Brahim El Houss developer, Brahim El Houss software engineer, Brahim El Houss programmer, Brahim El Houss coder, Brahim software engineer, Brahim developer Morocco, Brahim Casablanca developer, Brahim full stack, Brahim backend developer, Brahim Python developer, Brahim JavaScript developer, El Houss developer, El Houss software engineer, El Houss programmer, Houss Brahim, Full Stack Developer, Software Engineer, Backend Development, Python Developer, JavaScript Developer, Node.js Developer, React Developer, MongoDB Developer, Web Development, DevOps Engineer, ALX Software Engineering, Morocco Developer, Casablanca Developer, Moroccan Software Engineer, Moroccan Full Stack Developer, Morocco Python Developer, Morocco Backend Developer">
     <meta name="author" content="Brahim El Houss">
     <meta name="publisher" content="Brahim El Houss">
@@ -88,8 +88,8 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     
     <!-- Enhanced Open Graph for Social Media -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Brahim El Houss | Official Website - Full Stack Software Engineer">
-    <meta property="og:description" content="Brahim El Houss (BrahimElhouss): Full-stack software engineer from Casablanca, Morocco. Backend development expert specializing in Python, Node.js, React, MongoDB. 3+ years experience. View portfolio.">
+    <meta property="og:title" content="Brahim El Houss - Full Stack Software Engineer">
+    <meta property="og:description" content="Full-stack software engineer from Morocco specializing in Python, Node.js, React & MongoDB. 3+ years experience in web development.">
     <meta property="og:url" content="https://brahim-elhouss.me">
     <meta property="og:site_name" content="Brahim El Houss - Portfolio">
     <meta property="og:image" content="https://brahim-elhouss.me/assets/images/profile-img.webp">
@@ -109,8 +109,8 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@brahimelhouss">
     <meta name="twitter:creator" content="@brahimelhouss">
-    <meta name="twitter:title" content="Brahim El Houss - Full Stack Software Engineer Portfolio">
-    <meta name="twitter:description" content="Brahim El Houss (BrahimElhouss, Bross): Full-stack software engineer from Casablanca, Morocco. Backend development expert specializing in Python, Node.js, React, MongoDB. View portfolio and projects.">
+    <meta name="twitter:title" content="Brahim El Houss - Full Stack Software Engineer">
+    <meta name="twitter:description" content="Full-stack software engineer from Morocco specializing in Python, Node.js, React & MongoDB. View portfolio and projects.">
     <meta name="twitter:image" content="https://brahim-elhouss.me/assets/images/profile-img.webp">
     <meta name="twitter:image:alt" content="Brahim El Houss - Full Stack Software Engineer from Morocco">
     <meta name="twitter:domain" content="brahim-elhouss.me">
@@ -838,7 +838,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                                     <h4>JavaScript / ES6+</h4>
                                     <p>Modern JavaScript, async/await, modules</p>
                                     <div class="skill-progress">
-                                        <div class="skill-bar" style="width: 90%"></div>
+                                        <div class="skill-bar"></div>
                                     </div>
                                 </div>
                             </div>
@@ -850,7 +850,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                                     <h4>React</h4>
                                     <p>Hooks, Context API, Component Architecture</p>
                                     <div class="skill-progress">
-                                        <div class="skill-bar" style="width: 85%"></div>
+                                        <div class="skill-bar"></div>
                                     </div>
                                 </div>
                             </div>
@@ -862,7 +862,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                                     <h4>HTML5</h4>
                                     <p>Semantic markup, accessibility, SEO</p>
                                     <div class="skill-progress">
-                                        <div class="skill-bar" style="width: 95%"></div>
+                                        <div class="skill-bar"></div>
                                     </div>
                                 </div>
                             </div>
@@ -874,7 +874,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                                     <h4>CSS3 / SCSS</h4>
                                     <p>Flexbox, Grid, Animations, Responsive Design</p>
                                     <div class="skill-progress">
-                                        <div class="skill-bar" style="width: 90%"></div>
+                                        <div class="skill-bar"></div>
                                     </div>
                                 </div>
                             </div>
@@ -886,7 +886,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                                     <h4>Bootstrap</h4>
                                     <p>Rapid prototyping, component library</p>
                                     <div class="skill-progress">
-                                        <div class="skill-bar" style="width: 80%"></div>
+                                        <div class="skill-bar"></div>
                                     </div>
                                 </div>
                             </div>
@@ -898,7 +898,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                                     <h4>Figma</h4>
                                     <p>UI/UX design, prototyping</p>
                                     <div class="skill-progress">
-                                        <div class="skill-bar" style="width: 75%"></div>
+                                        <div class="skill-bar"></div>
                                     </div>
                                 </div>
                             </div>
@@ -922,7 +922,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                                     <h4>Node.js</h4>
                                     <p>Express.js, RESTful APIs, middleware</p>
                                     <div class="skill-progress">
-                                        <div class="skill-bar" style="width: 85%"></div>
+                                        <div class="skill-bar"></div>
                                     </div>
                                 </div>
                             </div>
@@ -934,7 +934,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                                     <h4>Python</h4>
                                     <p>Flask, data structures, algorithms</p>
                                     <div class="skill-progress">
-                                        <div class="skill-bar" style="width: 88%"></div>
+                                        <div class="skill-bar"></div>
                                     </div>
                                 </div>
                             </div>
@@ -946,7 +946,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                                     <h4>PHP</h4>
                                     <p>Server-side scripting, web development</p>
                                     <div class="skill-progress">
-                                        <div class="skill-bar" style="width: 75%"></div>
+                                        <div class="skill-bar"></div>
                                     </div>
                                 </div>
                             </div>
@@ -958,7 +958,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                                     <h4>MongoDB</h4>
                                     <p>NoSQL, aggregation, indexing</p>
                                     <div class="skill-progress">
-                                        <div class="skill-bar" style="width: 80%"></div>
+                                        <div class="skill-bar"></div>
                                     </div>
                                 </div>
                             </div>
@@ -970,7 +970,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                                     <h4>PostgreSQL</h4>
                                     <p>Relational databases, complex queries</p>
                                     <div class="skill-progress">
-                                        <div class="skill-bar" style="width: 78%"></div>
+                                        <div class="skill-bar"></div>
                                     </div>
                                 </div>
                             </div>
@@ -982,7 +982,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                                     <h4>Firebase</h4>
                                     <p>Real-time database, authentication</p>
                                     <div class="skill-progress">
-                                        <div class="skill-bar" style="width: 82%"></div>
+                                        <div class="skill-bar"></div>
                                     </div>
                                 </div>
                             </div>
@@ -1006,7 +1006,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                                     <h4>Git</h4>
                                     <p>Version control, branching, collaboration</p>
                                     <div class="skill-progress">
-                                        <div class="skill-bar" style="width: 90%"></div>
+                                        <div class="skill-bar"></div>
                                     </div>
                                 </div>
                             </div>
@@ -1018,7 +1018,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                                     <h4>Linux</h4>
                                     <p>Command line, server administration</p>
                                     <div class="skill-progress">
-                                        <div class="skill-bar" style="width: 85%"></div>
+                                        <div class="skill-bar"></div>
                                     </div>
                                 </div>
                             </div>
@@ -1030,7 +1030,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                                     <h4>Cloud Platforms</h4>
                                     <p>Heroku, deployment, hosting</p>
                                     <div class="skill-progress">
-                                        <div class="skill-bar" style="width: 80%"></div>
+                                        <div class="skill-bar"></div>
                                     </div>
                                 </div>
                             </div>
@@ -1042,7 +1042,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                                     <h4>VS Code</h4>
                                     <p>Advanced debugging, extensions</p>
                                     <div class="skill-progress">
-                                        <div class="skill-bar" style="width: 88%"></div>
+                                        <div class="skill-bar"></div>
                                     </div>
                                 </div>
                             </div>
@@ -1054,7 +1054,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                                     <h4>Analytics</h4>
                                     <p>Google Analytics, performance monitoring</p>
                                     <div class="skill-progress">
-                                        <div class="skill-bar" style="width: 75%"></div>
+                                        <div class="skill-bar"></div>
                                     </div>
                                 </div>
                             </div>
@@ -1066,7 +1066,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                                     <h4>SEO</h4>
                                     <p>Search optimization, performance</p>
                                     <div class="skill-progress">
-                                        <div class="skill-bar" style="width: 82%"></div>
+                                        <div class="skill-bar"></div>
                                     </div>
                                 </div>
                             </div>
@@ -1576,7 +1576,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                             </div>
                             <div class="contact-details">
                                 <h4>Email</h4>
-                                <p>brahim-elhouss@gmail.com</p>
+                                <p><a href="mailto:brahim-elhouss@gmail.com" class="email-link">Contact via Email</a></p>
                                 <a href="mailto:brahim-elhouss@gmail.com">Send a message</a>
                             </div>
                         </div>
@@ -1646,7 +1646,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                             <?php if ($recaptchaEnabled): ?>
                             <div class="form-group">
                                 <div class="g-recaptcha" data-sitekey="<?php echo htmlspecialchars($recaptchaSiteKey); ?>"></div>
-                                <div class="recaptcha-error" style="display: none; color: var(--color-error); font-size: var(--font-size-sm); margin-top: 0.5rem;">
+                                <div class="recaptcha-error">
                                     Please complete the CAPTCHA verification.
                                 </div>
                             </div>
@@ -1660,7 +1660,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                             </div>
                         </form>
                         
-                        <div id="responseMessage" class="response-message" style="display:none;"></div>
+                        <div id="responseMessage" class="response-message"></div>
                     </div>
                 </div>
             </div>
@@ -1699,7 +1699,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                     <?php if ($recaptchaEnabled): ?>
                     <div class="form-group">
                         <div class="g-recaptcha" data-sitekey="<?php echo htmlspecialchars($recaptchaSiteKey); ?>"></div>
-                        <div class="recaptcha-error" style="display: none; color: var(--color-error); font-size: var(--font-size-sm); margin-top: 0.5rem;">
+                        <div class="recaptcha-error">
                             Please complete the CAPTCHA verification.
                         </div>
                     </div>

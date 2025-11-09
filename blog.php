@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
     <!-- SEO Meta Tags -->
-    <title>Blog - Brahim Elhouss | Full Stack Developer Insights & Tutorials</title>
-    <meta name="description" content="Read technical articles and insights by Brahim Elhouss, Full Stack Software Engineer from Morocco. Learn about web development, software engineering, and my journey in tech.">
+    <title>Blog - Brahim El Houss | Tech Insights</title>
+    <meta name="description" content="Technical articles by Brahim El Houss. Web development tutorials, software engineering insights & developer journey from Morocco.">
     <meta name="keywords" content="Brahim Elhouss blog, Brahim El Houss articles, web development tutorials, software engineering, ALX graduate blog, Morocco tech blog">
     <meta name="author" content="Brahim El Houss">
     <meta name="robots" content="index, follow">
