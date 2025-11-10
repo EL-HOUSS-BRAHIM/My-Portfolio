@@ -7,18 +7,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
     <!-- SEO Meta Tags - Name Focused -->
-    <title>About Brahim El Houss - Full Stack Engineer</title>
-    <meta name="description" content="Full Stack Software Engineer from Casablanca, Morocco. ALX graduate specializing in Python, JavaScript, Node.js, React & MongoDB.">
-    <meta name="keywords" content="Brahim Elhouss, Brahim El Houss, About Brahim Elhouss, Brahim El Houss biography, Brahim Elhouss developer, Brahim El Houss software engineer, who is Brahim Elhouss, Morocco developer">
-    <meta name="author" content="Brahim Elhouss">
-    <meta name="robots" content="index, follow">
+    <title>About Brahim El Houss | Full Stack Software Engineer | Biography</title>
+    <meta name="description" content="Learn about Brahim El Houss - Professional Full Stack Software Engineer from Casablanca, Morocco. ALX-certified graduate specializing in Python, JavaScript, Node.js, React, and MongoDB. Discover my journey, skills, and experience in software development.">
+    <meta name="keywords" content="Brahim El Houss, brahim elhouss, about brahim el houss, brahim el houss biography, brahim el houss background, who is brahim el houss, brahim el houss software engineer, Morocco software engineer, Full Stack Engineer Morocco, ALX graduate">
+    <meta name="author" content="Brahim El Houss">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
     
     <!-- Open Graph -->
     <meta property="og:type" content="profile">
-    <meta property="og:title" content="About Brahim Elhouss - Brahim El Houss">
-    <meta property="og:description" content="Biography of Brahim Elhouss, Full Stack Software Engineer from Morocco">
+    <meta property="og:title" content="About Brahim El Houss | Full Stack Software Engineer">
+    <meta property="og:description" content="Professional biography of Brahim El Houss - Full Stack Software Engineer from Casablanca, Morocco. ALX-certified with expertise in Python, Node.js, React, and MongoDB.">
     <meta property="og:url" content="https://brahim-elhouss.me/about.php">
-    <meta property="og:image" content="https://brahim-elhouss.me/assets/images/profile-img.jpg">
+    <meta property="og:image" content="https://brahim-elhouss.me/assets/images/profile-img.webp">
+    <meta property="og:site_name" content="Brahim El Houss | Software Engineer">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@brahimelhouss">
+    <meta name="twitter:creator" content="@brahimelhouss">
+    <meta name="twitter:title" content="About Brahim El Houss | Full Stack Software Engineer">
+    <meta name="twitter:description" content="Professional biography of Brahim El Houss - Full Stack Software Engineer from Morocco">
+    <meta name="twitter:image" content="https://brahim-elhouss.me/assets/images/profile-img.webp">
     
     <!-- Canonical URL -->
     <link rel="canonical" href="https://brahim-elhouss.me/about.php">
@@ -34,22 +43,36 @@
     {
       "@context": "https://schema.org",
       "@type": "Person",
-      "name": "Brahim Elhouss",
-      "alternateName": ["Brahim El Houss", "BrahimElhouss", "Brahim El-Houss"],
+      "@id": "https://brahim-elhouss.me/#person",
+      "name": "Brahim El Houss",
+      "alternateName": [
+        "brahim elhouss",
+        "BRAHIM ELHOUSS",
+        "Brahim Elhouss",
+        "brahim el houss",
+        "BRAHIM EL HOUSS",
+        "brahimelhouss"
+      ],
       "givenName": "Brahim",
-      "familyName": "Elhouss",
-      "url": "https://brahim-elhouss.me",
-      "image": "https://brahim-elhouss.me/assets/images/profile-img.jpg",
+      "familyName": "El Houss",
+      "url": "https://brahim-elhouss.me/about.php",
+      "mainEntityOfPage": "https://brahim-elhouss.me/about.php",
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://brahim-elhouss.me/assets/images/profile-img.webp",
+        "caption": "Brahim El Houss - Full Stack Software Engineer"
+      },
       "jobTitle": "Full Stack Software Engineer",
+      "description": "Professional Full Stack Software Engineer from Casablanca, Morocco with 3+ years of experience",
       "worksFor": {
         "@type": "Organization",
-        "name": "Freelance"
+        "name": "Available for Hire"
       },
       "alumniOf": [
         {
           "@type": "EducationalOrganization",
           "name": "ALX Africa",
-          "description": "Software Engineering Program"
+          "description": "Software Engineering Program with Backend Specialization"
         },
         {
           "@type": "EducationalOrganization",
@@ -61,9 +84,13 @@
           }
         }
       ],
-      "nationality": "Moroccan",
+      "nationality": {
+        "@type": "Country",
+        "name": "Morocco"
+      },
       "birthPlace": {
         "@type": "Place",
+        "name": "Morocco",
         "address": {
           "@type": "PostalAddress",
           "addressCountry": "MA"
@@ -71,6 +98,7 @@
       },
       "homeLocation": {
         "@type": "Place",
+        "name": "Casablanca, Morocco",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Casablanca",
@@ -81,7 +109,17 @@
       "sameAs": [
         "https://www.linkedin.com/in/brahim-el-houss",
         "https://github.com/EL-HOUSS-BRAHIM",
-        "https://twitter.com/brahimelhouss"
+        "https://twitter.com/brahimelhouss",
+        "https://brahim-elhouss.me"
+      ],
+      "knowsAbout": [
+        "Full Stack Development",
+        "Python Programming",
+        "JavaScript",
+        "Node.js",
+        "React",
+        "MongoDB",
+        "Software Engineering"
       ]
     }
     </script>
