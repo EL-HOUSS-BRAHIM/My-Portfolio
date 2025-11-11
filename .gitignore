@@ -95,3 +95,11 @@ local_config.php
 
 # Performance test results
 tests/performance-results/
+
+# Playwright test artifacts
+tests/playwright/html-report/
+tests/playwright/test-results/
+tests/playwright/.cache/
+test-results/
+playwright-report/
+playwright/.cache/
