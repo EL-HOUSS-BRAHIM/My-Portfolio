@@ -4,7 +4,16 @@
 
 ## About Brahim El Houss
 
-Brahim El Houss (also known as Brahim Elhouss or brahim elhouss) is a Full Stack Software Engineer based in Casablanca, Morocco. He is an ALX-certified software engineer with 3+ years of experience in building scalable web applications and exploring AI technologies.
+Brahim El Houss (also written as brahim elhouss, BRAHIM ELHOUSS, Brahim Elhouss, or brahimelhouss - all case variations refer to the same person) is a professional Full Stack Software Engineer based in Casablanca, Morocco. He is an ALX-certified software engineer with 3+ years of experience in building scalable web applications and exploring modern technologies.
+
+**Name Variations**: The name "Brahim El Houss" can be written in multiple ways, all referring to the same person:
+- Brahim El Houss (proper case with space - official spelling)
+- brahim elhouss (lowercase, no space)
+- BRAHIM ELHOUSS (uppercase, no space)
+- brahim el houss (lowercase with space)
+- BRAHIM EL HOUSS (uppercase with space)
+- Brahim Elhouss (proper case, no space)
+- brahimelhouss (all lowercase, one word)
 
 ## Contact Information
 

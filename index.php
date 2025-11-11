@@ -55,9 +55,9 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     <meta name="format-detection" content="telephone=no">
     
     <!-- SEO Meta Tags -->
-    <title>Brahim El Houss - Full Stack Software Engineer</title>
-    <meta name="description" content="Brahim El Houss: Full-stack software engineer from Morocco specializing in Python, Node.js, React & MongoDB. 3+ years experience.">
-    <meta name="keywords" content="Brahim El Houss, BRAHIM EL HOUSS, brahim elhouss, Brahim Elhouss, brahim el houss, BrahimElHouss, brahimelhouss, BRAHIMELHOUSS, Brahim-El-Houss, BRAHIM-EL-HOUSS, brahim-el-houss, EL-HOUSS-BRAHIM, el-houss-brahim, El Houss Brahim, Bross, bross developer, bross software engineer, Brahim El Houss Morocco, Brahim El Houss Casablanca, Brahim El Houss developer, Brahim El Houss software engineer, Brahim El Houss programmer, Brahim El Houss coder, Brahim software engineer, Brahim developer Morocco, Brahim Casablanca developer, Brahim full stack, Brahim backend developer, Brahim Python developer, Brahim JavaScript developer, El Houss developer, El Houss software engineer, El Houss programmer, Houss Brahim, Full Stack Developer, Software Engineer, Backend Development, Python Developer, JavaScript Developer, Node.js Developer, React Developer, MongoDB Developer, Web Development, DevOps Engineer, ALX Software Engineering, Morocco Developer, Casablanca Developer, Moroccan Software Engineer, Moroccan Full Stack Developer, Morocco Python Developer, Morocco Backend Developer">
+    <title>Brahim El Houss | Full Stack Software Engineer | Morocco</title>
+    <meta name="description" content="Brahim El Houss - Professional Full Stack Software Engineer from Casablanca, Morocco. Expert in Python, JavaScript, Node.js, React & MongoDB. ALX-certified with 3+ years of experience building scalable web applications. Available for hire.">
+    <meta name="keywords" content="Brahim El Houss, brahim elhouss, BRAHIM ELHOUSS, Brahim Elhouss, brahim el houss, BRAHIM EL HOUSS, full stack software engineer, Morocco software engineer, Casablanca developer, Python developer Morocco, JavaScript developer Morocco, Node.js expert, React developer, MongoDB specialist, ALX software engineer, backend developer Morocco, web developer Casablanca, Moroccan software engineer, Moroccan developer, hire software engineer Morocco, remote developer Morocco, full stack developer for hire">
     <meta name="author" content="Brahim El Houss">
     <meta name="publisher" content="Brahim El Houss">
     <meta name="owner" content="Brahim El Houss">
@@ -87,33 +87,37 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     <link rel="author" href="https://brahim-elhouss.me/about.php">
     
     <!-- Enhanced Open Graph for Social Media -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Brahim El Houss - Full Stack Software Engineer">
-    <meta property="og:description" content="Full-stack software engineer from Morocco specializing in Python, Node.js, React & MongoDB. 3+ years experience in web development.">
+    <meta property="og:type" content="profile">
+    <meta property="og:title" content="Brahim El Houss | Full Stack Software Engineer from Morocco">
+    <meta property="og:description" content="Brahim El Houss - Professional Full Stack Software Engineer from Casablanca, Morocco. Expert in Python, Node.js, React & MongoDB. ALX-certified with 3+ years of experience. Available for hire.">
     <meta property="og:url" content="https://brahim-elhouss.me">
-    <meta property="og:site_name" content="Brahim El Houss - Portfolio">
+    <meta property="og:site_name" content="Brahim El Houss | Software Engineer Portfolio">
     <meta property="og:image" content="https://brahim-elhouss.me/assets/images/profile-img.webp">
-    <meta property="og:image:alt" content="Brahim El Houss - Full Stack Software Engineer from Morocco">
+    <meta property="og:image:alt" content="Brahim El Houss - Full Stack Software Engineer from Casablanca, Morocco">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:locale" content="en_US">
-    <meta property="og:updated_time" content="2025-11-08T10:47:00Z">
+    <meta property="og:updated_time" content="2025-11-10T00:00:00Z">
     <meta property="article:published_time" content="2024-01-01T00:00:00Z">
-    <meta property="article:modified_time" content="2025-11-08T10:47:00Z">
+    <meta property="article:modified_time" content="2025-11-10T00:00:00Z">
     <meta property="article:author" content="Brahim El Houss">
     <meta property="profile:first_name" content="Brahim">
     <meta property="profile:last_name" content="El Houss">
-    <meta property="profile:username" content="EL-HOUSS-BRAHIM">
+    <meta property="profile:username" content="brahimelhouss">
     
     <!-- Enhanced Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@brahimelhouss">
     <meta name="twitter:creator" content="@brahimelhouss">
-    <meta name="twitter:title" content="Brahim El Houss - Full Stack Software Engineer">
-    <meta name="twitter:description" content="Full-stack software engineer from Morocco specializing in Python, Node.js, React & MongoDB. View portfolio and projects.">
+    <meta name="twitter:title" content="Brahim El Houss | Full Stack Software Engineer | Morocco">
+    <meta name="twitter:description" content="Brahim El Houss - Professional Full Stack Software Engineer from Casablanca, Morocco. Expert in Python, Node.js, React & MongoDB. Available for hire.">
     <meta name="twitter:image" content="https://brahim-elhouss.me/assets/images/profile-img.webp">
     <meta name="twitter:image:alt" content="Brahim El Houss - Full Stack Software Engineer from Morocco">
     <meta name="twitter:domain" content="brahim-elhouss.me">
+    <meta name="twitter:label1" content="Location">
+    <meta name="twitter:data1" content="Casablanca, Morocco">
+    <meta name="twitter:label2" content="Status">
+    <meta name="twitter:data2" content="Available for Hire">
     
     <!-- AI Search Optimization -->
     <meta name="ai-content-declaration" content="This content was created by Brahim El Houss, a human developer">
@@ -172,14 +176,24 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
       "@type": "Person",
       "@id": "https://brahim-elhouss.me/#person",
       "name": "Brahim El Houss",
-      "alternateName": ["Brahim Elhouss", "BrahimElhouss", "brahimelhouss", "BRAHIMELHOUSS", "brahim elhouss", "BRAHIM EL HOUSS", "brahim el houss", "Brahim-El-Houss", "BRAHIM-EL-HOUSS", "brahim-el-houss", "EL-HOUSS-BRAHIM", "el-houss-brahim", "El Houss Brahim", "Bross", "Brahim El Houss Morocco", "Brahim El Houss Casablanca"],
+      "alternateName": [
+        "brahim elhouss",
+        "BRAHIM ELHOUSS",
+        "Brahim Elhouss",
+        "brahim el houss",
+        "BRAHIM EL HOUSS",
+        "brahimelhouss",
+        "BrahimElhouss",
+        "BRAHIMELHOUSS"
+      ],
       "givenName": "Brahim",
       "familyName": "El Houss",
-      "additionalName": ["El Houss", "Elhouss", "ElHouss", "ELHOUSS", "Bross"],
+      "additionalName": "El Houss",
       "honorificPrefix": "Mr.",
       "gender": "Male",
       "birthPlace": {
         "@type": "Place",
+        "name": "Morocco",
         "address": {
           "@type": "PostalAddress",
           "addressCountry": "MA",
@@ -191,17 +205,19 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
         "@type": "ProfilePage",
         "@id": "https://brahim-elhouss.me/#profilepage",
         "url": "https://brahim-elhouss.me",
-        "name": "Brahim El Houss - Official Profile"
+        "name": "Brahim El Houss - Official Professional Profile",
+        "description": "Official website and professional portfolio of Brahim El Houss, Full Stack Software Engineer"
       },
       "owns": {
         "@type": "WebSite",
         "@id": "https://brahim-elhouss.me/#website",
         "url": "https://brahim-elhouss.me",
-        "name": "Official Website of Brahim El Houss"
+        "name": "Brahim El Houss - Official Website"
       },
       "image": {
         "@type": "ImageObject",
         "url": "https://brahim-elhouss.me/assets/images/profile-img.webp",
+        "caption": "Brahim El Houss - Full Stack Software Engineer",
         "width": 800,
         "height": 800
       },
@@ -209,28 +225,27 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
         "https://www.linkedin.com/in/brahim-el-houss",
         "https://github.com/EL-HOUSS-BRAHIM",
         "https://twitter.com/brahimelhouss",
-        "https://brahim-elhouss.me",
-        "https://www.brahim-elhouss.me"
+        "https://brahim-elhouss.me"
       ],
       "jobTitle": "Full Stack Software Engineer",
-      "description": "Experienced Full Stack Developer specializing in Python, JavaScript, Node.js, React, and MongoDB. ALX-certified with 3+ years of experience building scalable web applications.",
+      "description": "Brahim El Houss is a professional Full Stack Software Engineer from Casablanca, Morocco, specializing in Python, JavaScript, Node.js, React, and MongoDB. ALX-certified with 3+ years of experience building scalable web applications.",
       "knowsAbout": [
+        "Full Stack Development",
+        "Software Engineering",
         "Python Programming",
         "JavaScript Development",
         "Node.js",
         "React.js",
         "MongoDB",
         "Express.js",
-        "HTML5",
-        "CSS3",
-        "Git Version Control",
-        "Linux Administration",
+        "Backend Development",
+        "Frontend Development",
+        "Web Development",
         "RESTful APIs",
         "Database Design",
-        "Web Development",
-        "Software Engineering",
-        "Algorithm Design",
-        "Data Structures"
+        "DevOps",
+        "Git",
+        "Linux Administration"
       ],
       "hasCredential": [
         {
@@ -238,7 +253,11 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
           "name": "ALX Software Engineering Certificate",
           "description": "Full Stack Software Engineering Program with Backend Specialization",
           "credentialCategory": "Professional Certification",
-          "educationalLevel": "Professional"
+          "educationalLevel": "Professional",
+          "recognizedBy": {
+            "@type": "Organization",
+            "name": "ALX Africa"
+          }
         }
       ],
       "alumniOf": {
@@ -254,22 +273,43 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
         "@type": "PostalAddress",
         "addressLocality": "Casablanca",
         "addressRegion": "Casablanca-Settat",
-        "addressCountry": "MA"
+        "addressCountry": "MA",
+        "name": "Casablanca, Morocco"
       },
-      "nationality": "Moroccan",
+      "nationality": {
+        "@type": "Country",
+        "name": "Morocco"
+      },
       "email": "brahim-elhouss@gmail.com",
-      "availableLanguage": ["English", "Arabic", "French"],
+      "availableLanguage": [
+        {
+          "@type": "Language",
+          "name": "English",
+          "alternateName": "en"
+        },
+        {
+          "@type": "Language",
+          "name": "Arabic",
+          "alternateName": "ar"
+        },
+        {
+          "@type": "Language",
+          "name": "French",
+          "alternateName": "fr"
+        }
+      ],
       "seeks": {
         "@type": "Demand",
         "name": "Software Engineering Opportunities",
-        "description": "Seeking full-time opportunities in full stack development, backend engineering, or software engineering roles"
+        "description": "Brahim El Houss is actively seeking full-time opportunities in full stack development, backend engineering, or software engineering roles"
       },
       "hasOccupation": {
         "@type": "Occupation",
         "name": "Full Stack Software Engineer",
+        "description": "Professional software engineer with expertise in full stack web development",
         "occupationLocation": {
           "@type": "Place",
-          "name": "Remote/Hybrid"
+          "name": "Remote/Hybrid/Casablanca, Morocco"
         },
         "skills": [
           "Python",
@@ -281,9 +321,18 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
           "HTML5",
           "CSS3",
           "Git",
-          "Linux"
-        ]
-      }
+          "Linux",
+          "Full Stack Development",
+          "Backend Development",
+          "Frontend Development"
+        ],
+        "experienceRequirements": "3+ years"
+      },
+      "knowsLanguage": [
+        "en",
+        "ar",
+        "fr"
+      ]
     }
     </script>
 
@@ -309,8 +358,12 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
       "@id": "https://brahim-elhouss.me/#website",
       "url": "https://brahim-elhouss.me",
       "name": "Brahim El Houss - Official Website",
-      "alternateName": ["Brahim El Houss Portfolio", "Brahim Elhouss Official Site", "BrahimElhouss", "Brahim-El-Houss", "Bross Portfolio"],
-      "description": "Official website of Brahim El Houss - Full-stack software engineer specialized in backend development with Python, JavaScript, Node.js. Expert in DevOps and modern web technologies.",
+      "alternateName": [
+        "Brahim El Houss Portfolio",
+        "brahimelhouss.me",
+        "brahim-elhouss.me"
+      ],
+      "description": "Official website of Brahim El Houss - Professional Full Stack Software Engineer from Casablanca, Morocco. Expert in Python, JavaScript, Node.js, React, and MongoDB.",
       "publisher": {
         "@id": "https://brahim-elhouss.me/#person"
       },
@@ -333,6 +386,9 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
           "urlTemplate": "https://brahim-elhouss.me/?s={search_term_string}"
         },
         "query-input": "required name=search_term_string"
+      },
+      "about": {
+        "@id": "https://brahim-elhouss.me/#person"
       }
     }
     </script>
@@ -344,8 +400,8 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
       "@type": "WebPage",
       "@id": "https://brahim-elhouss.me/#webpage",
       "url": "https://brahim-elhouss.me",
-      "name": "Brahim El Houss - Official Personal Website",
-      "description": "The official personal website of Brahim El Houss, full-stack software engineer from Morocco",
+      "name": "Brahim El Houss | Full Stack Software Engineer | Official Website",
+      "description": "Official website of Brahim El Houss - Professional Full Stack Software Engineer from Casablanca, Morocco. Expert in Python, JavaScript, Node.js, React, and MongoDB.",
       "isPartOf": {
         "@id": "https://brahim-elhouss.me/#website"
       },
@@ -354,10 +410,11 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
       },
       "primaryImageOfPage": {
         "@type": "ImageObject",
-        "url": "https://brahim-elhouss.me/assets/images/profile-img.webp"
+        "url": "https://brahim-elhouss.me/assets/images/profile-img.webp",
+        "caption": "Brahim El Houss - Full Stack Software Engineer"
       },
       "datePublished": "2024-01-01T00:00:00Z",
-      "dateModified": "2025-11-08T00:00:00Z",
+      "dateModified": "2025-11-10T00:00:00Z",
       "author": {
         "@id": "https://brahim-elhouss.me/#person"
       },
@@ -370,6 +427,9 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
       "inLanguage": "en-US",
       "mainEntity": {
         "@id": "https://brahim-elhouss.me/#person"
+      },
+      "breadcrumb": {
+        "@id": "https://brahim-elhouss.me/#breadcrumb"
       }
     }
     </script>
@@ -379,11 +439,12 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
+      "@id": "https://brahim-elhouss.me/#breadcrumb",
       "itemListElement": [
         {
           "@type": "ListItem",
           "position": 1,
-          "name": "Home",
+          "name": "Brahim El Houss - Home",
           "item": "https://brahim-elhouss.me"
         }
       ]
@@ -401,7 +462,15 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
           "name": "Who is Brahim El Houss?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Brahim El Houss (also known as BrahimElhouss, Brahim-El-Houss, or Bross) is a Full Stack Software Engineer from Casablanca, Morocco, specializing in backend development. He has expertise in Python, JavaScript, Node.js, React, and MongoDB. Brahim is an ALX Software Engineering graduate with professional experience in full-stack development and DevOps."
+            "text": "Brahim El Houss (also written as brahim elhouss, BRAHIM ELHOUSS, or brahimelhouss) is a professional Full Stack Software Engineer from Casablanca, Morocco. He specializes in backend development with expertise in Python, JavaScript, Node.js, React, and MongoDB. Brahim is an ALX Software Engineering graduate with 3+ years of professional experience in full-stack web development and DevOps. He is currently available for hire for remote, hybrid, or on-site software engineering positions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you spell Brahim El Houss name correctly?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The correct spelling is 'Brahim El Houss' with a space between 'El' and 'Houss'. However, it's commonly written in various forms: 'brahim elhouss' (lowercase), 'BRAHIM ELHOUSS' (uppercase), 'Brahim Elhouss' (without space), 'brahim el houss' (lowercase with space), or 'brahimelhouss' (all one word). All these variations refer to the same person - a Full Stack Software Engineer from Morocco. The name is case-insensitive and search engines will find his portfolio regardless of how you type it."
           }
         },
         {
@@ -409,7 +478,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
           "name": "What does Brahim El Houss specialize in?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Brahim El Houss specializes in backend development with expertise in Python, Node.js, and JavaScript. He also has strong skills in full-stack development, including React for frontend, MongoDB for databases, and DevOps practices for deployment and infrastructure management."
+            "text": "Brahim El Houss specializes in Full Stack Software Engineering with a focus on backend development. His core expertise includes Python programming, JavaScript (ES6+), Node.js for server-side development, React for frontend applications, and MongoDB for database management. He also has strong skills in Express.js, RESTful API development, HTML5, CSS3, Git version control, Linux system administration, and DevOps practices. Brahim excels at building scalable, maintainable web applications using modern technologies and best practices."
           }
         },
         {
@@ -417,23 +486,15 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
           "name": "Where is Brahim El Houss located?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Brahim El Houss is based in Casablanca, Morocco. He is available for remote work, hybrid positions, and on-site opportunities."
+            "text": "Brahim El Houss is based in Casablanca, Morocco. He is available for remote work opportunities worldwide, hybrid positions, and on-site roles in Morocco or internationally. His location in the GMT+1 timezone makes him well-suited for collaboration with teams in Europe, Africa, and the Middle East."
           }
         },
         {
           "@type": "Question",
-          "name": "What is Brahim El Houss's educational background?",
+          "name": "What is Brahim El Houss educational background?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Brahim El Houss is a graduate of the ALX Software Engineering program with a specialization in backend development. He also studied Physics Sciences at Hassan II University in Casablanca and has completed various professional certifications in Frontend Development, Backend Development, DevOps, Machine Learning, and Cybersecurity."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How do you spell Brahim El Houss name?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "The correct spelling is Brahim El Houss (with a space). However, you may also find references as BrahimElhouss (no space), Brahim-El-Houss (with hyphens), Brahim Elhouss, or the nickname Bross. All refer to the same person - a Full Stack Software Engineer from Morocco."
+            "text": "Brahim El Houss is a certified graduate of the ALX Software Engineering program with a specialization in backend development. This intensive 12-month program covered full-stack development, data structures, algorithms, and modern web technologies. He also studied Physics Sciences at Hassan II University in Casablanca, Morocco. Additionally, Brahim has completed professional certifications in Frontend Development, Backend Development, DevOps, Machine Learning, and Cybersecurity."
           }
         },
         {
@@ -441,7 +502,23 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
           "name": "How can I contact Brahim El Houss?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "You can contact Brahim El Houss through his website at https://brahim-elhouss.me, via email at brahim-elhouss@gmail.com, or connect with him on LinkedIn at linkedin.com/in/brahim-el-houss and GitHub at github.com/EL-HOUSS-BRAHIM."
+            "text": "You can contact Brahim El Houss through multiple channels: via his official website at https://brahim-elhouss.me (which has a contact form), by email at brahim-elhouss@gmail.com, on LinkedIn at linkedin.com/in/brahim-el-houss, or on GitHub at github.com/EL-HOUSS-BRAHIM. He is responsive to professional inquiries and available for job opportunities, project collaborations, and consulting work."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Brahim El Houss available for hire?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, Brahim El Houss is currently available for hire. He is seeking full-time opportunities in Full Stack Development, Backend Engineering, or Software Engineering roles. He is open to remote positions, hybrid work arrangements, and on-site opportunities. With 3+ years of professional experience and expertise in Python, Node.js, React, and MongoDB, Brahim is well-suited for building scalable web applications and leading technical projects."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What programming languages does Brahim El Houss know?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Brahim El Houss is proficient in multiple programming languages including Python (his primary language), JavaScript/ES6+, HTML5, CSS3, SQL, and PHP. He has professional experience with frameworks and tools such as Node.js, React.js, Express.js, MongoDB, MySQL, Git, and Linux. He also has knowledge of C programming from his ALX Software Engineering studies."
           }
         }
       ]
@@ -646,8 +723,8 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
                             <span class="hero__role">Full Stack Software Engineer</span>
                         </div>
                         <p class="hero__description">
-                            <strong>Brahim El Houss</strong> (also known as <strong>BrahimElhouss</strong>, <strong>Brahim-El-Houss</strong>, or <strong>Bross</strong>) is a Full Stack Software Engineer from Morocco, crafting innovative digital solutions with clean code and modern technologies. 
-                            Passionate about building scalable applications that make a difference.
+                            <strong>Brahim El Houss</strong> is a professional Full Stack Software Engineer from Casablanca, Morocco, specializing in Python, JavaScript, Node.js, React, and MongoDB. 
+                            With 3+ years of experience, I craft innovative digital solutions with clean code and modern technologies, building scalable applications that make a difference.
                         </p>
                         <div class="hero__stats" aria-label="Professional statistics">
                             <div class="stat">
@@ -716,7 +793,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
             <div class="container">
                 <div class="section-header">
                     <span class="section-tag">Get to know me</span>
-                    <h2 class="section-title">About Brahim El Houss (BrahimElhouss)</h2>
+                    <h2 class="section-title">About Brahim El Houss</h2>
                     <p class="section-subtitle">
                         Full Stack Software Engineer from Casablanca, Morocco
                     </p>
@@ -1790,7 +1867,7 @@ if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
             
             <div class="footer-bottom">
                 <div class="footer-copyright">
-                    <p>&copy; 2025 Brahim El Houss (BrahimElhouss). All rights reserved.</p>
+                    <p>&copy; 2025 Brahim El Houss. All rights reserved.</p>
                 </div>
                 <div class="footer-legal">
                     <a href="/">Home</a>
