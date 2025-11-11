@@ -1,0 +1,1030 @@
+{
+  "config": {
+    "configFile": "/home/runner/work/My-Portfolio/My-Portfolio/playwright.config.js",
+    "rootDir": "/home/runner/work/My-Portfolio/My-Portfolio/tests/playwright",
+    "forbidOnly": true,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "ci": {
+        "commitHref": "https://github.com/EL-HOUSS-BRAHIM/My-Portfolio/commit/45d9772a9e1ec3aec269aaa637ed63b72aa13db3",
+        "commitHash": "45d9772a9e1ec3aec269aaa637ed63b72aa13db3",
+        "buildHref": "https://github.com/EL-HOUSS-BRAHIM/My-Portfolio/actions/runs/19251475160"
+      },
+      "gitCommit": {
+        "shortHash": "00ac7da",
+        "hash": "00ac7da27544b7ef429523b98a1f768c373e5f22",
+        "subject": "Add final summary document",
+        "body": "Add final summary document\n\nCo-authored-by: EL-HOUSS-BRAHIM <87819687+EL-HOUSS-BRAHIM@users.noreply.github.com>\n",
+        "author": {
+          "name": "copilot-swe-agent[bot]",
+          "email": "198982749+Copilot@users.noreply.github.com",
+          "time": 1762824208000
+        },
+        "committer": {
+          "name": "copilot-swe-agent[bot]",
+          "email": "198982749+Copilot@users.noreply.github.com",
+          "time": 1762824208000
+        },
+        "branch": "copilot/debug-brahim-elhouss-ranking"
+      },
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        {
+          "outputFolder": "tests/playwright/html-report"
+        }
+      ],
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "tests/playwright/test-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/home/runner/work/My-Portfolio/My-Portfolio/test-results",
+        "repeatEach": 1,
+        "retries": 2,
+        "metadata": {
+          "ci": {
+            "commitHref": "https://github.com/EL-HOUSS-BRAHIM/My-Portfolio/commit/45d9772a9e1ec3aec269aaa637ed63b72aa13db3",
+            "commitHash": "45d9772a9e1ec3aec269aaa637ed63b72aa13db3",
+            "buildHref": "https://github.com/EL-HOUSS-BRAHIM/My-Portfolio/actions/runs/19251475160"
+          },
+          "gitCommit": {
+            "shortHash": "00ac7da",
+            "hash": "00ac7da27544b7ef429523b98a1f768c373e5f22",
+            "subject": "Add final summary document",
+            "body": "Add final summary document\n\nCo-authored-by: EL-HOUSS-BRAHIM <87819687+EL-HOUSS-BRAHIM@users.noreply.github.com>\n",
+            "author": {
+              "name": "copilot-swe-agent[bot]",
+              "email": "198982749+Copilot@users.noreply.github.com",
+              "time": 1762824208000
+            },
+            "committer": {
+              "name": "copilot-swe-agent[bot]",
+              "email": "198982749+Copilot@users.noreply.github.com",
+              "time": 1762824208000
+            },
+            "branch": "copilot/debug-brahim-elhouss-ranking"
+          },
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/home/runner/work/My-Portfolio/My-Portfolio/tests/playwright",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.56.1",
+    "workers": 1,
+    "webServer": {
+      "command": "php -S localhost:8000 -t .",
+      "url": "http://localhost:8000",
+      "reuseExistingServer": false,
+      "timeout": 120000
+    }
+  },
+  "suites": [
+    {
+      "title": "seo.spec.js",
+      "file": "seo.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Homepage SEO Meta Tags",
+          "file": "seo.spec.js",
+          "line": 10,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should have correct title with name and location",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1390,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✓ Page title: Brahim El Houss | Full Stack Software Engineer | Morocco\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-11T01:24:03.919Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "c492e88247ecdf7201f5-ea354ed31d01d850811e",
+              "file": "seo.spec.js",
+              "line": 15,
+              "column": 3
+            },
+            {
+              "title": "should have comprehensive meta description with name",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1540,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✓ Meta description length: \u001b[33m239\u001b[39m characters\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-11T01:24:05.405Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "c492e88247ecdf7201f5-fad4b19776053ed5b46f",
+              "file": "seo.spec.js",
+              "line": 23,
+              "column": 3
+            },
+            {
+              "title": "should include all name variations in keywords meta tag",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1462,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✓ All name variations found in keywords\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-11T01:24:06.963Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "c492e88247ecdf7201f5-b393fdc52ee402a315c4",
+              "file": "seo.spec.js",
+              "line": 32,
+              "column": 3
+            },
+            {
+              "title": "should have proper Open Graph tags for social sharing",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1242,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✓ Open Graph type: profile\n"
+                        },
+                        {
+                          "text": "✓ Open Graph title: Brahim El Houss | Full Stack Software Engineer from Morocco\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-11T01:24:08.444Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "c492e88247ecdf7201f5-55afd7462e120436270d",
+              "file": "seo.spec.js",
+              "line": 51,
+              "column": 3
+            },
+            {
+              "title": "should have Twitter Card meta tags",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1513,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✓ Twitter Card: summary_large_image\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-11T01:24:09.698Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "c492e88247ecdf7201f5-a39ef7578a6871fb6e28",
+              "file": "seo.spec.js",
+              "line": 68,
+              "column": 3
+            },
+            {
+              "title": "should have canonical URL",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1496,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✓ Canonical URL: https://brahim-elhouss.me\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-11T01:24:11.223Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "c492e88247ecdf7201f5-58e5abcba140cad02e97",
+              "file": "seo.spec.js",
+              "line": 82,
+              "column": 3
+            },
+            {
+              "title": "should have robots meta tag set to index and follow",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1229,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✓ Robots meta tag: index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-11T01:24:12.733Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "c492e88247ecdf7201f5-56fb1527b166eb169ba8",
+              "file": "seo.spec.js",
+              "line": 89,
+              "column": 3
+            },
+            {
+              "title": "should have geo meta tags for location",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1603,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✓ Geo location: Casablanca Morocco\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-11T01:24:13.976Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "c492e88247ecdf7201f5-d2cc053ec3d18cd56809",
+              "file": "seo.spec.js",
+              "line": 96,
+              "column": 3
+            }
+          ]
+        },
+        {
+          "title": "Structured Data (JSON-LD)",
+          "file": "seo.spec.js",
+          "line": 109,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should have Person schema with all name variations",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1450,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✓ Person schema found with \u001b[33m8\u001b[39m name variations\n"
+                        },
+                        {
+                          "text": "✓ Name variations: brahim elhouss, BRAHIM ELHOUSS, Brahim Elhouss, brahim el houss, BRAHIM EL HOUSS, brahimelhouss, BrahimElhouss, BRAHIMELHOUSS\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-11T01:24:15.595Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "c492e88247ecdf7201f5-34f7af4ae5ef617985ca",
+              "file": "seo.spec.js",
+              "line": 114,
+              "column": 3
+            },
+            {
+              "title": "should have proper jobTitle in Person schema",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1254,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✓ Job title: Full Stack Software Engineer\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-11T01:24:17.061Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "c492e88247ecdf7201f5-cd886290598730a600b1",
+              "file": "seo.spec.js",
+              "line": 158,
+              "column": 3
+            },
+            {
+              "title": "should have WebSite or WebPage schema",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1596,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✓ Found schema type: WebSite\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-11T01:24:18.329Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "c492e88247ecdf7201f5-6b52e5cf60cd1790efb5",
+              "file": "seo.spec.js",
+              "line": 181,
+              "column": 3
+            },
+            {
+              "title": "should have FAQ schema for better SERP features",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1553,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✓ FAQ schema found with \u001b[33m8\u001b[39m questions\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-11T01:24:19.937Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "c492e88247ecdf7201f5-b78a7f43df4d99c5c4bf",
+              "file": "seo.spec.js",
+              "line": 201,
+              "column": 3
+            }
+          ]
+        },
+        {
+          "title": "Content and Visibility",
+          "file": "seo.spec.js",
+          "line": 228,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should display the name prominently on the page",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1373,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✓ Name appears in page content\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-11T01:24:21.503Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "c492e88247ecdf7201f5-22faf27878ed0d3660d3",
+              "file": "seo.spec.js",
+              "line": 233,
+              "column": 3
+            },
+            {
+              "title": "should have h1 heading with name or job title",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1312,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✓ H1 headings: [ \u001b[32m'Brahim El Houss'\u001b[39m ]\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-11T01:24:22.890Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "c492e88247ecdf7201f5-e51e60b1070f5f13dbfd",
+              "file": "seo.spec.js",
+              "line": 239,
+              "column": 3
+            },
+            {
+              "title": "should be mobile responsive",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1688,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✓ Page renders on mobile viewport\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-11T01:24:24.217Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "c492e88247ecdf7201f5-fb4d850b25b6d58b9139",
+              "file": "seo.spec.js",
+              "line": 252,
+              "column": 3
+            },
+            {
+              "title": "should load without JavaScript errors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2473,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✓ Page loaded (JS errors: \u001b[33m0\u001b[39m )\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-11T01:24:25.917Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "c492e88247ecdf7201f5-4d07b7eb83961e6809e9",
+              "file": "seo.spec.js",
+              "line": 267,
+              "column": 3
+            }
+          ]
+        },
+        {
+          "title": "Additional SEO Files",
+          "file": "seo.spec.js",
+          "line": 283,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should have a robots.txt file",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 134,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✓ robots.txt exists and is valid\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-11T01:24:28.403Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "c492e88247ecdf7201f5-41da15d658a485faa44a",
+              "file": "seo.spec.js",
+              "line": 284,
+              "column": 3
+            },
+            {
+              "title": "should have a sitemap.xml file",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 138,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✓ sitemap.xml exists and is valid\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-11T01:24:28.554Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "c492e88247ecdf7201f5-1008ad7c46fe4f4639d3",
+              "file": "seo.spec.js",
+              "line": 294,
+              "column": 3
+            },
+            {
+              "title": "should have llms.txt for AI search engines",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 129,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✓ llms.txt exists\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-11T01:24:28.703Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "c492e88247ecdf7201f5-ca1b2f00fb8e20df0c6d",
+              "file": "seo.spec.js",
+              "line": 305,
+              "column": 3
+            }
+          ]
+        },
+        {
+          "title": "Performance and Loading",
+          "file": "seo.spec.js",
+          "line": 316,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should load the homepage within reasonable time",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1472,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✓ Page loaded in \u001b[33m860\u001b[39m ms\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-11T01:24:28.844Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "c492e88247ecdf7201f5-cfd6f7be35d6b84c4db8",
+              "file": "seo.spec.js",
+              "line": 317,
+              "column": 3
+            },
+            {
+              "title": "should have proper charset and viewport meta tags",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1263,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✓ Charset: utf-8\n"
+                        },
+                        {
+                          "text": "✓ Viewport: width=device-width, initial-scale=1.0, viewport-fit=cover\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-11T01:24:30.327Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "c492e88247ecdf7201f5-931e23dba015ec1643fc",
+              "file": "seo.spec.js",
+              "line": 327,
+              "column": 3
+            }
+          ]
+        },
+        {
+          "title": "About Page SEO",
+          "file": "seo.spec.js",
+          "line": 341,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should have proper SEO on about page",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 465,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✓ About page title: About Brahim El Houss | Full Stack Software Engineer | Biography\n"
+                        },
+                        {
+                          "text": "✓ About page has proper description\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-11T01:24:31.604Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "c492e88247ecdf7201f5-6cf055d355f9e54dc3aa",
+              "file": "seo.spec.js",
+              "line": 342,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-11-11T01:24:02.562Z",
+    "duration": 29561.777,
+    "expected": 22,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
