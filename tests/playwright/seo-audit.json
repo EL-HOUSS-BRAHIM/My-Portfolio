@@ -1,0 +1,72 @@
+{
+  "timestamp": "2025-11-11T01:16:47.597Z",
+  "url": "http://localhost:8000",
+  "tests": [
+    {
+      "name": "Name Variations in Keywords",
+      "status": "PASS",
+      "details": "Found 6/6 name variations",
+      "variations": [
+        "Brahim El Houss",
+        "brahim elhouss",
+        "BRAHIM ELHOUSS",
+        "Brahim Elhouss",
+        "brahim el houss",
+        "BRAHIM EL HOUSS"
+      ]
+    },
+    {
+      "name": "Person Schema.org Structured Data",
+      "status": "PASS",
+      "details": "Person schema found with 8 alternate names",
+      "alternateNames": [
+        "brahim elhouss",
+        "BRAHIM ELHOUSS",
+        "Brahim Elhouss",
+        "brahim el houss",
+        "BRAHIM EL HOUSS",
+        "brahimelhouss",
+        "BrahimElhouss",
+        "BRAHIMELHOUSS"
+      ]
+    },
+    {
+      "name": "FAQ Schema for Rich Snippets",
+      "status": "PASS",
+      "details": "FAQ schema found with 8 questions"
+    },
+    {
+      "name": "Open Graph Tags for Social Sharing",
+      "status": "PASS",
+      "details": "OG Type: profile (should be 'profile' for person)",
+      "ogTitle": "Brahim El Houss | Full Stack Software Engineer from Morocco"
+    },
+    {
+      "name": "Page Load Performance",
+      "status": "PASS",
+      "details": "Page loaded in 133ms",
+      "loadTime": 133
+    },
+    {
+      "name": "Mobile Responsiveness",
+      "status": "PASS",
+      "details": "Page renders on mobile viewport (375x667)"
+    },
+    {
+      "name": "Name Prominence in Content",
+      "status": "PASS",
+      "details": "Name appears 6 times in page content",
+      "occurrences": 6
+    },
+    {
+      "name": "SEO Files Existence",
+      "status": "PASS",
+      "details": "robots.txt: 200, sitemap.xml: 200, llms.txt: 200"
+    }
+  ],
+  "summary": {
+    "passed": 8,
+    "warnings": 0,
+    "failed": 0
+  }
+}
