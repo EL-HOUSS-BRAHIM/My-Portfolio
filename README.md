@@ -186,6 +186,32 @@ php -S localhost:8080
 
 Visit `http://localhost:8080` to view the portfolio.
 
+### GitHub Projects Selector
+
+Automatically select and showcase your best GitHub repositories:
+```bash
+npm run github:select-projects
+```
+
+This will:
+- Fetch all your public GitHub repositories
+- Analyze and score them based on stars, activity, descriptions, and images
+- Select the top 10 repositories for portfolio display
+- Generate `data/selected-github-projects.json` with structured data
+
+For JSON-only output (no commentary):
+```bash
+npm run github:select-projects-json
+```
+
+To avoid GitHub API rate limits, use a personal access token:
+```bash
+export GITHUB_TOKEN="your_token_here"
+npm run github:select-projects
+```
+
+See [scripts/GITHUB_PROJECTS_SELECTOR_README.md](scripts/GITHUB_PROJECTS_SELECTOR_README.md) for detailed documentation.
+
 ## 🔧 Configuration
 
 ### Environment Variables (.env)

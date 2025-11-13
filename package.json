@@ -19,7 +19,9 @@
     "validate:html": "node scripts/html-validator.js",
     "validate:accessibility": "node scripts/accessibility-check.js",
     "test:performance": "node scripts/performance-test.js",
-    "quality:check": "npm run lint:all && npm run validate:html && npm run validate:accessibility"
+    "quality:check": "npm run lint:all && npm run validate:html && npm run validate:accessibility",
+    "github:select-projects": "node scripts/select-github-projects.js",
+    "github:select-projects-json": "node scripts/select-github-projects.js --json-only"
   },
   "devDependencies": {
     "axe-core": "^4.0.0",
