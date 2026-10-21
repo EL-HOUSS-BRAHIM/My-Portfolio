@@ -85,37 +85,7 @@ CREATE TABLE IF NOT EXISTS admin_sessions (
     INDEX idx_active (is_active)
 );
 
--- Create a default admin user (password: admin123 - CHANGE THIS!)
--- Password hash for 'admin123' - MUST BE CHANGED in production
-INSERT INTO admin_users (username, password_hash, email, first_name, last_name, role) 
-VALUES (
-    'admin', 
-    '$2y$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewdBPj6hsOOO6VBq', -- admin123
-    'admin@brahim-elhouss.me',
-    'Admin',
-    'User',
-    'admin'
-) ON DUPLICATE KEY UPDATE updated_at = CURRENT_TIMESTAMP;
-
--- Add some sample approved testimonials (optional - remove if not needed)
-INSERT INTO testimonials (name, image_data, image_type, rating, testimonial, status) VALUES
-(
-    'John Doe',
-    UNHEX('89504E470D0A1A0A0000000D49484452000000640000006408060000007017A5CB0000001974455874536F6674776172650041646F626520496D616765526561647971C9653C00000CDF49444154785EEDDD075014579C07F0'),
-    'image/png',
-    5,
-    'Excellent work! The portfolio website is beautifully designed and very professional. Great attention to detail.',
-    'approved'
-),
-(
-    'Jane Smith',
-    UNHEX('89504E470D0A1A0A0000000D49484452000000640000006408060000007017A5CB0000001974455874536F6674776172650041646F626520496D616765526561647971C9653C00000CDF49444154785EEDDD075014579C07F0'),
-    'image/png',
-    4,
-    'Very impressed with the technical skills and clean code. The website loads fast and looks great on all devices.',
-    'approved'
-)
-ON DUPLICATE KEY UPDATE updated_at = CURRENT_TIMESTAMP;
+-- Provision an individual admin securely; no shared default account or sample endorsements.
 
 -- Clean up expired rate limits (to be run periodically)
 CREATE EVENT IF NOT EXISTS cleanup_rate_limits

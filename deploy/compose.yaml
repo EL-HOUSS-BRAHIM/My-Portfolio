@@ -1,0 +1,49 @@
+# No published ports, proxy replacement, host changes, or shared volumes.
+services:
+  app:
+    image: ${PORTFOLIO_IMAGE:?Set immutable app image}
+    env_file: ${PORTFOLIO_SECRETS_FILE:?Absolute path to application env file}
+    environment:
+      DEPLOY_ENV: ${DEPLOY_ENV:?Set staging or production}
+      CONTENT_MODE: supabase
+    networks:
+      edge:
+        aliases: ["${PORTFOLIO_ALIAS:?Unique portfolio slot alias}"]
+      private: {}
+    restart: unless-stopped
+    init: true
+    read_only: true
+    tmpfs: ["/tmp:size=64m", "/app/.next/cache:size=64m,uid=1000,gid=1000"]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    mem_limit: 768m
+    cpus: 0.75
+    pids_limit: 120
+    healthcheck:
+      test: [CMD, node, -e, "fetch('http://127.0.0.1:3000/api/health/ready',{headers:{authorization:'Bearer '+process.env.HEALTH_TOKEN}}).then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 15s
+      timeout: 8s
+      retries: 4
+      start_period: 30s
+    logging: &logging
+      driver: json-file
+      options: {max-size: 10m, max-file: '3'}
+  worker:
+    image: ${PORTFOLIO_WORKER_IMAGE:?Set immutable worker image}
+    env_file: ${PORTFOLIO_SECRETS_FILE}
+    networks: [private]
+    restart: unless-stopped
+    init: true
+    read_only: true
+    tmpfs: [/tmp:size=16m]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    mem_limit: 256m
+    cpus: 0.25
+    pids_limit: 70
+    logging: *logging
+networks:
+  edge:
+    external: true
+    name: budgetify-edge
+  private: {}

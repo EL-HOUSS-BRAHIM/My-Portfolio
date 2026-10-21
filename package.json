@@ -1,116 +1,18 @@
 {
-  "name": "portfolio-code-quality",
-  "version": "1.0.0",
-  "description": "Code quality tools for Brahim El Houss Portfolio",
+  "name": "brahim-portfolio-workspace",
+  "private": true,
+  "version": "3.0.0",
+  "engines": {
+    "node": ">=24 <25"
+  },
   "scripts": {
-    "lint:js": "eslint assets/js-clean/**/*.js --fix",
-    "lint:js:check": "eslint assets/js-clean/**/*.js",
-    "lint:css": "stylelint assets/css/**/*.css --fix",
-    "lint:css:check": "stylelint assets/css/**/*.css",
-    "lint:php": "php scripts/php-lint-check.php",
-    "lint:all": "npm run lint:js && npm run lint:css && npm run lint:php",
-    "format:js": "prettier --write assets/js-clean/**/*.js",
-    "format:css": "prettier --write assets/css/**/*.css",
-    "format:php": "php scripts/php-format.php",
-    "format:all": "npm run format:js && npm run format:css && npm run format:php",
-    "minify:js": "node scripts/minify-js.js",
-    "minify:css": "node scripts/minify-css.js",
-    "build": "npm run minify:css && npm run minify:js",
-    "validate:html": "node scripts/html-validator.js",
-    "validate:accessibility": "node scripts/accessibility-check.js",
-    "test:performance": "node scripts/performance-test.js",
-    "test:seo": "playwright test",
-    "test:seo:report": "node tests/playwright/seo-audit.js",
-    "test:seo:ui": "playwright test --ui",
-    "quality:check": "npm run lint:all && npm run validate:html && npm run validate:accessibility"
-  },
-  "devDependencies": {
-    "@playwright/test": "^1.56.1",
-    "axe-core": "^4.0.0",
-    "eslint": "^8.0.0",
-    "eslint-config-prettier": "^8.0.0",
-    "eslint-plugin-jsdoc": "^39.0.0",
-    "html-validate": "^8.0.0",
-    "lighthouse": "^10.0.0",
-    "playwright": "^1.56.1",
-    "prettier": "^3.0.0",
-    "stylelint": "^15.0.0",
-    "stylelint-config-prettier": "^9.0.0",
-    "stylelint-config-standard": "^34.0.0",
-    "terser": "^5.44.1"
-  },
-  "eslintConfig": {
-    "extends": [
-      "eslint:recommended",
-      "prettier"
-    ],
-    "plugins": [
-      "jsdoc"
-    ],
-    "env": {
-      "browser": true,
-      "es2022": true
-    },
-    "parserOptions": {
-      "ecmaVersion": 2022,
-      "sourceType": "script"
-    },
-    "rules": {
-      "no-console": "warn",
-      "no-debugger": "error",
-      "prefer-const": "error",
-      "no-var": "error",
-      "prefer-arrow-callback": "error",
-      "arrow-spacing": "error",
-      "no-unused-vars": [
-        "error",
-        {
-          "argsIgnorePattern": "^_"
-        }
-      ],
-      "jsdoc/require-jsdoc": [
-        "warn",
-        {
-          "require": {
-            "FunctionDeclaration": true,
-            "MethodDefinition": true,
-            "ClassDeclaration": true
-          }
-        }
-      ],
-      "jsdoc/require-param": "warn",
-      "jsdoc/require-returns": "warn",
-      "jsdoc/require-description": "warn"
-    }
-  },
-  "stylelint": {
-    "extends": [
-      "stylelint-config-standard",
-      "stylelint-config-prettier"
-    ],
-    "rules": {
-      "color-hex-length": "long",
-      "color-no-invalid-hex": true,
-      "font-family-no-missing-generic-family-keyword": true,
-      "function-calc-no-unspaced-operator": true,
-      "property-no-unknown": true,
-      "selector-pseudo-class-no-unknown": true,
-      "selector-pseudo-element-no-unknown": true,
-      "unit-no-unknown": true,
-      "custom-property-pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
-      "selector-class-pattern": "^[a-z]([a-z0-9-]+)?(__([a-z0-9]+-?)+)?(--([a-z0-9]+-?)+){0,2}$",
-      "declaration-block-no-duplicate-properties": true,
-      "block-no-empty": true,
-      "comment-no-empty": true
-    }
-  },
-  "prettier": {
-    "semi": true,
-    "singleQuote": true,
-    "tabWidth": 4,
-    "trailingComma": "es5",
-    "printWidth": 100,
-    "bracketSpacing": true,
-    "arrowParens": "avoid"
+    "setup": "npm --prefix web ci",
+    "dev": "npm --prefix web run dev",
+    "build": "npm --prefix web run build",
+    "start": "npm --prefix web run start",
+    "typecheck": "npm --prefix web run typecheck",
+    "lint": "npm --prefix web run lint",
+    "test": "npm --prefix web test",
+    "test:e2e": "npm --prefix web run test:e2e"
   }
 }

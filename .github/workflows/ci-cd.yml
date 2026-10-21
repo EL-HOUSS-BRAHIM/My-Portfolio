@@ -1,481 +1,133 @@
-name: Portfolio CI/CD Pipeline
-
+name: Portfolio quality and immutable images
 on:
   push:
-    branches: [ main, develop ]
+    branches: [main, develop]
+    paths: ['web/**', 'deploy/**', 'scripts/deploy-portfolio.sh', '.github/workflows/ci-cd.yml']
   pull_request:
-    branches: [ main ]
-  schedule:
-    # Run daily at 2 AM UTC for security checks
-    - cron: '0 2 * * *'
+    branches: [main]
   workflow_dispatch:
-
-env:
-  PHP_VERSION: '8.2'
-  NODE_VERSION: '18'
-
+    inputs:
+      deploy_environment:
+        description: Build only, or deploy after all checks and image scans pass
+        type: choice
+        options: [build-only, staging, production]
+        default: build-only
+permissions:
+  contents: read
+concurrency:
+  group: portfolio-${{ github.ref }}
+  cancel-in-progress: false
 jobs:
-  # Code Quality and Testing
-  quality-check:
+  verify:
     runs-on: ubuntu-latest
-    name: Code Quality & Testing
-    
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env: {POSTGRES_PASSWORD: local-test-only}
+        ports: ['5432:5432']
+        options: --health-cmd pg_isready --health-interval 5s --health-timeout 5s --health-retries 10
+    defaults:
+      run: {working-directory: web}
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: ${{ env.PHP_VERSION }}
-        extensions: mbstring, xml, ctype, json, tokenizer, openssl, pdo, sqlite, pdo_sqlite
-        coverage: xdebug
-        
-    - name: Cache Composer dependencies
-      uses: actions/cache@v3
-      with:
-        path: /tmp/composer-cache
-        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-        restore-keys: ${{ runner.os }}-composer-
-        
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ env.NODE_VERSION }}
-        
-    - name: Install PHP dependencies
-      run: |
-        cd tests
-        composer update --no-interaction --prefer-dist --optimize-autoloader || composer install --no-interaction --prefer-dist --optimize-autoloader
-        
-    - name: Install Node.js dependencies
-      run: |
-        cd tests
-        npm install --legacy-peer-deps
-        
-    - name: Run PHPStan
-      continue-on-error: true
-      run: |
-        cd tests
-        vendor/bin/phpstan analyse --configuration=phpstan.neon --memory-limit=256M || echo "⚠️ PHPStan found issues"
-        
-    - name: Run PHP Code Sniffer
-      continue-on-error: true
-      run: |
-        cd tests
-        vendor/bin/phpcs ../src --standard=PSR12 --colors || echo "⚠️ PHP Code Sniffer found issues"
-        
-    - name: Run PHP Mess Detector
-      continue-on-error: true
-      run: |
-        cd tests
-        vendor/bin/phpmd ../src text cleancode,codesize,controversial,design,naming,unusedcode || echo "⚠️ PHPMD found issues"
-        
-    - name: Run ESLint
-      continue-on-error: true
-      run: |
-        cd tests
-        npx eslint ../assets/js-clean/**/*.js || echo "⚠️ ESLint found issues"
-        
-    - name: Run Stylelint
-      continue-on-error: true
-      run: |
-        cd tests
-        npx stylelint "../assets/css/**/*.css" || echo "⚠️ Stylelint found issues"
-        
-    - name: Run PHPUnit Tests
-      continue-on-error: true
-      run: |
-        cd tests
-        vendor/bin/phpunit --coverage-text --coverage-clover=coverage.xml || echo "⚠️ PHPUnit tests failed"
-        
-    - name: Run Jest Tests
-      continue-on-error: true
-      run: |
-        cd tests
-        npm test -- --coverage --watchAll=false || echo "⚠️ Jest tests failed"
-        
-    - name: Upload PHP Coverage to Codecov
-      uses: codecov/codecov-action@v3
-      with:
-        file: tests/coverage.xml
-        flags: php
-        name: php-coverage
-        
-    - name: Upload JS Coverage to Codecov
-      uses: codecov/codecov-action@v3
-      with:
-        file: tests/coverage/lcov.info
-        flags: javascript
-        name: js-coverage
-
-  # Security Scanning
-  security-scan:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '24', cache: npm, cache-dependency-path: web/package-lock.json}
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint -- --max-warnings 0
+      - run: npm test
+      - run: npm run db:test
+        env:
+          TEST_DATABASE_URL: postgresql://postgres:local-test-only@localhost:5432/postgres
+      - run: npm run build
+        env: {CONTENT_MODE: demo, NEXT_TELEMETRY_DISABLED: '1'}
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+        env: {CONTENT_MODE: demo, CI: 'true'}
+      - run: npm audit --audit-level=high
+      - run: npm --prefix worker audit --audit-level=high
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with: {name: portfolio-test-results, path: web/test-results, retention-days: 7}
+  images:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: verify
     runs-on: ubuntu-latest
-    name: Security Scanning
-    
+    strategy:
+      matrix:
+        include:
+          - {environment: staging, suffix: '-staging'}
+          - {environment: production, suffix: ''}
+    environment: portfolio-${{ matrix.environment }}
+    permissions: {contents: read, packages: write, security-events: write}
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: ${{ env.PHP_VERSION }}
-        
-    - name: Install dependencies
-      run: |
-        cd tests
-        composer update --no-interaction --prefer-dist || composer install --no-interaction --prefer-dist
-        
-    - name: Run security audit for Composer
-      run: |
-        cd tests
-        composer audit
-        
-    - name: Run security audit for npm
-      run: |
-        cd tests
-        npm install --legacy-peer-deps
-        npm audit --audit-level=moderate || echo "npm audit found vulnerabilities, but continuing..."
-        
-    - name: Run PHPMD security rules
-      continue-on-error: true
-      run: |
-        cd tests
-        vendor/bin/phpmd ../src text security || echo "⚠️ PHPMD security check found issues"
-        
-    - name: Check for secrets
-      continue-on-error: true
-      uses: trufflesecurity/trufflehog@main
-      with:
-        path: ./
-        base: ${{ github.event.before }}
-        head: HEAD
-
-  # Performance Testing
-  performance-test:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with: {registry: ghcr.io, username: '${{ github.actor }}', password: '${{ secrets.GITHUB_TOKEN }}'}
+      - name: Require target project's public browser configuration
+        env:
+          PUBLIC_URL: ${{ vars.NEXT_PUBLIC_SUPABASE_URL }}
+          PUBLIC_KEY: ${{ vars.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY }}
+        run: test -n "$PUBLIC_URL" && test -n "$PUBLIC_KEY"
+      - uses: docker/build-push-action@v6
+        with:
+          context: web
+          target: app
+          push: false
+          load: true
+          tags: ghcr.io/el-houss-brahim/portfolio${{ matrix.suffix }}:${{ github.sha }}
+          build-args: |
+            NEXT_PUBLIC_SUPABASE_URL=${{ vars.NEXT_PUBLIC_SUPABASE_URL }}
+            NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=${{ vars.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY }}
+      - uses: aquasecurity/trivy-action@0.35.0
+        with: {image-ref: 'ghcr.io/el-houss-brahim/portfolio${{ matrix.suffix }}:${{ github.sha }}', severity: 'CRITICAL,HIGH', exit-code: '1', ignore-unfixed: true}
+      - uses: docker/build-push-action@v6
+        with: {context: web, target: worker, push: false, load: true, tags: 'ghcr.io/el-houss-brahim/portfolio-worker${{ matrix.suffix }}:${{ github.sha }}'}
+      - uses: aquasecurity/trivy-action@0.35.0
+        with: {image-ref: 'ghcr.io/el-houss-brahim/portfolio-worker${{ matrix.suffix }}:${{ github.sha }}', severity: 'CRITICAL,HIGH', exit-code: '1', ignore-unfixed: true}
+      - run: |
+          docker push ghcr.io/el-houss-brahim/portfolio${{ matrix.suffix }}:${{ github.sha }}
+          docker push ghcr.io/el-houss-brahim/portfolio-worker${{ matrix.suffix }}:${{ github.sha }}
+  deploy:
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && inputs.deploy_environment != 'build-only'
+    needs: [verify, images]
     runs-on: ubuntu-latest
-    name: Performance Testing
-    needs: [quality-check]
-    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'  # Only run manually or on schedule
-    
+    environment: portfolio-${{ inputs.deploy_environment }}
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: ${{ env.PHP_VERSION }}
-        extensions: mbstring, xml, ctype, json, tokenizer, openssl, pdo, sqlite
-        
-    - name: Install Apache Benchmark
-      run: sudo apt-get update && sudo apt-get install -y apache2-utils
-      
-    - name: Start PHP built-in server
-      run: |
-        php -S localhost:8000 -t . &
-        sleep 5
-        
-    - name: Run performance tests
-      run: |
-        chmod +x scripts/performance-test.sh
-        ./scripts/performance-test.sh --base-url http://localhost:8000 --skip-db
-        
-    - name: Upload performance results
-      uses: actions/upload-artifact@v4
-      with:
-        name: performance-results
-        path: tests/performance-results/
-
-  # Build and Deploy (Production)
-  deploy-production:
-    runs-on: ubuntu-latest
-    name: Deploy to Production
-    needs: [quality-check, security-scan]
-    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
-    
-    environment:
-      name: production
-      url: https://brahim-elhouss.me
-      
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: ${{ env.PHP_VERSION }}
-        
-    - name: Install Composer dependencies
-      run: composer install --no-dev --optimize-autoloader --no-interaction --no-scripts
-      
-    - name: Setup Node.js for asset optimization
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ env.NODE_VERSION }}
-        
-    - name: Install Node dependencies for build tools
-      run: |
-        npm install -g csso-cli terser imagemin-cli
-        
-    - name: Optimize assets
-      continue-on-error: true
-      run: |
-        chmod +x scripts/optimize.sh
-        ./scripts/optimize.sh || echo "⚠️ Asset optimization skipped"
-        
-    - name: Run security setup
-      continue-on-error: true
-      run: |
-        chmod +x scripts/setup-security.sh 2>/dev/null || echo "Script not found"
-        ./scripts/setup-security.sh 2>/dev/null || echo "⚠️ Security setup skipped"
-        
-    - name: Create deployment package
-      run: |
-        tar -czf /tmp/portfolio-deploy.tar.gz \
-          --exclude='.git*' \
-          --exclude='tests' \
-          --exclude='node_modules' \
-          --exclude='deployment-secrets-*' \
-          --exclude='*.md' \
-          --exclude='*.log' \
-          --warning=no-file-changed \
-          .
-        mv /tmp/portfolio-deploy.tar.gz ./portfolio-deploy.tar.gz
-          
-    - name: Deploy to server via SCP and SSH
-      env:
-        DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
-        DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
-        DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
-        DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
-      run: |
-        # Setup SSH key
-        mkdir -p ~/.ssh
-        echo "$DEPLOY_KEY" > ~/.ssh/deploy_key
-        chmod 600 ~/.ssh/deploy_key
-        
-        # Verify the tar file exists locally
-        if [ ! -f "portfolio-deploy.tar.gz" ]; then
-          echo "❌ Error: portfolio-deploy.tar.gz not found!"
-          exit 1
-        fi
-        echo "✅ Deployment package found: $(ls -lh portfolio-deploy.tar.gz)"
-        
-        # Add host to known_hosts
-        ssh-keyscan -p $DEPLOY_PORT $DEPLOY_HOST >> ~/.ssh/known_hosts 2>/dev/null || {
-          echo "⚠️ ssh-keyscan failed, adding host key manually"
-        }
-        
-        # Test SSH connection first
-        echo "🔍 Testing SSH connection..."
-        ssh -i ~/.ssh/deploy_key -p $DEPLOY_PORT -o StrictHostKeyChecking=no -o ConnectTimeout=10 $DEPLOY_USER@$DEPLOY_HOST "echo '✅ SSH connection successful'" || {
-          echo "❌ SSH connection failed!"
-          exit 1
-        }
-        
-        # Upload deployment package with verbose output
-        echo "📤 Uploading deployment package..."
-        scp -v -i ~/.ssh/deploy_key -P $DEPLOY_PORT -o StrictHostKeyChecking=no portfolio-deploy.tar.gz $DEPLOY_USER@$DEPLOY_HOST:~/ || {
-          echo "❌ SCP upload failed!"
-          exit 1
-        }
-        
-        # Verify upload succeeded
-        echo "✅ Verifying upload..."
-        ssh -i ~/.ssh/deploy_key -p $DEPLOY_PORT -o StrictHostKeyChecking=no $DEPLOY_USER@$DEPLOY_HOST "ls -lh ~/portfolio-deploy.tar.gz" || {
-          echo "❌ Uploaded file not found on server!"
-          exit 1
-        }
-        
-        # Deploy on server
-        echo "🚀 Starting deployment on server..."
-        ssh -i ~/.ssh/deploy_key -p $DEPLOY_PORT -o StrictHostKeyChecking=no $DEPLOY_USER@$DEPLOY_HOST << 'ENDSSH'
-          set -e  # Exit on any error
-          
-          echo "📋 Verifying deployment package..."
-          if [ ! -f ~/portfolio-deploy.tar.gz ]; then
-            echo "❌ Error: portfolio-deploy.tar.gz not found in home directory!"
-            exit 1
-          fi
-          echo "✅ Package found: $(ls -lh ~/portfolio-deploy.tar.gz)"
-          
-          # Create backup
-          echo "💾 Creating backup..."
-          if [ -d "/var/www/portfolio" ]; then
-            sudo tar -czf "/tmp/portfolio-backup-$(date +%Y%m%d_%H%M%S).tar.gz" -C /var/www portfolio 2>/dev/null || true
-            # Keep only last 5 backups
-            cd /tmp && ls -t portfolio-backup-*.tar.gz 2>/dev/null | tail -n +6 | xargs -r sudo rm -f
-          fi
-          
-          # Prepare new deployment
-          echo "📦 Extracting deployment package..."
-          sudo rm -rf /var/www/portfolio-new
-          sudo mkdir -p /var/www/portfolio-new
-          sudo tar -xzf ~/portfolio-deploy.tar.gz -C /var/www/portfolio-new || {
-            echo "❌ Failed to extract deployment package!"
-            exit 1
-          }
-          echo "✅ Package extracted successfully"
-          
-          # Install/update Composer dependencies
-          echo "📚 Installing Composer dependencies..."
-          cd /var/www/portfolio-new
-          sudo COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --optimize-autoloader --no-interaction 2>&1 | tail -20 || {
-            echo "⚠️ Composer install had issues, but continuing..."
-          }
-          
-          # Setup storage directories
-          echo "📁 Setting up storage directories..."
-          sudo mkdir -p storage/{logs,cache,sessions,monitoring,optimized}
-          
-          # Set permissions
-          echo "🔒 Setting permissions..."
-          sudo chown -R www-data:www-data .
-          sudo find . -type d -exec chmod 755 {} \;
-          sudo find . -type f -exec chmod 644 {} \;
-          sudo chmod -R 775 storage
-          sudo chmod -R 777 storage/{cache,logs,sessions}
-          
-          # Atomic switch
-          echo "🔄 Performing atomic switch..."
-          sudo mv /var/www/portfolio /var/www/portfolio-old 2>/dev/null || true
-          sudo mv /var/www/portfolio-new /var/www/portfolio
-          
-          # Restart services
-          echo "🔄 Restarting services..."
-          sudo systemctl reload nginx || echo "⚠️ Nginx reload failed"
-          sudo systemctl restart php8.2-fpm || echo "⚠️ PHP-FPM restart failed"
-          
-          # Health check
-          echo "🏥 Running health check..."
-          sleep 5
-          if curl -f -k https://localhost/ > /dev/null 2>&1; then
-            echo "✅ Deployment successful - Site is responding"
-            sudo rm -rf /var/www/portfolio-old
-            echo "🧹 Cleaned up old deployment"
-          else
-            echo "❌ Health check failed - rolling back..."
-            sudo mv /var/www/portfolio /var/www/portfolio-failed
-            sudo mv /var/www/portfolio-old /var/www/portfolio 2>/dev/null || true
-            sudo systemctl reload nginx
-            echo "↩️ Rollback completed"
-            exit 1
-          fi
-          
-          # Cleanup
-          echo "🧹 Cleaning up deployment package..."
-          rm -f ~/portfolio-deploy.tar.gz
-          echo "✅ Deployment completed successfully!"
-        ENDSSH
-        
-        # Cleanup local SSH key
-        rm -f ~/.ssh/deploy_key
-          
-    - name: Notify deployment success
-      if: success()
-      continue-on-error: true
-      run: |
-        curl -X POST -H 'Content-type: application/json' \
-          --data '{"text":"✅ Portfolio deployed successfully to production!"}' \
-          ${{ secrets.SLACK_WEBHOOK_URL }} || echo "⚠️ Slack notification skipped"
-          
-    - name: Notify deployment failure
-      if: failure()
-      continue-on-error: true
-      run: |
-        curl -X POST -H 'Content-type: application/json' \
-          --data '{"text":"❌ Portfolio deployment failed!"}' \
-          ${{ secrets.SLACK_WEBHOOK_URL }} || echo "⚠️ Slack notification skipped"
-
-  # Deploy to Staging
-  deploy-staging:
-    runs-on: ubuntu-latest
-    name: Deploy to Staging
-    needs: [quality-check]
-    if: (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop') && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
-    
-    environment:
-      name: staging
-      url: https://staging.brahim-elhouss.me
-      
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: ${{ env.PHP_VERSION }}
-        
-    - name: Install dependencies
-      run: composer install --optimize-autoloader --no-interaction --no-scripts
-      
-    - name: Create staging deployment package
-      run: |
-        tar -czf /tmp/portfolio-staging.tar.gz \
-          --exclude='.git*' \
-          --exclude='tests' \
-          --exclude='node_modules' \
-          --exclude='deployment-secrets-*' \
-          --warning=no-file-changed \
-          .
-        mv /tmp/portfolio-staging.tar.gz ./portfolio-staging.tar.gz
-      
-    - name: Deploy to staging server
-      env:
-        STAGING_KEY: ${{ secrets.STAGING_KEY }}
-        STAGING_HOST: ${{ secrets.STAGING_HOST }}
-        STAGING_USER: ${{ secrets.STAGING_USER }}
-        STAGING_PORT: ${{ secrets.STAGING_PORT }}
-      run: |
-        # Setup SSH key
-        mkdir -p ~/.ssh
-        echo "$STAGING_KEY" > ~/.ssh/staging_key
-        chmod 600 ~/.ssh/staging_key
-        ssh-keyscan -p $STAGING_PORT $STAGING_HOST >> ~/.ssh/known_hosts 2>/dev/null
-        
-        # Upload and deploy
-        scp -i ~/.ssh/staging_key -P $STAGING_PORT portfolio-staging.tar.gz $STAGING_USER@$STAGING_HOST:~/
-        
-        ssh -i ~/.ssh/staging_key -p $STAGING_PORT $STAGING_USER@$STAGING_HOST << 'ENDSSH'
-          sudo rm -rf /var/www/staging-portfolio-new
-          sudo mkdir -p /var/www/staging-portfolio-new
-          sudo tar -xzf ~/portfolio-staging.tar.gz -C /var/www/staging-portfolio-new
-          
-          cd /var/www/staging-portfolio-new
-          sudo COMPOSER_ALLOW_SUPERUSER=1 composer install --optimize-autoloader --no-interaction 2>/dev/null || true
-          
-          sudo mkdir -p storage/{logs,cache,sessions}
-          sudo chown -R www-data:www-data .
-          sudo find . -type d -exec chmod 755 {} \;
-          sudo find . -type f -exec chmod 644 {} \;
-          sudo chmod -R 775 storage
-          
-          sudo mv /var/www/staging-portfolio /var/www/staging-portfolio-old 2>/dev/null || true
-          sudo mv /var/www/staging-portfolio-new /var/www/staging-portfolio
-          sudo rm -rf /var/www/staging-portfolio-old
-          
-          sudo systemctl reload nginx
-          rm -f ~/portfolio-staging.tar.gz
-        ENDSSH
-        
-        rm -f ~/.ssh/staging_key
-
-  # Cleanup old artifacts
-  cleanup:
-    runs-on: ubuntu-latest
-    name: Cleanup
-    needs: [deploy-production, deploy-staging]
-    if: always()
-    
-    steps:
-    - name: Cleanup workflow artifacts
-      uses: geekyeggo/delete-artifact@v2
-      with:
-        name: |
-          performance-results
-        failOnError: false
+      - uses: actions/checkout@v4
+      - name: Deploy portfolio without replacing the shared gateway
+        env:
+          TARGET: ${{ inputs.deploy_environment }}
+          VPS_HOST: ${{ vars.VPS_HOST }}
+          VPS_USER: ${{ vars.VPS_USER }}
+          VPS_KNOWN_HOSTS: ${{ vars.VPS_KNOWN_HOSTS }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+          PORTFOLIO_DOMAIN: ${{ vars.PORTFOLIO_DOMAIN }}
+        run: |
+          set -Eeuo pipefail
+          [[ "$TARGET" =~ ^(staging|production)$ ]]
+          [[ "$VPS_HOST" =~ ^[a-zA-Z0-9.-]+$ && "$VPS_USER" = budgetify ]]
+          [[ "$PORTFOLIO_DOMAIN" =~ ^[a-z0-9][a-z0-9.-]+\.[a-z]{2,}$ ]]
+          test -n "$VPS_KNOWN_HOSTS" && test -n "$VPS_SSH_KEY"
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/portfolio_key
+          chmod 600 ~/.ssh/portfolio_key
+          printf '%s\n' "$VPS_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          trap 'rm -f ~/.ssh/portfolio_key release.env' EXIT
+          suffix=''
+          if [[ "$TARGET" = staging ]]; then suffix='-staging'; fi
+          {
+            printf 'DEPLOY_ENV=%s\n' "$TARGET"
+            printf 'PORTFOLIO_DOMAIN=%s\n' "$PORTFOLIO_DOMAIN"
+            printf 'PORTFOLIO_IMAGE=ghcr.io/el-houss-brahim/portfolio%s:%s\n' "$suffix" "$GITHUB_SHA"
+            printf 'PORTFOLIO_WORKER_IMAGE=ghcr.io/el-houss-brahim/portfolio-worker%s:%s\n' "$suffix" "$GITHUB_SHA"
+            printf 'PORTFOLIO_SECRETS_FILE=/home/budgetify/portfolio/secrets/%s.env\n' "$TARGET"
+            if [[ "$TARGET" = staging ]]; then printf 'PORTFOLIO_CURL_CONFIG=/home/budgetify/portfolio/secrets/staging-curl.conf\n'; fi
+          } > release.env
+          remote="$VPS_USER@$VPS_HOST"
+          ssh -i ~/.ssh/portfolio_key -o BatchMode=yes -o StrictHostKeyChecking=yes "$remote" 'mkdir -p /home/budgetify/portfolio/incoming /home/budgetify/portfolio/releases'
+          scp -i ~/.ssh/portfolio_key -o BatchMode=yes -o StrictHostKeyChecking=yes scripts/deploy-portfolio.sh deploy/compose.yaml release.env "$remote:/home/budgetify/portfolio/incoming/"
+          ssh -i ~/.ssh/portfolio_key -o BatchMode=yes -o StrictHostKeyChecking=yes "$remote" "install -m 600 /home/budgetify/portfolio/incoming/compose.yaml /home/budgetify/portfolio/compose.yaml && install -m 600 /home/budgetify/portfolio/incoming/release.env /home/budgetify/portfolio/releases/$TARGET-$GITHUB_SHA.env && bash /home/budgetify/portfolio/incoming/deploy-portfolio.sh /home/budgetify/portfolio/releases/$TARGET-$GITHUB_SHA.env"
+# Configure environment credentials, DNS, independent Supabase projects, and the
+# documented shared-gateway integration before selecting a deployment target.

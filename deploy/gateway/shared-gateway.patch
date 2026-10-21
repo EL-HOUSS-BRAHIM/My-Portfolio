@@ -1,0 +1,13 @@
+# Apply these additions to BOTH gateway source-of-truth repositories before
+# enabling portfolio deployment. Keep all existing sites, volumes, and networks.
+# Afrimed: deploy/Caddyfile.gateway and deploy/compose.gateway.yaml
+# Budgetify: locate its canonical gateway files, then retain the same additions.
+
+# At the end of Caddyfile.gateway:
+import /etc/caddy/portfolio/*.caddy
+
+# Additional proxy service volume in compose.gateway.yaml:
+# - /home/budgetify/portfolio/gateway:/etc/caddy/portfolio:ro
+
+# Do not replace Caddy's global options block. Merge any trusted_proxies setup
+# with the existing block; use Cloudflare's current published IPv4/IPv6 ranges.

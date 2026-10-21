@@ -1,0 +1,111 @@
+{
+  "nav": {
+    "work": "Projets",
+    "about": "À propos",
+    "services": "Services",
+    "journal": "Carnet",
+    "contact": "Discutons",
+    "home": "Accueil",
+    "menu": "Ouvrir la navigation",
+    "close": "Fermer la navigation",
+    "language": "Langue",
+    "theme": "Thème",
+    "light": "Clair",
+    "dark": "Sombre",
+    "system": "Système"
+  },
+  "home": {
+    "eyebrow": "BRAHIM EL HOUSS · INGÉNIEUR LOGICIEL",
+    "title": "Un esprit curieux.\nUne approche réfléchie.",
+    "intro": "Je suis Brahim, ingénieur logiciel à Casablanca. J’explore le fonctionnement des choses, clarifie les problèmes complexes et construis avec soin.",
+    "primary": "Découvrir mes projets",
+    "secondary": "Un peu plus sur moi",
+    "location": "Basé au Maroc · Ouvert aux échanges constructifs",
+    "note": "UN BON LOGICIEL COMMENCE PAR LA COMPRÉHENSION.",
+    "selected": "Quelques projets réalisés",
+    "selectedSub": "Des problèmes différents. La même curiosité.",
+    "allWork": "Tous les projets",
+    "approach": "Une façon de travailler réfléchie",
+    "approachSub": "De la clarté dans le processus. Du soin dans les détails.",
+    "principles": [
+      "Comprendre avant de construire",
+      "Rendre la complexité accessible",
+      "Communiquer avec respect"
+    ],
+    "principleBodies": [
+      "Poser les bonnes questions, écouter et identifier le problème essentiel.",
+      "Choisir des outils adaptés et créer des solutions compréhensibles.",
+      "Expliquer les compromis, partager les avancées et respecter le temps de chacun."
+    ],
+    "contactTitle": "Tout commence\npar une conversation.",
+    "contactBody": "Un projet, une opportunité ou une question ? Je serai ravi d’échanger avec vous.",
+    "contactCta": "Engager la conversation",
+    "readMore": "Lire l’étude de cas",
+    "explore": "Découvrir"
+  },
+  "pages": {
+    "workTitle": "Construits avec curiosité.",
+    "workIntro": "Une sélection de projets web, de systèmes backend et de leurs fondations.",
+    "aboutTitle": "Toujours apprendre.\nConstruire avec soin.",
+    "aboutIntro": "Je suis Brahim El Houss, ingénieur logiciel à Casablanca, au Maroc. Mon parcours en physique et en informatique a façonné une approche patiente et analytique.",
+    "aboutBody": "J’aime explorer les idées, comprendre les systèmes et transformer la complexité en solutions utiles. Je travaille avec JavaScript, Python, C, les API et les bases de données. Une bonne collaboration repose sur une communication claire et un respect mutuel.",
+    "valuesTitle": "Ce que j’apporte à une collaboration",
+    "education": "Formation et apprentissage",
+    "educationBody": "ALX Software Engineering · Spécialisation backend\nÉtudes de physique · Université Hassan II, Casablanca",
+    "servicesTitle": "Des logiciels utiles.\nUn processus clair.",
+    "servicesIntro": "Pour les équipes qui cherchent un partenaire attentif. Le périmètre, les délais et les attentes sont définis ensemble avant de commencer.",
+    "serviceTitles": [
+      "Applications web",
+      "Backend et intégrations",
+      "Amélioration de produits"
+    ],
+    "serviceBodies": [
+      "Des sites et applications adaptés aux personnes qui les utilisent.",
+      "Des API, des données relationnelles et des intégrations fiables.",
+      "Analyser les problèmes, améliorer l’usage et faciliter la maintenance."
+    ],
+    "journalTitle": "Notes de parcours.",
+    "journalIntro": "Idées, leçons et questions au fil de l’apprentissage.",
+    "emptyJournal": "De nouvelles notes se préparent. Découvrez en attendant les réflexions derrière mes projets.",
+    "contactTitle": "Créons quelque chose\nqui a du sens.",
+    "contactIntro": "Présentez votre projet ou votre opportunité. Un peu de contexte permet un premier échange utile.",
+    "privacyTitle": "Votre vie privée compte.",
+    "privacyBody": "Ce site utilise des cookies essentiels pour le thème et l’authentification administrateur. Vos coordonnées servent uniquement à répondre à votre demande. Les messages sont normalement conservés 12 mois, les journaux techniques 14 jours et les identifiants de prévention des abus 30 jours. Les dossiers clients actifs peuvent être conservés plus longtemps. Supabase stocke les données et notre prestataire SMTP envoie les notifications. Aucun traceur publicitaire n’est inclus. Pour accéder à vos données ou demander leur suppression, utilisez la page contact.",
+    "back": "Retour aux projets",
+    "source": "Voir le code",
+    "demo": "Découvrir le projet",
+    "stack": "Outils et technologies",
+    "missing": "Cette traduction n’est pas encore publiée.",
+    "english": "Lire en anglais",
+    "notFound": "Ce chemin reste à explorer.",
+    "returnHome": "Retour à l’accueil"
+  },
+  "form": {
+    "name": "Votre nom",
+    "email": "Adresse e-mail",
+    "subject": "Le sujet",
+    "message": "Un peu de contexte",
+    "consent": "J’accepte l’utilisation de mes coordonnées pour répondre à cette demande.",
+    "submit": "Envoyer le message",
+    "sending": "Envoi…",
+    "success": "Votre message est bien enregistré. Merci de nous avoir contactés.",
+    "error": "Votre message n’a pas pu être enregistré. Réessayez dans un instant.",
+    "invalid": "Vérifiez les champs et votre consentement avant l’envoi.",
+    "limited": "Trop de messages. Réessayez plus tard.",
+    "unavailable": "Le formulaire est momentanément indisponible. Contactez-moi sur GitHub.",
+    "website": "Laissez ce champ vide",
+    "required": "Obligatoire"
+  },
+  "footer": {
+    "line": "Construit avec intention. Toujours en évolution.",
+    "privacy": "Confidentialité",
+    "rights": "Brahim El Houss",
+    "github": "GitHub"
+  },
+  "filters": {
+    "all": "Tous",
+    "web": "Applications web",
+    "systems": "Systèmes",
+    "backend": "Backend"
+  }
+}

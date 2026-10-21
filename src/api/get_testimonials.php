@@ -1,5 +1,8 @@
 
 <?php
+use Portfolio\Config\Config;
+use Portfolio\Config\Database;
+
 /**
  * Get Testimonials API Endpoint
  * 

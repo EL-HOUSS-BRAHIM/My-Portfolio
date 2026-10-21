@@ -1,0 +1,10 @@
+node_modules
+.next
+.env*
+!.env.example
+.git
+supabase/.temp
+supabase/.branches
+playwright-report
+test-results
+coverage

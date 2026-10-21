@@ -1,0 +1,111 @@
+{
+  "nav": {
+    "work": "Work",
+    "about": "About",
+    "services": "Services",
+    "journal": "Journal",
+    "contact": "Let’s talk",
+    "home": "Home",
+    "menu": "Open navigation",
+    "close": "Close navigation",
+    "language": "Language",
+    "theme": "Color theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "home": {
+    "eyebrow": "BRAHIM EL HOUSS · SOFTWARE ENGINEER",
+    "title": "A curious mind.\nA thoughtful approach.",
+    "intro": "I’m Brahim, a software engineer in Casablanca. I explore how things work, bring clarity to complex problems, and build with care.",
+    "primary": "Explore my work",
+    "secondary": "A little about me",
+    "location": "Based in Morocco · Open to meaningful conversations",
+    "note": "GOOD SOFTWARE STARTS WITH UNDERSTANDING.",
+    "selected": "A few things I’ve built",
+    "selectedSub": "Different problems. The same curiosity.",
+    "allWork": "All projects",
+    "approach": "A considered way of working",
+    "approachSub": "Clarity in the process. Care in the details.",
+    "principles": [
+      "Understand before building",
+      "Make the complex feel simple",
+      "Communicate with respect"
+    ],
+    "principleBodies": [
+      "Ask good questions, listen closely, and find the problem that matters.",
+      "Choose practical tools and build things people can understand and use.",
+      "Be honest about trade-offs, share progress, and value each other’s time."
+    ],
+    "contactTitle": "Good work begins\nwith a conversation.",
+    "contactBody": "Have a project, an opportunity, or a question? I’d be happy to hear from you.",
+    "contactCta": "Start a conversation",
+    "readMore": "Read the case study",
+    "explore": "Explore"
+  },
+  "pages": {
+    "workTitle": "Made with curiosity.",
+    "workIntro": "A selection of projects across web development, backend systems, and the foundations underneath.",
+    "aboutTitle": "Always learning.\nThoughtfully building.",
+    "aboutIntro": "I’m Brahim El Houss, a software engineer based in Casablanca, Morocco. My path through physics and software has shaped a patient, analytical approach to solving problems.",
+    "aboutBody": "I enjoy exploring new ideas, understanding systems, and turning complexity into something useful. My work spans JavaScript, Python, C, APIs, and databases. I believe the best collaborations begin with clear communication and mutual respect.",
+    "valuesTitle": "What I bring to a collaboration",
+    "education": "Learning & foundations",
+    "educationBody": "ALX Software Engineering · Backend specialization\nPhysics studies · Hassan II University, Casablanca",
+    "servicesTitle": "Useful software.\nA clear process.",
+    "servicesIntro": "For teams and people who want a thoughtful engineering partner. Scope, timing, and expectations are agreed together before work begins.",
+    "serviceTitles": [
+      "Web applications",
+      "Backend & integrations",
+      "Existing product improvements"
+    ],
+    "serviceBodies": [
+      "Responsive websites and applications built around the people using them.",
+      "APIs, relational data, and integrations that connect the pieces reliably.",
+      "Investigating problems, improving usability, and making existing software easier to maintain."
+    ],
+    "journalTitle": "Notes along the way.",
+    "journalIntro": "Ideas, lessons, and questions from a life spent learning.",
+    "emptyJournal": "New notes are taking shape. In the meantime, explore the thinking behind my projects.",
+    "contactTitle": "Let’s make\nsomething worthwhile.",
+    "contactIntro": "Tell me a little about your project or opportunity. Clear context makes a good first conversation.",
+    "privacyTitle": "Your privacy matters.",
+    "privacyBody": "This website uses essential cookies for your theme preference and administrator authentication. Contact details are used only to respond to your enquiry. Messages are normally retained for up to 12 months, operational logs for 14 days, and abuse-prevention identifiers for 30 days. Active client records may need longer retention. Supabase processes stored data and our SMTP provider delivers notifications. No advertising trackers are included. To request access or deletion, use the contact page.",
+    "back": "Back to projects",
+    "source": "View source",
+    "demo": "Explore project",
+    "stack": "Tools & technologies",
+    "missing": "This translation is not published yet.",
+    "english": "Read in English",
+    "notFound": "That path is still unexplored.",
+    "returnHome": "Return home"
+  },
+  "form": {
+    "name": "Your name",
+    "email": "Email address",
+    "subject": "What is it about?",
+    "message": "A little context",
+    "consent": "I agree to my details being used to respond to this enquiry.",
+    "submit": "Send message",
+    "sending": "Sending…",
+    "success": "Your message is safely received. Thank you for getting in touch.",
+    "error": "We couldn’t save your message. Please try again shortly.",
+    "invalid": "Please check the fields and consent before sending.",
+    "limited": "Too many messages. Please try again later.",
+    "unavailable": "The contact form is temporarily unavailable. You can reach me on GitHub.",
+    "website": "Leave this field empty",
+    "required": "Required"
+  },
+  "footer": {
+    "line": "Built with intention. Always a work in progress.",
+    "privacy": "Privacy",
+    "rights": "Brahim El Houss",
+    "github": "GitHub"
+  },
+  "filters": {
+    "all": "All work",
+    "web": "Web applications",
+    "systems": "Systems",
+    "backend": "Backend"
+  }
+}

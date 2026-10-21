@@ -1,4 +1,6 @@
 <?php
+use Portfolio\Config\Config;
+
 /**
  * Education Management Page
  */

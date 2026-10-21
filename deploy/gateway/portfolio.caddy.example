@@ -1,0 +1,16 @@
+# Replace brahim-elhouss.me only after confirming zone ownership and routing.
+brahim-elhouss.me {
+    encode zstd gzip
+    request_body {
+  max_size 6MB
+ }
+    header {
+        Strict-Transport-Security "max-age=31536000"
+        -Server
+    }
+    reverse_proxy portfolio-production-blue:3000 {
+        # Incoming client headers are overwritten. Configure trusted Cloudflare
+        # proxy CIDRs globally before relying on client_ip behind Cloudflare.
+        header_up X-Portfolio-Client-IP {client_ip}
+    }
+}

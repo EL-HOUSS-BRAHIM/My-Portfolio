@@ -1,4 +1,6 @@
 <?php
+use Portfolio\Config\Config;
+
 /**
  * Projects Management Page
  */

@@ -1,4 +1,7 @@
 <?php
+use Portfolio\Config\Config;
+use Portfolio\Config\Database;
+
 /**
  * Admin Dashboard
  */

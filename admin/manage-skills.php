@@ -1,4 +1,6 @@
 <?php
+use Portfolio\Config\Config;
+
 /**
  * Skills Management Page
  */

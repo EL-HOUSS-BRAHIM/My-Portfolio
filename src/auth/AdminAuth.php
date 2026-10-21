@@ -1,4 +1,8 @@
 <?php
+use Portfolio\Config\Config;
+use Portfolio\Config\Database;
+use Portfolio\Utils\RateLimit;
+
 /**
  * Admin Authentication Class
  * 

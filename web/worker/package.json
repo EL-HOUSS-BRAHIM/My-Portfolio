@@ -1,0 +1,14 @@
+{
+  "name": "portfolio-email-worker",
+  "version": "3.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "2.118.0",
+    "nodemailer": "10.1.7",
+    "zod": "4.6.7"
+  }
+}
