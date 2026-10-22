@@ -1,5 +1,5 @@
-# Replace brahim-elhouss.me only after confirming zone ownership and routing.
-brahim-elhouss.me {
+# Replace brahim-elhouss.tech only after confirming zone ownership and routing.
+brahim-elhouss.tech {
     encode zstd gzip
     request_body {
   max_size 6MB

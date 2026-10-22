@@ -1,5 +1,13 @@
 # Portfolio production integration — 2026-10-22
 
+## Cloudflare and deployment update — 2026-10-22
+
+Cloudflare is now connected. The owned portfolio zone is **brahim-elhouss.tech**, superseding the older .me hostname. Its apex A record points to **169.58.97.2**, matching the current Afrimed/Lyvora origin records; www is a proxied CNAME to the apex. Both records use Cloudflare proxying, and SSL mode is Full (strict). No staging DNS record was created.
+
+See [the exact GitHub and VPS configuration checklist](CLOUDFLARE_VPS_SETUP.md). The image workflow now selects production by default and staging only on an explicit staging dispatch, removing the dependency on an unconfigured staging environment for production builds.
+
+This session did not inspect/change the VPS, administer GitHub environment credentials, configure an origin certificate, or deploy the application. Earlier Cloudflare access blockers below are historical; SSH/runtime/gateway prerequisites remain outstanding.
+
 ## Applied and verified
 
 The user explicitly selected reuse of the existing Supabase project after new-project creation failed at the two-active-free-project limit.

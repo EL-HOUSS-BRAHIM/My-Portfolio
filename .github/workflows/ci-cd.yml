@@ -55,9 +55,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        include:
-          - {environment: staging, suffix: '-staging'}
-          - {environment: production, suffix: ''}
+        # Staging is opt-in until its separate backend is configured.
+        include: ${{ fromJSON(github.event_name == 'workflow_dispatch' && inputs.deploy_environment == 'staging' && '[{"environment":"staging","suffix":"-staging"}]' || '[{"environment":"production","suffix":""}]') }}
     environment: portfolio-${{ matrix.environment }}
     permissions: {contents: read, packages: write, security-events: write}
     steps:
@@ -129,5 +128,5 @@ jobs:
           ssh -i ~/.ssh/portfolio_key -o BatchMode=yes -o StrictHostKeyChecking=yes "$remote" 'mkdir -p /home/budgetify/portfolio/incoming /home/budgetify/portfolio/releases'
           scp -i ~/.ssh/portfolio_key -o BatchMode=yes -o StrictHostKeyChecking=yes scripts/deploy-portfolio.sh deploy/compose.yaml release.env "$remote:/home/budgetify/portfolio/incoming/"
           ssh -i ~/.ssh/portfolio_key -o BatchMode=yes -o StrictHostKeyChecking=yes "$remote" "install -m 600 /home/budgetify/portfolio/incoming/compose.yaml /home/budgetify/portfolio/compose.yaml && install -m 600 /home/budgetify/portfolio/incoming/release.env /home/budgetify/portfolio/releases/$TARGET-$GITHUB_SHA.env && bash /home/budgetify/portfolio/incoming/deploy-portfolio.sh /home/budgetify/portfolio/releases/$TARGET-$GITHUB_SHA.env"
-# Configure environment credentials, DNS, independent Supabase projects, and the
-# documented shared-gateway integration before selecting a deployment target.
+# Configure the target environment and documented shared-gateway integration.
+# Production uses the approved shared project; staging needs its own target.
