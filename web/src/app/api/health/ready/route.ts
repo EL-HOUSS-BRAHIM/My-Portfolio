@@ -17,13 +17,6 @@ export async function GET(request: Request) {
     z.object({
       SITE_URL: z.url(),
       RATE_LIMIT_SECRET: z.string().min(32),
-      SMTP_HOST: z.string().min(1),
-      SMTP_PORT: z.coerce.number().int().min(1).max(65535),
-      SMTP_USER: z.string().min(1),
-      SMTP_PASSWORD: z.string().min(1),
-      SMTP_FROM: z.email(),
-      CONTACT_TO: z.email(),
-      SMTP_SECURE: z.enum(["true", "false"]),
     }).parse(process.env);
     const { error } = await serviceClient()
       .from("content")

@@ -42,8 +42,10 @@ This command resets its test schemas. Never point it at a production or linked S
 - Server-rendered project pages; responsive navigation, filters, light/dark/system themes.
 - Supabase PostgreSQL with row-level security, separate per-language publication, private admin membership, MFA, and audit events.
 - Private dashboard: content CRUD, Markdown preview, translations, image normalization, public/private uploads, enquiries, moderation, and delivery status.
-- Durable contact storage and email outbox with a separate SMTP worker; no direct browser email or privileged keys.
+- Durable contact storage and email outbox with optional SMTP delivery (paused by default); no direct browser email or privileged keys.
 - Docker images, gated CI, isolated shared-VPS deployment, migrations, dry-run import tools, and operational runbooks.
+
+SMTP can be configured later: leave `EMAIL_DELIVERY_ENABLED=false`. Enquiries remain available in the dashboard and email jobs stay pending. See [SMTP operations](docs/OPERATIONS.md#smtp) to enable delivery.
 
 ## Shared VPS
 

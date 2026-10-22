@@ -1,5 +1,14 @@
 # Portfolio production integration — 2026-10-22
 
+## Deployment preparation follow-up
+
+SMTP setup is explicitly deferred. `EMAIL_DELIVERY_ENABLED` defaults to `false`: the worker runs maintenance without claiming notification jobs; readiness no longer requires SMTP. Enquiries remain in the database/dashboard and jobs stay pending until delivery is enabled. Production CI now defaults to the approved project’s verified public browser URL and publishable key; paired environment overrides remain supported and staging has no production fallback.
+
+Rechecked run `39773599441`: verification passed, image publication failed at missing browser configuration. GitHub environment-variable administration remains inaccessible (HTTP 403). This workspace has no configured VPS identity or runtime secrets, and no live rollout was performed. Required operator inputs remain the VPS SSH/known-host settings and protected runtime file, shared gateway integration, hosted admin/MFA/content checks and origin HTTPS validation. SMTP is not a deployment prerequisite while delivery is paused.
+
+
+Local validation of this follow-up passed: strict TypeScript, lint with zero warnings, 12 unit/deployment tests, production build, 11 Chromium browser/accessibility journeys, and four workflow public-config resolution cases. This does not establish VPS/runtime readiness or successful image publication.
+
 ## Cloudflare and deployment update — 2026-10-22
 
 Cloudflare is now connected. The owned portfolio zone is **brahim-elhouss.tech**, superseding the older .me hostname. Its apex A record points to **169.58.97.2**, matching the current Afrimed/Lyvora origin records; www is a proxied CNAME to the apex. Both records use Cloudflare proxying, and SSL mode is Full (strict). No staging DNS record was created.
