@@ -132,8 +132,11 @@ create policy moderate_testimonials on public.testimonial_submissions for update
 grant insert,delete on public.media_assets to authenticated;
 create policy manage_media on public.media_assets for all to authenticated using((select public.is_admin())) with check((select public.is_admin()));
 -- service_role is used only by the server/worker/importer, never a browser.
-grant all on all tables in schema public to service_role;
-grant all on all sequences in schema public to service_role;
+-- Explicit portfolio objects only: this project may also host Budgetify/Lyvora.
+grant all on public.admin_members,public.content,public.content_translations,
+ public.audit_events,public.contact_messages,public.testimonial_submissions,
+ public.email_outbox,public.rate_limits,public.media_assets,public.legacy_imports to service_role;
+grant all on sequence public.audit_events_id_seq to service_role;
 
 create function public.take_rate_limit(rate_key text,max_attempts integer,window_seconds integer) returns boolean language plpgsql security invoker set search_path='' as $$
  declare count_now integer;

@@ -4,6 +4,8 @@ A calm, multilingual portfolio and private publishing dashboard. The new TypeScr
 
 **New session:** read [README_NEXT_SESSION.md](README_NEXT_SESSION.md) first for the current state, verified checks, shared-VPS constraints, and next steps.
 
+See [production integration status](docs/PRODUCTION_INTEGRATION_STATUS.md) for the shared Supabase project now provisioned and remaining rollout blockers.
+
 ## Local development
 
 Use **Node.js 24 LTS**.

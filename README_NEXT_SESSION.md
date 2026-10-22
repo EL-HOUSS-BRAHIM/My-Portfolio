@@ -1,5 +1,7 @@
 # Start Here — Next Session Handoff
 
+**2026-10-22 update:** Read [production integration status](docs/PRODUCTION_INTEGRATION_STATUS.md) before the historical handoff below. The user authorized sharing the active `budjetify` Supabase project; the portfolio foundation has now been applied and hosted database checks passed. VPS/Cloudflare deployment remains blocked by credentials and GitHub environment permissions.
+
 ## Current goal and status
 
 The portfolio redesign and application/infrastructure upgrade have been implemented in this repository. **Continue with staging integration and rollout, not a fresh rewrite.** The new application is in `web/`; the PHP site remains available as the migration/rollback source. This handoff accompanies the upgrade commit on `main`; run `git log -1` to identify the exact current revision.
