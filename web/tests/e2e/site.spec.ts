@@ -148,7 +148,7 @@ for (const locale of ["en", "fr", "ar"]) {
         .violations,
     ).toEqual([]);
     await page.goto(`/${locale}/journal/watch-party-architecture-report`);
-    await expect(page.locator(".prose")).toContainText("Watch Party");
+    await expect(page.locator(".prose")).toContainText("Django");
     expect(
       await page.evaluate(
         () => document.documentElement.scrollWidth <= innerWidth,
