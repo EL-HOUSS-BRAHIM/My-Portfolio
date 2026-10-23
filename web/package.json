@@ -14,6 +14,7 @@
     "test": "vitest run",
     "test:e2e": "playwright test",
     "worker": "tsx scripts/email-worker.ts",
+    "smtp:verify": "node scripts/verify-smtp.ts",
     "import:legacy": "tsx scripts/import-legacy.ts",
     "db:test": "tsx scripts/test-database.ts",
     "admin:provision": "tsx scripts/provision-admin.ts"

@@ -11,7 +11,7 @@
 
 ## GitHub environment
 
-Create/configure `portfolio-production` under repository Settings > Environments.
+Create/configure `portfolio-production` under repository Settings > Environments. Production image builds now use the verified public Supabase URL/key as defaults when both variables are absent. Set both variables together to override them. These values are public browser configuration; privileged runtime keys are never included.
 
 | Type | Name | Value |
 | --- | --- | --- |
@@ -32,26 +32,27 @@ Push/build-only builds production images. A manual staging run builds only stagi
 Provision an external mode-600 file at:
 `/home/budgetify/portfolio/secrets/production.env`
 
-Use `web/.env.example` as the exact runtime schema:
+Use `deploy/production.env.example` as the production runtime template (`web/.env.example` is for local development):
 - SITE_URL=https://brahim-elhouss.tech
 - DEPLOY_ENV=production
 - CONTENT_MODE=supabase
 - NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY matching the image build
 - SUPABASE_SECRET_KEY: privileged server key for the approved project
 - RATE_LIMIT_SECRET and HEALTH_TOKEN: independently generated random secrets
-- SMTP_HOST, SMTP_PORT, SMTP_SECURE, SMTP_USER, SMTP_PASSWORD, SMTP_FROM, CONTACT_TO
+- EMAIL_DELIVERY_ENABLED=false (default). SMTP values may remain empty for initial deployment.
+- Later: configure SMTP_HOST, SMTP_PORT, SMTP_SECURE, SMTP_USER, SMTP_PASSWORD, SMTP_FROM, CONTACT_TO and set EMAIL_DELIVERY_ENABLED=true. Recreate only the portfolio worker to apply changes. Use `smtp.queensmtp.com`, port `465`, and `SMTP_SECURE=true` (or port `587` with `false`). Candidate deployment verifies authentication before starting the worker.
 
 Keep runtime credentials on the server, outside the repository and image builds. The current workflow does not upload runtime secrets from GitHub.
 
 ## Server integration still required
 
-The VPS has not been inspected or changed by this session. No SSH credential is available here.
+The owner has now supplied a credential export, including SSH and runtime secrets. Current-session SSH inspection and runtime installation are blocked by the workspace’s missing outbound TCP access; historical VPS checks in the export must be reverified.
 Before a deployment:
 1. Inspect capacity, existing gateway configuration/mounts, and budgetify-edge.
 2. Preserve the import and directory mount from `deploy/gateway/shared-gateway.patch` in both Afrimed and Budgetify gateway sources and apply them to the existing server under its shared deploy lock.
 3. Create the portfolio gateway and secrets directories. Authenticate the VPS for GHCR image pulls if images are private.
 4. Configure the production application route and a valid origin certificate for brahim-elhouss.tech. Add a www-to-apex HTTPS redirect if www is used.
-5. Add the portfolio Auth callback to shared Supabase redirects while preserving existing mobile-app settings. Complete admin/MFA, runtime, SMTP and content verification described in OPERATIONS.md and PRODUCTION_INTEGRATION_STATUS.md.
+5. Add the portfolio Auth callback to shared Supabase redirects while preserving existing mobile-app settings. Complete admin/MFA, runtime and content verification (SMTP delivery verification is deferred while paused) described in OPERATIONS.md and PRODUCTION_INTEGRATION_STATUS.md.
 6. Run Portfolio quality and immutable images manually on main with deploy_environment=production after these prerequisites are ready.
 
 DNS has been configured; deployment and public HTTPS readiness are not yet verified.

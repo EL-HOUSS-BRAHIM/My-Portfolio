@@ -45,6 +45,35 @@ Database publication changes must use reviewed migrations. Prefer additive, back
 
 ## SMTP
 
+QueenSMTP uses `smtp.queensmtp.com`: port **465** requires `SMTP_SECURE=true`; port **587** requires `SMTP_SECURE=false` (STARTTLS). Certificate validation and TLS 1.2 minimum stay enabled. Configure exactly one notification recipient. The current enquiry notifications contain no attachments and stay below the provider’s 1 MB limit.
+
+Credentials belong only in the mode-600 VPS runtime file. Set `EMAIL_DELIVERY_ENABLED=true` once they are ready. The earlier `SMTP_ENABLED` flag is supported for existing runtime files; if both flags are present they must agree. Prefer the canonical flag in new configuration. Never copy a credential export into the repository.
+
+The deployer runs a no-send SMTP verification in the new worker image before starting the candidate services. When paused it skips SMTP; when enabled it checks TLS and authentication and stops rollout on failure. It never claims jobs or sends a test email. This verifies connection/authentication, not sender-domain authorization or final inbox delivery.
+
+To run that check manually against the active slot’s protected env file:
+
+```bash
+docker compose --project-name portfolio-production-blue \
+  --env-file /home/budgetify/portfolio/releases/production-blue.env \
+  -f /home/budgetify/portfolio/compose.yaml run --rm --no-deps \
+  worker node scripts/verify-smtp.ts --if-enabled
+```
+
+Use the slot recorded in `releases/production.current`. The check reports only a success/failure event; credentials and raw provider errors are not logged. A fresh image containing `smtp-config.ts` and `verify-smtp.ts` is required; do not reuse an older worker image.
+
+SMTP is optional for initial deployment. Leave `EMAIL_DELIVERY_ENABLED=false` (the default) in the runtime env file. The application readiness check requires its database and core configuration, without SMTP. The worker keeps database maintenance running but does not claim email jobs, consume retries, or attempt delivery. Contact enquiries and notification jobs remain stored atomically; read enquiries in the private dashboard while delivery is paused.
+
+When ready, fill the SMTP fields below, set `EMAIL_DELIVERY_ENABLED=true`, and recreate only the active portfolio slot's worker using its saved release selector, for example:
+
+```bash
+docker compose --project-name portfolio-production-blue \
+  --env-file /home/budgetify/portfolio/releases/production-blue.env \
+  -f /home/budgetify/portfolio/compose.yaml up -d --no-deps --force-recreate worker
+```
+
+Replace `blue` with the slot recorded in `releases/production.current`. Review the pending backlog before enabling: queued enquiries will then be delivered. Invalid enabled SMTP configuration fails worker startup; an SMTP outage still uses the existing retry limits. Custom Supabase Auth SMTP is separate and shared Auth settings must remain intact.
+
 Set the actual QueenSMTP (or compatible provider) host/port, TLS mode, username/password, verified `SMTP_FROM`, and `CONTACT_TO`. Use port 587 with STARTTLS or the provider's documented implicit-TLS port; never disable certificate verification. Set SPF, DKIM, DMARC. Use real delivery tests to verify sender identity and provider limits.
 
 The contact API saves an enquiry and outbox record atomically and returns 202. The worker delivers asynchronously, with six bounded attempts and recovery of abandoned claims. Delivery is **at least once**: a crash after SMTP acceptance can cause a duplicate. A stable Message-ID helps mail clients but does not guarantee exactly-once SMTP delivery. Failures remain visible in the dashboard and structured logs.
@@ -58,7 +87,7 @@ CI uses Node 24, an exact npm lockfile, a disposable PostgreSQL service, require
 - `ghcr.io/el-houss-brahim/portfolio:COMMIT_SHA`
 - `ghcr.io/el-houss-brahim/portfolio-worker:COMMIT_SHA`
 
-Configure public Supabase URL and publishable key as GitHub **environment variables** in separate `portfolio-staging` and `portfolio-production` environments for the image builds. These are browser configuration, not privileged secrets. Runtime must use the **same public project configuration** as the image. Build staging and production images against their respective projects; do not reuse a staging bundle containing its public configuration for production. The workflow builds both environments independently: staging uses `portfolio-staging:SHA` and `portfolio-worker-staging:SHA`; production uses `portfolio:SHA` and `portfolio-worker:SHA`. It fails if target public configuration is missing. Never pass service/SMTP secrets as build arguments.
+Configure public Supabase URL and publishable key as GitHub **environment variables** in separate `portfolio-staging` and `portfolio-production` environments for the image builds. These are browser configuration, not privileged secrets. Runtime must use the **same public project configuration** as the image. Build staging and production images against their respective projects; do not reuse a staging bundle containing its public configuration for production. Production is the default build target; staging is selected only by an explicit staging dispatch. Image names are: staging uses `portfolio-staging:SHA` and `portfolio-worker-staging:SHA`; production uses `portfolio:SHA` and `portfolio-worker:SHA`. Production defaults to the approved shared project’s public browser configuration when neither override is set; partial overrides and missing staging configuration fail. Never pass service/SMTP secrets as build arguments.
 
 The Dockerfile supports a BuildKit `proxy_ca` secret for managed environments. CI using ordinary network trust does not need it. An example managed build is `docker build --secret id=proxy_ca,src="$CODEX_PROXY_CERT" --target app -t portfolio:test web`. TLS verification stays enabled.
 

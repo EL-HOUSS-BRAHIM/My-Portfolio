@@ -27,7 +27,7 @@ WORKDIR /app
 COPY --chown=node:node worker/package.json worker/package-lock.json ./
 RUN --mount=type=secret,id=proxy_ca \
     if [ -f /run/secrets/proxy_ca ]; then export NODE_EXTRA_CA_CERTS=/run/secrets/proxy_ca; fi; npm ci --omit=dev
-COPY --chown=node:node scripts/email-worker.ts ./scripts/email-worker.ts
+COPY --chown=node:node scripts/email-worker.ts scripts/smtp-config.ts scripts/verify-smtp.ts ./scripts/
 RUN rm -rf /usr/local/lib/node_modules/npm && rm -f /usr/local/bin/npm /usr/local/bin/npx
 USER node
 CMD ["node","scripts/email-worker.ts"]
