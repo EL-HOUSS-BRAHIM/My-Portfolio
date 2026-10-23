@@ -82,7 +82,7 @@ jobs:
           test -n "$PUBLIC_URL" && test -n "$PUBLIC_KEY"
           [[ "$PUBLIC_URL" = https://* && "$PUBLIC_URL" != *$'\n'* && "$PUBLIC_KEY" != *$'\n'* ]]
           printf 'url=%s\nkey=%s\n' "$PUBLIC_URL" "$PUBLIC_KEY" >> "$GITHUB_OUTPUT"
-      - uses: docker/build-push-action@v6
+      - uses: docker/build-push-action@v7
         with:
           context: web
           target: app
@@ -94,7 +94,7 @@ jobs:
             NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=${{ steps.public-config.outputs.key }}
       - uses: aquasecurity/trivy-action@0.35.0
         with: {image-ref: 'ghcr.io/el-houss-brahim/portfolio${{ matrix.suffix }}:${{ github.sha }}', severity: 'CRITICAL,HIGH', exit-code: '1', ignore-unfixed: true}
-      - uses: docker/build-push-action@v6
+      - uses: docker/build-push-action@v7
         with: {context: web, target: worker, push: false, load: true, tags: 'ghcr.io/el-houss-brahim/portfolio-worker${{ matrix.suffix }}:${{ github.sha }}'}
       - name: Verify packaged worker scripts run without SMTP or database access
         env:
