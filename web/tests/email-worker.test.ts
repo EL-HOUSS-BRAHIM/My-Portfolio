@@ -67,3 +67,31 @@ it("fails before polling when SMTP delivery is enabled without credentials", () 
   expect(result.stderr).toContain("SMTP_HOST");
   expect(result.stdout).not.toContain("email_delivery_paused");
 });
+
+it("can skip SMTP verification for a paused deployment without database settings", () => {
+  const result = spawnSync(
+    process.execPath,
+    ["scripts/verify-smtp.ts", "--if-enabled"],
+    {
+      env: { NODE_ENV: "test", SMTP_ENABLED: "false" },
+      encoding: "utf8",
+      timeout: 5000,
+    },
+  );
+  expect(result.status).toBe(0);
+  expect(result.stdout).toContain("smtp_paused");
+});
+it("redacts configuration failures from the SMTP verification command", () => {
+  const result = spawnSync(process.execPath, ["scripts/verify-smtp.ts"], {
+    env: { NODE_ENV: "test", SMTP_PASSWORD: "must-never-appear-in-logs" },
+    encoding: "utf8",
+    timeout: 5000,
+  });
+  expect(result.status).toBe(1);
+  expect(result.stderr.trim()).toBe(
+    JSON.stringify({ event: "smtp_verification_failed", emailSent: false }),
+  );
+  expect(result.stdout + result.stderr).not.toContain(
+    "must-never-appear-in-logs",
+  );
+});

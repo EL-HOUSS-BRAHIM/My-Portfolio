@@ -1,5 +1,7 @@
 # Start Here — Next Session Handoff
 
+**QueenSMTP update:** The owner supplied SMTP and VPS/runtime credentials. They are prepared outside Git, with delivery enabled. Candidate deployments now verify SMTP authentication without sending mail; see the newest section in production integration status for network access constraints. Earlier missing-credential statements below are historical.
+
 **SMTP-deferred deployment update:** Delivery now defaults to paused (`EMAIL_DELIVERY_ENABLED=false`), readiness no longer requires SMTP, and production CI has verified public browser defaults. SMTP setup is deferred by the user. See production integration status for remaining VPS/runtime blockers.
 
 **2026-10-22 update:** Read [production integration status](docs/PRODUCTION_INTEGRATION_STATUS.md) before the historical handoff below. The user authorized sharing the active `budjetify` Supabase project; the portfolio foundation has now been applied and hosted database checks passed. VPS/Cloudflare deployment remains blocked by credentials and GitHub environment permissions.

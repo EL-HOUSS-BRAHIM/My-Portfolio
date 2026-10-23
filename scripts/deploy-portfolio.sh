@@ -50,6 +50,9 @@ rollback(){
 }
 trap rollback ERR
 docker compose --project-name "$project" --env-file "$config" -f "$compose" pull
+# Authenticate SMTP before starting a candidate worker that could claim queued jobs.
+# Paused delivery validates its flag and skips SMTP without touching the database.
+docker compose --project-name "$project" --env-file "$config" -f "$compose" run --rm --no-deps worker node scripts/verify-smtp.ts --if-enabled
 docker compose --project-name "$project" --env-file "$config" -f "$compose" up -d --wait --wait-timeout 150
 stage=$(mktemp "$root/gateway/.candidate.XXXXXX")
 trap 'rm -f -- "$stage"' EXIT

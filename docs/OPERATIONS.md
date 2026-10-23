@@ -45,6 +45,23 @@ Database publication changes must use reviewed migrations. Prefer additive, back
 
 ## SMTP
 
+QueenSMTP uses `smtp.queensmtp.com`: port **465** requires `SMTP_SECURE=true`; port **587** requires `SMTP_SECURE=false` (STARTTLS). Certificate validation and TLS 1.2 minimum stay enabled. Configure exactly one notification recipient. The current enquiry notifications contain no attachments and stay below the provider’s 1 MB limit.
+
+Credentials belong only in the mode-600 VPS runtime file. Set `EMAIL_DELIVERY_ENABLED=true` once they are ready. The earlier `SMTP_ENABLED` flag is supported for existing runtime files; if both flags are present they must agree. Prefer the canonical flag in new configuration. Never copy a credential export into the repository.
+
+The deployer runs a no-send SMTP verification in the new worker image before starting the candidate services. When paused it skips SMTP; when enabled it checks TLS and authentication and stops rollout on failure. It never claims jobs or sends a test email. This verifies connection/authentication, not sender-domain authorization or final inbox delivery.
+
+To run that check manually against the active slot’s protected env file:
+
+```bash
+docker compose --project-name portfolio-production-blue \
+  --env-file /home/budgetify/portfolio/releases/production-blue.env \
+  -f /home/budgetify/portfolio/compose.yaml run --rm --no-deps \
+  worker node scripts/verify-smtp.ts --if-enabled
+```
+
+Use the slot recorded in `releases/production.current`. The check reports only a success/failure event; credentials and raw provider errors are not logged. A fresh image containing `smtp-config.ts` and `verify-smtp.ts` is required; do not reuse an older worker image.
+
 SMTP is optional for initial deployment. Leave `EMAIL_DELIVERY_ENABLED=false` (the default) in the runtime env file. The application readiness check requires its database and core configuration, without SMTP. The worker keeps database maintenance running but does not claim email jobs, consume retries, or attempt delivery. Contact enquiries and notification jobs remain stored atomically; read enquiries in the private dashboard while delivery is paused.
 
 When ready, fill the SMTP fields below, set `EMAIL_DELIVERY_ENABLED=true`, and recreate only the active portfolio slot's worker using its saved release selector, for example:

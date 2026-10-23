@@ -1,5 +1,13 @@
 # Portfolio production integration — 2026-10-22
 
+## QueenSMTP production readiness follow-up
+
+The owner supplied the missing SMTP password and authorized its use. A mode-600 runtime file has been prepared outside the repository with QueenSMTP port 465/SSL, SMTP delivery enabled, the existing sender/recipient, Supabase server configuration and independent app secrets. No credential values are included here or in Git. The provided SSH private key and known-hosts file are also available outside the repository; this supersedes earlier statements that credentials were missing.
+
+The worker accepts `EMAIL_DELIVERY_ENABLED` and the existing `SMTP_ENABLED` alias, rejects conflicts, and enforces the correct TLS mode for ports 465/587. The deployment script now checks SMTP TLS/authentication using the candidate image before starting services; this check sends no mail and never touches the outbox. The worker image explicitly contains the Node 24-compatible shared helper and verifier.
+
+Current local checks passed: strict TypeScript, zero-warning lint, 17 unit/deployment tests, production build, app and worker Docker builds, read-only/network-free worker verifier smoke test, and deploy-script shell syntax. Production templates now target the approved domain/backend and QueenSMTP without containing private credentials. PR #23’s earlier verification completed successfully. Current workspace networking permits no outbound TCP destinations, and its TCP proxy is unavailable. Consequently live SSH, runtime installation, and QueenSMTP authentication cannot be verified from this session until access to the VPS on port 22 and QueenSMTP on port 465 is enabled. Uploaded JSON status descriptions are historical evidence, not a live check of the VPS. GitHub environment-variable access was rechecked and still returns HTTP 403; existing configured secrets cannot be read back. The owner explicitly deferred live access/authentication checks and will debug those later. No production deployment or notification send was performed.
+
 ## Deployment preparation follow-up
 
 SMTP setup is explicitly deferred. `EMAIL_DELIVERY_ENABLED` defaults to `false`: the worker runs maintenance without claiming notification jobs; readiness no longer requires SMTP. Enquiries remain in the database/dashboard and jobs stay pending until delivery is enabled. Production CI now defaults to the approved project’s verified public browser URL and publishable key; paired environment overrides remain supported and staging has no production fallback.

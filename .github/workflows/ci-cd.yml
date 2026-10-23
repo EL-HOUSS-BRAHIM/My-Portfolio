@@ -96,6 +96,10 @@ jobs:
         with: {image-ref: 'ghcr.io/el-houss-brahim/portfolio${{ matrix.suffix }}:${{ github.sha }}', severity: 'CRITICAL,HIGH', exit-code: '1', ignore-unfixed: true}
       - uses: docker/build-push-action@v6
         with: {context: web, target: worker, push: false, load: true, tags: 'ghcr.io/el-houss-brahim/portfolio-worker${{ matrix.suffix }}:${{ github.sha }}'}
+      - name: Verify packaged worker scripts run without SMTP or database access
+        env:
+          WORKER_IMAGE: ghcr.io/el-houss-brahim/portfolio-worker${{ matrix.suffix }}:${{ github.sha }}
+        run: docker run --rm --network none --read-only --cap-drop ALL --security-opt no-new-privileges:true -e EMAIL_DELIVERY_ENABLED=false "$WORKER_IMAGE" node scripts/verify-smtp.ts --if-enabled
       - uses: aquasecurity/trivy-action@0.35.0
         with: {image-ref: 'ghcr.io/el-houss-brahim/portfolio-worker${{ matrix.suffix }}:${{ github.sha }}', severity: 'CRITICAL,HIGH', exit-code: '1', ignore-unfixed: true}
       - run: |

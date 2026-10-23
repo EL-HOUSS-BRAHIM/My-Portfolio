@@ -3,7 +3,7 @@ import { mkdtemp, mkdir, writeFile, readFile, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { spawnSync } from "node:child_process";
-async function deployment(fail: boolean) {
+async function deployment(fail: boolean, smtpFail = false) {
   const temp = await mkdtemp(join(tmpdir(), "portfolio-deploy-test-"));
   try {
     const root = join(temp, "portfolio"),
@@ -45,7 +45,7 @@ async function deployment(fail: boolean) {
     for (const command of ["docker", "curl"])
       await writeFile(
         join(bin, command),
-        `#!/usr/bin/env node\nconst fs=require('node:fs');fs.appendFileSync(process.env.PORTFOLIO_TEST_LOG,JSON.stringify({command:${JSON.stringify(command)},args:process.argv.slice(2)})+'\\n');if(${JSON.stringify(command)}==='curl'&&process.env.PORTFOLIO_TEST_FAIL==='true'&&process.argv.some(x=>x.includes('https://brahim-elhouss.me')))process.exit(22);\n`,
+        `#!/usr/bin/env node\nconst fs=require('node:fs');fs.appendFileSync(process.env.PORTFOLIO_TEST_LOG,JSON.stringify({command:${JSON.stringify(command)},args:process.argv.slice(2)})+'\\n');if(${JSON.stringify(command)}==='docker'&&process.env.PORTFOLIO_TEST_SMTP_FAIL==='true'&&process.argv.includes('scripts/verify-smtp.ts'))process.exit(1);if(${JSON.stringify(command)}==='curl'&&process.env.PORTFOLIO_TEST_FAIL==='true'&&process.argv.some(x=>x.includes('https://brahim-elhouss.me')))process.exit(22);\n`,
         { mode: 0o755 },
       );
     const result = spawnSync(
@@ -59,15 +59,24 @@ async function deployment(fail: boolean) {
           PORTFOLIO_SHARED_ROOT: shared,
           PORTFOLIO_TEST_LOG: log,
           PORTFOLIO_TEST_FAIL: String(fail),
+          PORTFOLIO_TEST_SMTP_FAIL: String(smtpFail),
         },
         encoding: "utf8",
       },
     );
-    expect(result.status).toBe(fail ? 1 : 0);
+    expect(result.status).toBe(fail || smtpFail ? 1 : 0);
     const calls = (await readFile(log, "utf8"))
       .trim()
       .split("\n")
       .map((line) => JSON.parse(line) as { command: string; args: string[] });
+    const verifyIndex = calls.findIndex((c) =>
+      c.args.includes("scripts/verify-smtp.ts"),
+    );
+    const upIndex = calls.findIndex((c) => c.args.includes("up"));
+    expect(verifyIndex).toBeGreaterThanOrEqual(0);
+    if (smtpFail) expect(upIndex).toBe(-1);
+    else expect(verifyIndex).toBeLessThan(upIndex);
+    expect(calls[verifyIndex].args).toContain("--if-enabled");
     expect(
       calls.some(
         (c) =>
@@ -92,14 +101,16 @@ async function deployment(fail: boolean) {
       "utf8",
     );
     expect(route).toContain(
-      fail ? "PREVIOUS PORTFOLIO ROUTE" : "portfolio-production-green:3000",
+      fail || smtpFail
+        ? "PREVIOUS PORTFOLIO ROUTE"
+        : "portfolio-production-green:3000",
     );
     expect(
       (
         await readFile(join(root, "releases", "production.current"), "utf8")
       ).trim(),
-    ).toBe(fail ? "blue" : "green");
-    if (!fail)
+    ).toBe(fail || smtpFail ? "blue" : "green");
+    if (!fail && !smtpFail)
       for (const url of [
         "https://afrimed.space/",
         "https://lyvora.afrimed.space/health",
@@ -117,4 +128,8 @@ it("deploys only portfolio slots and verifies shared applications", async () => 
 });
 it("restores the previous portfolio route when the candidate probe fails", async () => {
   await deployment(true);
+});
+
+it("stops rollout before starting services when SMTP authentication fails", async () => {
+  await deployment(false, true);
 });

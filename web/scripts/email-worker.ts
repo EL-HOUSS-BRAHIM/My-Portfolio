@@ -1,5 +1,9 @@
 import { createClient } from "@supabase/supabase-js";
-import nodemailer from "nodemailer";
+import {
+  emailDeliveryEnabled,
+  smtpConfig,
+  smtpTransport,
+} from "./smtp-config.ts";
 import { z } from "zod";
 const env = z
   .object({
@@ -8,40 +12,12 @@ const env = z
     SITE_URL: z.url(),
   })
   .parse(process.env);
-const deliveryEnabled =
-  z
-    .enum(["true", "false"])
-    .default("false")
-    .parse(process.env.EMAIL_DELIVERY_ENABLED) === "true";
-// Validate SMTP only when delivery is explicitly enabled. Maintenance keeps running.
-const smtp = deliveryEnabled
-  ? z
-      .object({
-        SMTP_HOST: z.string().min(1),
-        SMTP_PORT: z.coerce.number().int().min(1).max(65535),
-        SMTP_SECURE: z.enum(["true", "false"]).default("false"),
-        SMTP_USER: z.string().min(1),
-        SMTP_PASSWORD: z.string().min(1),
-        SMTP_FROM: z.email(),
-        CONTACT_TO: z.email(),
-      })
-      .parse(process.env)
-  : null;
+const deliveryEnabled = emailDeliveryEnabled(process.env);
+const smtp = deliveryEnabled ? smtpConfig(process.env) : null;
 const db = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SECRET_KEY, {
   auth: { persistSession: false, autoRefreshToken: false },
 });
-const transport = smtp
-  ? nodemailer.createTransport({
-      host: smtp.SMTP_HOST,
-      port: smtp.SMTP_PORT,
-      secure: smtp.SMTP_SECURE === "true",
-      requireTLS: smtp.SMTP_SECURE !== "true",
-      auth: { user: smtp.SMTP_USER, pass: smtp.SMTP_PASSWORD },
-      connectionTimeout: 15000,
-      socketTimeout: 30000,
-      tls: { minVersion: "TLSv1.2" },
-    })
-  : null;
+const transport = smtp ? smtpTransport(smtp) : null;
 if (!deliveryEnabled)
   console.info(JSON.stringify({ event: "email_delivery_paused" }));
 let running = true;
