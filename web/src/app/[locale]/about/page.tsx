@@ -1,4 +1,5 @@
 import Image from "next/image";
+import ReactMarkdown from "react-markdown";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { isLocale } from "@/i18n/routing";
@@ -83,19 +84,42 @@ export default async function About({
         <section className="section">
           <h2>
             {locale === "ar"
-              ? "الخبرة"
+              ? "محطات المسار"
               : locale === "fr"
-                ? "Expérience"
-                : "Experience"}
+                ? "Étapes du parcours"
+                : "Journey milestones"}
           </h2>
-          <div className="principles">
+          <p className="timeline-note">
+            {locale === "ar"
+              ? "محطات تستند إلى تاريخ المستودعات، وليست تواريخ توظيف."
+              : locale === "fr"
+                ? "Des étapes fondées sur les dépôts, pas des dates d’emploi."
+                : "Milestones from repository history, rather than employment dates."}
+          </p>
+          <ol className="timeline">
             {experience.map((c) => (
-              <article key={c.id}>
-                <h3>{c.translations[locale].title}</h3>
-                <p>{c.translations[locale].summary}</p>
-              </article>
+              <li key={c.id}>
+                <span className="eyebrow">{c.category}</span>
+                <div>
+                  <h3>{c.translations[locale].title}</h3>
+                  <p>{c.translations[locale].summary}</p>
+                  <div className="milestone-detail">
+                    <ReactMarkdown>{c.translations[locale].body}</ReactMarkdown>
+                  </div>
+                  {c.source_url && (
+                    <a
+                      className="text-link"
+                      href={c.source_url}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {t("source")} ↗
+                    </a>
+                  )}
+                </div>
+              </li>
             ))}
-          </div>
+          </ol>
         </section>
       )}
       {skills.length > 0 && (

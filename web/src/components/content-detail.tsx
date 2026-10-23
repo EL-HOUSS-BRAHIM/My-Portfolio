@@ -95,14 +95,23 @@ export async function ContentDetail({
         )}
       </div>
       {item.image && (
-        <div className="case-image">
-          <Image
-            src={item.image}
-            alt={text.title}
-            fill
-            sizes="(max-width: 760px) 100vw, 1180px"
-          />
-        </div>
+        <figure className="case-figure">
+          <div className="case-image">
+            <Image
+              src={item.image}
+              alt={text.title}
+              fill
+              sizes="(max-width: 760px) 100vw, 1180px"
+            />
+          </div>
+          <figcaption>
+            {locale === "ar"
+              ? "غلاف تصوري للمشروع، وليس لقطة شاشة لمنتج يعمل."
+              : locale === "fr"
+                ? "Couverture conceptuelle du projet, pas une capture d’un service en ligne."
+                : "Conceptual project cover, rather than a screenshot of a running service."}
+          </figcaption>
+        </figure>
       )}
       <div className="prose">
         <ReactMarkdown>{text.body}</ReactMarkdown>

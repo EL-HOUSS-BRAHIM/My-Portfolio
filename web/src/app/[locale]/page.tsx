@@ -34,6 +34,7 @@ export default async function Home({
   const projects = (await published("project", locale))
     .filter((p) => p.featured)
     .slice(0, 3);
+  const posts = (await published("post", locale)).slice(0, 3);
   const testimonials = await published("testimonial", locale);
   const settings = (await published("settings", locale)).find(
     (c) => c.slug === "profile",
@@ -149,6 +150,50 @@ export default async function Home({
           </div>
         </div>
       </section>
+      {posts.length > 0 && (
+        <section className="section container">
+          <div className="section-heading">
+            <div>
+              <p className="eyebrow">
+                03 /{" "}
+                {locale === "ar"
+                  ? "ملاحظات وتقارير"
+                  : locale === "fr"
+                    ? "NOTES ET RAPPORTS"
+                    : "NOTES & REPORTS"}
+              </p>
+              <h2>
+                {locale === "ar"
+                  ? "التفكير وراء العمل"
+                  : locale === "fr"
+                    ? "La réflexion derrière le travail"
+                    : "The thinking behind the work"}
+              </h2>
+            </div>
+            <Link className="text-link" href="/journal">
+              {locale === "ar"
+                ? "المدونة"
+                : locale === "fr"
+                  ? "Carnet"
+                  : "Journal"}{" "}
+              ↗
+            </Link>
+          </div>
+          <div className="principles">
+            {posts.map((c) => (
+              <article key={c.id}>
+                <p className="eyebrow">{c.tags.join(" / ")}</p>
+                <h3>
+                  <Link href={`/journal/${c.slug}`}>
+                    {c.translations[locale].title} ↗
+                  </Link>
+                </h3>
+                <p>{c.translations[locale].summary}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
       {testimonials.length > 0 && (
         <section className="section container">
           <h2>
@@ -172,7 +217,7 @@ export default async function Home({
       )}
       <section className="section container contact-banner">
         <p className="eyebrow">
-          03 /{" "}
+          04 /{" "}
           {locale === "ar"
             ? "لنتواصل"
             : locale === "fr"
