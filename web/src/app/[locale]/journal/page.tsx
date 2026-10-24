@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { isLocale } from "@/i18n/routing";
@@ -32,10 +33,26 @@ export default async function Journal({
         intro={t("journalIntro")}
       />
       {posts.length ? (
-        <section className="section">
+        <section className="section journal-grid">
           {posts.map((c) => (
             <article className="journal-item" key={c.id}>
-              <p className="eyebrow">{c.tags.join(" / ")}</p>
+              {c.image && (
+                <Link
+                  href={`/journal/${c.slug}`}
+                  className="journal-image"
+                  aria-label={c.translations[locale].title}
+                >
+                  <Image
+                    src={c.image}
+                    alt=""
+                    fill
+                    sizes="(max-width: 760px) 90vw, 40vw"
+                  />
+                </Link>
+              )}
+              <p className="eyebrow">
+                {c.category} / {c.tags.join(" / ")}
+              </p>
               <h2>
                 <Link href={`/journal/${c.slug}`}>
                   {c.translations[locale].title} ↗

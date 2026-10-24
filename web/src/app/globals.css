@@ -1285,3 +1285,87 @@ html[dir="rtl"] .round-link svg {
     display: grid;
   }
 }
+
+/* Repository milestones use logical properties for the Arabic layout. */
+.timeline-note {
+  color: var(--muted);
+  margin-block: 18px 36px;
+}
+.timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.timeline li {
+  display: grid;
+  grid-template-columns: 85px minmax(0, 1fr);
+  gap: 32px;
+  border-inline-start: 1px solid var(--line);
+  padding: 0 0 42px 0;
+  padding-inline-start: 28px;
+  position: relative;
+}
+.timeline li::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: -5px;
+  top: 6px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--text);
+}
+.timeline h3 {
+  font-size: 25px;
+  margin-block: 0 12px;
+}
+.timeline p {
+  max-width: 760px;
+  margin-block: 0 14px;
+}
+.milestone-detail {
+  color: var(--muted);
+  font-size: 14px;
+}
+.journal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 42px;
+}
+.journal-image {
+  display: block;
+  position: relative;
+  aspect-ratio: 2;
+  margin-block-end: 24px;
+  overflow: hidden;
+  border-radius: 5px;
+}
+.journal-image img {
+  object-fit: cover;
+}
+.case-figure {
+  margin: 0 0 45px;
+}
+.case-figure .case-image {
+  margin-bottom: 12px;
+}
+.case-figure figcaption {
+  color: var(--muted);
+  font-size: 13px;
+}
+.prose img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+}
+@media (max-width: 760px) {
+  .journal-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .timeline li {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    padding-inline-start: 22px;
+  }
+}

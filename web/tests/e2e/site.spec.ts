@@ -127,3 +127,49 @@ test("authentication callback bypasses locale routing", async ({ request }) => {
     "http://localhost:3000/en/admin/login",
   );
 });
+
+for (const locale of ["en", "fr", "ar"]) {
+  test(`${locale}: milestones, illustrated reports, and project evidence`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 320, height: 812 });
+    await page.goto(`/${locale}/about`);
+    await expect(page.locator(".timeline li")).toHaveCount(4);
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+    ).toBe(true);
+    await page.goto(`/${locale}/journal`);
+    await expect(page.locator(".journal-item")).toHaveCount(3);
+    await expect(page.locator(".journal-image img")).toHaveCount(3);
+    expect(
+      (await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa"]).analyze())
+        .violations,
+    ).toEqual([]);
+    await page.goto(`/${locale}/journal/watch-party-architecture-report`);
+    await expect(page.locator(".prose")).toContainText("Django");
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+    ).toBe(true);
+    await page.goto(`/${locale}/work/watch-party`);
+    await expect(page.locator(".case-figure")).toBeVisible();
+    if (locale === "en")
+      await expect(page.locator(".prose img")).toHaveCount(1);
+    await expect
+      .poll(async () =>
+        page
+          .locator("article img")
+          .evaluateAll((els) =>
+            els.every(
+              (el) =>
+                (el as HTMLImageElement).complete &&
+                (el as HTMLImageElement).naturalWidth > 0,
+            ),
+          ),
+      )
+      .toBe(true);
+  });
+}

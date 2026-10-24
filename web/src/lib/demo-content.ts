@@ -51,20 +51,20 @@ export const demoContent: Content[] = [
         title: "A shell, from the ground up",
         summary:
           "Getting closer to the operating system, one command at a time.",
-        body: "## The question\nWhat happens between entering a command and seeing its output?\n\n## The work\nA Unix shell project in C, exploring command execution, process management, environment variables, and system calls.\n\n## What it taught me\nWorking close to the operating system makes memory ownership, error handling, and explicit assumptions impossible to ignore.",
+        body: "## The question\nWhat happens between entering a command and seeing its output?\n\n## The work\nA Unix shell project in C, exploring command execution, process management, environment variables, and system calls.\n\n## Collaboration\nThe repository credits Brahim El Houss and Ayoub Kial as authors.\n\n## What it taught me\nWorking close to the operating system makes memory ownership, error handling, and explicit assumptions impossible to ignore.",
         published: true,
       },
       fr: {
         title: "Un shell, depuis les fondations",
         summary:
           "Comprendre le système d’exploitation, une commande à la fois.",
-        body: "## La question\nQue se passe-t-il entre une commande et son résultat ?\n\n## Le travail\nUn shell Unix en C pour explorer l’exécution des commandes, les processus, les variables d’environnement et les appels système.\n\n## Apprentissage\nLa gestion de la mémoire et des erreurs doit rester explicite.",
+        body: "## La question\nQue se passe-t-il entre une commande et son résultat ?\n\n## Le travail\nUn shell Unix en C pour explorer l’exécution des commandes, les processus, les variables d’environnement et les appels système.\n\n## Collaboration\nLe dépôt cite Brahim El Houss et Ayoub Kial comme auteurs.\n\n## Apprentissage\nLa gestion de la mémoire et des erreurs doit rester explicite.",
         published: true,
       },
       ar: {
         title: "صدفة أوامر من الأساس",
         summary: "الاقتراب من نظام التشغيل، أمرًا بعد أمر.",
-        body: "## السؤال\nماذا يحدث بين إدخال أمر ورؤية نتيجته؟\n\n## العمل\nمشروع صدفة يونكس بلغة C لاستكشاف تنفيذ الأوامر وإدارة العمليات ومتغيرات البيئة واستدعاءات النظام.\n\n## التعلم\nالعمل قريبًا من نظام التشغيل يوضح أهمية إدارة الذاكرة والأخطاء.",
+        body: "## السؤال\nماذا يحدث بين إدخال أمر ورؤية نتيجته؟\n\n## العمل\nمشروع صدفة يونكس بلغة C لاستكشاف تنفيذ الأوامر وإدارة العمليات ومتغيرات البيئة واستدعاءات النظام.\n\n## التعاون\nيذكر المستودع إبراهيم الحوس وأيوب كيال كمؤلفين.\n\n## التعلم\nالعمل قريبًا من نظام التشغيل يوضح أهمية إدارة الذاكرة والأخطاء.",
         published: true,
       },
     },
@@ -79,7 +79,7 @@ export const demoContent: Content[] = [
     source_url:
       "https://github.com/EL-HOUSS-BRAHIM/alx-interview/tree/main/0x03-log_parsing",
     demo_url: "",
-    featured: true,
+    featured: false,
     sort_order: 2,
     translations: {
       en: {
@@ -137,4 +137,5 @@ export const demoContent: Content[] = [
       },
     },
   },
+  ...portfolioContent,
 ];
