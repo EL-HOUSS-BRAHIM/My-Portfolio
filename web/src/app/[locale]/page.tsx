@@ -87,7 +87,7 @@ export default async function Home({
           </div>
           <div className="portrait-label">
             <Compass size={18} />
-            <span>
+            <span dir="ltr">
               Casablanca, MA
               <br />
               <strong>33.57° N · 7.59° W</strong>

@@ -82,6 +82,8 @@ test("filters survive reload and language changes and mobile work has its own ca
   await page.getByRole("link", { name: "العربية", exact: true }).click();
   await expect(page.locator("html")).toHaveAttribute("lang", "ar");
   await expect(page.locator("html")).toHaveAttribute("dir", "rtl");
+  await expect(page.locator(".wordmark")).toHaveAttribute("dir", "ltr");
+  await expect(page.locator(".footer-name")).toHaveAttribute("dir", "ltr");
   await expect(page.locator(".project-card")).toHaveCount(1);
   await expect(page.locator(".desktop-nav a").first()).toHaveAttribute(
     "href",

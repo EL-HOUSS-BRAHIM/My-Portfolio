@@ -6,7 +6,7 @@ export async function Footer() {
   return (
     <footer className="footer">
       <div className="container footer-top">
-        <Link href="/" className="footer-name">
+        <Link href="/" className="footer-name" dir="ltr">
           Brahim El Houss<span className="accent">.</span>
         </Link>
         <p>{t("line")}</p>

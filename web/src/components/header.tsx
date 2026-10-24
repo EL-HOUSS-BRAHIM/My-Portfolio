@@ -22,7 +22,7 @@ export function Header() {
   return (
     <header className="header">
       <div className="container header-inner">
-        <Link href="/" className="wordmark" aria-label="Brahim El Houss">
+        <Link href="/" className="wordmark" aria-label="Brahim El Houss" dir="ltr">
           <span className="brand-symbol" aria-hidden>
             be<span>.</span>
           </span>
