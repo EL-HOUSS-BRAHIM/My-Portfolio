@@ -25,7 +25,7 @@ for (const locale of ["en", "fr", "ar"]) {
 }
 test("filters, theme and language preserve page context", async ({ page }) => {
   await page.goto("/en/work");
-  await expect(page.locator(".project-card")).toHaveCount(4);
+  await expect(page.locator(".project-card")).toHaveCount(9);
   await page.getByRole("button", { name: "Systems", exact: true }).click();
   await expect(page.locator(".project-card")).toHaveCount(2);
   await page.getByLabel("Color theme").selectOption("dark");

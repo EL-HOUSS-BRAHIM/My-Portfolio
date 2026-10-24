@@ -2,7 +2,7 @@ import { createClient } from "@supabase/supabase-js";
 import { demoContent } from "../src/lib/demo-content";
 if (!process.argv.includes("--apply")) {
   console.info(
-    `Dry run: ${demoContent.length} curated projects. Use --apply only for a dedicated staging project.`,
+    `Dry run: ${demoContent.length} curated content entries. Use --apply only for a dedicated staging project.`,
   );
   process.exit(0);
 }
