@@ -1,5 +1,6 @@
 import type { Content } from "./models";
 import { githubContent } from "./github-content";
+import { portfolioContent } from "./portfolio-content";
 // Curated repository-derived content. Demo mode never accepts fake form submissions.
 export const demoContent: Content[] = [
   ...githubContent,

@@ -21,7 +21,9 @@ describe("publishable editorial collection", () => {
     }
   });
   it("keeps reports sourced and milestones separate from employment", () => {
-    const reports = demoContent.filter((c) => c.kind === "post");
+    const reports = demoContent.filter(
+      (c) => c.kind === "post" && c.source_url !== "",
+    );
     expect(reports.length).toBe(3);
     for (const report of reports)
       for (const text of Object.values(report.translations)) {

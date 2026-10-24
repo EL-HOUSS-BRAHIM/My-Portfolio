@@ -4,7 +4,7 @@ Reviewed on 2026-10-23 using the authenticated owner's GitHub connection, includ
 
 ## Added content
 
-Five project case studies (Lyvora, Watch Party, logistics foundations, travel API, and this portfolio), three capability entries, and one editorial article. All have English, French, and Arabic versions. Existing project entries remain intact.
+The combined collection contains ten projects, four articles, four project milestones, three capability entries, one education entry, and three services. All have English, French, and Arabic versions. Existing project entries remain intact. The October 24 merge repair keeps the existing detailed Watch Party, travel API, portfolio, and capabilities entries, and adds only the unique Lyvora, logistics foundations, and preview-release article entries from the newer snapshot.
 
 ## Evidence
 
@@ -24,6 +24,6 @@ The profile README was also reviewed. Its certification, production application 
 
 The entries live in `web/src/lib/github-content.ts` and are included in the existing curated demo collection. Run `npm run dev` and browse `/en/work`, `/fr/work`, `/ar/work`, the About page, and the Journal.
 
-Configured staging/production reads the database instead of this collection. This change does not write hosted data or deploy the website. The existing `web/scripts/seed-content.ts` dry run includes the expanded collection; its apply operation remains restricted to a dedicated staging environment. Production publication uses the existing MFA-protected editorial dashboard after review. Do not bypass the staging restriction or introduce a privileged key into browser code.
+Configured staging/production reads the database instead of this collection. The existing `web/scripts/seed-content.ts` apply operation remains restricted to dedicated staging. For the owner-authorized October 24 production deployment, `web/scripts/export-content.ts --sql` produces a reviewable, atomic insert-only payload. It inserts only missing entries and preserves existing dashboard records. No privileged key belongs in browser code.
 
 This snapshot should be refreshed deliberately as project status changes. No GitHub token, raw private source, infrastructure addresses, or customer records are included in the public content.
