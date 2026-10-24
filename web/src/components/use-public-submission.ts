@@ -44,9 +44,8 @@ export function usePublicSubmission(
             ? "invalid"
             : "unavailable",
       );
-      // A definitive rejection can start fresh. Ambiguous service failures retain the ID.
-      if (response.status >= 400 && response.status < 500)
-        identity.current.clear();
+      // A rejected retry does not prove an earlier uncertain attempt was not saved.
+      // Keep the identity until success or until the user changes the payload.
       return false;
     } catch {
       setState("error");

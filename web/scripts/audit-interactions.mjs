@@ -84,7 +84,13 @@ try {
       const payloads = [];
       await page.route(`**${endpoint}`, async (route) => {
         payloads.push(route.request().postDataJSON());
-        if (payloads.length < 3) await route.abort("connectionfailed");
+        if (payloads.length === 2)
+          await route.fulfill({
+            status: 429,
+            contentType: "application/json",
+            body: '{"ok":false,"code":"limited"}',
+          });
+        else if (payloads.length < 4) await route.abort("connectionfailed");
         else
           await route.fulfill({
             status: 202,
@@ -101,21 +107,22 @@ try {
         "A mocked browser audit message. Never sent to the server.",
       );
       await page.locator('input[name="consent"]').check();
-      for (let attempt = 0; attempt < 2; attempt++) {
+      for (let attempt = 0; attempt < 3; attempt++) {
         await page.getByRole("button", { name: button, exact: true }).click();
         await expect(page.getByRole("status")).toContainText(
-          "couldn’t confirm receipt",
+          attempt === 1 ? "Too many messages" : "couldn’t confirm receipt",
         );
         await expect(message).not.toHaveValue("");
       }
       expect(payloads[0].submissionId).toBe(payloads[1].submissionId);
+      expect(payloads[0].submissionId).toBe(payloads[2].submissionId);
       await message.fill(
         "An edited mocked audit message, also never sent to the server.",
       );
       await page.getByRole("button", { name: button, exact: true }).click();
       await expect(page.getByRole("status")).toContainText(success);
       await expect(message).toHaveValue("");
-      expect(payloads[2].submissionId).not.toBe(payloads[1].submissionId);
+      expect(payloads[3].submissionId).not.toBe(payloads[2].submissionId);
       await page.unroute(`**${endpoint}`);
       checks.push(
         `${path}: mocked failed retries retain identity/text, edits rotate identity, success resets form`,
