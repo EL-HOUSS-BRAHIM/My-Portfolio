@@ -16,7 +16,7 @@ export async function detailMeta(
       title: "Translation unavailable",
       robots: { index: false, follow: true },
     };
-  return pageMeta(
+  const metadata = pageMeta(
     locale,
     `/${kind === "project" ? "work" : "journal"}/${slug}`,
     text.title,
@@ -25,4 +25,26 @@ export async function detailMeta(
       (l) => item!.translations[l].published,
     ),
   );
+  const images =
+    item!.image && !item!.image.endsWith(".svg")
+      ? [{ url: item!.image, alt: text.title }]
+      : undefined;
+  return {
+    ...metadata,
+    openGraph: {
+      ...metadata.openGraph,
+      ...(kind === "post"
+        ? {
+            type: "article" as const,
+            authors: ["Brahim El Houss"],
+            modifiedTime: item!.updated_at,
+          }
+        : {}),
+      ...(images ? { images } : {}),
+    },
+    twitter: {
+      ...metadata.twitter,
+      ...(images ? { images: images.map((image) => image.url) } : {}),
+    },
+  };
 }

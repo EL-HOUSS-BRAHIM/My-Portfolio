@@ -13,6 +13,12 @@ export const metadata: Metadata = {
   },
   description:
     "Thoughtful software, built with curiosity and care. Brahim El Houss, software engineer in Casablanca, Morocco.",
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION || undefined,
+    other: process.env.BING_SITE_VERIFICATION
+      ? { "msvalidate.01": process.env.BING_SITE_VERIFICATION }
+      : undefined,
+  },
 };
 export default async function RootLayout({
   children,

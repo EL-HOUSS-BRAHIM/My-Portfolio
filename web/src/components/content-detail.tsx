@@ -6,6 +6,8 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { getContent } from "@/lib/content";
 import type { Locale } from "@/i18n/routing";
+import { contentUrl } from "@/lib/seo";
+import { siteUrl } from "@/lib/env";
 export async function ContentDetail({
   locale,
   slug,
@@ -49,6 +51,31 @@ export async function ContentDetail({
   }
   return (
     <article className="container">
+      {kind === "post" && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BlogPosting",
+              headline: text.title,
+              description: text.summary,
+              inLanguage: locale,
+              url: contentUrl(locale, kind, slug),
+              mainEntityOfPage: contentUrl(locale, kind, slug),
+              author: {
+                "@type": "Person",
+                name: "Brahim El Houss",
+                url: `${siteUrl()}/${locale}/about`,
+              },
+              ...(item.image
+                ? { image: new URL(item.image, siteUrl()).href }
+                : {}),
+              ...(item.updated_at ? { dateModified: item.updated_at } : {}),
+            }).replace(/</g, "\\u003c"),
+          }}
+        />
+      )}
       <div className="page-intro">
         <Link
           className="text-link"
