@@ -12,6 +12,8 @@ Updated 2026-10-24. This guide replaces the legacy PHP instructions.
 
 ## Application changes prepared locally
 
+**Released:** The changes below are now live at application revision `6aac2e5`, deployed by successful workflow `40098459337`. All 63 public sitemap URLs passed the post-release SEO crawl. Google accepted indexing requests for English, French and Arabic homepages; indexing itself remains Google's decision.
+
 The active application is in `web/`. Root PHP files and their robots/sitemap assets are legacy sources and do not configure the running Next.js site.
 
 - Shared metadata includes an absolute Open Graph URL, site name, a 1200 × 630 PNG preview and explicit Twitter large-image cards.

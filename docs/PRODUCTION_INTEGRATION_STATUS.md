@@ -1,5 +1,9 @@
 # Portfolio production integration — 2026-10-22
 
+## SEO release and Search Console — 2026-10-24
+
+Production now runs `6aac2e5f9ca334b53b3b5d3c616a6ac77076a118`, deployed by successful [workflow 40098459337](https://github.com/EL-HOUSS-BRAHIM/My-Portfolio/actions/runs/40098459337). The green app/worker slot is healthy, with shared services verified by the deployment. CI passed 21 tests, 19 browser tests, database checks, typecheck, lint, build, dependency audits and image scans. All 63 live sitemap URLs passed SEO checks and now include social images/cards. Search Console domain ownership is DNS verified; sitemap processing succeeded with 63 discovered URLs; homepage indexing requests were accepted for all three locales. See [SEO audit](SEO_AUDIT_2026-10-24.md) for evidence and boundaries. This supersedes the older active revision below. SMTP remains paused.
+
 ## Website audit deployment and repeat acceptance — 2026-10-24
 
 Production now runs revision `b647b11a06b2235d793103fa6c02e2dfa5d4db1d`, deployed by successful workflow [40048937991](https://github.com/EL-HOUSS-BRAHIM/My-Portfolio/actions/runs/40048937991). The blue slot is active; app/worker image identity, authenticated readiness, public liveness, and shared-site health were checked on the VPS.
