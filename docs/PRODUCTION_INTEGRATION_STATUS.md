@@ -1,5 +1,11 @@
 # Portfolio production integration — 2026-10-22
 
+## Website audit deployment and repeat acceptance — 2026-10-24
+
+Production now runs revision `b647b11a06b2235d793103fa6c02e2dfa5d4db1d`, deployed by successful workflow [40048937991](https://github.com/EL-HOUSS-BRAHIM/My-Portfolio/actions/runs/40048937991). The blue slot is active; app/worker image identity, authenticated readiness, public liveness, and shared-site health were checked on the VPS.
+
+See [the website audit report](WEBSITE_AUDIT_2026-10-24.md) for findings, remediation, and exact evidence. Final live acceptance passed 144 layout/language/theme cases, all 42 published detail pages, six interaction groups including mocked throttled retries, and six no-JavaScript form/language combinations. CI passed 21 unit/deployment tests and 19 browser tests plus database checks, build, lint, dependency audits, and image scans. No matching runtime errors appeared in the observed app/worker logs. SMTP remains paused. This supersedes the earlier deployed revisions below.
+
 ## Production deployment verified — 2026-10-24
 
 The owner authorized deployment and error repair. Production workflow [40044551839](https://github.com/EL-HOUSS-BRAHIM/My-Portfolio/actions/runs/40044551839) succeeded for commit `e0b494bec5343b228a7f3cdb95ec2937f09c23c2`: verification, immutable app/worker images, vulnerability scans, and shared-VPS deployment all passed. Linux verification included six passing unit/deployment test files, disposable database checks, the production build, 14 browser/accessibility journeys, and dependency audits.

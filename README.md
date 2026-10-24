@@ -1,6 +1,8 @@
 # Brahim El Houss — Portfolio
 
-A calm, multilingual portfolio and private publishing dashboard. The new TypeScript application lives in **`web/`**. The PHP application remains in place for migration and rollback; no live server or DNS was changed by this upgrade.
+A calm, multilingual portfolio and private publishing dashboard. The TypeScript application lives in **`web/`** and is deployed at [brahim-elhouss.tech](https://brahim-elhouss.tech/en). The PHP application remains as the legacy migration/rollback source.
+
+The [October 24 website audit](docs/WEBSITE_AUDIT_2026-10-24.md) records the fixes, successful deployment, and repeat live acceptance results.
 
 **New session:** read [README_NEXT_SESSION.md](README_NEXT_SESSION.md) first for the current state, verified checks, shared-VPS constraints, and next steps.
 
@@ -53,7 +55,7 @@ The VPS also hosts **Afrimed Space** and **Budgetify / Lyvora**. The portfolio u
 
 Integrate the portfolio Caddy import and read-only directory mount into **both existing gateway source repositories** before deployment. The portfolio deployer refuses to run without them. See [Operations](docs/OPERATIONS.md) and [gateway integration](deploy/gateway/shared-gateway.patch).
 
-The domain remains configurable. Cloudflare account access, VPS credentials, SMTP credentials, a selected Supabase project, and production data were not available in this workspace.
+The domain remains configurable. Production is deployed behind the shared gateway with the approved Supabase backend; SMTP delivery remains paused. See the production integration status for the current verified release and historical rollout notes.
 
 ## Documents
 
