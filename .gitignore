@@ -110,6 +110,7 @@ web/.next/
 web/*.tsbuildinfo
 web/coverage/
 web/test-results/
+web/artifacts/audits/
 web/playwright-report/
 web/supabase/.temp/
 web/supabase/.branches/

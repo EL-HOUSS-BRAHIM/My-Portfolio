@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { BookOpen } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { isLocale } from "@/i18n/routing";
@@ -36,7 +37,7 @@ export default async function Journal({
         <section className="section journal-grid">
           {posts.map((c) => (
             <article className="journal-item" key={c.id}>
-              {c.image && (
+              {c.image ? (
                 <Link
                   href={`/journal/${c.slug}`}
                   className="journal-image"
@@ -48,6 +49,14 @@ export default async function Journal({
                     fill
                     sizes="(max-width: 760px) 90vw, 40vw"
                   />
+                </Link>
+              ) : (
+                <Link
+                  href={`/journal/${c.slug}`}
+                  className="journal-image journal-placeholder"
+                  aria-label={c.translations[locale].title}
+                >
+                  <BookOpen size={48} strokeWidth={1} aria-hidden />
                 </Link>
               )}
               <p className="eyebrow">

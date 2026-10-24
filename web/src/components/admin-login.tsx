@@ -30,6 +30,7 @@ export function AdminLogin({
       <h1>Private dashboard</h1>
       <p>Sign in with your invited account, then verify your authenticator.</p>
       <form
+        method="post"
         onSubmit={async (e) => {
           e.preventDefault();
           setError("");

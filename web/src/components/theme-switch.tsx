@@ -1,12 +1,17 @@
 "use client";
 import { useTranslations } from "next-intl";
 import { useEffect, useSyncExternalStore } from "react";
+import { applyTheme, readTheme, syncTheme, type Theme } from "@/lib/theme";
 const subscribe = (callback: () => void) => {
+  const onStorage = () => {
+    syncTheme();
+    callback();
+  };
   window.addEventListener("theme-change", callback);
-  window.addEventListener("storage", callback);
+  window.addEventListener("storage", onStorage);
   return () => {
     window.removeEventListener("theme-change", callback);
-    window.removeEventListener("storage", callback);
+    window.removeEventListener("storage", onStorage);
   };
 };
 export function ThemeSwitch() {
@@ -14,7 +19,7 @@ export function ThemeSwitch() {
   useEffect(() => {
     const media = matchMedia("(prefers-color-scheme: dark)");
     const update = () => {
-      if ((localStorage.getItem("theme") || "system") === "system")
+      if (readTheme() === "system")
         document.documentElement.dataset.theme = media.matches
           ? "dark"
           : "light";
@@ -22,11 +27,7 @@ export function ThemeSwitch() {
     media.addEventListener("change", update);
     return () => media.removeEventListener("change", update);
   }, []);
-  const theme = useSyncExternalStore(
-    subscribe,
-    () => localStorage.getItem("theme") || "system",
-    () => "system",
-  );
+  const theme = useSyncExternalStore(subscribe, readTheme, () => "system");
   return (
     <label className="theme-control">
       <span className="sr-only">{t("theme")}</span>
@@ -34,15 +35,7 @@ export function ThemeSwitch() {
         aria-label={t("theme")}
         value={theme}
         onChange={(e) => {
-          const value = e.target.value;
-          localStorage.setItem("theme", value);
-          document.documentElement.dataset.theme =
-            value === "system"
-              ? matchMedia("(prefers-color-scheme: dark)").matches
-                ? "dark"
-                : "light"
-              : value;
-          window.dispatchEvent(new Event("theme-change"));
+          applyTheme(e.target.value as Theme);
         }}
       >
         <option value="system">◐ {t("system")}</option>

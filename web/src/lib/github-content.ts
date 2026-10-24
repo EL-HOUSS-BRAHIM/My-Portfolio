@@ -6,7 +6,7 @@ export const githubContent: Content[] = [
     id: "a8d39520-43fc-4deb-8c23-000000000001",
     kind: "project",
     slug: "lyvora",
-    category: "web",
+    category: "mobile",
     tags: ["Expo", "React Native", "TypeScript"],
     source_url: "",
     demo_url: "",

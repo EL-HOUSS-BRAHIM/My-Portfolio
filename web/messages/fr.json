@@ -70,7 +70,7 @@
     "contactTitle": "Créons quelque chose\nqui a du sens.",
     "contactIntro": "Présentez votre projet ou votre opportunité. Un peu de contexte permet un premier échange utile.",
     "privacyTitle": "Votre vie privée compte.",
-    "privacyBody": "Ce site utilise des cookies essentiels pour le thème et l’authentification administrateur. Vos coordonnées servent uniquement à répondre à votre demande. Les messages sont normalement conservés 12 mois, les journaux techniques 14 jours et les identifiants de prévention des abus 30 jours. Les dossiers clients actifs peuvent être conservés plus longtemps. Supabase stocke les données et notre prestataire SMTP envoie les notifications. Aucun traceur publicitaire n’est inclus. Pour accéder à vos données ou demander leur suppression, utilisez la page contact.",
+    "privacyBody": "Votre préférence de thème est stockée dans votre navigateur ; l’authentification administrateur utilise des cookies essentiels. Vos coordonnées servent à répondre à votre demande. Les demandes archivées peuvent être supprimées automatiquement après 12 mois ; les demandes actives peuvent être conservées plus longtemps. Les journaux techniques sont renouvelés automatiquement et les identifiants de prévention des abus sont supprimés après 30 jours. Supabase stocke les données transmises. Un prestataire SMTP envoie les notifications lorsque cette option est activée. Aucun traceur publicitaire n’est inclus. Pour accéder à vos données ou demander leur suppression, utilisez la page contact.",
     "back": "Retour aux projets",
     "source": "Voir le code",
     "demo": "Découvrir le projet",
@@ -78,9 +78,16 @@
     "missing": "Cette traduction n’est pas encore publiée.",
     "english": "Lire en anglais",
     "notFound": "Ce chemin reste à explorer.",
-    "returnHome": "Retour à l’accueil"
+    "returnHome": "Retour à l’accueil",
+    "privacyDescription": "Utilisation des coordonnées, du stockage essentiel du navigateur et de l’authentification administrateur."
   },
   "form": {
+    "javascript": "Activez JavaScript pour envoyer ce formulaire. Vos coordonnées ne seront pas transmises avant qu’il soit prêt.",
+    "contactDetails": "Votre demande",
+    "feedbackDetails": "Votre témoignage",
+    "messageHint": "Entre {min} et {max} caractères. Les champs obligatoires sont marqués *.",
+    "submitFeedback": "Envoyer le témoignage",
+    "feedbackSuccess": "Merci. Votre témoignage a été reçu et sera examiné avant publication.",
     "name": "Votre nom",
     "email": "Adresse e-mail",
     "subject": "Le sujet",
@@ -89,12 +96,17 @@
     "submit": "Envoyer le message",
     "sending": "Envoi…",
     "success": "Votre message est bien enregistré. Merci de nous avoir contactés.",
-    "error": "Votre message n’a pas pu être enregistré. Réessayez dans un instant.",
+    "error": "Nous n’avons pas pu confirmer la réception. Votre texte est conservé ; réessayez le même message pour éviter un double envoi.",
     "invalid": "Vérifiez les champs et votre consentement avant l’envoi.",
     "limited": "Trop de messages. Réessayez plus tard.",
     "unavailable": "Le formulaire est momentanément indisponible. Contactez-moi sur GitHub.",
     "website": "Laissez ce champ vide",
-    "required": "Obligatoire"
+    "required": "Obligatoire",
+    "feedbackTitle": "Comment s’est passée notre collaboration ?",
+    "feedbackIntro": "Les témoignages sont modérés avant publication.",
+    "feedbackLabel": "TÉMOIGNAGE",
+    "feedbackPrompt": "Votre expérience de collaboration",
+    "feedbackConsent": "J’accepte la publication de mon nom et de mon témoignage après modération."
   },
   "footer": {
     "line": "Construit avec intention. Toujours en évolution.",
@@ -103,6 +115,8 @@
     "github": "GitHub"
   },
   "filters": {
+    "mobile": "Applications mobiles",
+    "count": "{count, plural, one {# projet} other {# projets}}",
     "all": "Tous",
     "web": "Applications web",
     "systems": "Systèmes",

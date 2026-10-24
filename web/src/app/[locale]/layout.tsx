@@ -23,7 +23,9 @@ export default async function LocaleLayout({
             : "Skip to content"}
       </a>
       <Header />
-      <main id="main">{children}</main>
+      <main id="main" tabIndex={-1}>
+        {children}
+      </main>
       <Footer />
     </>
   );

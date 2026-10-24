@@ -32,7 +32,7 @@ test("filters, theme and language preserve page context", async ({ page }) => {
   await page.reload();
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
   await page.getByRole("link", { name: "Français", exact: true }).click();
-  await expect(page).toHaveURL(/\/fr\/work$/);
+  await expect(page).toHaveURL(/\/fr\/work\?category=systems$/);
 });
 test("mobile navigation and RTL have no horizontal overflow", async ({
   page,

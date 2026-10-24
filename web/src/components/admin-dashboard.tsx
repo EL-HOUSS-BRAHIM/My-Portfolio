@@ -121,6 +121,7 @@ export function AdminDashboard({
           ))}
         </aside>
         <form
+          method="post"
           className="admin-form"
           onSubmit={(e) => {
             e.preventDefault();
@@ -317,6 +318,7 @@ export function AdminDashboard({
           ready to be public.
         </p>
         <form
+          method="post"
           className="admin-form"
           style={{ marginBlock: 20 }}
           onSubmit={(e) => {

@@ -16,7 +16,8 @@ export async function generateMetadata({
 }
 export default async function Contact() {
   const t = await getTranslations("pages"),
-    h = await getTranslations("home");
+    h = await getTranslations("home"),
+    f = await getTranslations("form");
   return (
     <div className="container">
       <PageIntro
@@ -32,7 +33,12 @@ export default async function Contact() {
             GitHub ↗
           </a>
         </aside>
-        <ContactForm enabled={hasSupabase()} />
+        <div>
+          <noscript>
+            <p className="form-notice">{f("javascript")}</p>
+          </noscript>
+          <ContactForm enabled={hasSupabase()} />
+        </div>
       </div>
     </div>
   );

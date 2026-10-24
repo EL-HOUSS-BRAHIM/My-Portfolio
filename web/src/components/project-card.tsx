@@ -35,7 +35,7 @@ export function ProjectCard({
             </div>
           )}
           <span className="image-number" aria-hidden>
-            0{index + 1}
+            {String(index + 1).padStart(2, "0")}
           </span>
           <span className="project-open" aria-hidden>
             <ArrowUpRight size={24} />

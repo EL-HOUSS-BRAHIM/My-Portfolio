@@ -70,7 +70,7 @@
     "contactTitle": "Let’s make\nsomething worthwhile.",
     "contactIntro": "Tell me a little about your project or opportunity. Clear context makes a good first conversation.",
     "privacyTitle": "Your privacy matters.",
-    "privacyBody": "This website uses essential cookies for your theme preference and administrator authentication. Contact details are used only to respond to your enquiry. Messages are normally retained for up to 12 months, operational logs for 14 days, and abuse-prevention identifiers for 30 days. Active client records may need longer retention. Supabase processes stored data and our SMTP provider delivers notifications. No advertising trackers are included. To request access or deletion, use the contact page.",
+    "privacyBody": "Your theme preference is stored in your browser; administrator authentication uses essential cookies. Contact details are used to respond to your enquiry. Archived enquiries are eligible for automatic deletion after 12 months; active enquiries may be kept longer. Operational logs rotate automatically and abuse-prevention identifiers are removed after 30 days. Supabase stores submitted data. Email notifications use an SMTP provider when delivery is enabled. No advertising trackers are included. To request access or deletion, use the contact page.",
     "back": "Back to projects",
     "source": "View source",
     "demo": "Explore project",
@@ -78,9 +78,16 @@
     "missing": "This translation is not published yet.",
     "english": "Read in English",
     "notFound": "That path is still unexplored.",
-    "returnHome": "Return home"
+    "returnHome": "Return home",
+    "privacyDescription": "How contact details, essential browser storage, and administrator authentication are handled."
   },
   "form": {
+    "javascript": "Enable JavaScript to send this form. Your details will not be submitted until the form is ready.",
+    "contactDetails": "Your enquiry",
+    "feedbackDetails": "Your feedback",
+    "messageHint": "Between {min} and {max} characters. Required fields are marked *.",
+    "submitFeedback": "Submit feedback",
+    "feedbackSuccess": "Thank you. Your feedback was received and will be reviewed before publication.",
     "name": "Your name",
     "email": "Email address",
     "subject": "What is it about?",
@@ -89,12 +96,17 @@
     "submit": "Send message",
     "sending": "Sending…",
     "success": "Your message is safely received. Thank you for getting in touch.",
-    "error": "We couldn’t save your message. Please try again shortly.",
+    "error": "We couldn’t confirm receipt. Your text is still here; retry the same message to avoid sending it twice.",
     "invalid": "Please check the fields and consent before sending.",
     "limited": "Too many messages. Please try again later.",
     "unavailable": "The contact form is temporarily unavailable. You can reach me on GitHub.",
     "website": "Leave this field empty",
-    "required": "Required"
+    "required": "Required",
+    "feedbackTitle": "How was working together?",
+    "feedbackIntro": "Feedback is reviewed before publication.",
+    "feedbackLabel": "FEEDBACK",
+    "feedbackPrompt": "Your experience working with me",
+    "feedbackConsent": "I consent to my name and feedback being published after moderation."
   },
   "footer": {
     "line": "Built with intention. Always a work in progress.",
@@ -103,6 +115,8 @@
     "github": "GitHub"
   },
   "filters": {
+    "mobile": "Mobile apps",
+    "count": "{count, plural, one {# project} other {# projects}}",
     "all": "All work",
     "web": "Web applications",
     "systems": "Systems",

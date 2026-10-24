@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 import * as Dialog from "@radix-ui/react-dialog";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
@@ -9,6 +10,7 @@ import type { Locale } from "@/i18n/routing";
 export function Header() {
   const t = useTranslations("nav");
   const path = usePathname();
+  const search = useSearchParams().toString();
   const locale = useLocale();
   const [open, setOpen] = useState(false);
   const links = [
@@ -43,17 +45,17 @@ export function Header() {
         </nav>
         <div className="header-tools">
           <div className="locale-switch" aria-label={t("language")}>
+            {/* A document navigation refreshes the root language and message provider. */}
             {(["en", "fr", "ar"] as Locale[]).map((l) => (
-              <Link
+              <a
                 key={l}
-                href={path}
-                locale={l}
+                href={`/${l}${path === "/" ? "" : path}${search ? `?${search}` : ""}`}
                 lang={l}
                 aria-label={{ en: "English", fr: "Français", ar: "العربية" }[l]}
                 aria-current={locale === l ? "true" : undefined}
               >
                 {l === "ar" ? "ع" : l.toUpperCase()}
-              </Link>
+              </a>
             ))}
           </div>
           <Link className="button small desktop-contact" href="/contact">
@@ -82,11 +84,20 @@ export function Header() {
                 </Dialog.Close>
                 <nav>
                   {links.map(([href, label]) => (
-                    <Link key={href} href={href} onClick={() => setOpen(false)}>
+                    <Link
+                      key={href}
+                      href={href}
+                      aria-current={path.startsWith(href) ? "page" : undefined}
+                      onClick={() => setOpen(false)}
+                    >
                       {t(label)}
                     </Link>
                   ))}
-                  <Link href="/contact" onClick={() => setOpen(false)}>
+                  <Link
+                    href="/contact"
+                    aria-current={path === "/contact" ? "page" : undefined}
+                    onClick={() => setOpen(false)}
+                  >
                     {t("contact")}
                   </Link>
                 </nav>
@@ -96,6 +107,19 @@ export function Header() {
           </Dialog.Root>
         </div>
       </div>
+      <noscript>
+        <style>
+          {".mobile-menu, .theme-control { display: none !important; }"}
+        </style>
+        <nav className="container no-script-nav" aria-label={t("menu")}>
+          {links.map(([href, label]) => (
+            <Link key={href} href={href}>
+              {t(label)}
+            </Link>
+          ))}
+          <Link href="/contact">{t("contact")}</Link>
+        </nav>
+      </noscript>
     </header>
   );
 }

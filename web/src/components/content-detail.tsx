@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ArrowLeft } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import { notFound, redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
@@ -53,7 +54,7 @@ export async function ContentDetail({
           className="text-link"
           href={kind === "project" ? "/work" : "/journal"}
         >
-          ←{" "}
+          <ArrowLeft size={16} aria-hidden />
           {kind === "project"
             ? t("back")
             : locale === "ar"

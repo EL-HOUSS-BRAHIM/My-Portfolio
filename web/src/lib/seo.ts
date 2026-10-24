@@ -8,7 +8,7 @@ export function pageMeta(
   available: Locale[] = ["en", "fr", "ar"],
 ): Metadata {
   return {
-    title,
+    title: title.includes("Brahim El Houss") ? { absolute: title } : title,
     description,
     alternates: {
       canonical: `/${locale}${path}`,
