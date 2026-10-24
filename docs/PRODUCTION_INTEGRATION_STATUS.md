@@ -1,5 +1,15 @@
 # Portfolio production integration — 2026-10-22
 
+## Production deployment verified — 2026-10-24
+
+The owner authorized deployment and error repair. Production workflow [40044551839](https://github.com/EL-HOUSS-BRAHIM/My-Portfolio/actions/runs/40044551839) succeeded for commit `e0b494bec5343b228a7f3cdb95ec2937f09c23c2`: verification, immutable app/worker images, vulnerability scans, and shared-VPS deployment all passed. Linux verification included six passing unit/deployment test files, disposable database checks, the production build, 14 browser/accessibility journeys, and dependency audits.
+
+Fixed the missing `portfolioContent` import introduced by the merge. Consolidated overlapping case studies so the existing detailed Watch Party, travel API, portfolio, and capability entries remain authoritative. Published only the three missing Lyvora, logistics foundations, and preview-release article entries in one insert-only transaction; existing production content was preserved. All nine new translations were confirmed published.
+
+The blue production slot is active, using the above commit's immutable image tags. The application container is healthy; the worker is running. Authenticated readiness and public liveness returned 200. All 24 checked public routes (eight routes in each of English, French, and Arabic), including the new detail pages, returned successful HTML with headings. No matching runtime error lines appeared in the candidate app/worker logs during the first ten-minute log window. Afrimed, Lyvora production, and Lyvora preview health checks returned 200 after deployment. The previous portfolio slot remains available for rollback.
+
+SMTP remains deliberately paused. This deployment did not send mail, change shared Auth configuration, or modify financial data. The content collection now contains ten projects, four articles, four milestones, one education entry, three skills, and three services. Earlier blocker statements below are historical and superseded by this live verification. Production HTTP and runtime checks do not constitute a manual Auth/MFA or contact-delivery acceptance test.
+
 ## QueenSMTP production readiness follow-up
 
 The owner supplied the missing SMTP password and authorized its use. A mode-600 runtime file has been prepared outside the repository with QueenSMTP port 465/SSL, SMTP delivery enabled, the existing sender/recipient, Supabase server configuration and independent app secrets. No credential values are included here or in Git. The provided SSH private key and known-hosts file are also available outside the repository; this supersedes earlier statements that credentials were missing.
