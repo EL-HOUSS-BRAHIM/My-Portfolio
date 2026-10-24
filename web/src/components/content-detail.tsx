@@ -99,6 +99,13 @@ export async function ContentDetail({
         </div>
         <h1>{text.title}</h1>
         <p>{text.summary}</p>
+        {kind === "post" && (
+          <p>
+            <Link href="/about" rel="author">
+              Brahim El Houss
+            </Link>
+          </p>
+        )}
       </div>
       <div className="case-links">
         {item.source_url && (
