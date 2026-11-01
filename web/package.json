@@ -41,7 +41,7 @@
     "@eslint/js": "10.0.1",
     "@playwright/test": "1.64.1",
     "@tailwindcss/postcss": "4.3.3",
-    "@types/node": "26.6.5",
+    "@types/node": "26.6.6",
     "@types/nodemailer": "8.0.2",
     "@types/pg": "8.23.1",
     "@types/react": "19.3.0",
@@ -50,11 +50,11 @@
     "eslint-plugin-react-hooks": "7.1.1",
     "pg": "8.23.1",
     "prettier": "3.9.10",
-    "supabase": "2.121.0",
+    "supabase": "2.122.0",
     "tailwindcss": "4.3.3",
     "tsx": "4.23.15",
     "typescript": "6.0.3",
-    "typescript-eslint": "8.72.0",
+    "typescript-eslint": "8.72.1",
     "vitest": "5.0.5"
   },
   "type": "module"
